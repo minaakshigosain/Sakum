@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .sakum_sutra
+sakum_key.txt
 query_logs/
 self/patches/
 *.log

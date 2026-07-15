@@ -77,8 +77,10 @@ The base must remain **more capable than raw assembly** for the target domains
 - Self-diagnostic: bug detection, patch generation, git upload.
 
 ### 1.8 Security & cryptography
-- Creator-owned hash key (`सूत्र` / sutra) installed per system.
-- Encrypted data transmission over the comms layer.
+- Creator-owned encryption key (`सूत्र` / sutra) installed per system — **not** a
+  SHA-derived key. The user supplies their own key (env `SAKUM_SUTRA_KEY` or file
+  `sakum_key.txt`). No SHA-256 anywhere in the pipeline.
+- Encrypted data transmission over the comms layer using the installed key.
 - Post-quantum-safe primitives chosen where available.
 
 ### 1.9 Learning & memory
@@ -169,7 +171,7 @@ the one permitted exception, and it is removed once self-hosting is reached.
 | हृदय | heart | engine allocator |
 | स्पन्द | pulse | engine tick |
 | नाडी | nerve | signal bus |
-| सूत्र | sutra | creator hash key |
+| सूत्र | sutra | creator encryption key (user-installed) |
 
 ---
 

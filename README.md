@@ -13,6 +13,15 @@ python3 -m sakum examples/hello.sakum --vm   # run on the lightweight bytecode V
 python3 tests/test_sakum.py                  # 11 tests
 ```
 
+## Install your encryption key (सूत्र)
+
+No SHA is used. Provide your own key:
+
+```
+export SAKUM_SUTRA_KEY="your-own-key-here"
+# or write it (git-ignored) to sakum_key.txt
+```
+
 ## Layout
 
 ```

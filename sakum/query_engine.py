@@ -1,4 +1,3 @@
-import hashlib
 import json
 import os
 
@@ -16,8 +15,14 @@ class QueryEngine:
         }
 
     def binary_hash(self, text):
-        digest = hashlib.sha256(text.encode("utf-8")).digest()
-        return "".join(f"{b:08b}" for b in digest)
+        h = 0xcbf29ce484222325
+        prime = 0x100000001b3
+        data = text.encode("utf-8")
+        for _ in range(4):
+            for ch in data:
+                h ^= ch
+                h = (h * prime) & 0xffffffffffffffff
+        return format(h, "064b")
 
     def categorize(self, text):
         t = text.lower()
@@ -34,7 +39,7 @@ class QueryEngine:
         return "0"
 
     def note(self, text):
-        return f"#what {self.binary_hash(text)[:64]} :: suggest review under {self.types[self.categorize(text)]}"
+        return f"#what {self.binary_hash(text)} :: suggest review under {self.types[self.categorize(text)]}"
 
     def ask(self, text):
         bhash = self.binary_hash(text)
