@@ -8,8 +8,8 @@ cd "$HERE"
 
 ARCH="$(uname -m)"
 if [ "$ARCH" = "arm64" ]; then
-  SRC=assembly/sakum_tracker_arm64.s
-  BIN=/tmp/sakum_tracker_arm64
+  SRC=assembly/sakum_tracker_arm64_neon.s
+  BIN=/tmp/sakum_tracker_arm64_neon
 else
   SRC=assembly/sakum_tracker.s
   BIN=/tmp/sakum_tracker_x86

@@ -15,7 +15,8 @@ portable binaries with `wasm-validate` / `wasmtime` / `node`.
 | `sakum_wasm.s` | Emits a **spec-valid WASM binary** byte-by-byte (LEB128 sections, exported `run`). Portable machine-level output. | `gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen && /tmp/wasmgen > /tmp/out.wasm && wasm-validate /tmp/out.wasm` |
 | `sakum_self.s` | The `self` engine at machine level: a code buffer that **grows by appending generated instruction bytes** (continuous library growth). | `gcc -arch x86_64 assembly/sakum_self.s -o /tmp/self && /tmp/self` → `8` |
 | `sakum_tracker.s` | **ब्रम्ह LIVE HISTORY VIEWER** (x86-64) — the live self-update tracker, raw x86-64 (no Python). Reads `query_logs/fetch_live.jsonl` and prints `स्रोत → भाषा → गंतव्य` + pulse clock. Replaces the dead `serve.py` + `sakum_status.sh`. | `gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker && /tmp/tracker` (once) · `/tmp/tracker --live` · `/tmp/tracker <path>` |
-| `sakum_tracker_arm64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (native Apple Silicon / AArch64) — the arm64-native port. Identical behavior, no host language. What `tools/sakum_tracker.sh` builds on M-series Macs. Proven running natively. | `gcc -arch arm64 assembly/sakum_tracker_arm64.s -o /tmp/tracker && /tmp/tracker --live` |
+| `sakum_tracker_arm64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (native Apple Silicon / AArch64) — the arm64-native port. Identical behavior, no host language. Proven running natively. | `gcc -arch arm64 assembly/sakum_tracker_arm64.s -o /tmp/tracker && /tmp/tracker --live` |
+| `sakum_tracker_arm64_neon.s` | **ब्रम्ह LIVE HISTORY VIEWER (Apple Silicon + NEON)** — the ARM64 port with the line-splitting hot loop vectorized using ARM NEON (Advanced SIMD): a 16-byte chunk is loaded with `ld1`, the newline byte broadcast with `dup`, compared lane-wise with `cmeq` (16 lanes at once), and the first newline located by scanning the 128-bit mask. Raw NEON machine code, no host language. **Proven running natively; output is byte-identical to the scalar arm64 tracker.** This is what `tools/sakum_tracker.sh` builds on M-series Macs. | `gcc -arch arm64 assembly/sakum_tracker_arm64_neon.s -o /tmp/tracker_neon && /tmp/tracker_neon --live` |
 | `sakum_tracker_arm32.s` | **ब्रम्ह LIVE HISTORY VIEWER** (ARMv7-A, 32-bit) — for Raspberry Pi (32-bit OS) and ARM32 SBCs. ARM EABI, libc-based, no host language. Assemble-verified. | `arm-linux-gnueabihf-gcc -march=armv7-a -marm -static assembly/sakum_tracker_arm32.s -o t.elf` (real Pi) |
 | `sakum_tracker_arm32_sys.s` | **ARMv7-A libc-free Linux-syscall tracker** — makes `svc #0` open/read/write/close/exit directly (openat=56, read=63, write=64, close=57, exit=93). Self-contained ELF, no libc needed. Assembles **and links** to a runnable ELF (`/tmp/tarm32_sys.elf`). Runs on real Pi OS and under `qemu-arm` (user-mode). | `arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum_tracker_arm32_sys.s -o /tmp/tarm32_sys.elf` |
 | `sakum_tracker_arm32_semihost.s` | **ARM32 QEMU-semihosting tracker** — uses `bkpt 0xab`/`hlt 0xf000` semihosting calls (open=0x01, read=0x05, write=0x06, close=0x07, exit=0x18). For `qemu-system-arm -M virt -kernel -semihosting`. Assembles; semihosting did not trigger in this environment's QEMU build. | `arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum_tracker_arm32_semihost.s -o /tmp/tarm32_sh.elf` |
@@ -28,9 +29,10 @@ All tracker back ends share identical behavior: read `query_logs/fetch_live.json
 
 ## Run proofs (what actually executed here)
 
-- **arm64 native**: `assembly/sakum_tracker_arm64.s` builds and runs natively on
-  Apple Silicon (M-series). Proven — full CLI output, banner, pulse clock,
-  `--live` loop. This is the reference implementation.
+- **arm64 native (NEON)**: `assembly/sakum_tracker_arm64_neon.s` builds and runs
+  natively on Apple Silicon (M-series). Proven — full CLI output, NEON-accelerated
+  line scan, and all 488 ledger rows byte-identical to the scalar arm64 tracker.
+  This is the reference implementation and what `tools/sakum_tracker.sh` builds.
 - **x86-64**: `assembly/sakum_tracker.s` assembles and runs under Rosetta.
 - **arm32 / rv64 (libc)**: assemble-verified; link needs a real cross libc
   (glibc/linux-gnu), which the brew `*-elf-gcc` packages do not ship.
