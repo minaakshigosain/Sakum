@@ -1,7 +1,10 @@
 __pycache__/
 *.pyc
+.DS_Store
 .sakum_sutra
 sakum_key.txt
 query_logs/
 self/patches/
 *.log
+*.pdf
+*.app/

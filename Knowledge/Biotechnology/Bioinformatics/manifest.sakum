@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Biotechnology/Bioinformatics";
+नाम hash = #what f042db709170eaf3ae00fb9f703e5b06f6c25e9364037b5d9533cc04af5853a85d89c7152c368dd79542c3ce2f7f191afb7ec24cb254d0e1a676d45fc2e4d7dc;
+लेख(query("load Biotechnology/Bioinformatics"));
+लेख(heartbeat());

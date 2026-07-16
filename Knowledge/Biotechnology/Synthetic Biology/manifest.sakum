@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Biotechnology/Synthetic Biology";
+नाम hash = #what 6806c6d95d8585f1eb8696f126979bac5bd26bb8a164328bc2970fc5b9fe58be9d1bcd4de5b95cb5b682c360ff5398203c009ca75c311eefc25c856f7f7d8252;
+लेख(query("load Biotechnology/Synthetic Biology"));
+लेख(heartbeat());

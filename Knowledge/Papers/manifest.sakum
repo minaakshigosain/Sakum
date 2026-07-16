@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Papers";
+नाम hash = #what 404bf733c0734a561b97e25ac99a3c6d01e5f35672ef337882ab794e6ad4156718f7c82cfe405d6a4a70885d6dc182f11a7cda3c04a614ac49dd336344f6778b;
+लेख(query("load Papers"));
+लेख(heartbeat());

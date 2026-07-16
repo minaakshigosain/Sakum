@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Neuroscience/Neural Networks";
+नाम hash = #what d511c0fcb54f082b40132ed8906045def94ca3fcad32eb550979f746e0930a4014ec463d5a960e8fc6806504423c017234d7a07f100550595eee955e9affc7f4;
+लेख(query("load Neuroscience/Neural Networks"));
+लेख(heartbeat());

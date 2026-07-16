@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Open Datasets";
+नाम hash = #what 6803ae0d831badf1cfb5960687d4a3ac644afc9da8169a8b83704b10f0f2a0be645db357a66204b5fcdbc5b5505120200f1d2997873a06efd28cea0f83264a52;
+लेख(query("load Open Datasets"));
+लेख(heartbeat());

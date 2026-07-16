@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    "double",
+    "square",
+    "vadd",
+    "main"
+  ],
+  "tags": {
+    "double": [],
+    "square": [],
+    "vadd": [],
+    "main": []
+  },
+  "entry": "main"
+}

@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Artificial Intelligence";
+नाम hash = #what d2c5b1c2f939fd5f742cd01437962c025b5eaa7271cc3ba9ead9a65b2f43d504f721dd651854ef03138ecd4161a701d6b8cfb4cc9539fdede3ce5a491e82b6f8;
+लेख(query("load Artificial Intelligence"));
+लेख(heartbeat());

@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Mathematics/Algebra";
+नाम hash = #what ec59cb43e9011f7d991a86ffeafa0d4849c321306cda8ef7211f221410822bbae163a5a71d3c7701ed085812a9a6eb7cbc6e19cc77bd6a1bf9b2c354c10d8d0e;
+लेख(query("load Mathematics/Algebra"));
+लेख(heartbeat());

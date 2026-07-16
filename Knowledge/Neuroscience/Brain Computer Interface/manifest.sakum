@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Neuroscience/Brain Computer Interface";
+नाम hash = #what 28dfaee79ba229c0eb2a30f2125f180f5575a049d3c92cf20bd4d482ffea75d9a846ed134761df74f66629fd8ffa54b3068144cde69c31c6beb9c895bdcb7b1d;
+लेख(query("load Neuroscience/Brain Computer Interface"));
+लेख(heartbeat());

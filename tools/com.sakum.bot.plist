@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd job: keeps the Sakum self-updater ALWAYS ON.
+  It runs tools/serve.py (python3 — network/TCC approved) which exposes the
+  webhook + websocket + timer-pulse server; every pulse/webhook/ws frame runs
+  the bot (tools/sakum_bot.sh), which learns, generates real library functions,
+  recompiles the core, and self-heals on failure.
+
+  Install:
+    cp tools/com.sakum.bot.plist ~/Library/LaunchAgents/
+    launchctl load  ~/Library/LaunchAgents/com.sakum.bot.plist
+  Stop:
+    launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist
+
+  NOTE: we invoke python3 (not bash directly) because macOS TCC blocks /bin/bash
+  from reading the Downloads-working-directory; python3 is permitted for network.
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.sakum.bot</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/bin/python3</string>
+      <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/serve.py</string>
+      <string>--http</string>
+      <string>8080</string>
+      <string>--pulse</string>
+      <string>600</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/bot.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/bot.err.log</string>
+
+    <!-- keep-alive: relaunch if it ever exits -->
+    <key>KeepAlive</key>
+    <true/>
+
+    <!-- start at login -->
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>

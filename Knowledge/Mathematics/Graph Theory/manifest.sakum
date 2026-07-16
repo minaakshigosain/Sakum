@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Mathematics/Graph Theory";
+नाम hash = #what 7211cf719107ebd9ae10562e15199d7470029e1b7688bab300b5e899703e1fc66fde908bca54511d5996eeb22e5826689870dacc127bd997d69ae0c32101a9da;
+लेख(query("load Mathematics/Graph Theory"));
+लेख(heartbeat());

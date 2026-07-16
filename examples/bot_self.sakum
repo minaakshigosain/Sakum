@@ -1,0 +1,64 @@
+# bot_self.sakum - ब्रम्ह bot's OWN web stack, authored in Sakum language.
+#
+# Per the owner directive, the bot has authority to create web features in its
+# own language. This file is the Sakum-language spelling of:
+#   * a web crawler   (mirrors assembly/sakum_bramann.s)
+#   * a webhook sink  (mirrors assembly/sakum_webhook.s)
+#   * a websocket hub (mirrors tools/serve.py /ws)
+# The eval front end (assembly/sakum_eval.s) lowers these to the machine core.
+
+सूत्र ब्रम्ह_get(host, path) {
+    # raw HTTP/1.1 GET over a BSD socket (syscall-wrapped by the core)
+    चर sock = नाडी.socket(host)
+    यदि (sock < 0) { वापस -1 }
+    चर req = "GET " + path + " HTTP/1.1\r\nHost: " + host + "\r\n\r\n"
+    नाडी.send(sock, req)
+    चर body = नाडी.recv(sock, 8192)
+    नाडी.close(sock)
+    वापस body
+}
+
+सूत्र ब्रम्ह_scrape(html) {
+    # from-scratch parser: extract <title> and every <a href>
+    चर links = []
+    चर i = 0
+    जबतक (i < लंबाई(html)) {
+        यदि (html[i] == '<' और html[i+1] == 'a') {
+            links = लिंक_निकाल(html, i)
+        }
+        i = i + 1
+    }
+    वापस links
+}
+
+सूत्र ब्रम्ह_learn(sphere) {
+    # quantum-learn: FNV-1a fold -> binary hash -> research note
+    चर h = 0x811C9DC5
+    चर i = 0
+    जबतक (i < लंबाई(sphere)) {
+        h = (h ^ sphere[i]) * 16777619
+        i = i + 1
+    }
+    अनुसंधान.लिखो("#what sphere: " + sphere + " hash=" + h)
+    वापस h
+}
+
+# webhook sink: answers POST /update by firing a self-update cycle
+सूत्र webhook_update(req) {
+    यदि (req.path == "/update") {
+        नाडी.emit("webhook.update", "POST /update")
+        वापस "cycle triggered"
+    }
+    वापस "ok"
+}
+
+# websocket hub: any frame triggers a pulse and streams it back
+सूत्र ws_on_frame(frame) {
+    नाडी.emit("ws.trigger", frame)
+    वापस "PULSE " + frame
+}
+
+परीक्षा {
+    चर h = ब्रम्ह_learn("Knowledge/Mathematics")
+    मुद्रण "ब्रम्ह self-web stack ok: " h
+}

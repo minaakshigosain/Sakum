@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    "vadd_simd",
+    "main"
+  ],
+  "tags": {
+    "vadd_simd": [
+      "simd",
+      "vector add"
+    ],
+    "main": []
+  },
+  "entry": "main"
+}

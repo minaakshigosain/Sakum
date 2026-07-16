@@ -1,0 +1,5 @@
+# Knowledge node (binary-hash addressable)
+नाम node = "Physics/Astrophysics";
+नाम hash = #what f8760d061bb968b3f609fec8e61eb5c684b8a89d3b38af1da544d797071eac6862b6fbe4a7db6797022528f5703f9fda7b918b2204c5c0a1b2259d6dd26f3c9c;
+लेख(query("load Physics/Astrophysics"));
+लेख(heartbeat());
