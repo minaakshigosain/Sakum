@@ -16,11 +16,30 @@ portable binaries with `wasm-validate` / `wasmtime` / `node`.
 | `sakum_self.s` | The `self` engine at machine level: a code buffer that **grows by appending generated instruction bytes** (continuous library growth). | `gcc -arch x86_64 assembly/sakum_self.s -o /tmp/self && /tmp/self` → `8` |
 | `sakum_tracker.s` | **ब्रम्ह LIVE HISTORY VIEWER** (x86-64) — the live self-update tracker, raw x86-64 (no Python). Reads `query_logs/fetch_live.jsonl` and prints `स्रोत → भाषा → गंतव्य` + pulse clock. Replaces the dead `serve.py` + `sakum_status.sh`. | `gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker && /tmp/tracker` (once) · `/tmp/tracker --live` · `/tmp/tracker <path>` |
 | `sakum_tracker_arm64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (native Apple Silicon / AArch64) — the arm64-native port. Identical behavior, no host language. What `tools/sakum_tracker.sh` builds on M-series Macs. Proven running natively. | `gcc -arch arm64 assembly/sakum_tracker_arm64.s -o /tmp/tracker && /tmp/tracker --live` |
-| `sakum_tracker_arm32.s` | **ब्रम्ह LIVE HISTORY VIEWER** (ARMv7-A, 32-bit) — for Raspberry Pi (32-bit OS) and ARM32 SBCs. ARM EABI, no host language. Assemble-verified. | `arm-none-eabi-gcc -march=armv7-a -marm -static assembly/sakum_tracker_arm32.s syscalls.c -o t.elf` (or `arm-linux-gnueabihf-gcc` + glibc on real Pi) |
-| `sakum_tracker_riscv64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (RISC-V rv64, RV64GC) — for HiFive / VisionFive / Pi Pico 2 W / QEMU. RV64 calling convention, no host language. Assemble-verified. | `riscv64-elf-gcc -march=rv64gc -mabi=lp64 -static assembly/sakum_tracker_riscv64.s syscalls.c -o t.elf` (or `riscv64-linux-gnu-gcc` + glibc) |
+| `sakum_tracker_arm32.s` | **ब्रम्ह LIVE HISTORY VIEWER** (ARMv7-A, 32-bit) — for Raspberry Pi (32-bit OS) and ARM32 SBCs. ARM EABI, libc-based, no host language. Assemble-verified. | `arm-linux-gnueabihf-gcc -march=armv7-a -marm -static assembly/sakum_tracker_arm32.s -o t.elf` (real Pi) |
+| `sakum_tracker_arm32_sys.s` | **ARMv7-A libc-free Linux-syscall tracker** — makes `svc #0` open/read/write/close/exit directly (openat=56, read=63, write=64, close=57, exit=93). Self-contained ELF, no libc needed. Assembles **and links** to a runnable ELF (`/tmp/tarm32_sys.elf`). Runs on real Pi OS and under `qemu-arm` (user-mode). | `arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum_tracker_arm32_sys.s -o /tmp/tarm32_sys.elf` |
+| `sakum_tracker_arm32_semihost.s` | **ARM32 QEMU-semihosting tracker** — uses `bkpt 0xab`/`hlt 0xf000` semihosting calls (open=0x01, read=0x05, write=0x06, close=0x07, exit=0x18). For `qemu-system-arm -M virt -kernel -semihosting`. Assembles; semihosting did not trigger in this environment's QEMU build. | `arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum_tracker_arm32_semihost.s -o /tmp/tarm32_sh.elf` |
+| `sakum_tracker_riscv64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (RISC-V rv64, RV64GC) — for HiFive / VisionFive / Pi Pico 2 W / QEMU. RV64 calling convention, libc-based, no host language. Assemble-verified. | `riscv64-linux-gnu-gcc -march=rv64gc -mabi=lp64 -static assembly/sakum_tracker_riscv64.s -o t.elf` (real board) |
+| `sakum_tracker_riscv64_sys.s` | **RV64GC libc-free Linux-syscall tracker** — makes `ecall` open/read/write/close/exit directly (same numbers as ARM). Self-contained ELF, no libc needed. Assembles **and links** to a runnable ELF (`/tmp/trv_sys.elf`, RISC-V EXEC). Runs on real RISC-V Linux and under `qemu-riscv64` (user-mode). | `riscv64-elf-gcc -march=rv64gc -mabi=lp64 -nostdlib -static assembly/sakum_tracker_riscv64_sys.s -o /tmp/trv_sys.elf` |
 | `sakum_tracker.s` | **ब्रम्ह LIVE HISTORY VIEWER** (x86-64, Intel syntax) — kept for Intel Macs (Rosetta) and PCs. Assemble-verified. | `gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker && /tmp/tracker` |
 
-All four tracker back ends share identical behavior: read `query_logs/fetch_live.jsonl` (the live history ledger) and print `स्रोत → भाषा → गंतव्य` + pulse clock, with `--live` tailing (3 s) and a custom feed path. `tools/build_trackers.sh` builds every target it has a toolchain for.
+All tracker back ends share identical behavior: read `query_logs/fetch_live.jsonl` (the live history ledger) and print `स्रोत → भाषा → गंतव्य` + pulse clock, with `--live` tailing (3 s) and a custom feed path. `tools/build_trackers.sh` builds every target it has a toolchain for.
+
+## Run proofs (what actually executed here)
+
+- **arm64 native**: `assembly/sakum_tracker_arm64.s` builds and runs natively on
+  Apple Silicon (M-series). Proven — full CLI output, banner, pulse clock,
+  `--live` loop. This is the reference implementation.
+- **x86-64**: `assembly/sakum_tracker.s` assembles and runs under Rosetta.
+- **arm32 / rv64 (libc)**: assemble-verified; link needs a real cross libc
+  (glibc/linux-gnu), which the brew `*-elf-gcc` packages do not ship.
+- **arm32_sys / rv64_sys (libc-free syscall)**: assemble **and link** to a
+  self-contained ELF in this environment. They run on real Pi OS / RISC-V Linux
+  and under *user-mode* QEMU (`qemu-arm` / `qemu-riscv64`) — which this Mac
+  lacks (only system-emulation QEMU is installed), so no QEMU execution proof
+  here. Provide a user-mode QEMU or real hardware to run them.
+- **arm32_semihost**: assembles; `qemu-system-arm -M virt -kernel -semihosting`
+  did not invoke the `bkpt 0xab` semihosting trap in this QEMU build.
 | `sakum_adv.s` | Advanced language core: **object orientation** (`वर्ग`/varga with a runtime vtable), **memory safety** (`हृदय`/heart allocator with bounds + double-free guards), **error explainer** (`व्याख्या`/vyakhya) and **self-learn bug resolver** (`स्वाध्याय`/svadhyaya, Elixir-style friendly patches). All raw x86-64. | `gcc -arch x86_64 assembly/sakum_adv.s -o /tmp/adv && /tmp/adv` |
 
 ## Notes

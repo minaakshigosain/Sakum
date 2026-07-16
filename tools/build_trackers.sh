@@ -42,6 +42,27 @@ if command -v riscv64-elf-gcc >/dev/null 2>&1; then
     && echo "OK  riscv64 (RV64GC)"
 fi
 
+# ---- ARM32 / Raspberry Pi — libc-free Linux-syscall ELF (links here) ----
+if command -v arm-none-eabi-gcc >/dev/null 2>&1; then
+  arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static \
+    "$ASM/sakum_tracker_arm32_sys.s" -o /tmp/sakum_trackers/tracker_arm32_sys.elf \
+    && echo "OK  arm32_sys (libc-free Linux-syscall ELF)"
+fi
+
+# ---- ARM32 / Raspberry Pi — QEMU semihosting attempt ----
+if command -v arm-none-eabi-gcc >/dev/null 2>&1; then
+  arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static \
+    "$ASM/sakum_tracker_arm32_semihost.s" -o /tmp/sakum_trackers/tracker_arm32_sh.elf \
+    && echo "NOTE arm32_semihost (needs qemu-system-arm -semihosting)"
+fi
+
+# ---- RISC-V rv64 — libc-free Linux-syscall ELF (links here) ----
+if command -v riscv64-elf-gcc >/dev/null 2>&1; then
+  riscv64-elf-gcc -march=rv64gc -mabi=lp64 -nostdlib -static \
+    "$ASM/sakum_tracker_riscv64_sys.s" -o /tmp/sakum_trackers/tracker_riscv64_sys.elf \
+    && echo "OK  riscv64_sys (libc-free Linux-syscall ELF)"
+fi
+
 # ---- x86-64 (kept for Intel Macs / PCs, Rosetta) ----
 if command -v gcc >/dev/null 2>&1; then
   gcc -arch x86_64 "$ASM/sakum_tracker.s" -o /tmp/sakum_trackers/tracker_x86_64 \
