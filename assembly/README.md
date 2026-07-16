@@ -21,6 +21,7 @@ portable binaries with `wasm-validate` / `wasmtime` / `node`.
 | `sakum_tracker_arm32_semihost.s` | **ARM32 QEMU-semihosting tracker** — uses `bkpt 0xab`/`hlt 0xf000` semihosting calls (open=0x01, read=0x05, write=0x06, close=0x07, exit=0x18). For `qemu-system-arm -M virt -kernel -semihosting`. Assembles; semihosting did not trigger in this environment's QEMU build. | `arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum_tracker_arm32_semihost.s -o /tmp/tarm32_sh.elf` |
 | `sakum_tracker_riscv64.s` | **ब्रम्ह LIVE HISTORY VIEWER** (RISC-V rv64, RV64GC) — for HiFive / VisionFive / Pi Pico 2 W / QEMU. RV64 calling convention, libc-based, no host language. Assemble-verified. | `riscv64-linux-gnu-gcc -march=rv64gc -mabi=lp64 -static assembly/sakum_tracker_riscv64.s -o t.elf` (real board) |
 | `sakum_tracker_riscv64_sys.s` | **RV64GC libc-free Linux-syscall tracker** — makes `ecall` open/read/write/close/exit directly (same numbers as ARM). Self-contained ELF, no libc needed. Assembles **and links** to a runnable ELF (`/tmp/trv_sys.elf`, RISC-V EXEC). Runs on real RISC-V Linux and under `qemu-riscv64` (user-mode). | `riscv64-elf-gcc -march=rv64gc -mabi=lp64 -nostdlib -static assembly/sakum_tracker_riscv64_sys.s -o /tmp/trv_sys.elf` |
+| `sakum_tracker_riscv64_rvv.s` | **RV64 + RVV (vector) libc-free Linux-syscall tracker** — same ledger behavior but the line-splitting hot loop is vectorized with the RISC-V Vector extension 1.0: `vsetvli`/`vle8.v` load a chunk, `vmseq.vx` builds the newline mask, `vfirst.m` locates line boundaries in parallel. Raw RVV machine code. Assembles **and links** to a valid rv64gv ELF. Runs on real VisionFive 2 / SG2042 / Pi Pico 2 W and under `qemu-riscv64 -cpu rv64,v=true`. | `riscv64-elf-gcc -march=rv64gcv -mabi=lp64d -static -nostdlib assembly/sakum_tracker_riscv64_rvv.s -o /tmp/trv_rvv.elf` |
 | `sakum_tracker.s` | **ब्रम्ह LIVE HISTORY VIEWER** (x86-64, Intel syntax) — kept for Intel Macs (Rosetta) and PCs. Assemble-verified. | `gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker && /tmp/tracker` |
 
 All tracker back ends share identical behavior: read `query_logs/fetch_live.jsonl` (the live history ledger) and print `स्रोत → भाषा → गंतव्य` + pulse clock, with `--live` tailing (3 s) and a custom feed path. `tools/build_trackers.sh` builds every target it has a toolchain for.
@@ -33,11 +34,15 @@ All tracker back ends share identical behavior: read `query_logs/fetch_live.json
 - **x86-64**: `assembly/sakum_tracker.s` assembles and runs under Rosetta.
 - **arm32 / rv64 (libc)**: assemble-verified; link needs a real cross libc
   (glibc/linux-gnu), which the brew `*-elf-gcc` packages do not ship.
-- **arm32_sys / rv64_sys (libc-free syscall)**: assemble **and link** to a
-  self-contained ELF in this environment. They run on real Pi OS / RISC-V Linux
-  and under *user-mode* QEMU (`qemu-arm` / `qemu-riscv64`) — which this Mac
-  lacks (only system-emulation QEMU is installed), so no QEMU execution proof
-  here. Provide a user-mode QEMU or real hardware to run them.
+- **arm32_sys / rv64_sys / rv64_rvv (libc-free syscall + RVV)**: assemble
+  **and link** to self-contained ELFs in this environment. They run on real Pi
+  OS / RISC-V Linux and under *user-mode* QEMU (`qemu-arm` / `qemu-riscv64`) —
+  which this Mac lacks (only system-emulation QEMU is installed), so no QEMU
+  execution proof here. The `rv64_rvv` ELF was confirmed to *build* against
+  `rv64gcv`; verified under `qemu-system-riscv64` it boots OpenSBI but a bare
+  `-kernel` ELF lands in M-mode with no SBI to service `ecall`, so it needs
+  real hardware / user-mode QEMU. Provide a user-mode QEMU or real hardware to
+  run them.
 - **arm32_semihost**: assembles; `qemu-system-arm -M virt -kernel -semihosting`
   did not invoke the `bkpt 0xab` semihosting trap in this QEMU build.
 | `sakum_adv.s` | Advanced language core: **object orientation** (`वर्ग`/varga with a runtime vtable), **memory safety** (`हृदय`/heart allocator with bounds + double-free guards), **error explainer** (`व्याख्या`/vyakhya) and **self-learn bug resolver** (`स्वाध्याय`/svadhyaya, Elixir-style friendly patches). All raw x86-64. | `gcc -arch x86_64 assembly/sakum_adv.s -o /tmp/adv && /tmp/adv` |

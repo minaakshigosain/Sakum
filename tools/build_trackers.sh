@@ -61,6 +61,13 @@ if command -v riscv64-elf-gcc >/dev/null 2>&1; then
   riscv64-elf-gcc -march=rv64gc -mabi=lp64 -nostdlib -static \
     "$ASM/sakum_tracker_riscv64_sys.s" -o /tmp/sakum_trackers/tracker_riscv64_sys.elf \
     && echo "OK  riscv64_sys (libc-free Linux-syscall ELF)"
+  # RVV (vector) variant — needs a toolchain/binutils with RVV 1.0 support.
+  if riscv64-elf-gcc -march=rv64gcv -mabi=lp64d -static -nostdlib \
+      "$ASM/sakum_tracker_riscv64_rvv.s" -o /tmp/sakum_trackers/tracker_riscv64_rvv.elf 2>/dev/null; then
+    echo "OK  riscv64_rvv (RVV vector, libc-free ELF)"
+  else
+    echo "NOTE riscv64_rvv: toolchain lacks RVV (rv64gcv) support; skipped"
+  fi
 fi
 
 # ---- x86-64 (kept for Intel Macs / PCs, Rosetta) ----
