@@ -3,19 +3,22 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
   launchd job: keeps the Sakum self-updater ALWAYS ON.
-  It runs tools/serve.py (python3 — network/TCC approved) which exposes the
-  webhook + websocket + timer-pulse server; every pulse/webhook/ws frame runs
-  the bot (tools/sakum_bot.sh), which learns, generates real library functions,
+  It runs tools/serve.sh, which compiles tools/serve.s (raw x86-64 AT&T
+  assembly) into native code and execs it. The server exposes the webhook +
+  timer-pulse trigger endpoints; every pulse/webhook runs the bot
+  (tools/sakum_bot.sh), which learns, generates real library functions,
   recompiles the core, and self-heals on failure.
+
+  NOTE: there is deliberately NO Python host-language interpreter (serve.py is
+  retired). SAKUM_LANG.md §2 requires every artifact to be raw assembly /
+  machine code, not a foreign high-level runtime. tools/ are plain bash +
+  native .s, which are permitted.
 
   Install:
     cp tools/com.sakum.bot.plist ~/Library/LaunchAgents/
     launchctl load  ~/Library/LaunchAgents/com.sakum.bot.plist
   Stop:
     launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist
-
-  NOTE: we invoke python3 (not bash directly) because macOS TCC blocks /bin/bash
-  from reading the Downloads-working-directory; python3 is permitted for network.
 -->
 <plist version="1.0">
   <dict>
@@ -24,11 +27,9 @@
 
     <key>ProgramArguments</key>
     <array>
-      <string>/usr/bin/python3</string>
-      <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/serve.py</string>
-      <string>--http</string>
+      <string>/bin/bash</string>
+      <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/serve.sh</string>
       <string>8080</string>
-      <string>--pulse</string>
       <string>600</string>
     </array>
 

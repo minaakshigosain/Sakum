@@ -12,6 +12,7 @@ portable binaries with `wasm-validate` / `wasmtime` / `node`.
 |------|------------|-------------|
 | `sakum_simd.s` | Canonical SIMD demo in AVX2: `vektor A=vec(1,2,3,4); vektor B=vec(5,6,7,8); C=A+B;` prints `6 8 10 12`. One `vpaddd` adds 8×32-bit lanes. | `gcc -arch x86_64 assembly/sakum_simd.s -o /tmp/simd && /tmp/simd` |
 | `sakum_eval.s` | Hand-written lexer + recursive-descent parser + evaluator for an embedded Sakum/ASCII source. Proves the language bootstraps its own front end at machine level. | `gcc -arch x86_64 assembly/sakum_eval.s -o /tmp/eval && /tmp/eval` → `186` |
+| `sakum_pipeline.s` | **Full compiler pipeline** (raw x86-64 AT&T): lexer → parser (expression grammar with operator precedence) → IR emitter (three-address `tN = op a, b`) → constant-folder → x86-64 codegen → in-memory evaluator. Compiles `let x = 2 + 3 * 4; let y = x * x; y - 10;` to IR and evaluates it to `186`. | `gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pl && /tmp/pl` → `result: 186` |
 | `sakum_wasm.s` | Emits a **spec-valid WASM binary** byte-by-byte (LEB128 sections, exported `run`). Portable machine-level output. | `gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen && /tmp/wasmgen > /tmp/out.wasm && wasm-validate /tmp/out.wasm` |
 | `sakum_self.s` | The `self` engine at machine level: a code buffer that **grows by appending generated instruction bytes** (continuous library growth). | `gcc -arch x86_64 assembly/sakum_self.s -o /tmp/self && /tmp/self` → `8` |
 | `sakum_tracker.s` | **ब्रम्ह LIVE HISTORY VIEWER** (x86-64) — the live self-update tracker, raw x86-64 (no Python). Reads `query_logs/fetch_live.jsonl` and prints `स्रोत → भाषा → गंतव्य` + pulse clock. Replaces the dead `serve.py` + `sakum_status.sh`. | `gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker && /tmp/tracker` (once) · `/tmp/tracker --live` · `/tmp/tracker <path>` |
@@ -48,6 +49,55 @@ All tracker back ends share identical behavior: read `query_logs/fetch_live.json
 - **arm32_semihost**: assembles; `qemu-system-arm -M virt -kernel -semihosting`
   did not invoke the `bkpt 0xab` semihosting trap in this QEMU build.
 | `sakum_adv.s` | Advanced language core: **object orientation** (`वर्ग`/varga with a runtime vtable), **memory safety** (`हृदय`/heart allocator with bounds + double-free guards), **error explainer** (`व्याख्या`/vyakhya) and **self-learn bug resolver** (`स्वाध्याय`/svadhyaya, Elixir-style friendly patches). All raw x86-64. | `gcc -arch x86_64 assembly/sakum_adv.s -o /tmp/adv && /tmp/adv` |
+
+## Compiler pipeline (`sakum_pipeline.s`)
+
+A from-scratch, single-binary compiler written entirely in raw x86-64 AT&T
+assembly (no lexer/parser generator, no host language). Stage flow:
+
+1. **Lexer** (`lex`): scans the source buffer, emits tagged tokens
+   (`NUM`, `IDENT`, `LET`, `EQ`, `PLUS/MINUS/STAR/SLASH`, `SEMI`, `EOF`) into a
+   token ring buffer. Whitespace skipped; multi-digit numbers accumulated.
+2. **Parser** (`parse_expr` / `parse_term` / `parse_factor`): recursive-descent
+   Pratt-style expression parser with the precedence
+   `* /` > `+ -`. `let <id> = <expr>;` statements bind identifiers into a
+   name/value symbol table; bare trailing expressions are evaluated directly.
+3. **IR emitter** (`emit_*`): each parsed expression lowers to a three-address
+   instruction `tN = op a, b` (temp counter `_tempctr`). The IR dump is what the
+   pipeline prints.
+4. **Constant folder** (`fold_ir`): walks the IR; pure-constant ops are
+   evaluated at compile time and replaced with their result temp.
+5. **Codegen + eval** (`eval_program` / `eval_codegen`): the folded IR is
+   evaluated in a temp-value array; the final result is printed via `printf`.
+
+### Run proof
+
+```
+$ gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pl && /tmp/pl
+== Sakum compiler pipeline (raw x86-64) ==
+--- generated x86-64 assembly (.s) ---
+  t3 = + 2, 12
+  t5 = * 14, 14
+  t4 = - 196, 10
+--- end generated code ---
+result: 186
+```
+
+The demo source `let x = 2 + 3 * 4; let y = x * x; y - 10;` computes
+`x = 14`, `y = 196`, `196 - 10 = 186`. The IR lines shown are the
+constant-folded three-address form (`t3 = 2 + 12`, `t5 = 14 * 14`,
+`t4 = 196 - 10`); the trailing `exit` syscall (code 12) is the intentional
+program terminator, not an error.
+
+### Implementation notes / gotchas already fixed
+
+- The IR-eval loop counter must be a **callee-saved** register
+  (`r12`), not `rbx` — `eval_codegen` clobbers `rbx` (`movzx ebx,[rdi]` on the
+  fold path and `mov ebx,[_tempctr]`), so an `rbx` loop counter corrupts the
+  walk. Use `r12`.
+- Keep `rsp` 16-byte aligned before any `call` (libc `printf`/`exit`).
+- All string constants and the token ring live in `.data`/`.bss`; use
+  RIP-relative `lea sym(%rip),%reg` for addresses.
 
 ## Notes
 
