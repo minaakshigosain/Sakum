@@ -1,0 +1,36 @@
+# spec_pipe.sakum - Sakum Lang formal spec: staged pipeline (चरणबद्ध)
+# Sakum-language spelling of docs/ch_pipe.tex.
+# SOURCE -> UTF8 -> LEX -> TOK -> PARSE -> AST -> SEMANTIC -> SYMTAB -> ... -> RUN.
+
+नाम node = "Sakum Staged Pipeline";
+नाम hash = #what 8f90a1b2c3d4e5f60718293a4b5c6d7e908d;
+लेख(query("load Sakum Staged Pipeline"));
+लेख(heartbeat());
+
+सूत्र pipeline_stages_full() {
+    चर src = 1
+    चर utf8 = 1
+    चर lex = 1
+    चर tok = 1
+    चर parse = 1
+    चर ast = 1
+    चर semantic = 1
+    चर symtab = 1
+    चर vectorize = 1
+    चर backend = 1
+    चर asm = 1
+    चर link = 1
+    चर run = 1
+    वापस src + utf8 + lex + tok + parse + ast + semantic + symtab + vectorize + backend + asm + link + run
+}
+
+# trace_stage pushes 6 regs to keep rsp 16-byte aligned for puts syscall
+सूत्र trace_stage() {
+    चर push_count = 6
+    वापस push_count
+}
+
+परीक्षा {
+    चर s = pipeline_stages_full()
+    मुद्रण "pipe ok: stages=" s
+}

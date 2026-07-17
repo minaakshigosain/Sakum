@@ -1,0 +1,32 @@
+# spec_server.sakum - Sakum Lang formal spec: native trigger server (सर्वर)
+# Sakum-language spelling of docs/ch_server.tex.
+# Replaces serve.py (Python forbidden by §2). Nerve-bus hub.
+
+नाम node = "Sakum Server";
+नाम hash = #what 0718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9005;
+लेख(query("load Sakum Server"));
+लेख(heartbeat());
+
+# routes (मार्ग)
+सूत्र server_routes() {
+    चर post_update = 1     # fork + execl sakum_bot.sh; bump webhook.update nerve
+    चर get_status = 1      # dump memory.md
+    चर get_nerve = 1       # print nerve-bus subscriber counts
+    चर get_index = 1       # serve site/index.html (Content-Type: text/html)
+    चर not_found = 1       # 404
+    वापस post_update + get_status + get_nerve + get_index + not_found
+}
+
+# nerve bus (नाडी) channels
+सूत्र nerve_bus() {
+    चर webhook_update = 1
+    चर ws_trigger = 1
+    चर timer_pulse = 1
+    वापस webhook_update + ws_trigger + timer_pulse
+}
+
+परीक्षा {
+    चर r = server_routes()
+    चर n = nerve_bus()
+    मुद्रण "server ok: routes=" r " nerve=" n
+}

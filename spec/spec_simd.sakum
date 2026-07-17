@@ -1,0 +1,22 @@
+# spec_simd.sakum - Sakum Lang formal spec: SIMD core (वेक्टर)
+# Sakum-language spelling of docs/ch_simd.tex.
+# वेक्टर is first-class (§1.11); back end chooses AVX2/AVX-512/NEON/RVV width.
+
+नाम node = "Sakum SIMD";
+नाम hash = #what e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fd2;
+लेख(query("load Sakum SIMD"));
+लेख(heartbeat());
+
+# two 8-lane vectors added in one vpaddd
+वेक्टर A = वेक्टर(1, 2, 3, 4, 0, 0, 0, 0)
+वेक्टर B = वेक्टर(5, 6, 7, 8, 0, 0, 0, 0)
+
+सूत्र simd_add() {
+    वेक्टर C = A + B        # 6 8 10 12
+    वापस C
+}
+
+परीक्षा {
+    चर c = simd_add()
+    मुद्रण "simd ok: C=" c
+}

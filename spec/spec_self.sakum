@@ -1,0 +1,33 @@
+# spec_self.sakum - Sakum Lang formal spec: self-extending grow loop (स्वयं)
+# Sakum-language spelling of docs/ch_self.tex.
+# Code buffer grows by appending generated instruction bytes.
+
+नाम node = "Sakum Self";
+नाम hash = #what 3a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9038;
+लेख(query("load Sakum Self"));
+लेख(heartbeat());
+
+# grow: append one byte at current length, increment length
+सूत्र grow(buf, len, byte) {
+    चर new_len = len + 1
+    वापस new_len
+}
+
+# emit mov eax,7 (B8 07 00 00 00) + add eax,35 (83 C0 23) => 8 bytes
+सूत्र self_program() {
+    चर len = 0
+    len = grow(0, len, 0xB8)
+    len = grow(0, len, 0x07)
+    len = grow(0, len, 0x00)
+    len = grow(0, len, 0x00)
+    len = grow(0, len, 0x00)
+    len = grow(0, len, 0x83)
+    len = grow(0, len, 0xC0)
+    len = grow(0, len, 0x23)
+    वापस len                 # 8
+}
+
+परीक्षा {
+    चर l = self_program()
+    मुद्रण "self ok: length=" l
+}

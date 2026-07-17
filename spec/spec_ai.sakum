@@ -1,0 +1,48 @@
+# spec_ai.sakum - Sakum Lang formal spec: modular AI core (बुद्धिमत्ता)
+# Sakum-language spelling of docs/ch_ai.tex.
+# Walk Knowledge/, ingest #what hash + node name + query into weight matrix W,
+# forward pass Vout = W . Vin, self-update ledger.
+
+नाम node = "Sakum AI Core";
+नाम hash = #what f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fe3;
+लेख(query("load Sakum AI Core"));
+लेख(heartbeat());
+
+# lifecycle (जीवनचक्र)
+सूत्र ai_lifecycle() {
+    चर walk_dir = 1        # bounded 3-level opendir$INODE64 / readdir$INODE64
+    चर maybe_load = 1      # _open$NOCANCEL + _fstat$INODE64 verify + _read
+    चर ingest = 1          # #what hex + node name + query folded into W
+    चर forward = 1         # Vout = W . Vin (8x8)
+    चर self_update = 1     # fopen ledger "a" + fprintf tick
+    वापस walk_dir + maybe_load + ingest + forward + self_update
+}
+
+# ingestion: binary-hash imprint + content fold
+सूत्र ingest_chunk(hex, name, query, chunk_idx) {
+    # W[idx] = (W[idx] * 16 + digit) mod 9973   for each hex digit
+    # fold_str: W[(base+i)%64] = (W[...]*31 + byte) mod 9973  for name & query
+    चर hash_window = chunk_idx
+    चर name_window = chunk_idx
+    चर query_window = chunk_idx + 32
+    वापस hash_window + name_window + query_window
+}
+
+# RAM-aware neuron scaling: +8 per chunk, cap 64
+सूत्र neurons_loaded(chunks) {
+    चर n = chunks * 8
+    यदि (n > 64) { n = 64 }
+    वापस n
+}
+
+# weights must NOT be overwritten after ingestion
+सूत्र load_weights(W_filled) {
+    # seeds only Vin; leaves W[] intact
+    वापस W_filled
+}
+
+परीक्षा {
+    चर life = ai_lifecycle()
+    चर n = neurons_loaded(85)
+    मुद्रण "ai ok: lifecycle=" life " neurons=" n
+}

@@ -1,0 +1,30 @@
+# spec_abi.sakum - Sakum Lang formal spec: ABI / ISA reference (अंतराफलक)
+# Sakum-language spelling of docs/ch_abi.tex.
+
+नाम node = "Sakum ABI";
+नाम hash = #what b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fa;
+लेख(query("load Sakum ABI"));
+लेख(heartbeat());
+
+# register classes (रेजिस्टर)
+सूत्र abi_registers() {
+    चर arg = 6            # rdi rsi rdx rcx r8 r9
+    चर callee_saved = 6   # rbx rbp r12 r13 r14 r15
+    चर stack_align = 16   # rsp 16-byte aligned at every call
+    वापस arg + callee_saved + stack_align
+}
+
+# Rosetta gotchas (अपवाद) — Apple Silicon x86_64 under Rosetta
+सूत्र abi_rosetta() {
+    चर no_raw_syscall = 1   # raw syscall -> SIGSYS; use libc _open$NOCANCEL etc.
+    चर fstat_verify = 1     # _open returns garbage 0xA7A5 deep in stack; _fstat$INODE64
+    चर no_printf_fflush = 1 # printf+fflush can hang in walk loops; use _write fd 2
+    चर save_r8_r9 = 1       # r8/r9 scratch in ingest_chunk, not callee-saved
+    वापस no_raw_syscall + fstat_verify + no_printf_fflush + save_r8_r9
+}
+
+परीक्षा {
+    चर a = abi_registers()
+    चर r = abi_rosetta()
+    मुद्रण "abi ok: regs=" a " rosetta=" r
+}

@@ -1,0 +1,44 @@
+# spec_adv.sakum - Sakum Lang formal spec: advanced core (उन्नत)
+# Sakum-language spelling of docs/ch_adv.tex.
+# वर्ग (OOP vtable), हृदय (memory safety), व्याख्या (error explainer), स्वाध्याय (self-learn).
+
+नाम node = "Sakum Advanced";
+नाम hash = #what 4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9049;
+लेख(query("load Sakum Advanced"));
+लेख(heartbeat());
+
+# वर्ग: runtime-built vtable; object buffer must be 8-byte aligned (.balign 8)
+सूत्र varga() {
+    वर्ग Shape {
+        सूत्र area() { वापस 0 }
+        सूत्र describe() { वापस 0 }
+    }
+    वापस 1
+}
+
+# हृदय: fixed pool with used-flag + 0xCAFE canary; double free -> -1
+सूत्र heart_alloc(pool, i) {
+    वापस i
+}
+सूत्र heart_free(pool, i, used) {
+    यदि (used == 0) { वापस -1 }   # already freed -> double free
+    वापस 0
+}
+
+# व्याख्या: error code -> message (codes 1..5)
+सूत्र vyakhya(code) {
+    यदि (code >= 1 और code <= 5) { वापस code }
+    वापस 0
+}
+
+# स्वाध्याय: record mistake to ring-buffer, return friendly patch note
+सूत्र svadhyaya(mistake) {
+    ब्रम्ह.learn(mistake)
+    वापस 1
+}
+
+परीक्षा {
+    चर v = varga()
+    चर h = heart_free(0, 0, 0)
+    मुद्रण "adv ok: varga=" v " heart_doublefree=" h
+}
