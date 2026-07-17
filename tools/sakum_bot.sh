@@ -23,6 +23,11 @@ for a in "$@"; do case "$a" in --dry-run) DRY=1;; --once) ONCE=1;; esac; done
 log(){ printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
 pulse(){ printf 'PULSE %s\n' "$*"; }
 
+# --- 0. self-upgrade from the Sakum Lang GitHub repo (origin) -------------
+# Auto-fetch + rebase upstream commits, recompile, and self-heal on failure.
+bash "$HERE/tools/git_self_upgrade.sh" 2>/dev/null
+log "git self-upgrade step complete"
+
 # --- 1. read doctrine + memory -------------------------------------------
 [ -f learn.md ] || { log "learn.md missing - abort"; exit 1; }
 [ -f memory.md ] || { log "memory.md missing - abort"; exit 1; }

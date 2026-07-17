@@ -1,0 +1,4 @@
+# Put your Sakum Lang GitHub repository URL on the line below (no trailing space).
+# Example:
+# https://github.com/<your-user>/sakum-lang.git
+# The git_self_upgrade.sh bot reads this file to add `origin` and pull upgrades.
