@@ -1,9 +1,10 @@
 # sakum_lib_rvv.s - auto-generated SIMD/vector helper (topic=rvv)
 # folds a vector of n floats via AVX2 horizontal add; returns the sum.
 .intel_syntax noprefix
-.text
-.globl _sakum_lib_rvv
-_sakum_lib_rvv:
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(sakum_lib_rvv)
+CDECL(sakum_lib_rvv):
     # rdi = float* ptr, rsi = n
     push rbx
     vxorps  ymm0, ymm0, ymm0        # accumulator = 0
@@ -26,16 +27,13 @@ _sakum_lib_rvv:
     ret
 
 # --- standalone self-test harness (so the file links + runs on its own) ---
-.intel_syntax noprefix
-.text
-.globl _main
-_main:
+.globl CDECL(main)
+CDECL(main):
     push rbp
     mov  rbp, rsp
     and  rsp, -16
-    # call the generated routine with a trivial input to prove it links/runs
     xor  rdi, rdi
     xor  rsi, rsi
-    call _sakum_lib_rvv
+    call CDECL(sakum_lib_rvv)
     pop  rbp
     ret

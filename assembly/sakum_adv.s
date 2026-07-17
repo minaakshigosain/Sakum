@@ -18,8 +18,9 @@
 # Output is a sequence of demos proving each subsystem works at bare metal.
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # ===========================================================================
 # 1. वर्ग  (varga) — object oriented: vtable dispatch
@@ -43,14 +44,14 @@
     mov esi, [rbx + 8]
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     mov esi, [rbx + 12]
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     pop rbx
     xor eax, eax
     ret
@@ -196,7 +197,7 @@ svadhyaya:
 # ===========================================================================
 # main — run all four demos and print results
 # ===========================================================================
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
@@ -207,10 +208,10 @@ _main:
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     # ---- demo 2: memory safety alloc/free + double-free guard ----
     mov edi, 8
@@ -219,30 +220,30 @@ _main:
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     # free it
     mov edi, r12d
     call heart_free
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     # double free -> -1
     mov edi, r12d
     call heart_free
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     # ---- demo 3: error explainer ----
     mov edi, 2
@@ -250,10 +251,10 @@ _main:
     mov rsi, rax
     lea rdi, [rip + fmt_s]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     # ---- demo 4: self-learn bug resolver ----
     mov edi, 3
@@ -261,10 +262,10 @@ _main:
     mov rsi, rax
     lea rdi, [rip + fmt_s]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     mov rsp, rbp
     pop rbp
@@ -273,7 +274,7 @@ _main:
 # --------------------------------------------------------------------------
 # data: strings + the OOP object + heart pool + ledger
 # --------------------------------------------------------------------------
-.bss
+BSS_SECTION
 .balign 8
 obj_rect:    .skip 32           # vtable ptr + 2 int fields + 2 code-ptr vtable
 heart_used:  .skip HEART_SLOTS
@@ -281,7 +282,7 @@ heart_canary:.skip HEART_SLOTS*2
 ledger_head: .skip 4
 ledger_code: .skip 64*4
 
-.data
+DATA_SECTION
 fmt_i: .asciz "%d"
 fmt_s: .asciz "%s"
 nl:    .asciz "\n"

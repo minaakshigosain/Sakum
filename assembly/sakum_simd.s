@@ -4,9 +4,10 @@
 # Assemble + run: gcc -arch x86_64 assembly/sakum_simd.s -o /tmp/simd && /tmp/simd
 
 .intel_syntax noprefix
-.text
-.globl _main
-_main:
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
+CDECL(main):
     push rbp
     mov rbp, rsp
     sub rsp, 32
@@ -27,19 +28,19 @@ _main:
     mov esi, [rbx + r12*4]
     lea rdi, [rip + fmt]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     inc r12
     jmp .print_loop
 .done:
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     mov rsp, rbp
     pop rbp
     ret
 
-.data
+DATA_SECTION
 A: .long 1, 2, 3, 4, 0, 0, 0, 0
 B: .long 5, 6, 7, 8, 0, 0, 0, 0
 C: .long 0, 0, 0, 0, 0, 0, 0, 0

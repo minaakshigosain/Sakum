@@ -12,15 +12,16 @@
 #                      i32.mul, i32.add, return, end
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 write_byte:
     mov [r15], dil
     inc r15
     ret
 
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
@@ -97,12 +98,16 @@ _main:
     mov rdx, r15
     sub rdx, rsi
     mov rdi, 1
+#ifdef PLAT_MACOS
     mov rax, 0x2000004
+#else
+    mov rax, 1           # Linux write syscall
+#endif
     syscall
 
     mov rsp, rbp
     pop rbp
     ret
 
-.bss
+BSS_SECTION
 out: .skip 256

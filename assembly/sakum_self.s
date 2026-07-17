@@ -6,8 +6,9 @@
 # Assemble + run: gcc -arch x86_64 assembly/sakum_self.s -o /tmp/self && /tmp/self
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # grow: append one byte (value in dil) to the buffer at buf, advance length.
 # args: rdi = byte, rsi = buf base. length read/written via [rip+len].
@@ -19,7 +20,7 @@ grow:
     mov [rbx], rcx
     ret
 
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
@@ -52,19 +53,19 @@ _main:
     mov rsi, [rbx]
     lea rdi, [rip + fmt]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     mov rsp, rbp
     pop rbp
     ret
 
-.bss
+BSS_SECTION
 buf:  .skip 256
 len:  .skip 8
 
-.data
+DATA_SECTION
 fmt: .asciz "%lld"
 nl:  .asciz "\n"

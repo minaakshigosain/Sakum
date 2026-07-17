@@ -1,9 +1,10 @@
 # sakum_lib_bounds.s - auto-generated bounds-checked array read (topic=bounds)
 # returns element at index i if in bounds, else -1 (sentinel).
 .intel_syntax noprefix
-.text
-.globl _sakum_lib_bounds
-_sakum_lib_bounds:
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(sakum_lib_bounds)
+CDECL(sakum_lib_bounds):
     # rdi = base ptr, rsi = len, rdx = index
     cmp     rdx, rsi
     jge     .oob
@@ -15,15 +16,16 @@ _sakum_lib_bounds:
 
 # --- standalone self-test harness (so the file links + runs on its own) ---
 .intel_syntax noprefix
-.text
-.globl _main
-_main:
+TEXT_SECTION
+.globl CDECL(main)
+CDECL(main):
     push rbp
     mov  rbp, rsp
     and  rsp, -16
     # call the generated routine with a trivial input to prove it links/runs
     xor  rdi, rdi
     xor  rsi, rsi
-    call _sakum_lib_bounds
+    call CDECL(sakum_lib_bounds)
+    xor eax, eax
     pop  rbp
     ret

@@ -153,6 +153,22 @@ The base must remain **more capable than raw assembly** for the target domains
 - The portable bytecode VM carries vector values natively (VEC / VGET / VSET).
 - The source program stays portable; the back end chooses the vector width.
 
+### 1.13 Database engine (`सञ्चय` / sanchay)
+
+- A single machine-level store that unifies four primitive data shapes, all
+  addressable by the binary-hash query engine (`#what`) and portable across
+  ISAs/OSes via `platform.inc`:
+  - **`केच` (`kech`)** — in-memory key/value store (Redis / Valkey style),
+    sutra-encrypted at rest, optionally persisted.
+  - **`वेक्टर` (`vektor`)** — vector index for ANN search (Milvus style);
+    distance computed by the SIMD back end (AVX2/AVX-512/NEON/RVV).
+  - **`अनुक्र` (`anukra`)** — vectorless classical index (B-tree / inverted)
+    for scalars, strings, and structs.
+  - **`ग्रन्थ` (`grantha`)** — property graph store with typed edges and
+    `नाडी` (nerve) driven traversal.
+- All four share the `हृदय` (heart) allocator and `सूत्र` (sutra) crypto, so
+  there is one memory model and one security model. Spec: `spec/spec_db.sakum`.
+
 ---
 
 ## 2. DON'T — hard constraints
@@ -183,9 +199,10 @@ assembly/                      raw x86-64 machine-level core (no host language)
    sakum_webhook.s from-scratch raw-assembly webhook receiver (POST /update)
    sakum_adv.s    advanced core: OOP vtable (वर्ग), memory safety (हृदय),
                  error explainer (व्याख्या), self-learn bug resolver (स्वाध्याय)
-  sakum_quantum.s (planned)  QCB1 quantum-circuit binary emitter
-  sakum_arm.s    (planned)    aarch64 NEON back end
-```
+   sakum_quantum.s (planned)  QCB1 quantum-circuit binary emitter
+   sakum_arm.s    (planned)    aarch64 NEON back end
+   sakum_db.s     (planned)    सञ्चय: kech/vektor/anukra/grantha unified store
+ ```
 
 Pipeline (all in assembly):
 `source.sakum → lexer (asm) → parser (asm) → IR → {wasm | x64/ARM asm | SIMD}`
@@ -242,6 +259,10 @@ host-language) layer. The assembly core is the bootstrap.
 | द्वार | gate | apply a quantum gate |
 | माप | measure | measure a qubit / circuit |
 | ब्रम्ह | bramann | web-crawler / web-scraper activity (गुमन: to wander) |
+| सञ्चय | sanchay | the unified database engine (store) |
+| केच | kech | key/value store (Redis / Valkey style) |
+| अनुक्र | anukra | vectorless classical index (B-tree / inverted) |
+| ग्रन्थ | grantha | graph store (property graph + typed edges) |
 
 ---
 

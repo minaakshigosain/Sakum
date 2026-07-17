@@ -1,9 +1,10 @@
 # sakum_lib_vector.s - auto-generated SIMD/vector helper (topic=vector)
 # folds a vector of n floats via AVX2 horizontal add; returns the sum.
 .intel_syntax noprefix
-.text
-.globl _sakum_lib_vector
-_sakum_lib_vector:
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(sakum_lib_vector)
+CDECL(sakum_lib_vector):
     # rdi = float* ptr, rsi = n
     push rbx
     vxorps  ymm0, ymm0, ymm0        # accumulator = 0
@@ -26,16 +27,13 @@ _sakum_lib_vector:
     ret
 
 # --- standalone self-test harness (so the file links + runs on its own) ---
-.intel_syntax noprefix
-.text
-.globl _main
-_main:
+.globl CDECL(main)
+CDECL(main):
     push rbp
     mov  rbp, rsp
     and  rsp, -16
-    # call the generated routine with a trivial input to prove it links/runs
     xor  rdi, rdi
     xor  rsi, rsi
-    call _sakum_lib_vector
+    call CDECL(sakum_lib_vector)
     pop  rbp
     ret

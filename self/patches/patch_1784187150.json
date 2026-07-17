@@ -1,0 +1,1 @@
+{"action":"create","name":"auto_simd_1784187150","definition":"sakum_lib_simd","ts":1784187150,"source":"webcrawl","topic":"simd","files":["assembly/sakum_lib_simd.s","examples/lib_simd.sakum"]}

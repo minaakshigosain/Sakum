@@ -30,7 +30,8 @@
     लेख(query("spec_webhook.sakum    # वेबहुक: POST /update receiver"));
     लेख(query("spec_pipe.sakum       # चरणबद्ध: 13-stage pipeline"));
     लेख(query("spec_build.sakum      # निर्माण: build/run matrix + check.sh"));
-    वापस 17
+    लेख(query("spec_db.sakum         # सञ्चय: kech/vektor/anukra/grantha + ISA matrix"));
+    वापस 18
 }
 
 # ---- load every subsystem (continuous self-extension) -----------------
@@ -53,6 +54,7 @@
     n = n + ब्रम्ह.learn("spec_webhook.sakum")
     n = n + ब्रम्ह.learn("spec_pipe.sakum")
     n = n + ब्रम्ह.learn("spec_build.sakum")
+    n = n + ब्रम्ह.learn("spec_db.sakum")
     वापस n
 }
 

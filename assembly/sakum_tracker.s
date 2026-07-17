@@ -24,28 +24,30 @@
 #   * a dedicated DESTINATION panel (where ब्रम्ह upgrades ITSELF)
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl _(main)
 
 # ---- libc imports ----
-.extern _printf
-.extern _fopen
-.extern _fread
-.extern _fclose
-.extern _sleep
-.extern _usleep
-.extern _time
-.extern _isatty
+.extern _(printf)
+.extern _(fopen)
+.extern _(fread)
+.extern _(fclose)
+.extern _(sleep)
+.extern _(usleep)
+.extern _(time)
+.extern _(isatty)
+.extern _(fflush)
 
 # ---- constants ----
 .set BUFSZ, 1<<20            # 1 MiB read buffer (feed is append-only, small)
 .set NROWS, 48               # max pipeline rows we keep (newest-first)
-.set ROWSLOT, 320            # bytes per row string in rowstore
+.set ROWSLOT, 1024           # bytes per row string in rowstore (>= max line len)
 
 # =====================================================================
 # main
 # =====================================================================
-_main:
+_(main):
     push rbp
     mov  rbp, rsp
     and  rsp, -16
@@ -62,16 +64,15 @@ _main:
     # default feed path
     lea  rax, [rip + defpathstr]
     mov  [rip + feedpath], rax
-    # init rowstore bump allocator
-    lea  rax, [rip + rowstore]
-    mov  [rip + rowstore_head], rax
+    # init ring slot
+    mov  qword ptr [rip + row_slot], 0
 
     mov  r12, [rbp+16]        # argc
     lea  r13, [rbp+24]        # argv
 
     # is stdout a tty? if not, force color off
     mov  rdi, 1
-    call _isatty
+    call _(isatty)
     test eax, eax
     jz   .color_off
 
@@ -130,14 +131,16 @@ _main:
 .do_help:
     lea  rdi, [rip + usage_msg]
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .exit
 
 .argdone:
+    xor  edi, edi;     call _(fflush)
     cmp  qword ptr [rsp+16], 0
     jne  .mode_follow
     cmp  qword ptr [rsp+8], 0
     jne  .mode_live
+    xor  edi, edi;     call _(fflush)
     call render_once
     jmp  .exit
 
@@ -145,14 +148,14 @@ _main:
 .liveloop:
     call render_once
     mov  rdi, 3
-    call _sleep
+    call _(sleep)
     jmp  .liveloop
 
 .mode_follow:
 .followloop:
     call render_once
     mov  edi, 3000000        # 3s
-    call _usleep
+    call _(usleep)
     jmp  .followloop
 
 .exit:
@@ -200,20 +203,20 @@ render_once:
     jz   .no_clear
     lea  rdi, [rip + clr]
     xor  eax, eax
-    call _printf
+    call _(printf)
 .no_clear:
 
     call render_header
-    lea  rdi, [rip + dbg_a]; xor eax,eax; call _printf
+    xor  edi, edi;     call _(fflush)
     mov  rdi, [rip + feedpath]
     call read_feed
-    lea  rdi, [rip + dbg_b]; xor eax,eax; call _printf
+    xor  edi, edi;     call _(fflush)
     call render_counters
-    lea  rdi, [rip + dbg_c]; xor eax,eax; call _printf
+    xor  edi, edi;     call _(fflush)
     call render_pipeline
-    lea  rdi, [rip + dbg_d]; xor eax,eax; call _printf
+    xor  edi, edi;     call _(fflush)
     call render_destpanel
-    lea  rdi, [rip + dbg_e]; xor eax,eax; call _printf
+    xor  edi, edi;     call _(fflush)
     call render_footer
 
     mov  rsp, rbp
@@ -236,11 +239,10 @@ read_feed:
     mov  qword ptr [rip + c_nohit], 0
     mov  qword ptr [rip + c_mistake], 0
     mov  qword ptr [rip + row_count], 0
-    lea  rax, [rip + rowstore]
-    mov  [rip + rowstore_head], rax
+    mov  qword ptr [rip + row_slot], 0
 
     lea  rsi, [rip + rmode]
-    call _fopen
+    call _(fopen)
     mov  r12, rax              # FILE*
     test rax, rax
     jz   .nofile
@@ -249,12 +251,13 @@ read_feed:
     mov  rsi, 1
     mov  rdx, BUFSZ-1
     mov  rcx, r12
-    call _fread
+    call _(fread)
     lea  r8, [rip + gbuf]
     mov  byte ptr [r8 + rax], 0
 
     lea  r14, [rip + gbuf]
     lea  r15, [rip + gbuf]
+    xor  edi, edi;     call _(fflush)
 .walk:
     movzx eax, byte ptr [r15]
     test al, al
@@ -264,6 +267,7 @@ read_feed:
     mov  byte ptr [r15], 0
     mov  rdi, r14
     call classify_line
+    xor  edi, edi;     call _(fflush)
     lea  r14, [r15+1]
     inc  r15
     jmp  .walk
@@ -278,7 +282,7 @@ read_feed:
     call classify_line
 .close:
     mov  rdi, r12
-    call _fclose
+    call _(fclose)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -286,7 +290,7 @@ read_feed:
     lea  rdi, [rip + errnofile]
     mov  rsi, [rsp+8]
     xor  eax, eax
-    call _printf
+    call _(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -371,22 +375,50 @@ push_row:
     mov  [rsp+16], rsi         # label
 
     mov  r9, [rip + row_count]
+    cmp  r9, NROWS
+    jl   .ps_notfull
+    # full: shift NROWS-1 items down (0..NROWS-2 -> 1..NROWS-1); safe, no overflow
+    lea  r8, [rip + rowbuf]
+    mov  r10, NROWS-1
+.ps_sh_full:
+    cmp  r10, 0
+    jle  .ps_copyslot
+    dec  r10
+    mov  r11, [r8 + r10*8]
+    mov  [r8 + (r10+1)*8], r11
+    jmp  .ps_sh_full
+
+.ps_notfull:
     cmp  r9, 0
-    jz   .ps_store
-.ps_shift:
+    jz   .ps_copyslot
+    # shift count items down (0..count-1 -> 1..count); count < NROWS, safe
     lea  r8, [rip + rowbuf]
     mov  r10, r9
 .ps_sh_loop:
     cmp  r10, 0
-    jle  .ps_store
+    jle  .ps_copyslot
     dec  r10
     mov  r11, [r8 + r10*8]
     mov  [r8 + (r10+1)*8], r11
-    jmp  .ps_shift
+    jmp  .ps_sh_loop
 
-.ps_store:
-    mov  r11, [rip + rowstore_head]
-    mov  rdi, r11
+.ps_copyslot:
+    # choose a fixed ring slot (cycles 0..NROWS-1) -> dest in rowstore
+    mov  r11, [rip + row_slot]
+    lea  r12, [rip + rowstore]
+    mov  rax, r11
+    imul rax, ROWSLOT
+    add  r12, rax               # r12 = slot dest (preserved)
+    # advance ring slot
+    inc  r11
+    cmp  r11, NROWS
+    jl   .ps_slot_ok
+    mov  r11, 0
+.ps_slot_ok:
+    mov  [rip + row_slot], r11
+
+    # copy label + ' ' + line into slot at r12
+    mov  rdi, r12
     mov  rsi, [rsp+16]
     call strcpy
     mov  byte ptr [rax], ' '
@@ -395,8 +427,11 @@ push_row:
     mov  rsi, [rsp+8]
     call strcpy
     mov  byte ptr [rax], 0
-    mov  [rip + rowbuf], r11
-    mov  [rip + rowstore_head], rax
+
+    # store the slot address at rowbuf[0] (newest-first)
+    mov  [rip + rowbuf], r12
+
+    # bump count (cap at NROWS)
     mov  rcx, [rip + row_count]
     cmp  rcx, NROWS
     jl   .ps_bump
@@ -434,14 +469,14 @@ render_header:
     and  rsp, -16
     lea  rdi, [rip + banner]
     xor  eax, eax
-    call _printf
+    call _(printf)
     lea  rdi, [rip + nowbuf]
     mov  rsi, 0
-    call _time
+    call _(time)
     lea  rdi, [rip + timelbl]
     mov  rsi, rax
     xor  eax, eax
-    call _printf
+    call _(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -462,7 +497,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .ct_done
 .ct_plain:
     lea  rdi, [rip + ct_plain_fmt]
@@ -472,7 +507,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _printf
+    call _(printf)
 .ct_done:
     mov  rsp, rbp
     pop  rbp
@@ -490,12 +525,12 @@ render_pipeline:
     jz   .pl_plain
     lea  rdi, [rip + cols_color]
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .pl_loop
 .pl_plain:
     lea  rdi, [rip + cols]
     xor  eax, eax
-    call _printf
+    call _(printf)
 
 .pl_loop:
     mov  rcx, 0
@@ -512,13 +547,13 @@ render_pipeline:
     lea  rdi, [rip + row_color]
     mov  rsi, r11
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .pl_skip
 .pl_no_color_row:
     lea  rdi, [rip + row_plain]
     mov  rsi, r11
     xor  eax, eax
-    call _printf
+    call _(printf)
 .pl_skip:
     inc  rcx
     jmp  .pl_next
@@ -539,12 +574,12 @@ render_destpanel:
     jz   .dp_plain
     lea  rdi, [rip + dest_color_hdr]
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .dp_walk
 .dp_plain:
     lea  rdi, [rip + dest_hdr]
     xor  eax, eax
-    call _printf
+    call _(printf)
 
 .dp_walk:
     mov  rcx, [rip + c_upgrade]
@@ -552,7 +587,7 @@ render_destpanel:
     jnz  .dp_has
     lea  rdi, [rip + dest_none]
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .dp_end
 .dp_has:
     lea  r14, [rip + gbuf]
@@ -615,14 +650,14 @@ print_dest:
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _printf
+    call _(printf)
     jmp  .pd_done
 .pd_plain:
     lea  rdi, [rip + dest_plain_row]
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _printf
+    call _(printf)
 .pd_done:
     mov  rsp, rbp
     pop  rbp
@@ -698,10 +733,10 @@ render_footer:
     and  rsp, -16
     lea  rdi, [rip + rule]
     xor  eax, eax
-    call _printf
+    call _(printf)
     lea  rdi, [rip + foot]
     xor  eax, eax
-    call _printf
+    call _(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -747,7 +782,7 @@ line_has:
 # =====================================================================
 # data
 # =====================================================================
-.data
+DATA_SECTION
 feedpath:  .quad 0
 defpathstr:  .asciz "query_logs/fetch_live.jsonl"
 rmode:     .asciz "rb"
@@ -820,11 +855,6 @@ usage_msg:
 
 nowbuf:   .quad 0
 
-dbg_a: .asciz "[DBG] after header\n"
-dbg_b: .asciz "[DBG] after read_feed\n"
-dbg_c: .asciz "[DBG] after counters\n"
-dbg_d: .asciz "[DBG] after pipeline\n"
-dbg_e: .asciz "[DBG] after destpanel\n"
 
 c_fetch:    .quad 0
 c_learn:    .quad 0
@@ -833,10 +863,10 @@ c_nohit:    .quad 0
 c_mistake:  .quad 0
 
 row_count:  .quad 0
+row_slot:   .quad 0
 rowbuf:     .skip NROWS*8
-rowstore_head: .quad 0
 rowstore:   .skip NROWS*ROWSLOT
 efbuf:      .skip 512
 
-.bss
+BSS_SECTION
 gbuf: .skip BUFSZ

@@ -8,8 +8,9 @@
 # Assemble + run: gcc -arch x86_64 assembly/sakum_eval.s -o /tmp/eval && /tmp/eval
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # ---- lexer helpers ----
 skip_ws:
@@ -174,7 +175,7 @@ self_grow:
     ret
 
 # ---- main ----
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     xor r13, r13
@@ -196,18 +197,18 @@ _main:
     lea rdi, [rip + fmt]
     mov rsi, r12
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     mov rsp, rbp
     pop rbp
     ret
 
-.bss
+BSS_SECTION
 vartab: .skip 26*4
 
-.data
+DATA_SECTION
 src: .asciz "let x = 2 + 3 * 4; let y = x * x; y - 10;"
 fmt: .asciz "%lld"
 nl:  .asciz "\n"

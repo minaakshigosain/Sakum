@@ -87,7 +87,7 @@ TOOLS_DIR := tools
 X86_64_TARGETS := cipher eval simd self adv pipe pipeline wasm scan sniff \
                   bramann webhook ai tracker serve sakum \
                   lib_crypto lib_quantum lib_bounds lib_overflow \
-                  lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv
+                  lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv db
 
 ARM64_TARGETS := tracker_arm64 tracker_arm64_neon
 
@@ -154,8 +154,14 @@ $(ARM64_TARGETS): %: $(BUILD_DIR)/%
 # ============================================================
 # Test targets
 # ============================================================
-test: cipher
+LIB_TARGETS := lib_crypto lib_quantum lib_bounds lib_overflow \
+               lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv
+
+test: cipher $(LIB_TARGETS)
 	@$(BUILD_DIR)/cipher && echo "PASS: cipher" || echo "FAIL: cipher"
+	@for t in $(LIB_TARGETS); do \
+		$(BUILD_DIR)/$$t >/dev/null 2>&1 && echo "PASS: $$t" || echo "FAIL: $$t"; \
+	done
 
 # ============================================================
 # Cross-compilation info

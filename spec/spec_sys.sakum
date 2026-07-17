@@ -1,0 +1,89 @@
+# spec_sys.sakum - Sakum Lang formal spec: algorithms, data structures,
+#                    and system design across the ISA/OS matrix (तन्त्र).
+# Sakum-language spelling of docs/ch_sys.tex.
+#
+# Sakum expresses algorithm + data-structure + system-design work as one
+# machine-level program that compiles to every target in the matrix:
+#
+#   ISA:    x86-64 (AVX2/AVX-512) | ARM64 (NEON) | RISC-V rv64 (RVV)
+#   OS:     macOS | Linux | Windows
+#
+# Every construct is addressable by the binary-hash query engine (#what) and
+# shares the हृदय (heart) allocator + सूत्र (sutra) crypto + नाडी (nerve) bus.
+
+नाम node = "Sakum Systems";
+नाम hash = #what e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fe5;
+लेख(query("load Sakum Systems"));
+लेख(heartbeat());
+
+# ---- algorithm: binary search over a sorted index (अन्वेष) ----------------
+सूत्र binary_search(arr, n, key) {
+    चर lo = 0
+    चर hi = n - 1
+    यावत् lo <= hi {
+        चर mid = (lo + hi) / 2
+        यदि arr[mid] == key {
+            वापस mid
+        } अन्यथा यदि arr[mid] < key {
+            lo = mid + 1
+        } अन्यथा {
+            hi = mid - 1
+        }
+    }
+    वापस -1
+}
+
+# ---- data structure: open-addressing hash table (सारणी) -------------------
+# Backed by हृदय; keys stored linearly, probed by (h + i) % m.
+सूत्र hash_put(table, m, k, v) {
+    चर h = k % m
+    चर i = 0
+    यावत् i < m {
+        चर slot = (h + i) % m
+        यदि table[slot].key == 0 {
+            table[slot].key = k
+            table[slot].val = v
+            वापस 1
+        }
+        i = i + 1
+    }
+    वापस 0            # table full
+}
+
+# ---- system design: producer/consumer over नाडी (nerve) bus --------------
+# A ring buffer (चक्र) drained by a consumer on every स्पन्द (pulse) tick.
+सूत्र ring_produce(rb, cap, item) {
+    लेख(query("nerve emit " item));
+    वापस 1
+}
+
+सूत्र ring_consume(rb, cap) {
+    लेख(query("nerve drain pulse"));
+    वापस 0
+}
+
+# ---- the cross-ISA / cross-OS portability matrix (मैट्रिक्स) -------------
+सूत्र sys_matrix() {
+    चर isa_x86   = 1
+    चर isa_arm   = 1
+    चर isa_riscv = 1
+    चर os_mac    = 1
+    चर os_linux  = 1
+    चर os_win    = 1
+    # one algorithm, one data structure, one system design -> 3 shapes x 6 targets
+    वापस (isa_x86 + isa_arm + isa_riscv) * (os_mac + os_linux + os_win)
+}
+
+# ---- SIR (संस्कृत IR) carries the same logic to every back end ------------
+#   stha r0 0            # lo = 0
+#   stha r1 n            # hi = n-1
+# .loop: chot r1 r0      # while lo <= hi
+#   yoj  r2 r0 r1        # mid = (lo+hi)
+#   ...
+# Native BE lowers this to x86/ARM/RVV; VM BE runs sirvm; AI BE explains it.
+
+परीक्षा {
+    चर m = sys_matrix()
+    चर a = binary_search(vec(1,3,5,7,9), 5, 7)
+    मुद्रण "sys ok: matrix=" m " found@" a
+}

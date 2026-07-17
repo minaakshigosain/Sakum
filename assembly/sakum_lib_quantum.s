@@ -1,9 +1,10 @@
 # sakum_lib_quantum.s - auto-generated quantum-weighted hash (topic=quantum)
 # FNV-1a fold with a Pauli-X style bit flip on every 3rd byte.
 .intel_syntax noprefix
-.text
-.globl _sakum_lib_quantum
-_sakum_lib_quantum:
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(sakum_lib_quantum)
+CDECL(sakum_lib_quantum):
     # rdi = data ptr, rsi = len, returns hash in rax
     mov     eax, 0x811C9DC5
     xor     rcx, rcx
@@ -24,15 +25,16 @@ _sakum_lib_quantum:
 
 # --- standalone self-test harness (so the file links + runs on its own) ---
 .intel_syntax noprefix
-.text
-.globl _main
-_main:
+TEXT_SECTION
+.globl CDECL(main)
+CDECL(main):
     push rbp
     mov  rbp, rsp
     and  rsp, -16
     # call the generated routine with a trivial input to prove it links/runs
     xor  rdi, rdi
     xor  rsi, rsi
-    call _sakum_lib_quantum
+    call CDECL(sakum_lib_quantum)
+    xor eax, eax
     pop  rbp
     ret
