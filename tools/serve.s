@@ -69,6 +69,7 @@ fmt_pulse:     .asciz "[serve] timer pulse   every %d s -> nerve(timer.pulse)\n"
 fmt_accept:    .asciz "[serve] accepted fd=%d\n"
 
 hdr_ok_pre:    .asciz "HTTP/1.1 200 OK\r\nContent-Type: text/plain; charset=utf-8\r\nConnection: close\r\n\r\n"
+hdr_ok_html:   .asciz "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\n\r\n"
 hdr_404:       .asciz "HTTP/1.1 404 Not Found\r\nContent-Length: 9\r\nConnection: close\r\n\r\n"
 body_404:      .asciz "not found"
 body_ok:       .asciz "ok\n"
@@ -78,6 +79,9 @@ nerve_body:    .asciz "webhook.update: fired="    # (prefix, retained for compat
 m_post_update: .asciz "POST /update"
 m_get_status:  .asciz "GET /status"
 m_get_nerve:   .asciz "GET /nerve"
+m_get_root:    .asciz "GET / "
+m_get_index:   .asciz "GET /index.html"
+site_path:     .asciz "/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/site/index.html"
 arg_http:      .asciz "--http"
 arg_pulse:     .asciz "--pulse"
 
@@ -208,6 +212,36 @@ dump_memory:
     pop %rbx
     ret
 
+# load_file(path in %rdi) -> %rax = length of file loaded into filebuf (0 on error)
+load_file:
+    push %rbx
+    xor %eax, %eax
+    mov %rdi, %rdi           # path already in rdi
+    mov $0, %rsi             # O_RDONLY
+    xor %rdx, %rdx
+    call _open
+    cmp $0, %rax
+    jl .lf_fail
+    mov %rax, %rbx           # fd
+    mov %rbx, %rdi           # fd for read
+    lea filebuf(%rip), %rsi
+    mov $1048576, %rdx
+    call _read               # rax = bytes read
+    mov %rax, %r8            # keep bytes
+    lea filebuf(%rip), %rsi
+    mov %r8, %rdx            # index = bytes
+    cmp $0, %r8
+    jle .lf_close
+    movb $0, (%rsi,%rdx)     # null-terminate at end
+.lf_close:
+    mov %r8, %rax            # return byte count
+    pop %rbx
+    ret
+.lf_fail:
+    xor %rax, %rax
+    pop %rbx
+    ret
+
 # handle_req(clientfd=%rdi)
 handle_req:
     push %rbx
@@ -253,7 +287,7 @@ handle_req:
     mov $10, %rdx
     call _strncmp
     test %eax, %eax
-    jnz .hr_404
+    jnz .hr_root
     # build nerve counts into outbuf using manual routines (no printf)
     lea outbuf(%rip), %rbx
     lea s_n1pre(%rip), %rsi
@@ -277,6 +311,32 @@ handle_req:
     mov %rbx, %rcx
     lea outbuf(%rip), %r8
     sub %r8, %rcx
+    call send_resp
+    pop %r12
+    pop %rbx
+    ret
+.hr_root:
+    lea m_get_root(%rip), %rsi
+    mov %rbx, %rdi
+    mov $6, %rdx
+    call _strncmp
+    test %eax, %eax
+    jnz .hr_index
+    jmp .hr_serve_page
+.hr_index:
+    lea m_get_index(%rip), %rsi
+    mov %rbx, %rdi
+    mov $15, %rdx
+    call _strncmp
+    test %eax, %eax
+    jnz .hr_404
+.hr_serve_page:
+    lea site_path(%rip), %rdi
+    call load_file
+    mov %r12, %rdi
+    lea hdr_ok_html(%rip), %rsi
+    lea filebuf(%rip), %rdx
+    mov %rax, %rcx
     call send_resp
     pop %r12
     pop %rbx

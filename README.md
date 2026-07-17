@@ -17,6 +17,9 @@ gcc -arch x86_64 assembly/sakum_webhook.s -o /tmp/wh && /tmp/wh          # from-
 gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen && /tmp/wasmgen > /tmp/out.wasm
 wasm-validate /tmp/out.wasm                                          # check the emitted WASM
 node -e "WebAssembly.instantiate(require('fs').readFileSync('/tmp/out.wasm')).then(x=>console.log(x.instance.exports.run()))"
+
+# Compiler pipeline (lexer -> parser -> IR -> fold -> codegen -> eval)
+gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pl && /tmp/pl    # -> result: 186
 ```
 
 All artifacts are machine code or binary (`.wasm`). SIMD (`AVX2`/`AVX-512`/`NEON`/`RVV`)
@@ -45,13 +48,41 @@ Knowledge/     binary-hash-addressable knowledge tree (sciences + engineering)
 research.md    ब्रम्ह (crawler) research log — what it learned from each sphere
 upgrade.md     what the crawler/self engine improved in its own core
 update.md      live self-update cycle log (what shipped this session)
-tools/         self-updater bot + local webhook/ws server + generators
-              gen_kb.sh     -> builds Knowledge/ binary-hash tree
-              fetch_updates.sh (webfetch) -> checks PL update sources
-              sakum_bot.sh  -> reads learn.md/memory.md, self-patches, recompiles
-              serve.py       -> local webhook (POST /update) + WebSocket (ws://…/ws)
+tools/         self-updater bot + native trigger server + CLI + generators
+               gen_kb.sh     -> builds Knowledge/ binary-hash tree
+               fetch_updates.sh (webfetch) -> checks PL update sources
+               sakum_bot.sh  -> reads learn.md/memory.md, self-patches, recompiles
+               serve.s/.sh    -> NATIVE trigger server (raw x86-64, no host language):
+                                 POST /update, GET /status, GET /nerve, GET / (webpage)
+               sakum.s/.sh    -> raw x86-64 CLI agent (dispatcher + interactive REPL)
+site/          the self-updater web dashboard (index.html, app/, tutorials/)
 SAKUM_LANG.md design doctrine (DO / DON'T / roadmap)
 ```
+
+## Run the Sakum CLI (agent)
+
+`tools/sakum.s` is a from-scratch **raw x86-64 assembly** CLI (in the spirit of
+opencode) — no host-language interpreter. The launcher compiles it and runs it
+from the repo root:
+
+```bash
+bash tools/sakum.sh                 # interactive REPL  (sakum> prompt; exit/quit to leave)
+bash tools/sakum.sh help            # list commands
+bash tools/sakum.sh run             # compile + run the pipeline demo (result: 186)
+bash tools/sakum.sh serve           # background native trigger server on :8080 (persists)
+bash tools/sakum.sh self            # fire a self-update (POST /update, or run bot if no server)
+bash tools/sakum.sh gen simd        # generate a Sakum library for a topic
+bash tools/sakum.sh build           # build all assembly cores + trackers
+```
+
+Once `serve` is running, open the dashboard in a browser:
+
+```bash
+open http://127.0.0.1:8080/        # serves site/index.html
+```
+
+Other live endpoints: `GET /status` (dumps `memory.md`), `GET /nerve` (nerve-bus
+firing counts), `POST /update` (runs one bot cycle).
 
 ## Status
 
@@ -1114,3 +1145,9 @@ The progression would look like this:
 
 By the end, you'll understand not just how to *use* models like ChatGPT or GLM, but how the core architecture is built, trained, optimized, and deployed.
 
+# create it own wireshark and nmap capbilities
+# check if everything is functional , keep the website updated , with new thing learn by this language
+
+# create it own AI from scratch with auto scale capabilities , and can be broken into chunk according to categories , sub categories and use it only necessary , so that it will work on limit ram or without gpu as well , also auto scale means it will aware of space of ram and hard drive and gpu and adjust itself without memory leak and update itself .
+
+# create interactive terminal colorful option like cmd or other beautiful terminals
