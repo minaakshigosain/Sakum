@@ -10,4 +10,6 @@ PORT="${1:-8080}"
 PULSE="${2:-600}"
 
 gcc -arch x86_64 "$SRC" -o "$BIN" || { echo "serve build failed"; exit 1; }
+# keep repo output files user-writable even if this is run under sudo
+bash "$DIR/fix_perms.sh" >/dev/null 2>&1 || true
 exec "$BIN" --http "$PORT" --pulse "$PULSE"

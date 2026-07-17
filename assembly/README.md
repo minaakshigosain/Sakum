@@ -49,6 +49,9 @@ All tracker back ends share identical behavior: read `query_logs/fetch_live.json
 - **arm32_semihost**: assembles; `qemu-system-arm -M virt -kernel -semihosting`
   did not invoke the `bkpt 0xab` semihosting trap in this QEMU build.
 | `sakum_adv.s` | Advanced language core: **object orientation** (`वर्ग`/varga with a runtime vtable), **memory safety** (`हृदय`/heart allocator with bounds + double-free guards), **error explainer** (`व्याख्या`/vyakhya) and **self-learn bug resolver** (`स्वाध्याय`/svadhyaya, Elixir-style friendly patches). All raw x86-64. | `gcc -arch x86_64 assembly/sakum_adv.s -o /tmp/adv && /tmp/adv` |
+| `sakum_scan.s` | **Native port scanner** — raw x86-64; connects to a host across a port range and reports `[OPEN]`/`[closed]`. | `gcc -arch x86_64 assembly/sakum_scan.s -o /tmp/scan && /tmp/scan 127.0.0.1 1 1024` |
+| `sakum_sniff.s` | **Native BPF packet sniffer** — raw x86-64; attaches a BPF filter and dumps captured frames (needs `sudo`). | `gcc -arch x86_64 assembly/sakum_sniff.s -o /tmp/sniff && sudo /tmp/sniff en0 50` |
+| `sakum_ai.s` | **Modular AI core** — raw x86-64. Walks the `Knowledge/` binary-hash tree (depth-1 + depth-2 `manifest.sakum` chunks), fstat-verifies each open (Rosetta-safe), **reads and ingests each chunk's `#what <hex>` binary hash into a 64-cell weight matrix** `W` (`W[idx] = (W[idx]*16 + digit) mod 9973`), auto-scales RAM-aware neuron count (8 per chunk, cap 64), runs a forward pass `Vout = W·Vin`, and self-updates `ai_ledger.txt` (`ai tick: neurons=N loaded=M ram_mb=R`). | `gcc -arch x86_64 assembly/sakum_ai.s -o /tmp/ai && /tmp/ai` → `AI ready: 85 chunks loaded, 64 neurons active, 0 leaks.` |
 
 ## Compiler pipeline (`sakum_pipeline.s`)
 
@@ -108,6 +111,47 @@ program terminator, not an error.
 - `callee-saved` registers (`rbx, r12–r15`) must be preserved across calls;
   `rax/rcx/rdx/rsi/rdi` are caller-saved and are clobbered by helpers such as
   `skip_ws` — save `rax` around any `call` whose result you need.
+
+## Modular AI core (`sakum_ai.s`)
+
+A from-scratch neural-ish core in raw x86-64. It is the "cognitive ingestion"
+half of the binary-hash system: each `Knowledge/` chunk carries a
+`नाम hash = #what <hex64>;` line, and the core folds those hex digits into the
+weight matrix so the forward pass reflects loaded knowledge (not a synthetic
+formula).
+
+Flow:
+1. **`walk_dir`** — bounded 3-level directory walker. At depth-1 (`cat/`) and
+   depth-2 (`cat/sub/`) it calls `try_manifest` → `maybe_load`; at depth-3 it
+   string-matches the `manifest.sakum` entry and loads it. Uses
+   `opendir$INODE64`/`readdir$INODE64` (d_name @ offset 21, d_type @ 20,
+   DT_DIR=4); `is_dot` skips `.`/`..`, `is_dir` skips non-directories (so the
+   `hash.txt`/`index.bin`/`manifest.sakum`-file entries are skipped).
+2. **`maybe_load`** — opens via `_open$NOCANCEL`, **fstat-verifies** the fd
+   (mandatory Rosetta workaround — see below), `read`s the chunk into `rbuf`,
+   calls `ingest_chunk`, then counts it under `budget`.
+3. **`ingest_chunk`** — scans for the `#what ` marker, parses the following hex
+   digits and accumulates them into `W[]` modulo 9973, keyed by the running
+   chunk index (so each chunk imprints a distinct weight window).
+4. **`load_weights` + `forward_pass`** — seeds `W`/input, then overrides the
+   loaded windows with the ingested hashes; `Vout = W·Vin` is computed 8×8 and
+   the first output is printed (`inference out[0]=…`).
+5. **`self_update`** — `fopen(ledger,"a")` + `fprintf` a tick line; the ledger
+   must be user-writable (see `tools/fix_perms.sh`).
+
+### Rosetta-specific gotchas already fixed (Apple M1, x86_64 under Rosetta)
+- **Never use raw `syscall`** — it raises `SIGSYS`. Use libc (`_open$NOCANCEL`,
+  `_opendir$INODE64`, `_readdir$INODE64`, `_fstat$INODE64`, `_fopen`, `_fprintf`,
+  `_printf`, `_write`, `_sysctl`, …).
+- **`_open`/`_open$NOCANCEL` return garbage `0xA7A5` (42949) for a missing file
+  when called DEEP in the call stack** (after opendir/readdir + printf). Treat
+  any opened fd as suspect and **always `_fstat$INODE64` it**; fstat < 0 ⇒ the
+  open was bogus ⇒ skip. This filter removed all 31 spurious chunk loads.
+- **`printf` + `fflush` in heavy walk loops can hang** under Rosetta (stdio
+  deadlock). Avoid debug prints inside `walk_dir`; prefer the final summary or
+  `_write` to fd 2.
+- Keep `rsp` 16-byte aligned before every `call`; save `r8`/`r9` (used as
+  scratch inside `ingest_chunk`) — they are not callee-saved.
 
 ## Growing the library (continuous self-extension)
 

@@ -19,6 +19,9 @@
 #   track     live ब्रम्ह history tracker
 #   gen <t>   generate a Sakum library for topic <t> (simd/wasm/quantum/...)
 #   self      fire a self-update (POST /update, or run bot if no server)
+#   scan <h> <a> <b> native port scanner (e.g. scan 127.0.0.1 1 1024)
+#   sniff <if> [n]   native BPF packet sniffer (sudo; e.g. sniff en0 50)
+#   ai        build + run the modular AI core (walks Knowledge/, ingests hashes)
 #   help      show this help
 #   exit/quit (REPL only)
 
@@ -44,7 +47,7 @@ b_nl:      .asciz "\n"
 b_bye:     .asciz "bye.\n"
 unk_fmt:   .asciz "%s: unknown command (try 'help')\n"
 
-help_txt:   .asciz "\nSakum CLI commands:\n  build            build all assembly cores + trackers\n  run              compile + run the compiler-pipeline demo (result: 186)\n  serve [p] [pl]   start native trigger server in background (default 8080/600)\n  bot              run one self-update bot cycle\n  status           show live self-update status\n  track            live Brahma history tracker\n  gen <topic>      generate a Sakum library for <topic> (simd/wasm/quantum/bounds/crypto)\n  self             fire a self-update (POST /update; or run bot if no server)\n  help             show this help\n  exit / quit      (REPL only) leave the shell\n\n"
+help_txt:   .asciz "\nSakum CLI commands:\n  build            build all assembly cores + trackers\n  run              compile + run the compiler-pipeline demo (result: 186)\n  serve [p] [pl]   start native trigger server in background (default 8080/600)\n  bot              run one self-update bot cycle\n  status           show live self-update status\n  track            live Brahma history tracker\n  gen <topic>      generate a Sakum library for <topic> (simd/wasm/quantum/bounds/crypto)\n  self             fire a self-update (POST /update; or run bot if no server)\n  scan <h> <a> <b> native port scanner (e.g. scan 127.0.0.1 1 1024)\n  sniff <if> [n]   native BPF packet sniffer (sudo; e.g. sniff en0 50)\n  ai               build + run the modular AI core (walks Knowledge/, ingests)\n  help             show this help\n  exit / quit      (REPL only) leave the shell\n\n"
 
 w_help:     .asciz "help"
 w_chat:     .asciz "chat"
@@ -56,6 +59,9 @@ w_status:   .asciz "status"
 w_track:    .asciz "track"
 w_gen:      .asciz "gen"
 w_self:     .asciz "self"
+w_scan:     .asciz "scan"
+w_sniff:    .asciz "sniff"
+w_ai:       .asciz "ai"
 w_exit:     .asciz "exit"
 w_quit:     .asciz "quit"
 
@@ -65,6 +71,9 @@ g_bot:      .asciz "bash tools/sakum_bot.sh --once"
 g_status:   .asciz "bash tools/sakum_status.sh --once"
 g_track:    .asciz "bash tools/sakum_tracker.sh --live"
 g_self:     .asciz "curl -s -m90 -X POST http://127.0.0.1:8080/update || bash tools/sakum_bot.sh --once"
+g_scan:     .asciz "gcc -arch x86_64 assembly/sakum_scan.s -o /tmp/scan && /tmp/scan "
+g_sniff:    .asciz "gcc -arch x86_64 assembly/sakum_sniff.s -o /tmp/sniff && /tmp/sniff "
+g_ai:       .asciz "gcc -arch x86_64 assembly/sakum_ai.s -o /tmp/ai && /tmp/ai"
 g_serve:    .asciz "nohup bash tools/serve.sh"
 g_gen:      .asciz "bash tools/gen_lib.sh "
 g_defport:  .asciz " 8080 600"
@@ -229,6 +238,24 @@ dispatch_line:
     jz .do_self
 
     lea wordbuf(%rip), %rdi
+    lea w_scan(%rip), %rsi
+    call _strcmp
+    test %eax, %eax
+    jz .do_scan
+
+    lea wordbuf(%rip), %rdi
+    lea w_sniff(%rip), %rsi
+    call _strcmp
+    test %eax, %eax
+    jz .do_sniff
+
+    lea wordbuf(%rip), %rdi
+    lea w_ai(%rip), %rsi
+    call _strcmp
+    test %eax, %eax
+    jz .do_ai
+
+    lea wordbuf(%rip), %rdi
     lea w_exit(%rip), %rsi
     call _strcmp
     test %eax, %eax
@@ -279,6 +306,33 @@ dispatch_line:
 
 .do_self:
     lea g_self(%rip), %rdi
+    call _system
+    jmp .ds_ret0
+
+.do_scan:
+    lea syscmd(%rip), %rbx
+    lea g_scan(%rip), %rsi
+    call append_str
+    mov %r14, %rsi
+    call append_str
+    movb $0, (%rbx)
+    lea syscmd(%rip), %rdi
+    call _system
+    jmp .ds_ret0
+
+.do_sniff:
+    lea syscmd(%rip), %rbx
+    lea g_sniff(%rip), %rsi
+    call append_str
+    mov %r14, %rsi
+    call append_str
+    movb $0, (%rbx)
+    lea syscmd(%rip), %rdi
+    call _system
+    jmp .ds_ret0
+
+.do_ai:
+    lea g_ai(%rip), %rdi
     call _system
     jmp .ds_ret0
 
@@ -378,11 +432,19 @@ _main:
     mov my_argc(%rip), %eax
     cmp $2, %eax
     jle .main_dispatch
+    mov $2, %r15d              # arg index (argv[2]..)
+.argv_loop:
+    cmp my_argc(%rip), %r15d
+    jge .main_dispatch
     movb $' ', (%rbx)
     inc %rbx
     mov my_argv(%rip), %rdx
-    mov 16(%rdx), %rsi
+    mov %r15d, %ecx
+    shl $3, %rcx
+    mov (%rdx,%rcx), %rsi
     call append_str
+    inc %r15d
+    jmp .argv_loop
 .main_dispatch:
     movb $0, (%rbx)
     lea linebuf(%rip), %rdi
