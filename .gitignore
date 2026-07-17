@@ -8,3 +8,4 @@ self/patches/
 *.log
 *.pdf
 *.app/
+tools/serve
