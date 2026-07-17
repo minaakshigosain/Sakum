@@ -6312,3 +6312,22897 @@ assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
 assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
     .section .rodata
                     ^
+mistake 1784248988: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784249879: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784249942: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784249958: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784250380: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784251542: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784252202: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784260837: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784261536: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784262200: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784262863: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784263543: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784264221: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784264906: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784265574: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784266269: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784266930: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784267569: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784268244: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784269100: recompile failed: assembly/sakum_ai.s:427:5: error: can't encode 'ah' in an instruction requiring REX prefix
+    mov %ah, (%rbx,%r15)
+    ^
+assembly/sakum_ai.s:435:5: error: unknown use of instruction mnemonic without a size suffix
+    mov %r15, %edx
+    ^
+mistake 1784270368: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784271034: recompile failed: Undefined symbols for architecture x86_64:
+  "cpym", referenced from:
+      _main in sakum_ai-26dde5.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+mistake 1784271689: recompile failed: Undefined symbols for architecture x86_64:
+  "cpym", referenced from:
+      _main in sakum_ai-70763b.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+mistake 1784272336: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784272971: recompile failed: /var/folders/xq/_dy7kz_x5_l2q6t24wjmybmr0000gn/T/sakum_ai-c6612f.s:419:1: error: symbol '.tm_no' is already defined
+.tm_no:
+^
+mistake 1784273720: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784274363: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784274607: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784274636: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784274734: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784274981: recompile failed: assembly/sakum_ai.s:621:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp %r11, %r11d
+    ^
+assembly/sakum_ai.s:623:19: error: expected absolute expression
+    mov (%r8,%rcx,%r11), %al
+                  ^
+assembly/sakum_ai.s:623:19: error: expected scale expression
+    mov (%r8,%rcx,%r11), %al
+                  ^
+mistake 1784275239: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784275333: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784275490: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784275590: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784275858: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784275951: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784276092: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784276205: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784276477: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784276565: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
+mistake 1784276713: recompile failed: assembly/sakum_tracker_arm32.s:1:1: error: unexpected token at start of statement
+@ sakum_tracker_arm32.s - ब्रम्ह LIVE HISTORY VIEWER (Sakum's own machine core).
+assembly/sakum_tracker_arm32.s:2:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:3:1: error: unexpected token at start of statement
+@ Native ARMv7-A (ARM state) assembly for Raspberry Pi / ARM32 SBCs.
+^
+assembly/sakum_tracker_arm32.s:4:1: error: unexpected token at start of statement
+@ NO Python, NO host language. Reads the ब्रम्ह self-update feed
+assembly/sakum_tracker_arm32.s:5:1: error: unexpected token at start of statement
+@ (query_logs/fetch_live.jsonl - the real history.md) and prints the
+^
+assembly/sakum_tracker_arm32.s:6:1: error: unexpected token at start of statement
+@ pipeline स्रोत -> भाषा -> गंतव्य plus the pulse clock.
+assembly/sakum_tracker_arm32.s:7:1: error: unexpected token at start of statement
+@
+^
+assembly/sakum_tracker_arm32.s:8:1: error: unexpected token at start of statement
+@ ARM EABI: args r0-r3, callee-saved r4-r11, result r0, stack 8-byte aligned.
+^
+assembly/sakum_tracker_arm32.s:9:1: error: unexpected token at start of statement
+@ Build (Raspberry Pi OS / arm-linux):
+^
+assembly/sakum_tracker_arm32.s:10:1: error: unexpected token at start of statement
+@ arm-none-eabi-gcc -march=armv7-a -marm -static @ assembly/sakum_tracker_arm32.s syscalls_arm.c -o tracker_arm32.elf
+^
+assembly/sakum_tracker_arm32.s:12:1: error: unexpected token at start of statement
+@ On real Pi (with glibc) use arm-linux-gnueabihf-gcc instead of the elf toolchain.
+^
+assembly/sakum_tracker_arm32.s:16:5: error: unknown directive
+    .type main, %function
+    ^
+assembly/sakum_tracker_arm32.s:27:1: error: unexpected token at start of statement
+@ ===================== main =====================
+^
+assembly/sakum_tracker_arm32.s:29:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:30:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:32:18: error: invalid variant 'argc'
+    mov r4, r0 @ argc
+                 ^
+assembly/sakum_tracker_arm32.s:33:18: error: invalid variant 'argv'
+    mov r5, r1 @ argv
+                 ^
+assembly/sakum_tracker_arm32.s:35:13: error: unknown token in expression
+    ldr r6, =feedpath @ default path
+            ^
+assembly/sakum_tracker_arm32.s:36:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:37:5: error: invalid instruction mnemonic 'blt'
+    blt .gotpath
+    ^~~
+assembly/sakum_tracker_arm32.s:38:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4] @ argv[1]
+            ^
+assembly/sakum_tracker_arm32.s:39:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:40:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:41:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:42:5: error: invalid instruction mnemonic 'beq'
+    beq .havepath
+    ^~~
+assembly/sakum_tracker_arm32.s:43:5: error: invalid instruction mnemonic 'b'
+    b .gotpath
+    ^
+assembly/sakum_tracker_arm32.s:45:13: error: brackets expression not supported on this target
+    ldr r6, [r5, #4] @ argv[1] used as custom path
+            ^
+assembly/sakum_tracker_arm32.s:48:13: error: unknown token in expression
+    mov r7, #0 @ live flag
+            ^
+assembly/sakum_tracker_arm32.s:49:13: error: unknown token in expression
+    cmp r4, #2
+            ^
+assembly/sakum_tracker_arm32.s:50:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:51:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #4]
+            ^
+assembly/sakum_tracker_arm32.s:52:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:53:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:54:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:55:5: error: invalid instruction mnemonic 'beq'
+    beq .chk2
+    ^~~
+assembly/sakum_tracker_arm32.s:56:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:57:5: error: invalid instruction mnemonic 'b'
+    b .runonce
+    ^
+assembly/sakum_tracker_arm32.s:59:13: error: unknown token in expression
+    cmp r4, #3
+            ^
+assembly/sakum_tracker_arm32.s:60:5: error: invalid instruction mnemonic 'blt'
+    blt .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:61:13: error: brackets expression not supported on this target
+    ldr r0, [r5, #8]
+            ^
+assembly/sakum_tracker_arm32.s:62:13: error: unknown token in expression
+    ldr r1, =livestr
+            ^
+assembly/sakum_tracker_arm32.s:63:5: error: invalid instruction mnemonic 'bl'
+    bl str_eq
+    ^~
+assembly/sakum_tracker_arm32.s:64:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:65:5: error: invalid instruction mnemonic 'beq'
+    beq .runonce
+    ^~~
+assembly/sakum_tracker_arm32.s:66:13: error: unknown token in expression
+    mov r7, #1
+            ^
+assembly/sakum_tracker_arm32.s:69:13: error: unknown token in expression
+    cmp r7, #0
+            ^
+assembly/sakum_tracker_arm32.s:70:5: error: invalid instruction mnemonic 'beq'
+    beq .doone
+    ^~~
+assembly/sakum_tracker_arm32.s:73:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:74:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:75:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:76:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:77:13: error: unknown token in expression
+    mov r0, #3
+            ^
+assembly/sakum_tracker_arm32.s:78:5: error: invalid instruction mnemonic 'bl'
+    bl sleep
+    ^~
+assembly/sakum_tracker_arm32.s:79:5: error: invalid instruction mnemonic 'b'
+    b .liveloop
+    ^
+assembly/sakum_tracker_arm32.s:82:5: error: invalid instruction mnemonic 'bl'
+    bl render_header
+    ^~
+assembly/sakum_tracker_arm32.s:83:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:84:5: error: invalid instruction mnemonic 'bl'
+    bl dump_feed
+    ^~
+assembly/sakum_tracker_arm32.s:85:5: error: invalid instruction mnemonic 'bl'
+    bl render_footer
+    ^~
+assembly/sakum_tracker_arm32.s:87:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:88:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:90:1: error: unexpected token at start of statement
+@ ===================== str_eq =====================
+^
+assembly/sakum_tracker_arm32.s:92:11: error: Invalid rounding mode.
+    push {r4, r5, r6, lr}
+          ^
+assembly/sakum_tracker_arm32.s:93:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r4, r0
+    ^
+assembly/sakum_tracker_arm32.s:94:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r5, r1
+    ^
+assembly/sakum_tracker_arm32.s:95:13: error: unknown token in expression
+    mov r6, #0
+            ^
+assembly/sakum_tracker_arm32.s:97:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:98:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r6]
+             ^
+assembly/sakum_tracker_arm32.s:99:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r0, r1
+    ^
+assembly/sakum_tracker_arm32.s:100:5: error: invalid instruction mnemonic 'bne'
+    bne .se_no
+    ^~~
+assembly/sakum_tracker_arm32.s:101:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:102:5: error: invalid instruction mnemonic 'beq'
+    beq .se_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:103:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:104:5: error: invalid instruction mnemonic 'b'
+    b .se_loop
+    ^
+assembly/sakum_tracker_arm32.s:106:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:107:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:109:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:110:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, pc}
+         ^
+assembly/sakum_tracker_arm32.s:112:1: error: unexpected token at start of statement
+@ ===================== render_header =====================
+^
+assembly/sakum_tracker_arm32.s:114:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:115:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:117:13: error: unknown token in expression
+    ldr r0, =banner
+            ^
+assembly/sakum_tracker_arm32.s:118:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:120:13: error: unknown token in expression
+    ldr r0, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:121:5: error: invalid instruction mnemonic 'bl'
+    bl time
+    ^~
+assembly/sakum_tracker_arm32.s:122:13: error: unknown token in expression
+    ldr r0, =timelbl
+            ^
+assembly/sakum_tracker_arm32.s:123:13: error: unknown token in expression
+    ldr r1, =nowbuf
+            ^
+assembly/sakum_tracker_arm32.s:124:13: error: brackets expression not supported on this target
+    ldr r1, [r1] @ low 32 bits of time_t
+            ^
+assembly/sakum_tracker_arm32.s:125:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:127:13: error: unknown token in expression
+    ldr r0, =cols
+            ^
+assembly/sakum_tracker_arm32.s:128:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:130:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:131:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:133:1: error: unexpected token at start of statement
+@ ===================== render_footer =====================
+^
+assembly/sakum_tracker_arm32.s:135:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:136:13: error: unknown token in expression
+    ldr r0, =rule
+            ^
+assembly/sakum_tracker_arm32.s:137:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:138:13: error: unknown token in expression
+    ldr r0, =foot
+            ^
+assembly/sakum_tracker_arm32.s:139:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:140:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:142:1: error: unexpected token at start of statement
+@ ===================== dump_feed =====================
+^
+assembly/sakum_tracker_arm32.s:144:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:145:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:146:18: error: invalid variant 'path'
+    mov r4, r0 @ path
+                 ^
+assembly/sakum_tracker_arm32.s:148:13: error: unknown token in expression
+    ldr r0, =rmode
+            ^
+assembly/sakum_tracker_arm32.s:149:5: error: invalid instruction mnemonic 'bl'
+    bl fopen
+    ^~
+assembly/sakum_tracker_arm32.s:150:18: error: invalid variant 'FILE'
+    mov r5, r0 @ FILE*
+                 ^
+assembly/sakum_tracker_arm32.s:151:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:152:5: error: invalid instruction mnemonic 'beq'
+    beq .nofile
+    ^~~
+assembly/sakum_tracker_arm32.s:154:13: error: unknown token in expression
+    ldr r0, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:155:13: error: unknown token in expression
+    mov r1, #1
+            ^
+assembly/sakum_tracker_arm32.s:156:13: error: unknown token in expression
+    ldr r2, =BUFSZ-1
+            ^
+assembly/sakum_tracker_arm32.s:157:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r3, r5
+    ^
+assembly/sakum_tracker_arm32.s:158:5: error: invalid instruction mnemonic 'bl'
+    bl fread
+    ^~
+assembly/sakum_tracker_arm32.s:160:13: error: unknown token in expression
+    ldr r1, =gbuf
+            ^
+assembly/sakum_tracker_arm32.s:161:5: error: unknown use of instruction mnemonic without a size suffix
+    add r1, r1, r0
+    ^
+assembly/sakum_tracker_arm32.s:162:13: error: unknown token in expression
+    mov r2, #0
+            ^
+assembly/sakum_tracker_arm32.s:163:14: error: brackets expression not supported on this target
+    strb r2, [r1] @ null-terminate
+             ^
+assembly/sakum_tracker_arm32.s:165:13: error: unknown token in expression
+    ldr r6, =gbuf @ line start
+            ^
+assembly/sakum_tracker_arm32.s:166:18: error: invalid variant 'cursor'
+    mov r7, r6 @ cursor
+                 ^
+assembly/sakum_tracker_arm32.s:168:14: error: brackets expression not supported on this target
+    ldrb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:169:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:170:5: error: invalid instruction mnemonic 'beq'
+    beq .lastline
+    ^~~
+assembly/sakum_tracker_arm32.s:171:13: error: unknown token in expression
+    cmp r0, #10
+            ^
+assembly/sakum_tracker_arm32.s:172:5: error: invalid instruction mnemonic 'bne'
+    bne .wadv
+    ^~~
+assembly/sakum_tracker_arm32.s:173:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:174:14: error: brackets expression not supported on this target
+    strb r0, [r7]
+             ^
+assembly/sakum_tracker_arm32.s:175:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:176:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:177:17: error: unknown token in expression
+    add r6, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:178:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:179:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:181:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:182:5: error: invalid instruction mnemonic 'b'
+    b .walk
+    ^
+assembly/sakum_tracker_arm32.s:184:5: error: unknown use of instruction mnemonic without a size suffix
+    sub r0, r7, r6
+    ^
+assembly/sakum_tracker_arm32.s:185:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:186:5: error: invalid instruction mnemonic 'ble'
+    ble .close
+    ^~~
+assembly/sakum_tracker_arm32.s:187:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r6
+    ^
+assembly/sakum_tracker_arm32.s:188:5: error: invalid instruction mnemonic 'bl'
+    bl classify
+    ^~
+assembly/sakum_tracker_arm32.s:190:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r5
+    ^
+assembly/sakum_tracker_arm32.s:191:5: error: invalid instruction mnemonic 'bl'
+    bl fclose
+    ^~
+assembly/sakum_tracker_arm32.s:192:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:193:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:195:13: error: unknown token in expression
+    ldr r0, =errnofile
+            ^
+assembly/sakum_tracker_arm32.s:196:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:197:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:198:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:199:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r10, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:201:1: error: unexpected token at start of statement
+@ ===================== classify =====================
+^
+assembly/sakum_tracker_arm32.s:203:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:204:17: error: unknown token in expression
+    sub sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:205:18: error: invalid variant 'line'
+    mov r4, r0 @ line
+                 ^
+assembly/sakum_tracker_arm32.s:207:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:208:13: error: unknown token in expression
+    ldr r1, =ev_fetchstart
+            ^
+assembly/sakum_tracker_arm32.s:209:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:210:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:211:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_learn
+    ^~~
+assembly/sakum_tracker_arm32.s:212:13: error: unknown token in expression
+    ldr r0, =row_src
+            ^
+assembly/sakum_tracker_arm32.s:213:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:215:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:216:13: error: unknown token in expression
+    ldr r1, =ev_learn
+            ^
+assembly/sakum_tracker_arm32.s:217:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:218:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:219:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_upgrade
+    ^~~
+assembly/sakum_tracker_arm32.s:220:13: error: unknown token in expression
+    ldr r0, =row_learn
+            ^
+assembly/sakum_tracker_arm32.s:221:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:223:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r0, r4
+    ^
+assembly/sakum_tracker_arm32.s:224:13: error: unknown token in expression
+    ldr r1, =ev_upgrade
+            ^
+assembly/sakum_tracker_arm32.s:225:5: error: invalid instruction mnemonic 'bl'
+    bl line_has
+    ^~
+assembly/sakum_tracker_arm32.s:226:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:227:5: error: invalid instruction mnemonic 'beq'
+    beq .cl_done
+    ^~~
+assembly/sakum_tracker_arm32.s:228:13: error: unknown token in expression
+    ldr r0, =row_up
+            ^
+assembly/sakum_tracker_arm32.s:229:5: error: invalid instruction mnemonic 'b'
+    b .cl_emit
+    ^
+assembly/sakum_tracker_arm32.s:231:5: error: unknown use of instruction mnemonic without a size suffix
+    mov r1, r4
+    ^
+assembly/sakum_tracker_arm32.s:232:5: error: invalid instruction mnemonic 'bl'
+    bl emit
+    ^~
+assembly/sakum_tracker_arm32.s:234:17: error: unknown token in expression
+    add sp, sp, #16
+                ^
+assembly/sakum_tracker_arm32.s:235:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:237:1: error: unexpected token at start of statement
+@ ===================== emit =====================
+^
+assembly/sakum_tracker_arm32.s:239:11: error: Invalid rounding mode.
+    push {r4, r5, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:240:5: error: unexpected token at start of statement
+    @ r0 = format, r1 = line
+    ^
+assembly/sakum_tracker_arm32.s:241:5: error: invalid instruction mnemonic 'bl'
+    bl printf
+    ^~
+assembly/sakum_tracker_arm32.s:242:10: error: Invalid rounding mode.
+    pop {r4, r5, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:244:1: error: unexpected token at start of statement
+@ ===================== line_has =====================
+^
+assembly/sakum_tracker_arm32.s:246:11: error: Invalid rounding mode.
+    push {r4, r5, r6, r7, r8, r9, r11, lr}
+          ^
+assembly/sakum_tracker_arm32.s:247:18: error: invalid variant 'haystack'
+    mov r4, r0 @ haystack
+                 ^
+assembly/sakum_tracker_arm32.s:248:18: error: invalid variant 'needle'
+    mov r5, r1 @ needle
+                 ^
+assembly/sakum_tracker_arm32.s:249:13: error: unknown token in expression
+    mov r6, #0 @ outer index
+            ^
+assembly/sakum_tracker_arm32.s:251:14: error: brackets expression not supported on this target
+    ldrb r0, [r4, r6]
+             ^
+assembly/sakum_tracker_arm32.s:252:13: error: unknown token in expression
+    cmp r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:253:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_no
+    ^~~
+assembly/sakum_tracker_arm32.s:254:13: error: unknown token in expression
+    mov r7, #0 @ inner index
+            ^
+assembly/sakum_tracker_arm32.s:256:14: error: brackets expression not supported on this target
+    ldrb r1, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:257:13: error: unknown token in expression
+    cmp r1, #0
+            ^
+assembly/sakum_tracker_arm32.s:258:5: error: invalid instruction mnemonic 'beq'
+    beq .lh_yes
+    ^~~
+assembly/sakum_tracker_arm32.s:259:5: error: unknown use of instruction mnemonic without a size suffix
+    add r8, r4, r6
+    ^
+assembly/sakum_tracker_arm32.s:260:14: error: brackets expression not supported on this target
+    ldrb r1, [r8, r7]
+             ^
+assembly/sakum_tracker_arm32.s:261:14: error: brackets expression not supported on this target
+    ldrb r2, [r5, r7]
+             ^
+assembly/sakum_tracker_arm32.s:262:5: error: unknown use of instruction mnemonic without a size suffix
+    cmp r1, r2
+    ^
+assembly/sakum_tracker_arm32.s:263:5: error: invalid instruction mnemonic 'bne'
+    bne .lh_next
+    ^~~
+assembly/sakum_tracker_arm32.s:264:17: error: unknown token in expression
+    add r7, r7, #1
+                ^
+assembly/sakum_tracker_arm32.s:265:5: error: invalid instruction mnemonic 'b'
+    b .lh_inner
+    ^
+assembly/sakum_tracker_arm32.s:267:17: error: unknown token in expression
+    add r6, r6, #1
+                ^
+assembly/sakum_tracker_arm32.s:268:5: error: invalid instruction mnemonic 'b'
+    b .lh_outer
+    ^
+assembly/sakum_tracker_arm32.s:270:13: error: unknown token in expression
+    mov r0, #1
+            ^
+assembly/sakum_tracker_arm32.s:271:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:273:13: error: unknown token in expression
+    mov r0, #0
+            ^
+assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
+    pop {r4, r5, r6, r7, r8, r9, r11, pc}
+         ^
+assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
+    .section .rodata
+                    ^
