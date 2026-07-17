@@ -1,0 +1,50 @@
+%% ===========================================================================
+%%  Chapter 14 — Web Crawler (ब्रम्ह)
+%% ===========================================================================
+\section{Web Crawler (ब्रम्ह)}\label{ch:crawler}
+
+\texttt{assembly/sakum\_bramann.s} is a from-scratch raw x86-64 web
+crawler + scraper + quantum-learn loop (no libc net, no regex lib).  It
+crawls a sphere, scrapes \texttt{<title>} / \texttt{<a href>}, folds a
+binary hash, and records research in \texttt{research.md}.
+
+\subsection{Raw HTTP GET}
+
+\begin{lstlisting}[language=SakumAsm,caption={Socket bases (sakum\_bramann.s).}]
+SYS_SOCKET = 0x2000000 + 97
+SYS_CONNECT = 0x2000000 + 98
+SYS_WRITE  = 0x2000000 + 4
+SYS_READ   = 0x2000000 + 3
+\end{lstlisting}
+
+\subsection{Title scraping (magic dword compare)}
+
+\begin{lstlisting}[language=SakumAsm,caption={<title> capture (sakum\_bramann.s:195).}]
+    mov eax, dword ptr [rbx + rcx + 1]
+    cmp eax, 0x7469746C        # 't','i','t','l' little-endian
+    jne .s_next
+    mov r13, rcx
+    add r13, 6
+.t_wait_gt:
+    cmp r13, rsi; jge .s_next
+    mov al, byte ptr [rbx + r13]
+    cmp al, '>'; je .t_cap
+    inc r13; jmp .t_wait_gt
+\end{lstlisting}
+
+\subsection{Quantum-learn hash fold}
+
+\begin{lstlisting}[language=SakumAsm,caption={FNV-1a sphere fold (sakum\_bramann.s:313).}]
+    mov eax, 0x811C9DC5
+    xor rcx, rcx
+.ln_loop:
+    movzx edx, byte ptr [rbx + rcx]
+    test dl, dl; jz .ln_done
+    xor eax, edx
+    mov edx, eax; shl edx, 1; add eax, edx   # *33 prime approx
+    inc rcx; cmp rcx, 1024; jl .ln_loop
+\end{lstlisting}
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_bramann.s -o /tmp/bra && /tmp/bra
+\end{verbatim}

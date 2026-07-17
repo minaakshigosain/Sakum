@@ -1,0 +1,29 @@
+%% ===========================================================================
+%%  Chapter 16 — Staged Pipeline
+%% ===========================================================================
+\section{Staged Pipeline}\label{ch:pipe}
+
+\texttt{assembly/sakum\_pipe.s} is ब्रम्ह's full from-scratch pipeline:
+\texttt{SOURCE $\to$ UTF8 $\to$ LEX $\to$ TOK $\to$ PARSE $\to$ AST
+$\to$ SEMANTIC $\to$ SYMTAB $\to$ $\dots$ $\to$ VECTORIZE $\to$ BACKEND
+$\to$ ASM/.wasm $\to$ LINK $\to$ RUN}.  It is the largest core (1739 lines)
+and the only one that reads \texttt{argv[1]} for a source path (the others
+embed their source as a \texttt{.data} literal).
+
+Each stage prints a live \texttt{[n/NN] \checkmark NAME \dots note} trace
+via \texttt{trace\_stage}, which pushes exactly six registers to keep the
+stack 16-byte aligned for the \texttt{puts} syscall:
+
+\begin{lstlisting}[language=SakumAsm,caption={trace\_stage alignment (sakum\_pipe.s:78).}]
+trace_stage:
+    push rbx; push r11; push r12; push r13; push r14; push r15  # 6 -> aligned
+\end{lstlisting}
+
+The pipeline uses raw macOS syscalls (\texttt{SYS\_READ = 0x2000000+3},
+\dots, \texttt{SYS\_WAIT4 = 0x2000000+7}).  After completion it sandboxes
+the result and asks stdin permission to patch.
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_pipe.s -o /tmp/sakum_pipe \
+  && /tmp/sakum_pipe examples/lib_vector.sakum
+\end{verbatim}

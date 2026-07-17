@@ -1,0 +1,75 @@
+%% ===========================================================================
+%%  Chapter 17 — Build & Run Matrix
+%% ===========================================================================
+\section{Build \& Run Matrix}\label{ch:build}
+
+All cores assemble with the system toolchain.  On Apple Silicon they run as
+x86-64 under Rosetta (or natively as AArch64 where a port exists).  The
+functional smoke test \texttt{tools/check.sh} exercises pipeline + scanner +
+AI core + self-update in one pass (currently \texttt{PASS=7 FAIL=0}).
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Core & Command \\
+\midrule
+pipeline & \texttt{gcc -arch x86\_64 assembly/sakum\_pipeline.s -o /tmp/pl \&\& /tmp/pl} $\to$ \texttt{result: 186} \\
+simd & \texttt{gcc -arch x86\_64 assembly/sakum\_simd.s -o /tmp/simd \&\& /tmp/simd} \\
+eval & \texttt{gcc -arch x86\_64 assembly/sakum\_eval.s -o /tmp/eval \&\& /tmp/eval} $\to$ \texttt{186} \\
+wasm & \texttt{gcc -arch x86\_64 assembly/sakum\_wasm.s -o /tmp/wasmgen \&\& /tmp/wasmgen > /tmp/out.wasm \&\& wasm-validate /tmp/out.wasm} \\
+self & \texttt{gcc -arch x86\_64 assembly/sakum\_self.s -o /tmp/self} $\to$ \texttt{8} \\
+tracker x86 & \texttt{gcc -arch x86\_64 assembly/sakum\_tracker.s -o /tmp/tracker \&\& /tmp/tracker [--live|<path>]} \\
+tracker arm64 & \texttt{gcc -arch arm64 assembly/sakum\_tracker\_arm64.s -o /tmp/tracker \&\& /tmp/tracker --live} \\
+tracker arm64 NEON & \texttt{gcc -arch arm64 assembly/sakum\_tracker\_arm64\_neon.s -o /tmp/tracker\_neon \&\& /tmp/tracker\_neon --live} \\
+tracker arm32 & \texttt{arm-linux-gnueabihf-gcc -march=armv7-a -marm -static assembly/sakum\_tracker\_arm32.s -o t.elf} \\
+tracker arm32\_sys & \texttt{arm-none-eabi-gcc -march=armv7-a -marm -nostdlib -static assembly/sakum\_tracker\_arm32\_sys.s -o /tmp/tarm32\_sys.elf} \\
+tracker rv64 & \texttt{riscv64-linux-gnu-gcc -march=rv64gc -mabi=lp64 -static assembly/sakum\_tracker\_riscv64.s -o t.elf} \\
+tracker rv64\_sys & \texttt{riscv64-elf-gcc -march=rv64gc -mabi=lp64 -nostdlib -static assembly/sakum\_tracker\_riscv64\_sys.s -o /tmp/trv\_sys.elf} \\
+tracker rv64\_rvv & \texttt{riscv64-elf-gcc -march=rv64gcv -mabi=lp64d -static -nostdlib assembly/sakum\_tracker\_riscv64\_rvv.s -o /tmp/trv\_rvv.elf} \\
+adv & \texttt{gcc -arch x86\_64 assembly/sakum\_adv.s -o /tmp/adv \&\& /tmp/adv} \\
+scan & \texttt{gcc -arch x86\_64 assembly/sakum\_scan.s -o /tmp/scan \&\& /tmp/scan 127.0.0.1 1 1024} \\
+sniff & \texttt{gcc -arch x86\_64 assembly/sakum\_sniff.s -o /tmp/sniff \&\& sudo /tmp/sniff en0 50} \\
+ai & \texttt{gcc -arch x86\_64 assembly/sakum\_ai.s -o /tmp/ai \&\& /tmp/ai} \\
+bramann & \texttt{gcc -arch x86\_64 assembly/sakum\_bramann.s -o /tmp/bra \&\& /tmp/bra} \\
+webhook & \texttt{gcc -arch x86\_64 assembly/sakum\_webhook.s -o /tmp/wh \&\& /tmp/wh} \\
+serve & \texttt{gcc -arch x86\_64 tools/serve.s -o /tmp/serve \&\& /tmp/serve --http 8080 --pulse 600} \\
+sakum CLI & \texttt{bash tools/sakum.sh build} (compiles \texttt{sakum.s} $\to$ \texttt{tools/sakum}) \\
+pipe & \texttt{gcc -arch x86\_64 assembly/sakum\_pipe.s -o /tmp/sakum\_pipe \&\& /tmp/sakum\_pipe examples/lib\_vector.sakum} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Launcher tooling (\texttt{tools/})}
+
+\begin{itemize}
+  \item \texttt{build\_trackers.sh} --- builds every tracker per available
+    toolchain.
+  \item \texttt{check.sh} --- doctrine-compliant functional smoke test.
+  \item \texttt{serve.sh} / \texttt{sakum\_bot.sh} / \texttt{sakum\_tracker.sh}
+    / \texttt{fix\_perms.sh} / \texttt{gen\_kb.sh} / \texttt{gen\_lib.sh} /
+    \texttt{fetch\_updates.sh}.
+  \item \texttt{com.sakum.bot.plist} --- launchd job,
+    \texttt{StartInterval 3600} (the OS-native timer pulse).
+\end{itemize}
+
+\subsection{CLI commands}
+
+\texttt{sakum} (raw x86-64 CLI) supports: \texttt{build}, \texttt{run},
+\texttt{serve [port] [pulse]}, \texttt{bot}, \texttt{status}, \texttt{track},
+\texttt{gen <topic>}, \texttt{self}, \texttt{scan <h> <a> <b>},
+\texttt{sniff <if> [n]}, \texttt{ai} (build + run the AI core),
+\texttt{help}.  It runs both as a subcommand (\texttt{sakum <cmd>}) and as
+an interactive REPL (\texttt{sakum} $\to$ \texttt{sakum> } prompt).
+
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{9}
+  \bibitem[SAKUM]{SAKUM} \texttt{SAKUM\_LANG.md} --- Sakum Lang doctrine,
+    \S1 (DO) and \S2 (DON'T): raw machine-level back ends, binary-hash
+    addressing, no SHA-256, no host-language runtime.
+  \bibitem[README]{README} \texttt{assembly/README.md},
+    \texttt{tools/README.md} --- per-core build/run proofs, Rosetta
+    gotchas, and the bot cycle contract.
+\end{thebibliography}

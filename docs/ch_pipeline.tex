@@ -1,0 +1,93 @@
+%% ===========================================================================
+%%  Chapter 4 — Compiler Pipeline
+%% ===========================================================================
+\section{Compiler Pipeline}\label{ch:pipeline}
+
+\texttt{assembly/sakum\_pipeline.s} is a from-scratch, single-binary
+compiler written entirely in raw x86-64 AT\&T assembly: lexer $\to$
+recursive-descent parser $\to$ IR emitter $\to$ constant-folder $\to$
+x86-64 codegen + in-memory evaluator.  It compiles
+
+\begin{verbatim}
+let x = 2 + 3 * 4; let y = x * x; y - 10;
+\end{verbatim}
+
+to a three-address IR and evaluates it to \textbf{186} ($x=14$, $y=196$,
+$196-10=186$).
+
+\subsection{Stage flow}
+
+\begin{enumerate}
+  \item \textbf{Lexer} (\texttt{lex}): scans the source buffer, emits tagged
+    tokens (\texttt{NUM, IDENT, LET, EQ, PLUS/MINUS/STAR/SLASH, SEMI, EOF})
+    into a token ring buffer; multi-digit numbers accumulated.
+  \item \textbf{Parser} (\texttt{parse\_expr}/\texttt{parse\_term}/
+    \texttt{parse\_factor}): Pratt-style recursive descent with precedence
+    \texttt{* /} $>$ \texttt{+ -}; \texttt{let <id> = <expr>;} binds a
+    symbol table entry.
+  \item \textbf{IR emitter} (\texttt{emit\_*}): lowers each expression to
+    \texttt{tN = op a, b} three-address form.
+  \item \textbf{Constant folder} (\texttt{fold\_ir}): pure-constant ops are
+    evaluated at compile time.
+  \item \textbf{Codegen + eval}: the folded IR is evaluated in a temp-value
+    array; the final result is printed.
+\end{enumerate}
+
+\subsection{Register map}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Register & Role \\
+\midrule
+\texttt{rsi} & source cursor \\
+\texttt{rbx} & symbol table base \\
+\texttt{r12} & token cursor (IR-eval loop counter) \\
+\texttt{r13} & AST cursor \\
+\texttt{r14} & IR cursor \\
+\texttt{r15} & codegen cursor \\
+\bottomrule
+\end{tabularx}
+\caption{Pipeline register allocation (assembly/sakum\_pipeline.s:36).}
+\end{table}
+
+\subsection{Key excerpts}
+
+\begin{lstlisting}[language=SakumAsm,caption={IR emit of a three-address instruction (sakum\_pipeline.s:404).}]
+ir_emit:
+    mov r8, r14
+    shl r8, 3
+    lea r9, [rip + irbuf]
+    add r9, r8
+    mov [r9], al          # op kind
+    mov [r9 + 1], bl      # a
+    mov [r9 + 2], cl      # b
+    mov [r9 + 4], eax
+    inc r14
+    ret
+\end{lstlisting}
+
+\begin{lstlisting}[language=SakumAsm,caption={Constant-folded binary op (eval\_codegen, sakum\_pipeline.s:498).}]
+.ec_fadd: add eax, ecx; jmp .ec_foldout
+.ec_fsub: sub eax, ecx; jmp .ec_foldout
+.ec_fmul: imul eax, ecx; jmp .ec_foldout
+\end{lstlisting}
+
+\subsection{Run proof}
+
+\begin{verbatim}
+$ gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pl && /tmp/pl
+== Sakum compiler pipeline (raw x86-64) ==
+  t3 = + 2, 12
+  t5 = * 14, 14
+  t4 = - 196, 10
+--- end generated code ---
+result: 186
+\end{verbatim}
+
+\subsection{Implementation note (fixed bug)}
+
+The IR-eval loop counter must be \textbf{\texttt{r12}}, not \texttt{rbx} ---
+\texttt{eval\_codegen} clobbers \texttt{rbx} (\texttt{movzx ebx,[rdi]} on
+the fold path), so an \texttt{rbx} counter corrupts the walk.

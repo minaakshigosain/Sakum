@@ -1,0 +1,139 @@
+%% ===========================================================================
+%%  Sakum Lang — Formal Machine-Level Specification
+%%  Self-contained, portable LaTeX source (article class + listings/xcolor/
+%%  hyperref, all part of every TeX Live / MiKTeX distribution).
+%%
+%%  Build:
+%%      pdflatex sakum_spec
+%%      pdflatex sakum_spec      (twice for the TOC / cross-references)
+%%  or  xelatex sakum_spec
+%% ===========================================================================
+\documentclass[11pt,a4paper]{article}
+
+%% ---- page geometry --------------------------------------------------------
+\usepackage[margin=2.2cm]{geometry}
+
+%% ---- fonts / encoding -----------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{inconsolata}      % monospace for code (falls back to tt if absent)
+
+%% ---- color + listings -----------------------------------------------------
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{textcomp}
+
+\definecolor{codebg}{RGB}{248,248,245}
+\definecolor{codekey}{RGB}{0,102,153}     % keywords
+\definecolor{codecom}{RGB}{120,120,120}   % comments
+\definecolor{codestr}{RGB}{10,120,40}     % strings
+\definecolor{codenum}{RGB}{150,40,10}     % numbers
+\definecolor{codefn}{RGB}{120,40,140}     % function / directive
+
+\lstdefinelanguage{SakumAsm}{
+  alsoletter={\%},
+  sensitive=true,
+  comment=[l]{\#},
+  morecomment=[l]{//},
+  morestring=[b]",
+  morestring=[b]',
+  morekeywords={
+    .section,.text,.data,.bss,.globl,.extern,.asciz,.space,.byte,.long,
+    .quad,.p2align,.align,.comm,.intel_syntax,.att_syntax,.set,.equ,
+    mov,movb,movw,movl,movq,lea,lea,xor,and,or,not,neg,shl,shr,sal,sar,
+    add,sub,imul,mul,div,idiv,inc,dec,cmp,test,jmp,je,jne,jz,jnz,jg,jge,
+    jl,jle,ja,jae,jb,jbe,jo,jno,js,jns,jc,jnc,call,ret,push,pop,
+    vmovdqu,vpaddd,vaddps,vextractf128,vhaddps,vzeroupper,
+    vmovdqa,vmovss,vmulss,vaddss,
+    syscall,svc,ecall,bkpt,
+    nop,end
+  },
+  keywordstyle=\color{codekey}\bfseries,
+  commentstyle=\color{codecom}\itshape,
+  stringstyle=\color{codestr},
+  numberstyle=\tiny\color{codecom},
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{codebg},
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{codecom},
+  captionpos=b,
+  numbers=left,
+  numbersep=5pt,
+  tabsize=8,
+  upquote=true
+}
+
+%% ---- hyperlinks / TOC -----------------------------------------------------
+\usepackage[bookmarks=true,colorlinks=true,linkcolor=blue,
+            citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{bookmark}
+
+%% ---- misc ----------------------------------------------------------------
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titling}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\sffamily Sakum Lang — Machine-Level Specification}
+\rhead{\sffamily\thepage}
+\lfoot{\sffamily v1.0}
+\rfoot{\sffamily draft}
+
+\title{\bfseries Sakum Lang\\
+       \Large A Formal Machine-Level Specification\\
+       \normalsize Raw x86-64 / AArch64 / RV64 Assembly Cores}
+\author{Sakum Lang Project}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Sakum Lang is a systems programming language whose entire implementation
+lives in handwritten, raw machine-level assembly.  There is no Python host,
+no foreign high-level runtime in the core, and no SHA-256 anywhere in the
+pipeline.  This document specifies the doctrine, the application-binary
+interface (ABI) shared by every core, the binary-hash addressing scheme,
+and each subsystem --- compiler pipeline, SIMD, the modular AI core, the
+ब्रम्ह (\emph{Brahma}) live-history tracker, the native trigger server, the
+port scanner, the BPF sniffer, the WASM emitter, the self-extending grow
+loop, the advanced OOP / memory-safety core, the library functions, the web
+crawler, the webhook receiver, and the staged pipeline --- together with
+verbatim, file:line-cited machine-level excerpts and data-flow diagrams.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\input{ch_doctrine.tex}
+\input{ch_abi.tex}
+\input{ch_datamodel.tex}
+\input{ch_pipeline.tex}
+\input{ch_simd.tex}
+\input{ch_ai.tex}
+\input{ch_tracker.tex}
+\input{ch_server.tex}
+\input{ch_net.tex}
+\input{ch_wasm.tex}
+\input{ch_self.tex}
+\input{ch_adv.tex}
+\input{ch_libs.tex}
+\input{ch_crawler.tex}
+\input{ch_webhook.tex}
+\input{ch_pipe.tex}
+\input{ch_build.tex}
+
+\end{document}

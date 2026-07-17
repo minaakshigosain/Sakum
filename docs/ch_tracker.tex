@@ -1,0 +1,58 @@
+%% ===========================================================================
+%%  Chapter 7 — ब्रम्ह Live-History Tracker
+%% ===========================================================================
+\section{ब्रम्ह Live-History Tracker}\label{ch:tracker}
+
+\texttt{assembly/sakum\_tracker.s} (x86-64) and
+\texttt{sakum\_tracker\_arm64*.s} (AArch64) are the ब्रम्ह
+(\emph{Brahma}) live self-update viewers, written in raw machine code with
+no host language.  They read \texttt{query\_logs/fetch\_live.jsonl} (the
+live ledger) and print \texttt{स्रोत → भाषा → गंतव्य} (source $\to$
+language $\to$ destination) plus a pulse clock.  All back ends share
+identical behaviour.
+
+\subsection{Modes}
+
+\begin{itemize}
+  \item \texttt{/tmp/tracker} --- print the current feed once.
+  \item \texttt{/tmp/tracker --live} --- tail the feed, re-reading every 3 s
+    (\texttt{\_sleep}).
+  \item \texttt{/tmp/tracker <path>} --- read a custom feed path.
+\end{itemize}
+
+\subsection{Read + line walk (x86-64)}
+
+\begin{lstlisting}[language=SakumAsm,caption={Feed read + line split (sakum\_tracker.s:182).}]
+    lea  rdi, [rip + gbuf]
+    mov  rsi, 1
+    mov  rdx, BUFSZ-1
+    mov  rcx, r12
+    call _fread
+    ...
+.walk:
+    movzx eax, byte ptr [r15]
+    test al, al
+    jz   .lastline
+    cmp  al, 10
+    jne  .wadv
+    mov  byte ptr [r15], 0
+    mov  rdi, r14
+    call print_line
+\end{lstlisting}
+
+\subsection{Cross-ISA ports}
+
+\begin{itemize}
+  \item \textbf{AArch64 NEON}: vectorises the newline scan with
+    \texttt{ld1} / \texttt{dup} / \texttt{cmeq} (16 lanes) / \texttt{cnt};
+    output is byte-identical to the scalar arm64 tracker.  This is what
+    \texttt{tools/sakum\_tracker.sh} builds on Apple Silicon.
+  \item \textbf{ARMv7-A} (\texttt{\_sys} variant): libc-free, \texttt{svc
+    \#0} (openat=56, read=63, write=64, close=57, exit=93).
+  \item \textbf{RV64GC} (\texttt{\_sys} / \texttt{\_rvv} variants):
+    libc-free \texttt{ecall}; the RVV variant uses \texttt{vsetvli} /
+    \texttt{vle8.v} / \texttt{vmseq.vx} / \texttt{vfirst.m}.
+\end{itemize}
+
+\noindent These ELFs link and are valid, but execute only under user-mode
+QEMU or real hardware (absent on this Mac).

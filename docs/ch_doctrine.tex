@@ -1,0 +1,66 @@
+%% ===========================================================================
+%%  Chapter 1 — Doctrine
+%% ===========================================================================
+\section{Doctrine}\label{ch:doctrine}
+
+Sakum Lang is governed by \texttt{SAKUM\_LANG.md}.  The two operative
+sections are \S1 (\emph{DO}) and \S2 (\emph{DON'T}).  This chapter quotes the
+binding principles; later chapters show how every core obeys them.
+
+\subsection{Mandatory capabilities (\S1)}
+
+\begin{enumerate}[label=\S1.\arabic*]
+\item \textbf{Raw machine-level back ends.} ``Back ends emit \emph{raw
+  machine-level code} --- never host-language execution.  The canonical
+  implementation lives in \texttt{assembly/} as handwritten x86-64 assembly
+  (\texttt{.intel\_syntax noprefix}).''  The implementation is raw
+  machine-level assembly only --- there is no Python (or any other
+  host-language) layer in the repo. \cite{SAKUM}
+\item \textbf{Binary-hash addressing (\S1.6).} ``Every construct is
+  addressable by a \emph{binary hash} (\texttt{\#what}).''  No SHA-256 is
+  used anywhere; the hash is a custom per-node digest (hex in manifests,
+  binary 0/1 string in ledgers). \cite{SAKUM}
+\item \textbf{Creator-owned key (\S1.8).} ``The user supplies their own key
+  (\texttt{सूत्र}/sutra) \ldots\ \textbf{No SHA-256 anywhere in the
+  pipeline.}''  The crypto/quantum libraries therefore use FNV-1a variants,
+  never SHA. \cite{SAKUM}
+\item \textbf{First-class vectors (\S1.11).} \texttt{vektor}/\texttt{वेक्टर}
+  is first-class; the back end selects AVX2 / AVX-512 / NEON / RVV width.
+  \cite{SAKUM}
+\end{enumerate}
+
+\subsection{Hard constraints (\S2)}
+
+\begin{enumerate}[label=\S2.\arabic*]
+\item Do \textbf{not} depend on a foreign high-level runtime to (re)build the
+  core.  \emph{Bootstrap must reach self-hosting from machine-level code
+  only.} \cite{SAKUM}
+\item Do \textbf{not} let the AI erase prior doctrine messages; preserve and
+  reconcile. \cite{SAKUM}
+\item Do \textbf{not} hardcode a single ISA; back ends are pluggable.
+  \cite{SAKUM}
+\item Do \textbf{not} make the language slower than necessary. \cite{SAKUM}
+\end{enumerate}
+
+\subsection{Consequences for the cores}
+
+The doctrine forces a specific shape on the code base:
+
+\begin{itemize}
+  \item Every artifact in \texttt{assembly/} is \texttt{gcc}-assembled raw
+    machine code (or a binary format such as WASM).  There is no interpreter
+    loop written in a host language.
+  \item The native trigger server (\texttt{tools/serve.s}) \emph{replaces}
+    the retired \texttt{serve.py}; the comment in its header states the
+    reason explicitly: ``no host language, only raw assembly + libc
+    syscalls''.
+  \item The binary-hash scheme is implemented end-to-end: manifests carry a
+    \texttt{\#what <hex>} hash, the AI core folds those hex digits into its
+    weight matrix, and the generated ledgers store a binary 0/1 string.
+\end{itemize}
+
+\begin{quote}\itshape
+  ``There is no Python host here --- every artifact is machine code or a
+  binary format (WASM).  Assemble and run with the system toolchain
+  (\texttt{gcc}/\texttt{as})\ldots'' \hfill --- \texttt{assembly/README.md}
+\end{quote}

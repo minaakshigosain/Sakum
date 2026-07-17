@@ -1,0 +1,27 @@
+%% ===========================================================================
+%%  Chapter 5 — SIMD Core
+%% ===========================================================================
+\section{SIMD Core}\label{ch:simd}
+
+Per \S1.11, \texttt{vektor}/\texttt{वेक्टर} is first-class.  The canonical
+demo \texttt{assembly/sakum\_simd.s} adds two 8$\times$32-bit vectors in a
+single AVX2 \texttt{vpaddd}.
+
+\begin{lstlisting}[language=SakumAsm,caption={AVX2 vector add (sakum\_simd.s:15).}]
+    vmovdqu ymm0, [rip + A]
+    vmovdqu ymm1, [rip + B]
+    vpaddd  ymm2, ymm0, ymm1
+    vmovdqu [rip + C], ymm2
+    vzeroupper
+\end{lstlisting}
+
+With \texttt{A = (1,2,3,4)} and \texttt{B = (5,6,7,8)} the program prints
+\texttt{6 8 10 12}.  The back end is free to widen this to AVX-512, NEON, or
+RVV; the AArch64 NEON and RV64 RVV tracker ports vectorise their own
+line-scan hot loops analogously (\S\ref{ch:tracker}).
+
+\subsection{Build \& run}
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_simd.s -o /tmp/simd && /tmp/simd
+\end{verbatim}

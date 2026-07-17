@@ -1,0 +1,32 @@
+%% ===========================================================================
+%%  Chapter 15 — Webhook Receiver
+%% ===========================================================================
+\section{Webhook Receiver}\label{ch:webhook}
+
+\texttt{assembly/sakum\_webhook.s} is a from-scratch HTTP webhook receiver
+using raw \texttt{syscall} (no libc net).  It parses \texttt{POST /update},
+emits a \texttt{webhook.update} nerve signal, and runs a bot cycle.
+
+\begin{lstlisting}[language=SakumAsm,caption={POST /update magic-byte parse (sakum\_webhook.s:107).}]
+    lea rbx, [rip + req_buf]
+    mov eax, dword ptr [rbx]
+    cmp eax, 0x54534F50        # "POST"
+    jne .not_update
+    mov eax, dword ptr [rbx + 5]
+    cmp eax, 0x6461702F        # "/upa"
+    jne .not_update
+    mov eax, dword ptr [rbx + 9]
+    cmp eax, 0x6574652F        # "te/"
+    jne .not_update
+    call nerve_emit_update
+    call run_bot_cycle
+\end{lstlisting}
+
+\texttt{run\_bot\_cycle} shells out via \texttt{\_system("bash
+tools/sakum\_bot.sh --once")}.  The nerve emit appends \texttt{'U'} to
+\texttt{nerve\_buf} and bumps \texttt{nerve\_count}.
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_webhook.s -o /tmp/wh && /tmp/wh
+curl -X POST http://127.0.0.1:8088/update
+\end{verbatim}

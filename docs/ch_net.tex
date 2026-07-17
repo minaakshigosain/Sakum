@@ -1,0 +1,52 @@
+%% ===========================================================================
+%%  Chapter 9 — Network Subsystems (Scanner & Sniffer)
+%% ===========================================================================
+\section{Network Subsystems}\label{ch:net}
+
+\subsection{Port scanner (\texttt{assembly/sakum\_scan.s})}
+
+A native connect-scan over BSD sockets.  It opens one
+\texttt{socket(AF\_INET, SOCK\_STREAM, 0)}, then per-port
+\texttt{htons} + \texttt{connect} in a loop, printing \texttt{[OPEN]} or
+\texttt{[closed]}.  A 2\,ms \texttt{usleep} separates probes.
+
+\begin{lstlisting}[language=SakumAsm,caption={Connect probe (sakum\_scan.s:99).}]
+    mov sockfd(%rip), %edi
+    lea sa(%rip), %rsi
+    mov $16, %edx
+    call _connect
+    test %eax, %eax
+    jz .is_open
+    mov %ebx, %esi
+    lea fmt_closed(%rip), %rdi
+    xor %eax, %eax
+    call _printf
+\end{lstlisting}
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_scan.s -o /tmp/scan && /tmp/scan 127.0.0.1 1 1024
+\end{verbatim}
+
+\subsection{BPF packet sniffer (\texttt{assembly/sakum\_sniff.s})}
+
+Opens \texttt{/dev/bpf0}, attaches an interface with
+\texttt{ioctl BIOCSETIF} and sets \texttt{BIOCIMMEDIATE}, \texttt{read}s
+64\,KB frames, and decodes Ethernet $\to$ IPv4 $\to$ TCP/UDP.  Requires
+\texttt{sudo}.
+
+\begin{lstlisting}[language=SakumAsm,caption={L4 dispatch (sakum\_sniff.s:189).}]
+.df_l4:
+    mov %r13d, %ecx
+    mov 0(%rbx,%rcx), %r15w   # src port
+    mov 2(%rbx,%rcx), %ax     # dst port
+    cmp $6, %r14b
+    je .df_is_tcp
+    lea s_udp(%rip), %r10
+    jmp .df_emit
+.df_is_tcp:
+    lea s_tcp(%rip), %r10
+\end{lstlisting}
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_sniff.s -o /tmp/sniff && sudo /tmp/sniff en0 50
+\end{verbatim}

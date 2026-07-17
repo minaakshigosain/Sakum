@@ -1,0 +1,36 @@
+%% ===========================================================================
+%%  Chapter 10 — WASM Emitter
+%% ===========================================================================
+\section{WASM Emitter}\label{ch:wasm}
+
+\texttt{assembly/sakum\_wasm.s} emits a spec-valid WASM binary
+byte-by-byte, proving portable machine-level output.  It compiles
+\texttt{func run() -> i32 \{ return 1 + 2 * 3; \}} to a module with magic
+\texttt{00 61 73 6d}, version, type\textsection, func\textsection,
+export\textsection(\texttt{"run"}), and code\textsection containing
+\texttt{i32.const / i32.mul / i32.add / return / end}
+(\texttt{41 01 41 02 41 03 6c 6a 0f 0b}).
+
+\begin{lstlisting}[language=SakumAsm,caption={Code-section emit (sakum\_wasm.s:79).}]
+    mov dil, 0x0a; call write_byte      # section id 10
+    mov dil, 0x0d; call write_byte      # content length 13
+    mov dil, 0x01; call write_byte      # func count 1
+    mov dil, 0x0b; call write_byte      # body length 11
+    mov dil, 0x00; call write_byte      # local decl count 0
+    mov dil, 0x41; call write_byte      # i32.const
+    mov dil, 0x01; call write_byte
+    ...
+    mov dil, 0x6c; call write_byte      # i32.mul
+    mov dil, 0x6a; call write_byte      # i32.add
+    mov dil, 0x0f; call write_byte      # return
+    mov dil, 0x0b; call write_byte      # end
+\end{lstlisting}
+
+\noindent \texttt{write\_byte} stores one byte at the emit cursor
+(\texttt{mov [r15], dil; inc r15}); the buffer is flushed with a raw
+\texttt{syscall} write (\texttt{rax = 0x2000004}).
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen \
+  && /tmp/wasmgen > /tmp/out.wasm && wasm-validate /tmp/out.wasm
+\end{verbatim}

@@ -1,0 +1,176 @@
+%% ===========================================================================
+%%  Chapter 6 — Modular AI Core
+%% ===========================================================================
+\section{Modular AI Core}\label{ch:ai}
+
+\texttt{assembly/sakum\_ai.s} is a from-scratch neural-ish engine in raw
+x86-64.  It is the cognitive-ingestion half of the binary-hash system: each
+\texttt{Knowledge/} chunk carries a \texttt{नाम hash = \#what <hex64>;}
+line plus \texttt{नाम node = "..."} and \texttt{लेख(query("..."))} content,
+and the core folds \emph{all three} into a 64-cell weight matrix
+\texttt{W[]} so the forward pass reflects loaded knowledge rather than a
+synthetic formula.
+
+\subsection{Lifecycle}
+
+\begin{enumerate}
+  \item \texttt{walk\_dir} --- bounded 3-level directory walker.  At depth-1
+    (\texttt{cat/}) and depth-2 (\texttt{cat/sub/}) it calls
+    \texttt{try\_manifest} $\to$ \texttt{maybe\_load}; at depth-3 it
+    string-matches the \texttt{manifest.sakum} entry and loads it.  Uses
+    \texttt{opendir\$INODE64}/\texttt{readdir\$INODE64} (\texttt{d\_name} @
+    offset 21, \texttt{d\_type} @ 20, \texttt{DT\_DIR=4}); \texttt{is\_dot}
+    skips \texttt{.}/\texttt{..}, \texttt{is\_dir} skips non-directories.
+  \item \texttt{maybe\_load(path)} --- opens via \texttt{\_open\$NOCANCEL},
+    \textbf{fstat-verifies} the fd (Rosetta workaround, \S\ref{sec:rosetta}),
+    \texttt{read}s the chunk into \texttt{rbuf}, calls \texttt{ingest\_chunk},
+    then counts it under \texttt{budget}.
+  \item \texttt{ingest\_chunk(buf, len)} --- scans for the \texttt{\#what }
+    marker, parses the following hex digits and accumulates them into
+    \texttt{W[]} modulo 9973, keyed by the running chunk index; then finds
+    \texttt{node = "} and \texttt{query("} and folds those quoted strings
+    into \texttt{W[]} as well.
+  \item \texttt{load\_weights} + \texttt{forward\_pass} --- seeds the input
+    vector \texttt{Vin}; \texttt{W[]} already carries the ingested
+    knowledge.  Computes \texttt{Vout = W $\cdot$ Vin} (8$\times$8) and
+    prints the first output.
+  \item \texttt{self\_update} --- \texttt{fopen(ledger,"a")} + \texttt{fprintf}
+    a tick line (see \S\ref{ch:datamodel}).
+\end{enumerate}
+
+\subsection{Data-flow}
+
+\begin{verbatim}
+Knowledge/ tree
+      |  walk_dir (opendir$INODE64 / readdir$INODE64)
+      v
+manifest.sakum  --maybe_load-->  _open$NOCANCEL + _fstat$INODE64 (verify)
+      |                                  |
+      |  _read into rbuf                 v
+      v                           ingest_chunk
+   #what <hex>  ---->  W[idx] = (W[idx]*16 + digit) mod 9973
+   node = "..."  --->  fold_str  ->  W[(base+i)%64]
+   query("...")  --->  fold_str  ->  W[(base+32+i)%64]
+      |
+      v
+   forward_pass:  Vout = W . Vin   (8x8)
+      |
+      v
+   self_update -> ai_ledger.txt  ("ai tick: neurons=64 loaded=85 ...")
+\end{verbatim}
+
+\subsection{Ingestion: the binary-hash imprint}
+
+\begin{lstlisting}[language=SakumAsm,caption={Hex fold into W (sakum\_ai.s:766).}]
+.ic_hex:
+    mov %r13, %rax
+    mov $64, %r14
+    xor %rdx, %rdx
+    div %r14
+    mov %rdx, %r14               # idx mod 64
+    lea W(%rip), %r8
+    mov (%r8,%r14,4), %eax       # cur weight
+    imul $16, %eax
+    movzx %dl, %edx
+    add %edx, %eax
+    xor %edx, %rdx
+    mov $9973, %r9d
+    div %r9d
+    mov %edx, %eax              # mod 9973
+    mov %eax, (%r8,%r14,4)
+    inc %r13                    # advance weight index
+\end{lstlisting}
+
+\subsection{Content ingestion: substring + fold}
+
+Two helpers make the content parse possible without a host language.
+
+\textbf{\texttt{find\_sub}} searches a NUL-terminated needle in a buffer and
+returns a pointer just past the first match (or 0):
+
+\begin{lstlisting}[language=SakumAsm,caption={Substring search skeleton (sakum\_ai.s).}]
+find_sub:                       # rdi=buf rsi=len rdx=needle -> rax=ptr|0
+    push %rbx; push %rcx; push %r8; push %r9; push %r10; push %r11; push %r12
+    ...                         # compute needle length, scan, compare
+.fs_hit:
+    lea (%r8,%rcx), %rax
+    add %r11, %rax              # pointer just past needle
+    pop %r12; ...; ret
+.fs_none:
+    xor %rax, %rax
+    pop %r12; ...; ret
+\end{lstlisting}
+
+\textbf{\texttt{fold\_str}} folds the bytes of a quoted string into
+\texttt{W[]} until a delimiter: \texttt{W[(base+i)\%64] = (W[...]*31 +
+byte) mod 9973}.  The AI core calls it twice after the hash loop: once for
+the node name (base = chunk index) and once for the query target (base =
+chunk index + 32).
+
+\begin{lstlisting}[language=SakumAsm,caption={Content scan in ingest\_chunk (sakum\_ai.s:789).}]
+.ic_end:
+    mov loaded(%rip), %r13          # base weight index = chunk number
+    lea rbuf(%rip), %rdi
+    mov %r15, %rsi
+    lea s_node(%rip), %rdx          # needle "node = \""
+    call find_sub
+    test %rax, %rax
+    jz .ic_q
+    mov %rax, %rdi                  # start just after "node = \""
+    mov $'"', %rsi                  # delimiter
+    mov %r13, %rdx                  # base index
+    call fold_str
+.ic_q:
+    lea rbuf(%rip), %rdi
+    mov %r15, %rsi
+    lea s_query(%rip), %rdx         # needle "query(\""
+    call find_sub
+    test %rax, %rax
+    jz .ic_cdone
+    ...                             # fold query at (chunk_idx+32)%64
+    call fold_str
+.ic_cdone:
+\end{lstlisting}
+
+\subsection{Forward pass}
+
+\begin{lstlisting}[language=SakumAsm,caption={8x8 dot product (forward\_pass, sakum\_ai.s:860).}]
+.fp_j:
+    cmp $8, %r13d
+    jge .fp_store
+    mov %r12d, %ecx
+    shl $3, %ecx
+    add %r13d, %ecx
+    lea W(%rip), %rbx
+    mov (%rbx,%rcx,4), %edx         # W[i][j]
+    lea Vin(%rip), %rbx
+    mov (%rbx,%r13,4), %ecx         # Vin[j]
+    imul %ecx, %edx
+    add %edx, %eax
+    inc %r13d
+    jmp .fp_j
+\end{lstlisting}
+
+\subsection{Important: weights must not be overwritten}
+
+An earlier bug had \texttt{load\_weights} running \emph{after}
+\texttt{walk\_dir} and overwriting the entire \texttt{W[]} with a synthetic
+formula, erasing all ingestion.  \texttt{load\_weights} now seeds only the
+input vector \texttt{Vin}, leaving \texttt{W[]} intact.  With ingestion
+active the forward-pass output is \texttt{out[0]=132256} (driven by the 85
+chunks' hashes + names + queries); with the synthetic overwrite it was a
+constant \texttt{37}.
+
+\subsection{RAM-aware neuron scaling}
+
+Neuron count grows by 8 per loaded chunk, capped at 64.  Total RAM is read
+via \texttt{sysctl} (\texttt{CTL\_HW=6, HW\_MEMSIZE=24}) and reported in
+MB in the ledger tick.
+
+\subsection{Run proof}
+
+\begin{verbatim}
+$ gcc -arch x86_64 assembly/sakum_ai.s -o /tmp/ai && /tmp/ai
+  inference out[0]=132256 (forward pass, 64 neurons)
+  AI ready: 85 chunks loaded, 64 neurons active, 0 leaks.
+\end{verbatim}

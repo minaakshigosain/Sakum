@@ -1,0 +1,71 @@
+%% ===========================================================================
+%%  Chapter 13 — Library Functions
+%% ===========================================================================
+\section{Library Functions}\label{ch:libs}
+
+The \texttt{assembly/sakum\_lib\_*.s} files are topic-keyed library
+routines cited by the update signals (SIMD / AVX / NEON / RVV / WASM /
+quantum / memory-safety / crypto / overflow / bounds).  Each exposes a
+\texttt{\_sakum\_lib\_<topic>} entry plus a self-test \texttt{\_main}.
+
+\subsection{Inventory}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lXl}
+\toprule
+File & Routine & Behaviour \\
+\midrule
+\texttt{sakum\_lib\_simd.s} & \texttt{\_sakum\_lib\_simd} & AVX2 \texttt{vaddps}
+  horizontal-sum of $n$ floats \\
+\texttt{sakum\_lib\_vector.s} & \texttt{\_sakum\_lib\_vector} & AVX2 float fold
+  (behaviourally identical to simd) \\
+\texttt{sakum\_lib\_rvv.s} & \texttt{\_sakum\_lib\_rvv} & identical AVX2 float
+  fold (filename claims RVV; body is x86) \\
+\texttt{sakum\_lib\_numeric.s} & \texttt{\_sakum\_lib\_numeric} & identity
+  \texttt{mov rax, rdi} \\
+\texttt{sakum\_lib\_bounds.s} & \texttt{\_sakum\_lib\_bounds} & bounds-checked
+  read; OOB $\to$ \texttt{-1} \\
+\texttt{sakum\_lib\_overflow.s} & \texttt{\_sakum\_lib\_overflow} & identical
+  bounds-checked read \\
+\texttt{sakum\_lib\_memory.safe.s} & \texttt{\_sakum\_lib\_memory.safe} &
+  identical bounds-checked read \\
+\texttt{sakum\_lib\_crypto.s} & \texttt{\_sakum\_lib\_crypto} & double-FNV-1a
+  (\texttt{0x811C9DC5}/\texttt{16777619}) 64-bit digest \\
+\texttt{sakum\_lib\_quantum.s} & \texttt{\_sakum\_lib\_quantum} & FNV-1a with
+  Pauli-X flip every 3rd byte \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent \textbf{Accuracy flag:} several library files are duplicates ---
+\texttt{vector} $\equiv$ \texttt{simd} $\equiv$ \texttt{rvv} (all AVX2
+float-fold, despite the \texttt{rvv} label), and
+\texttt{overflow} $\equiv$ \texttt{bounds} $\equiv$ \texttt{memory.safe}
+(all bounds-checked reads).  The \texttt{rvv} file's name claims RISC-V
+Vector but its body is x86 AVX2.
+
+\subsection{Double-FNV crypto (no SHA)}
+
+\begin{lstlisting}[language=SakumAsm,caption={Double-FNV-1a (sakum\_lib\_crypto.s:8).}]
+    mov eax, 0x811C9DC5
+    mov r8d, 0x1000193
+    xor rcx, rcx
+.cl: cmp rcx, rsi; jge .cd
+    movzx edx, byte ptr [rdi+rcx]
+    xor eax, edx; imul eax, eax, 16777619
+    xor r8d, edx; imul r8d, r8d, 16777619
+    inc rcx; jmp .cl
+\end{lstlisting}
+
+\subsection{Bounds-checked read}
+
+\begin{lstlisting}[language=SakumAsm,caption={Bounds check (sakum\_lib\_bounds.s:6).}]
+    cmp rdx, rsi
+    jge .oob          # index >= length -> out of bounds
+    mov rax, [rdi + rdx*8]
+    ret
+.oob:
+    mov rax, -1
+    ret
+\end{lstlisting}

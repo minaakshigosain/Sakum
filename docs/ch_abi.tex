@@ -1,0 +1,137 @@
+%% ===========================================================================
+%%  Chapter 2 — ABI / ISA Reference
+%% ===========================================================================
+\section{ABI / ISA Reference}\label{ch:abi}
+
+All x86-64 cores follow the System~V AMD64 ABI as implemented by macOS, with
+two Sakum-specific refinements forced by running under Rosetta on Apple
+Silicon.  The AArch64 and RV64 ports follow their respective standard ABIs
+(AAPCS64, RV64G calling convention).
+
+\subsection{Registers (x86-64)}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Group & Registers \\
+\midrule
+Argument / return & \texttt{rdi, rsi, rdx, rcx, r8, r9} (args 1--6);
+  \texttt{rax} (return / syscall number) \\
+Caller-saved & \texttt{rax, rcx, rdx, rsi, rdi, r8--r11} \\
+Callee-saved & \texttt{rbx, rbp, r12, r13, r14, r15} \\
+Stack / frame & \texttt{rsp} (16-byte aligned at every \texttt{call}),
+  \texttt{rbp} (frame) \\
+Flags & \texttt{rflags} (ZF/SF/CF/OF consumed by branch conditions) \\
+\bottomrule
+\end{tabularx}
+\caption{x86-64 register classes.}
+\end{table}
+
+\paragraph{Callee-saved discipline.} Every non-leaf routine pushes
+\texttt{rbx, r12--r15} on entry and pops them on exit.  Example from the AI
+core:
+\begin{lstlisting}[language=SakumAsm,caption={Callee-saved push/pop in walk\_dir (assembly/sakum\_ai.s:196).}]
+walk_dir:
+    push %rbx
+    push %r12
+    push %r13
+    push %r14
+    push %r15
+    ...
+    pop %r15
+    pop %r14
+    pop %r13
+    pop %r12
+    pop %rbx
+    ret
+\end{lstlisting}
+
+\paragraph{The mandated IR loop counter is \texttt{r12}, not \texttt{rbx}.}
+The compiler pipeline's evaluator clobbers \texttt{rbx}
+(\texttt{movzx ebx,[rdi]} on the constant-fold path), so an \texttt{rbx}
+loop counter corrupts the walk.  \texttt{assembly/README.md} documents this
+explicitly.
+
+\subsection{Calling convention}
+
+\begin{enumerate}
+  \item Integer / pointer arguments pass in \texttt{rdi, rsi, rdx, rcx, r8,
+    r9}; further args spill to the stack.
+  \item The stack pointer \texttt{rsp} must be \textbf{16-byte aligned}
+    immediately before any \texttt{call} (libc \texttt{printf}/\texttt{exit}
+    assume it).  The uniform \texttt{\_main} prologue enforces this:
+\begin{lstlisting}[language=SakumAsm,caption={\_main prologue (sakum\_simd.s:10, sakum\_ai.s:74).}]
+    push %rbp
+    mov  %rsp, %rbp
+    and  %rsp, -16        # force 16-byte alignment
+    sub  %rsp, 32
+\end{lstlisting}
+  \item \texttt{rax/rcx/rdx/rsi/rdi} are caller-saved and may be clobbered
+    by any helper; save \texttt{rax} around a \texttt{call} whose result
+    you need.
+  \item Variadic libc calls (\texttt{printf}) consume args in
+    \texttt{rdi, rsi, rdx, rcx, r8, r9}; a 2-format-arg call must place the
+    first \texttt{\%d} in \texttt{rsi} and the second in \texttt{rdx}
+    (a common off-by-one bug placed them in \texttt{rdx, rcx}).
+\end{enumerate}
+
+\subsection{Syscalls vs.\ libc}
+
+Sakum uses the \emph{libc} wrappers (prefixed \texttt{\_} on macOS), not
+raw \texttt{syscall} instructions, because of the Rosetta constraints below.
+The macOS syscall number space is \texttt{0x2000000 + n} (BSD).
+Typical bare-metal syscall bases observed in the code:
+
+\begin{lstlisting}[language=SakumAsm,caption={Syscall bases (sakum\_pipe.s:34, sakum\_bramann.s).}]
+SYS_READ   = 0x2000000 + 3
+SYS_WRITE  = 0x2000000 + 4
+SYS_OPEN   = 0x2000000 + 5
+SYS_CLOSE  = 0x2000000 + 6
+SYS_EXIT   = 0x2000000 + 1
+SYS_FORK   = 0x2000000 + 2
+SYS_WAIT4  = 0x2000000 + 7
+SYS_SOCKET = 0x2000000 + 97
+\end{lstlisting}
+
+\subsection{Rosetta-specific gotchas (Apple Silicon, x86\_64 under Rosetta)}
+\label{sec:rosetta}
+
+These were discovered empirically and are mandatory reading for any port
+work; they are reproduced verbatim from \texttt{assembly/README.md}.
+
+\begin{enumerate}[label=R\arabic*.]
+\item \textbf{Never use raw \texttt{syscall}.} Under Rosetta a raw
+  \texttt{syscall} raises \texttt{SIGSYS}.  Use the libc wrappers
+  (\texttt{\_open\$NOCANCEL}, \texttt{\_opendir\$INODE64},
+  \texttt{\_readdir\$INODE64}, \texttt{\_fstat\$INODE64}, \texttt{\_fopen},
+  \texttt{\_fprintf}, \texttt{\_printf}, \texttt{\_write},
+  \texttt{\_sysctl}, \texttt{\_strncmp}).
+\item \textbf{Spurious open returns.} \texttt{\_open}/\texttt{\_open\$NOCANCEL}
+  return garbage \texttt{0xA7A5} (42949) for a \emph{missing} file when
+  called \emph{deep in the call stack} (after \texttt{opendir}/\texttt{readdir}
+  + \texttt{printf}).  \textbf{Always \texttt{\_fstat\$INODE64} the fd;}
+  fstat $< 0$ $\Rightarrow$ bogus open $\Rightarrow$ skip.  This filter
+  removed all 31 spurious chunk loads in the AI core.
+\item \textbf{\texttt{printf}+\texttt{fflush} can hang} in heavy walk loops
+  (stdio deadlock).  Avoid debug prints inside \texttt{walk\_dir}; prefer
+  the final summary or \texttt{\_write} to fd~2.
+\item Keep \texttt{rsp} 16-byte aligned before every \texttt{call}; save
+  \texttt{r8}/\texttt{r9} (scratch inside \texttt{ingest\_chunk}, not
+  callee-saved).
+\end{enumerate}
+
+\subsection{Cross-ISA ports}
+
+\begin{itemize}
+  \item \textbf{AArch64} (\texttt{sakum\_tracker\_arm64*.s}): standard AAPCS64;
+    libc-based; the NEON variant vectorises the line-scan hot loop
+    (\texttt{ld1}/\texttt{dup}/\texttt{cmeq}/\texttt{cnt}).
+  \item \textbf{ARMv7-A} (\texttt{sakum\_tracker\_arm32\_sys.s}): libc-free,
+    \texttt{svc \#0} with Linux syscall numbers (openat=56, read=63,
+    write=64, close=57, exit=93).
+  \item \textbf{RV64GC} (\texttt{sakum\_tracker\_riscv64\_sys.s}): libc-free,
+    \texttt{ecall} with the same numbers; the RVV variant
+    (\texttt{sakum\_tracker\_riscv64\_rvv.s}) vectorises the scan with
+    \texttt{vsetvli}/\texttt{vle8.v}/\texttt{vmseq.vx}/\texttt{vfirst.m}.
+\end{itemize}

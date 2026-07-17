@@ -1,0 +1,65 @@
+%% ===========================================================================
+%%  Chapter 12 — Advanced Core (OOP / Memory Safety)
+%% ===========================================================================
+\section{Advanced Core}\label{ch:adv}
+
+\texttt{assembly/sakum\_adv.s} is the advanced language core, implementing
+four subsystems at bare metal: object orientation, memory safety, an error
+explainer, and a self-learn bug resolver.
+
+\subsection{वर्ग (varga) --- runtime vtable}
+
+The vtable is \textbf{built at runtime} in \texttt{.bss} (two code pointers
+loaded RIP-relative).  Absolute \texttt{.quad} data-to-code relocations are
+rejected by the macOS linker, so the vtable is never static-initialised.
+
+\begin{lstlisting}[language=SakumAsm,caption={vtable build + virtual dispatch (sakum\_adv.s:62).}]
+    lea rax, [rip + .method_area]
+    mov [rbx + 16], rax
+    lea rax, [rip + .method_describe]
+    mov [rbx + 24], rax
+    lea rax, [rbx + 16]
+    mov [rbx], rax                 # obj.vtable
+    mov dword ptr [rbx + 8], 6
+    mov dword ptr [rbx + 12], 7
+    mov rax, [rbx]                # vtable ptr
+    mov rdi, rbx                  # this
+    call [rax]                    # -> .method_area => 36
+\end{lstlisting}
+
+The object buffer must be \textbf{8-byte aligned} (\texttt{.balign 8}) because
+\texttt{call [rax]} reads an 8-byte pointer; a misaligned slot causes
+\texttt{SIGBUS}.
+
+\subsection{हृदय (heart) --- memory safety}
+
+A fixed pool with \texttt{heart\_alloc} / \texttt{heart\_free} /
+\texttt{heart\_check} using a \texttt{used}-flag + \texttt{0xCAFE} canary.
+\texttt{heart\_free} returns \texttt{-1} on a double free.
+
+\begin{lstlisting}[language=SakumAsm,caption={Double-free guard (sakum\_adv.s:109).}]
+heart_free:
+    lea rbx, [rip + heart_used]
+    movzx edx, byte ptr [rbx + rdi]
+    cmp edx, 0
+    je .hf_double                # already freed -> -1
+    mov byte ptr [rbx + rdi], 0
+    xor eax, eax
+    ret
+.hf_double:
+    mov eax, -1
+    ret
+\end{lstlisting}
+
+\subsection{व्याख्या (vyakhya) --- error explainer}
+
+Maps error codes (1--5) to human-readable messages.
+
+\subsection{स्वाध्याय (svadhyaya) --- self-learn resolver}
+
+Records a mistake to a ring-buffer ledger and returns an Elixir-style
+friendly patch note.
+
+\begin{verbatim}
+gcc -arch x86_64 assembly/sakum_adv.s -o /tmp/adv && /tmp/adv
+\end{verbatim}

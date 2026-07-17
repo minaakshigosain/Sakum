@@ -1,0 +1,70 @@
+%% ===========================================================================
+%%  Chapter 8 — Native Trigger Server
+%% ===========================================================================
+\section{Native Trigger Server}\label{ch:server}
+
+\texttt{tools/serve.s} is a raw x86-64 HTTP server that \textbf{replaces}
+the retired \texttt{serve.py} (Python is a host-language runtime, forbidden
+by \S2).  It is the nerve-bus hub: \texttt{POST /update} runs a bot cycle,
+\texttt{GET /status} dumps \texttt{memory.md}, \texttt{GET /nerve} reports
+the nerve-bus fire counts, and \texttt{GET /} or \texttt{/index.html}
+serves the \texttt{site/index.html} dashboard.
+
+\subsection{Routes}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Route & Effect \\
+\midrule
+\texttt{POST /update} & fork + \texttt{execl} \texttt{tools/sakum\_bot.sh}
+  (run\_bot); bumps the \texttt{webhook.update} nerve count \\
+\texttt{GET /status} & dump \texttt{memory.md} \\
+\texttt{GET /nerve} & print nerve-bus subscriber counts
+  (\texttt{webhook.update} / \texttt{ws.trigger} / \texttt{timer.pulse}) \\
+\texttt{GET /}, \texttt{/index.html} & serve \texttt{site/index.html}
+  (\texttt{Content-Type: text/html}) \\
+\textit{other} & \texttt{404} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Bot dispatch via fork + execl}
+
+\begin{lstlisting}[language=SakumAsm,caption={run\_bot forks a detached child (serve.s:157).}]
+run_bot:
+    push %rbx; push %r12
+    mov %rdi, %r12
+    call _fork
+    cmp $0, %rax
+    je .rb_child
+    mov %rax, %rdi
+    xor %rsi, %rsi; xor %rdx, %rdx
+    call _waitpid
+    lea nerve_count(%rip), %rbx
+    mov %r12, %rax; shl $3, %rax; add %rax, %rbx
+    incq (%rbx)                 # bump nerve channel fire count
+    ...
+.rb_child:
+    lea bash_path(%rip), %rdi
+    lea bash_path(%rip), %rsi
+    lea bot_arg(%rip), %rdx
+    xor %rcx, %rcx
+    call _execl
+\end{lstlisting}
+
+A forked child also drives the timer pulse: it loops
+\texttt{\_sleep} + \texttt{run\_bot(2)} every \texttt{--pulse} seconds.
+
+\subsection{Launch}
+
+\begin{verbatim}
+gcc -arch x86_64 tools/serve.s -o /tmp/serve && /tmp/serve --http 8080 --pulse 600
+\end{verbatim}
+
+The CLI's \texttt{serve} command launches this via \texttt{nohup} so it
+survives the CLI's exit (it uses \texttt{fork}+\texttt{setsid}+\texttt{execl}).
+\texttt{serve.sh} also calls \texttt{tools/fix\_perms.sh} so a \texttt{sudo}
+run cannot leave \texttt{ai\_ledger.txt} root-owned (which would silently
+break the AI's self-update).

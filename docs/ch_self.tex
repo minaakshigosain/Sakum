@@ -1,0 +1,30 @@
+%% ===========================================================================
+%%  Chapter 11 — Self-Extending Grow Loop
+%% ===========================================================================
+\section{Self-Extending Grow Loop}\label{ch:self}
+
+\texttt{assembly/sakum\_self.s} demonstrates the \texttt{self} engine at
+machine level: a code buffer that \textbf{grows by appending generated
+instruction bytes} (continuous library growth).  \texttt{grow} appends one
+byte at the current length and increments the length counter.
+
+\begin{lstlisting}[language=SakumAsm,caption={grow + emit (sakum\_self.s:14, :31).}]
+grow:
+    lea rbx, [rip + len]
+    mov rcx, [rbx]
+    mov [rsi + rcx], dil
+    inc rcx
+    mov [rbx], rcx
+    ret
+# emit: mov eax, 7  -> B8 07 00 00 00
+    mov dil, 0xB8; call grow
+    mov dil, 0x07; call grow
+    ...
+# emit: add eax, 35 -> 83 C0 23
+    mov dil, 0x83; call grow
+    mov dil, 0x23; call grow
+\end{lstlisting}
+
+The demo emits \texttt{mov eax,7} + \texttt{add eax,35} (8 bytes total)
+and reports length \textbf{8}.  This is the mechanism the bot uses to extend
+the library: each routine is additive, appended to the growable buffer.

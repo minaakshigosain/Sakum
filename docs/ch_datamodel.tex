@@ -1,0 +1,89 @@
+%% ===========================================================================
+%%  Chapter 3 — Data Model
+%% ===========================================================================
+\section{Data Model}\label{ch:datamodel}
+
+\subsection{The \texttt{Knowledge/} tree}
+
+The AI core ingests a two/three-level category tree of knowledge nodes:
+
+\begin{verbatim}
+Knowledge/
+  <category>/manifest.sakum                  # depth 1 (8 nodes)
+  <category>/<subcategory>/manifest.sakum    # depth 2 (77 nodes)
+  ...
+\end{verbatim}
+
+The tree contains \textbf{85 \texttt{manifest.sakum} files} (verified by
+\texttt{find}).  \texttt{walk\_dir} (assembly/sakum\_ai.s:193) descends a
+bounded three levels, skipping \texttt{.}/\texttt{..} and non-directory
+entries (so \texttt{hash.txt}, \texttt{index.bin}, and the
+\texttt{manifest.sakum} file entry itself are never loaded).
+
+\subsection{Manifest format}
+
+Every node is a Sakum-language knowledge declaration.  Verbatim from
+\texttt{Knowledge/Machine Learning/manifest.sakum}:
+
+\begin{lstlisting}[language=SakumAsm,caption={A knowledge node manifest.}]
+# Knowledge node (binary-hash addressable)
+नाम node = "Machine Learning";
+नाम hash = #what 1be12cead3481f5285c2eb477558b0b91cff4fe05f5758d4ed84eeb5b2374a93cec7f101c4ad8a262a593813518fa3fd4195011d1e42d7c8df6522bf699ba777;
+लेख(query("load Machine Learning"));
+लेख(heartbeat());
+\end{lstlisting}
+
+\begin{itemize}
+  \item \texttt{नाम} (\emph{naam}, ``name'') declares the node label and its
+    binary hash.
+  \item \texttt{लेख} (\emph{lekḥ}, ``write/print'') carries a
+    \texttt{query(\dots)} load command and a \texttt{heartbeat()}.
+  \item The hash is the \textbf{binary-hash addressable} key: a 64-nibble
+    hex string after \texttt{\#what }.
+\end{itemize}
+
+\subsection{The binary-hash scheme}
+
+Per \S1.6 / \S1.8 there is \textbf{no SHA-256}.  The hash is a custom
+per-node digest:
+
+\begin{itemize}
+  \item In manifests it is a 64-nibble \emph{hex} string.
+  \item In the generated ledgers (\texttt{query\_logs/*.jsonl}) it is stored
+    as a \emph{binary 0/1 string}, e.g.
+    \texttt{"1100011010111100\ldots"} --- confirming the scheme is neither
+    hex-encoded SHA nor base64.
+  \item The AI core folds the hex digits into its weight matrix via
+    \texttt{W[idx] = (W[idx]*16 + digit) mod 9973} (see \S\ref{ch:ai}).
+  \item The crypto/quantum libraries use FNV-1a variants
+    (assembly/sakum\_lib\_crypto.s, sakum\_lib\_quantum.s); the crawler
+    (\texttt{sakum\_bramann.s}) folds a sphere with an FNV-1a hash and
+    writes \texttt{\#what <hash> :: sphere <name>}.
+\end{itemize}
+
+\subsection{The self-update ledger (\texttt{ai\_ledger.txt})}
+
+Append-only tick lines written by the AI core's \texttt{self\_update}
+(assembly/sakum\_ai.s:903):
+
+\begin{verbatim}
+ai tick: neurons=%d loaded=%llu ram_mb=%llu
+\end{verbatim}
+
+Observed content: \texttt{ai tick: neurons=64 loaded=85 ram\_mb=8192} ---
+64 neurons, 85 chunks, 8192\,MB RAM detected via \texttt{sysctl}
+(\texttt{CTL\_HW=6, HW\_MEMSIZE=24}).
+
+\subsection{The live history feed (\texttt{query\_logs/fetch\_live.jsonl})}
+
+The ब्रम्ह tracker reads this append-only JSON-lines ledger
+($\approx$\,220\,KB, 1529 lines).  Each record:
+
+\begin{verbatim}
+{"ts":<unix>,"event":"fetch.start"|"fetch.nohit"|"learn",
+ "source":"llvm_releases"|"rust_releases"|"wasm_spec"|"gcc_releases",
+ "url":...,"topic":"bounds"|"numeric"|"overflow"|"vector","bytes":N}
+\end{verbatim}
+
+The tracker prints \texttt{स्रोत → भाषा → गंतव्य} (source $\to$ language
+$\to$ destination) plus a pulse clock.
