@@ -60,7 +60,7 @@ _main:
     mov  qword ptr [rip + g_color], 1
 
     # default feed path
-    lea  rax, [rip + defpath]
+    lea  rax, [rip + defpathstr]
     mov  [rip + feedpath], rax
     # init rowstore bump allocator
     lea  rax, [rip + rowstore]
@@ -204,11 +204,16 @@ render_once:
 .no_clear:
 
     call render_header
-    lea  rdi, [rip + feedpath]
+    lea  rdi, [rip + dbg_a]; xor eax,eax; call _printf
+    mov  rdi, [rip + feedpath]
     call read_feed
+    lea  rdi, [rip + dbg_b]; xor eax,eax; call _printf
     call render_counters
+    lea  rdi, [rip + dbg_c]; xor eax,eax; call _printf
     call render_pipeline
+    lea  rdi, [rip + dbg_d]; xor eax,eax; call _printf
     call render_destpanel
+    lea  rdi, [rip + dbg_e]; xor eax,eax; call _printf
     call render_footer
 
     mov  rsp, rbp
@@ -744,7 +749,7 @@ line_has:
 # =====================================================================
 .data
 feedpath:  .quad 0
-.defpath:  .asciz "query_logs/fetch_live.jsonl"
+defpathstr:  .asciz "query_logs/fetch_live.jsonl"
 rmode:     .asciz "rb"
 live_str:   .asciz "--live"
 follow_str: .asciz "--follow"
@@ -814,6 +819,12 @@ usage_msg:
 .asciz "ब्रम्ह live tracker usage:\n  tracker [feedpath] [--live] [--follow] [--once] [--no-color] [--help]\n    --live     refresh every 3s (clears screen)\n    --follow   refresh every 3s (scrolls, no clear)\n    --once     single render\n    --no-color force plain text\n"
 
 nowbuf:   .quad 0
+
+dbg_a: .asciz "[DBG] after header\n"
+dbg_b: .asciz "[DBG] after read_feed\n"
+dbg_c: .asciz "[DBG] after counters\n"
+dbg_d: .asciz "[DBG] after pipeline\n"
+dbg_e: .asciz "[DBG] after destpanel\n"
 
 c_fetch:    .quad 0
 c_learn:    .quad 0
