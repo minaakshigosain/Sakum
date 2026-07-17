@@ -3,13 +3,18 @@
 Written and read by `tools/sakum_bot.sh`. Plain text, append-only style.
 Each line is a record. `survive:` is the rolling success counter.
 
-survive: 34
-last_cycle: 1784201634
-patches_applied: 34
-last_check: 2026-07-16T11:35:12Z
+survive: 35
+last_cycle: 1784205501
+patches_applied: 35
+last_check: 2026-07-17T15:05:00Z
 
 ## learned
-(empty — filled by the bot on each successful cycle)
+learned 1784205501: signal=recall+survivability patch=spec_asm_7isa_symbolmap
+- Added docs/LATEX_SYNTAX.md (closed LaTeX syntax set) + docs/SYMBOL_MAP.md (math->Sakum map).
+- Generated 7 cross-target spec assembly files (docs/asm/spec_*.s) embedding the 23984-byte
+  spec corpus; fixed AT&T operand-order bugs (rdi/rsi for _write, sub $32,%rsp).
+- mac target verified: prints blob (24011 bytes) + FNV1a(spec)=0xC46A785B; tools/check.sh PASS=7 (0 leaks).
+- Recorded recall rule in smaran.md: always verify code against designed functionality before editing.
 
 ## mistakes
 (empty — filled when a recompile fails or a source fetch errors)
