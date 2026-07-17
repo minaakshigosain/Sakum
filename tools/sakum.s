@@ -30,6 +30,9 @@
     .extern _system
     .extern _strcmp
     .extern _exit
+    .extern _fork
+    .extern _setsid
+    .extern _execl
 
 # ---------------------------------------------------------------------------
 # data
@@ -66,6 +69,9 @@ g_serve:    .asciz "nohup bash tools/serve.sh"
 g_gen:      .asciz "bash tools/gen_lib.sh "
 g_defport:  .asciz " 8080 600"
 g_bg:       .asciz " >/tmp/sakum_serve.log 2>&1 </dev/null &"
+bash_path:  .asciz "/bin/bash"
+bash_arg0:  .asciz "bash"
+serve_sh_path: .asciz "tools/serve.sh"
 s_dhelp:    .asciz "--help"
 s_h:        .asciz "-h"
 
@@ -277,23 +283,22 @@ dispatch_line:
     jmp .ds_ret0
 
 .do_serve:
-    lea syscmd(%rip), %rbx
-    lea g_serve(%rip), %rsi
-    call append_str
-    mov %r14, %rsi
-    call append_str
-    mov (%r14), %al
-    test %al, %al
-    jnz .do_serve_bg
-    lea g_defport(%rip), %rsi
-    call append_str
-.do_serve_bg:
-    lea g_bg(%rip), %rsi
-    call append_str
-    movb $0, (%rbx)
-    lea syscmd(%rip), %rdi
-    call _system
+    # fork a detached child that exec's the server (survives sakum's exit)
+    call _fork
+    test %rax, %rax
+    jz .serve_child          # child: rax == 0
+    # parent: return immediately (do not wait)
     jmp .ds_ret0
+.serve_child:
+    call _setsid             # new session: detach from controlling terminal/pgrp
+    lea bash_path(%rip), %rdi
+    lea bash_arg0(%rip), %rsi
+    lea serve_sh_path(%rip), %rdx
+    xor %rcx, %rcx           # NULL terminator for execl
+    call _execl
+    # exec failed
+    mov $1, %rdi
+    call _exit
 
 .do_gen:
     lea syscmd(%rip), %rbx
