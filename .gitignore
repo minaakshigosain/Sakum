@@ -9,3 +9,4 @@ self/patches/
 *.pdf
 *.app/
 tools/serve
+tools/sakum
