@@ -62,9 +62,11 @@
   #define CDECL(name) _##name
   #define TEXT_SECTION  .section __TEXT,__text,regular,pure_instructions
   #define DATA_SECTION  .section __DATA,__data
-  #define RODATA_SECTION .section __TEXT,__const
+  #define RODATA_SECTION .section __TEXT,__cstring,regular
   #define BSS_SECTION   .section __DATA,__bss
   #define BUILD_FLAGS -arch x86_64
+  # macOS syscalls are 0x2000000 + number
+  #define SYS_READ  0x2000003
 #endif
 
 #ifdef PLAT_LINUX
@@ -75,6 +77,7 @@
   #define BSS_SECTION   .section .bss
   #ifdef ISA_X86_64
     #define BUILD_FLAGS -m64
+    #define SYS_READ 0       # x86-64 Linux: read = 0
   #else
     #define BUILD_FLAGS
   #endif

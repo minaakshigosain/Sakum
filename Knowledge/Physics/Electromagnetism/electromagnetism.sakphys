@@ -1,0 +1,20 @@
+# electromagnetism.sakphys - Sakum physics: Electromagnetism
+# domain=Physics/Electromagnetism  format=sakphys
+
+# --- Maxwell (integral form) ---
+मैक्सवेल_१ ∮ E·dA = Q_enclosed / ε0
+मैक्सवेल_२ ∮ B·dA = 0
+मैक्सवेल_३ ∮ E·dl = -d/dt ∫ B·dA
+मैक्सवेल_४ ∮ B·dl = μ0 (I + ε0 d/dt ∫ E·dA)
+
+# --- Lorentz force ---
+लोरेंट्ज F = q (E + v × B)
+
+# --- Wave equation ---
+तरंग ∇^2 E - (1/c^2) ∂^2 E/∂t^2 = 0
+
+# self-test hook
+परीक्षा {
+  लेख "electromagnetism.sakphys loaded"
+  लेख(लेटेक्स(लोरेंट्ज F = q (E + v × B)))
+}

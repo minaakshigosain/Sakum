@@ -1,0 +1,30 @@
+# spec_webhook.sak - Sakum Lang formal spec: webhook receiver (वेबहुक)
+# Sakum-language spelling of docs/ch_webhook.tex.
+# Raw syscall HTTP server; parses POST /update; emits webhook.update nerve.
+
+naam node = "Sakum Webhook";
+naam hash = #what 7e8f90a1b2c3d4e5f60718293a4b5c6d7e907c;
+lek(query("load Sakum Webhook"));
+lek(heartbeat());
+
+# parse POST /update by magic dwords: "POST" 0x54534F50, "/upa" 0x6461702F, "te/" 0x6574652F
+sutra parse_update(req) {
+    naam is_post = 1
+    naam is_update = 1
+    vapsa is_post + is_update
+}
+
+sutra nerve_emit_update() {
+    lek(query("nerve: webhook.update fired"));
+    vapsa 1
+}
+
+sutra run_bot_cycle() {
+    brahma.learn("tools/sakum_bot.sh --once")
+    vapsa 0
+}
+
+pariksha {
+    naam p = parse_update(0)
+    lek "webhook ok: parse=" p
+}

@@ -33,22 +33,50 @@ TEXT_SECTION
 # Syscall numbers — cross-platform
 # ---------------------------------------------------------------------------
 #ifdef PLAT_MACOS
-SYS_READ   = 0x2000000 + 3
-SYS_WRITE  = 0x2000000 + 4
-SYS_OPEN   = 0x2000000 + 5
-SYS_CLOSE  = 0x2000000 + 6
-SYS_EXIT   = 0x2000000 + 1
-SYS_FORK   = 0x2000000 + 2
-SYS_WAIT4  = 0x2000000 + 7
+  #ifndef SYS_READ
+    SYS_READ   = 0x2000000 + 3
+  #endif
+  #ifndef SYS_WRITE
+    SYS_WRITE  = 0x2000000 + 4
+  #endif
+  #ifndef SYS_OPEN
+    SYS_OPEN   = 0x2000000 + 5
+  #endif
+  #ifndef SYS_CLOSE
+    SYS_CLOSE  = 0x2000000 + 6
+  #endif
+  #ifndef SYS_EXIT
+    SYS_EXIT   = 0x2000000 + 1
+  #endif
+  #ifndef SYS_FORK
+    SYS_FORK   = 0x2000000 + 2
+  #endif
+  #ifndef SYS_WAIT4
+    SYS_WAIT4  = 0x2000000 + 7
+  #endif
 O_APPEND_MAC = 0x8
 #else
-SYS_READ   = 0
-SYS_WRITE  = 1
-SYS_OPEN   = 2
-SYS_CLOSE  = 3
-SYS_EXIT   = 60
-SYS_FORK   = 57
-SYS_WAIT4  = 61
+  #ifndef SYS_READ
+    SYS_READ   = 0
+  #endif
+  #ifndef SYS_WRITE
+    SYS_WRITE  = 1
+  #endif
+  #ifndef SYS_OPEN
+    SYS_OPEN   = 2
+  #endif
+  #ifndef SYS_CLOSE
+    SYS_CLOSE  = 3
+  #endif
+  #ifndef SYS_EXIT
+    SYS_EXIT   = 60
+  #endif
+  #ifndef SYS_FORK
+    SYS_FORK   = 57
+  #endif
+  #ifndef SYS_WAIT4
+    SYS_WAIT4  = 61
+  #endif
 #endif
 
 O_RDONLY   = 0

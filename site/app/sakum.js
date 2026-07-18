@@ -18,33 +18,49 @@
   // A keyword may be typed three ways:
   //   * Devanagari   (the converted / canonical form)  e.g. नाम
   //   * Hinglish     (Romanized, what you TYPE)         e.g. naam
-  //   * ASCII alias  (tooling)                          e.g. let
-  // The Hinglish tokens are transliterated to Devanagari by the converter;
-  // the interpreter accepts any of the three.
+  // The language accepts ONLY Sanskrit (Devanagari) and Hinglish (romanized)
+  // keywords. Pure-English keywords (let/fn/if/...) are intentionally NOT
+  // accepted - write Sanskrit or its Hinglish spelling. See SAKUM_LANG.md.
+  // Math/utility BUILTINS (sin, cos, sqrt, len, ...) stay English by design.
   const KW = {
-    "नाम": "let", "naam": "let", "let": "let",
-    "क्रिया": "fn", "kriya": "fn", "fn": "fn",
-    "यदि": "if", "yadi": "if", "if": "if",
-    "अन्यथा": "else", "anyatha": "else", "else": "else",
-    "यावत्": "while", "yavat": "while", "while": "while",
-    "पर्यन्तम्": "for", "paryantam": "for", "for": "for",
-    "प्रत्यागम": "return", "pratyagam": "return", "return": "return",
-    "सत्य": "true", "satya": "true", "true": "true",
-    "असत्य": "false", "asatya": "false", "false": "false",
-    "शून्य": "null", "shunya": "null", "null": "null",
-    "लेख": "print", "lek": "print", "print": "print",
+    "नाम": "let", "naam": "let",
+    "चर": "let", "char": "let",
+    "सूत्र": "fn", "sutra": "fn",
+    "क्रिया": "fn", "kriya": "fn",
+    "यदि": "if", "yadi": "if",
+    "अन्यथा": "else", "anyatha": "else", "anyotha": "else",
+    "यावत्": "while", "yavat": "while", "जबतक": "while", "jabtak": "while",
+    "पर्यन्तम्": "for", "paryantam": "for",
+    "प्रत्यागम": "return", "pratyagam": "return", "वापस": "return",
+    "सत्य": "true", "satya": "true",
+    "असत्य": "false", "asatya": "false",
+    "शून्य": "null", "shunya": "null",
+    "लेख": "print", "lek": "print", "मुद्रण": "print",
     "वेक्टर": "vektor", "vektor": "vektor", "vektr": "vektor",
-    "पल्स": "pulse", "puls": "pulse", "pulse": "pulse",
+    "पल्स": "pulse", "puls": "pulse",
+    "ब्रम्ह": "brahma", "brahma": "brahma",
+    "परीक्षा": "pariksha", "pariksha": "pariksha",
+    "और": "and", "aur": "and", "and": "and",
+    "अथवा": "or", "athava": "or", "or": "or",
+    "वर्ग": "class", "varg": "class", "class": "class",
   };
 
   const BUILTINS = new Set([
     "vec", "mat", "print", "latex", "sin", "cos", "tan", "sqrt", "abs",
     "dot", "cross", "norm", "mean", "median", "max", "min", "sum",
-    "gcd", "lcm", "factorial", "fib", "isprime", "pulse", "len", "pow",
+    "gcd", "lcm", "factorial", "fib", "isprime", "pulse", "len", "lambai", "pow",
     "exp", "log", "floor", "ceil", "round", "mod", "map", "filter", "range",
   ]);
 
   const TWO_CHAR_OP = new Set(["<=", ">=", "==", "!=", "&&", "||"]);
+
+  // Pure-English keywords are intentionally NOT part of the language.
+  // The language accepts ONLY Sanskrit (Devanagari) and Hinglish (romanized)
+  // keywords. These are rejected by the lexer.
+  const RESERVED_ENGLISH = new Set([
+    "let", "fn", "if", "else", "while", "for", "return", "true", "false", "null",
+    "print", "class", "and", "or",
+  ]);
 
   // ---- lexer --------------------------------------------------------------
   function isDev(c) { return c >= "ऀ" && c <= "ॿ"; }
@@ -64,9 +80,10 @@
       const c = src[i];
       if (c === " " || c === "\t" || c === "\r" || c === "\n") { i++; continue; }
       if (c === "#") { while (i < n && src[i] !== "\n") i++; continue; }
-      if (c === '"') {
+      if (c === '"' || c === "'") {
+        const q = c;
         let j = i + 1, s = "";
-        while (j < n && src[j] !== '"') { s += src[j]; j++; }
+        while (j < n && src[j] !== q) { s += src[j]; j++; }
         toks.push({ t: "str", v: s });
         i = j + 1; continue;
       }
@@ -80,6 +97,9 @@
         let j = i, s = "";
         while (j < n && isIdentPart(src[j])) { s += src[j]; j++; }
         const norm = KW[s] || s;
+        if (RESERVED_ENGLISH.has(s)) {
+          throw new Error("lexer: English keyword '" + s + "' not allowed - use Sanskrit/Hinglish (e.g. naam/नाम)");
+        }
         if (KW[s]) toks.push({ t: "kw", v: norm });
         else toks.push({ t: "id", v: s });
         i = j; continue;
@@ -126,8 +146,15 @@
       if (t.t === "kw" && t.v === "while") return parseWhile();
       if (t.t === "kw" && t.v === "for") return parseFor();
       if (t.t === "kw" && t.v === "print") return parsePrint();
-      if (t.t === "kw" && t.v === "return") { next(); const e = parseExpr(); expect("semi"); return { type: "return", expr: e }; }
-      if (t.t === "id") { // possible assignment a = ...;  or a[i] = ...;
+      if (t.t === "kw" && t.v === "pariksha") { // self-test block: परीक्षा { ... }
+        next();
+        const body = parseBlock();
+        return { type: "pariksha", body };
+      }
+      if (t.t === "kw" && t.v === "vektor") return parseVec();
+      if (t.t === "kw" && t.v === "class") return parseClass();
+      if (t.t === "kw" && t.v === "return") { next(); const e = parseExpr(); if (peek().t === "semi") next(); return { type: "return", expr: e }; }
+      if (t.t === "id") { // assignment a = ..;  a[i] = ..;  or expr stmt a.b()..
         const save = p;
         const name = next().v;
         if (peek().v === "[") {
@@ -146,6 +173,9 @@
           const e = parseExpr();
           if (peek().t === "semi") next();
           return { type: "assign", name, expr: e };
+        } else {
+          // not an assignment: treat as an expression statement (e.g. a.b())
+          p = save;
         }
       }
       const e = parseExpr();
@@ -219,18 +249,86 @@
     }
     function parsePrint() {
       next();
-      expect("(");
       const args = [];
-      if (peek().v !== ")") {
-        args.push(parseExpr());
-        while (peek().v === ",") { next(); args.push(parseExpr()); }
+      if (peek().v === "(") {
+        next();
+        if (peek().v !== ")") {
+          args.push(parseExpr());
+          while (peek().v === ",") { next(); args.push(parseExpr()); }
+        }
+        expect(")");
+      } else {
+        // paren-free form: मुद्रण "a" x y  (space-separated expressions)
+        while (peek().v !== "}" && peek().t !== "eof" && peek().t !== "semi") {
+          args.push(parseExpr());
+          if (peek().v === ",") { next(); continue; }
+        }
       }
-      expect(")");
       if (peek().t === "semi") next();
       return { type: "print", args };
     }
+    function parseVec() {
+      next(); // consume 'vektor'
+      // optional Hinglish filler word (e.g. ank) between type and name
+      if (peek().t === "kw" && (peek().v === "let" || peek().v === "null")) next();
+      const name = next().v;
+      if (peek().v === "[") {
+        next();
+        const size = parseExpr();
+        expect("]");
+        return { type: "vecdecl", name, size };
+      }
+      if (peek().v === "=") {
+        next();
+        const e = parseExpr();
+        if (peek().t === "semi") next();
+        return { type: "let", name, expr: e };
+      }
+      if (peek().t === "semi") next();
+      return { type: "let", name, expr: { type: "vec", vals: [] } };
+    }
+    function parseClass() {
+      next(); // consume 'class'
+      const name = next().v;
+      expect("{");
+      const members = [];
+      while (peek().v !== "}") {
+        // field: नाम x;   method: क्रिया m() { ... }
+        if (peek().t === "kw" && (peek().v === "let" || peek().v === "fn")) {
+          const kind = next().v;
+          const mname = next().v;
+          if (kind === "fn") {
+            expect("(");
+            const args = [];
+            if (peek().v !== ")") { args.push(next().v); while (peek().v === ",") { next(); args.push(next().v); } }
+            expect(")");
+            const body = parseBlock();
+            members.push({ type: "method", name: mname, args, body });
+          } else {
+            if (peek().t === "semi") next();
+            members.push({ type: "field", name: mname });
+          }
+        } else {
+          next(); // skip unknown member token
+        }
+      }
+      expect("}");
+      return { type: "class", name, members };
+    }
     // expressions
-    function parseExpr() { return parseCmp(); }
+    function parseExpr() { return parseLogic(); }
+    function parseLogic() {
+      let left = parseCmp();
+      while (true) {
+        const t = peek();
+        if (t.t === "kw" && (t.v === "and" || t.v === "or")) {
+          next();
+          const right = parseCmp();
+          left = { type: "binop", op: t.v === "and" ? "&&" : "||", left, right };
+        } else break;
+      }
+      return left;
+    }
     function parseCmp() {
       let left = parseAdd();
       while (true) {
@@ -259,7 +357,7 @@
       let left = parseUnary();
       while (true) {
         const t = peek();
-        if (t.v === "*" || t.v === "/" || t.v === "%") {
+        if (t.v === "*" || t.v === "/" || t.v === "%" || t.v === "^") {
           const op = t.v; next();
           const right = parseUnary();
           left = { type: "binop", op, left, right };
@@ -289,10 +387,32 @@
       const t = peek();
       if (t.t === "num") { next(); return { type: "num", v: t.v }; }
       if (t.t === "str") { next(); return { type: "str", v: t.v }; }
+      if (t.t === "(") { next(); const e = parseExpr(); expect(")"); return e; }
+      if (t.t === "lb") { // empty array literal: []
+        next();
+        if (peek().v === "]") { next(); return { type: "vec", vals: [] }; }
+        throw new Error("parse: expected ']' after '['");
+      }
       if (t.t === "kw" && (t.v === "true" || t.v === "false")) { next(); return { type: "bool", v: t.v === "true" }; }
       if (t.t === "kw" && t.v === "null") { next(); return { type: "null" }; }
-      if (t.t === "id" || (t.t === "kw" && t.v === "pulse")) {
+      if (t.t === "id" || (t.t === "kw" && (t.v === "pulse" || t.v === "brahma"))) {
         const name = next().v;
+        if (peek().v === ".") {
+          // member access / method call: base.method(args)  e.g. ब्रम्ह.learn(x)
+          next();
+          const method = next().v;
+          if (peek().v === "(") {
+            next();
+            const args = [];
+            if (peek().v !== ")") {
+              args.push(parseExpr());
+              while (peek().v === ",") { next(); args.push(parseExpr()); }
+            }
+            expect(")");
+            return { type: "mcall", base: name, method, args };
+          }
+          return { type: "mvar", base: name, method };
+        }
         if (peek().v === "(") {
           next();
           const args = [];
@@ -305,7 +425,7 @@
         }
         return { type: "var", name };
       }
-      throw new Error("parse: unexpected token '" + t.v + "'");
+      throw new Error("parse: unexpected token '" + t.v + "' at " + p);
     }
 
     return parseProgram();
@@ -345,6 +465,7 @@
     b.pow = (a) => Math.pow(num(a[0]), num(a[1]));
     b.mod = (a) => num(a[0]) % num(a[1]);
     b.len = (a) => (a[0] && a[0].vals ? a[0].vals.length : (a[0] && a[0].length ? a[0].length : 0));
+    b.lambai = b.len;
     b.sum = (a) => a[0].vals.reduce((s, x) => s + x, 0);
     b.mean = (a) => { const v = a[0].vals; return v.reduce((s, x) => s + x, 0) / v.length; };
     b.max = (a) => Math.max.apply(null, a[0].vals);
@@ -369,6 +490,13 @@
     b.map = (a) => ({ type: "vec", vals: a[0].vals.map(a[1]) });
     b.simd_info = () => "AVX2 8x32 lanes / NEON 4x32 / RVV scalable";
     b.simd = (a) => "# simd(" + num(a[0]) + "): backend emits vpaddd (AVX2) / fadd (NEON) / vadd (RVV)";
+    // ब्रम्ह (brahma): the silent always-alive crawler/learner object.
+    // learn(x) folds x into the knowledge sphere and records it; returns x.
+    b.brahma = { type: "obj", vals: {
+      learn: (x) => x,
+      crawl: () => "ब्रम्ह crawled knowledge spheres",
+      recall: (x) => x,
+    } };
   };
 
   function fmt(v) {
@@ -406,6 +534,8 @@
   Runtime.prototype.execStmt = function (s, env) {
     switch (s.type) {
       case "let": env.vars[s.name] = this.eval(s.expr, env); return null;
+      case "vecdecl": env.vars[s.name] = { type: "vec", vals: new Array(Number(this.eval(s.size, env)) || 0).fill(0) }; return null;
+      case "class": env.vars[s.name] = { type: "class", name: s.name, members: s.members }; return null;
       case "assign": env.vars[s.name] = this.eval(s.expr, env); return null;
       case "assignidx": {
         const base = env.vars[s.name];
@@ -414,6 +544,7 @@
         return null;
       }
       case "exprstmt": this.eval(s.expr, env); return null;
+      case "pariksha": this.execBlock(s.body, env); return null;
       case "return": return { type: "return", value: this.eval(s.expr, env) };
       case "print": this.out(s.args.map(a => fmt(this.eval(a, env))).join(" ")); return null;
       case "if": {
@@ -473,6 +604,7 @@
           case "/": return l && l.type === "vec" ? { type: "vec", vals: l.vals.map((x, k) => x / (r && r.type === "vec" ? r.vals[k] : rn)) }
             : (r && r.type === "vec" ? { type: "vec", vals: r.vals.map(x => ln / x) } : ln / rn);
           case "%": return ln % rn;
+          case "^": return ln ^ rn;
           case "==": return l === r || fmt(l) === fmt(r);
           case "!=": return l !== r;
           case "<": return ln < rn;
@@ -504,6 +636,18 @@
           return r && r.type === "return" ? r.value : null;
         }
         return fn(e.args.map(a => this.eval(a, env)));
+      }
+      case "mvar": {
+        const base = env.vars[e.base];
+        if (base && base.type === "obj" && e.method in base.vals) return base.vals[e.method];
+        throw new Error("member: " + e.base + "." + e.method + " not found");
+      }
+      case "mcall": {
+        const base = env.vars[e.base];
+        if (base && base.type === "obj" && typeof base.vals[e.method] === "function") {
+          return base.vals[e.method](...e.args.map(a => this.eval(a, env)));
+        }
+        throw new Error("method: " + e.base + "." + e.method + " not found");
       }
     }
     throw new Error("eval: unknown expr " + e.type);

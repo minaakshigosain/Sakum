@@ -1,0 +1,127 @@
+% Sakum Lang - Extension Reference (generated from EXTENSIONS.sakdoc)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\usepackage{longtable}\usepackage{array}\usepackage{xcolor}
+\usepackage{hyperref}
+\title{Sakum Lang \textemdash{} File-Type Extension Reference}
+\author{Sakum Lang Project}
+\date{Generated from \texttt{EXTENSIONS.sakdoc}}
+\begin{document}
+\maketitle
+
+\section{Overview}
+Every artifact in Sakum Lang carries a purpose-specific extension so the
+compiler and tooling can recognise specialised data directly instead of
+treating everything as plain text. The mapping is the \textbf{single source
+of truth} loaded by \texttt{tools/sakum\_ext.py} and declared in
+\texttt{sakum\_lang.sakproj}. Human-readable docs keep common formats
+(\texttt{.md}, \texttt{.tex}, \texttt{.pdf}, \texttt{.html}).
+
+\section{Extension Registry}
+\begin{longtable}{|l|l|l|p{6.5cm}|}
+\hline
+\textbf{Extension} & \textbf{Category} & \textbf{Dispatch} & \textbf{Purpose} \\
+\hline\endhead
+\texttt{.sak} & source & build & Sakum source code \\
+\hline
+\texttt{.sakm} & source & build & Sakum module / package source \\
+\hline
+\texttt{.sakh} & source & build & Header / interface declarations \\
+\hline
+\texttt{.sakpkg} & package & manifest & Package manifest \\
+\hline
+\texttt{.sakproj} & package & manifest & Project configuration \\
+\hline
+\texttt{.saklock} & package & manifest & Dependency lock file \\
+\hline
+\texttt{.sakir} & ir & build & Intermediate Representation (SIR) \\
+\hline
+\texttt{.sakast} & ast & build & Abstract Syntax Tree \\
+\hline
+\texttt{.sakbc} & binary & link & Bytecode \\
+\hline
+\texttt{.sakobj} & binary & link & Object file \\
+\hline
+\texttt{.saklib} & binary & link & Static library \\
+\hline
+\texttt{.sakdll} & binary & link & Dynamic library (Windows) \\
+\hline
+\texttt{.sakso} & binary & link & Dynamic library (Linux) \\
+\hline
+\texttt{.sakdylib} & binary & link & Dynamic library (macOS) \\
+\hline
+\texttt{.sakexe} & binary & link & Platform-independent executable bundle \\
+\hline
+\texttt{.sakdoc} & doc & view & Language documentation \\
+\hline
+\texttt{.sakapi} & doc & view & API documentation \\
+\hline
+\texttt{.saktest} & test & test & Unit tests \\
+\hline
+\texttt{.sakbench} & test & test & Benchmarks \\
+\hline
+\texttt{.sakmath} & domain & view & Mathematical formulas / symbolic expressions \\
+\hline
+\texttt{.sakphys} & domain & view & Physics formulas \\
+\hline
+\texttt{.sakchem} & domain & view & Chemistry equations \\
+\hline
+\texttt{.sakbio} & domain & view & Biology / biotechnology models \\
+\hline
+\texttt{.sakquant} & domain & view & Quantum algorithms and circuits \\
+\hline
+\texttt{.sakml} & domain & view & Machine learning models / graphs \\
+\hline
+\texttt{.saktensor} & domain & view & Tensor expressions \\
+\hline
+\texttt{.sakproof} & domain & view & Formal proofs \\
+\hline
+\texttt{.sakgraph} & domain & view & Graph / network definitions \\
+\hline
+\texttt{.sakquery} & script & run & Query language scripts \\
+\hline
+\texttt{.sakschema} & data & validate & Data schemas \\
+\hline
+\texttt{.sakcfg} & config & validate & Configuration \\
+\hline
+\texttt{.sakcache} & cache & ignore & Compiler cache \\
+\hline
+\texttt{.sakidx} & index & ignore & Search / index database \\
+\hline
+\texttt{.sakdb} & data & validate & Embedded database \\
+\hline
+\texttt{.saklog} & log & view & Logs \\
+\hline
+\end{longtable}
+
+\section{Reserved Core Set}
+The following extensions are reserved for the language core and must not be
+reused for other purposes:
+\begin{center}
+\texttt{.sak} \texttt{.sakir} \texttt{.sakast} \texttt{.sakmath} \texttt{.sakquant} \texttt{.sakdoc}
+\end{center}
+
+\section{Dispatch Semantics}
+Behaviour is bound to the \textit{category}, not the file name. This is what
+makes tooling honour the scheme uniformly:
+\begin{itemize}
+\item \texttt{build} -- compile through the pipeline (source $\to$ AST $\to$ IR $\to$ binary).
+\item \texttt{link} -- feed to linker / loader.
+\item \texttt{manifest} -- resolve dependencies / validate package.
+\item \texttt{view} -- render to human-readable (doc / domain knowledge).
+\item \texttt{test} -- run the test / benchmark harness.
+\item \texttt{run} -- execute query scripts.
+\item \texttt{validate} -- schema / config validation.
+\item \texttt{ignore} -- derived data (cache / index); safe to drop.
+\end{itemize}
+
+\section{Generated Knowledge Files}
+Domain knowledge is authored in dedicated extensions, e.g.:
+\begin{itemize}
+\item \texttt{Knowledge/Mathematics/\textasciitilde/Calculus.sakmath}
+\item \texttt{Knowledge/Physics/\textasciitilde/mechanics.sakphys}
+\item \texttt{Knowledge/Chemistry/\textasciitilde/organic.sakchem}
+\item \texttt{Knowledge/Physics/Quantum Computing/gates.sakquant}
+\end{itemize}
+\end{document}

@@ -38,9 +38,9 @@ export SAKUM_SUTRA_KEY="your-own-key-here"
 
 ```
 assembly/     raw x86-64 machine-level core (simd, eval, wasm, self, ...)
-examples/     sample .sakum programs
-              math100.sakum   - 100 advanced-math examples
-              selflearn100.sakum - 100 error-explain / self-learn / bug-resolve examples
+examples/     sample .sak programs
+              math100.sak   - 100 advanced-math examples
+              selflearn100.sak - 100 error-explain / self-learn / bug-resolve examples
 self/         self engine patches / memory ledger
 query_logs/   binary-hash query observations
 Knowledge/     binary-hash-addressable knowledge tree (sciences + engineering)
@@ -53,6 +53,12 @@ tools/         native build launchers + assembly server (NO host-language tools)
                build_trackers.sh / build_app.sh -> compile assembly targets
 SAKUM_LANG.md design doctrine (DO / DON'T / roadmap)
 SAKUM_HINGLISH.md canonical Hinglish keyword glossary (single source)
+EXTENSIONS.sakdoc  canonical file-type extension registry (single source of truth)
+docs/EXTENSIONS.sakdoc.pdf  rendered extension reference
+tools/sakum_ext.py  registrar/dispatcher that honors the extension scheme
+tools/make_ext_pdf.py  regenerates the PDF + .tex from EXTENSIONS.sakdoc
+sakum_lang.sakproj  project config declaring the extension map
+sakum_knowledge.sakpkg  knowledge package manifest
 ```
 
 ## Status
@@ -91,13 +97,13 @@ mistake to the binary-hash ledger (`query_logs/type_1_memory.jsonl`). See
 The bot stays **keep-alive and silently learning**: a macOS launchd timer
 (`tools/com.sakum.bot.plist`, `StartInterval=600`, `KeepAlive` on failure) runs a
 cycle forever. Each cycle the bot **generates real, compilable library functions**
-in `assembly/sakum_lib_*.s` + `examples/lib_*.sakum`, recompiles the whole core,
+in `assembly/sakum_lib_*.s` + `examples/lib_*.sak`, recompiles the whole core,
 and **rolls back + self-heals** any patch that fails to build. The `brahma` crawler
 (`assembly/sakum_bramann.s`) quantum-learns across spheres each pulse, logging
 research to `research.md` and improvements to `upgrade.md` / `update.md`. A
 from-scratch assembly webhook receiver (`assembly/sakum_webhook.s`) also answers
 `POST /update` directly at the machine level, and the bot authors its own web
-stack in Sakum (`examples/bot_self.sakum`).
+stack in Sakum (`examples/bot_self.sak`).
 
 ### Activate (always-on)
 

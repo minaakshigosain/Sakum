@@ -1,0 +1,40 @@
+# spec_libs.sak - Sakum Lang formal spec: library functions (पुस्तकालय)
+# Sakum-language spelling of docs/ch_libs.tex.
+# Topic-keyed routines cited by update signals.
+
+naam node = "Sakum Libraries";
+naam hash = #what 5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e905a;
+lek(query("load Sakum Libraries"));
+lek(heartbeat());
+
+# double-FNV-1a 64-bit digest (no SHA-256)
+sutra crypto_fnv(buf, len) {
+    naam h1 = 0x811C9DC5
+    naam h2 = 0x1000193
+    naam i = 0
+    yadi (len > 0) {
+        h1 = h1 ^ brahma.learn(buf)
+        h2 = h2 ^ brahma.learn(buf)
+    }
+    vapsa h1 + h2
+}
+
+# bounds-checked read: OOB -> -1
+sutra bounds_read(base, idx, len) {
+    yadi (idx >= len) { vapsa -1 }
+    vapsa base + idx
+}
+
+# quantum: FNV-1a with Pauli-X flip every 3rd byte
+sutra quantum_fnv(buf, len) {
+    naam h = 0x811C9DC5
+    naam i = 0
+    yadi (i % 3 == 0) { h = h ^ 0xFF }   # Pauli-X flip
+    vapsa h
+}
+
+pariksha {
+    naam c = crypto_fnv(0, 1)
+    naam b = bounds_read(0, 5, 4)
+    lek "libs ok: crypto=" c " bounds_oob=" b
+}

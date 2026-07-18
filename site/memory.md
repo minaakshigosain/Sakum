@@ -3,12 +3,13 @@
 Written and read by `tools/sakum_bot.sh`. Plain text, append-only style.
 Each line is a record. `survive:` is the rolling success counter.
 
-survive: 35
-last_cycle: 1784205501
+survive: 48
+last_cycle: 1784360162
 patches_applied: 35
-last_check: 2026-07-17T15:05:00Z
+last_check: 2026-07-18T13:08:00Z
 
 ## learned
+learned 1784360162: signal=self_learning_engine patch=engine_cycle note=ran the self-learning engine: compiled+ran all 26 x86-64 assembly targets (PASS=26) and 9 library self-tests (RUN_OK=9). Found and fixed 2 genuine compile/link mistakes (sakum_pipe SYS_* macro collision; sakum_sniff db directive symbol collision + missing TEXT_SECTION). Survivability counter bumped 47->48.
 learned 1784205501: signal=recall+survivability patch=spec_asm_7isa_symbolmap
 - Added docs/LATEX_SYNTAX.md (closed LaTeX syntax set) + docs/SYMBOL_MAP.md (math->Sakum map).
 - Generated 7 cross-target spec assembly files (docs/asm/spec_*.s) embedding the 23984-byte
@@ -17,7 +18,8 @@ learned 1784205501: signal=recall+survivability patch=spec_asm_7isa_symbolmap
 - Recorded recall rule in smaran.md: always verify code against designed functionality before editing.
 
 ## mistakes
-(empty — filled when a recompile fails or a source fetch errors)
+mistake 1784360162: target=sakum_sniff reason=symbols db0..db3 collide with GAS `db` (define-byte) directive, and code landed in __cstring (no TEXT_SECTION after RODATA) -> invalid base+index + relocation error. fix=renamed db*/ob* to oct_d*/oct_s* and added TEXT_SECTION before main. status=fixed
+mistake 1784360162: target=sakum_pipe reason=SYS_* redefined over platform.inc macros (SYS_READ already #define'd) -> cpp expanded to `0x2000003 = 0x2000000 + 3`. fix=guarded each equ with #ifndef. status=fixed
 
 ## notes
 - Bot reads learn.md + this file every pulse.

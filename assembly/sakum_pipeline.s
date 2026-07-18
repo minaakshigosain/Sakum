@@ -29,8 +29,9 @@
 #   gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pipe && /tmp/pipe
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # ============================================================================
 #  REGISTER CONVENTIONS
@@ -653,7 +654,7 @@ eval_program:
 .ep_done:
     ret
 
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
@@ -681,24 +682,24 @@ _main:
 
     lea rdi, [rip + asm_hdr]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + asm_buf]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + asm_ftr]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     lea rdi, [rip + resmsg]
     mov rsi, [rip + _result]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     mov rsp, rbp
     pop rbp
     ret
 
-.bss
+BSS_SECTION
 tokbuf: .skip 4096
 node_pool: .skip 8192
 irbuf:  .skip 4096
@@ -725,7 +726,7 @@ prog_n:  .skip 8
 _letidx: .skip 4
 _lpos:   .skip 8
 
-.data
+DATA_SECTION
 src: .asciz "let x = 2 + 3 * 4; let y = x * x; y - 10;"
 asm_hdr: .asciz "== Sakum compiler pipeline (raw x86-64) ==\n--- generated x86-64 assembly (.s) ---\n"
 asm_ftr: .asciz "--- end generated code ---\n"

@@ -1,0 +1,17 @@
+# grover.sakquant - Sakum quantum: Grover's search
+# domain=Physics/Quantum Computing  format=sakquant
+
+# --- Grover iterate ---
+# Oracle O marks the target |w⟩:  O|w⟩ = -|w⟩
+# Diffusion D = 2|s⟩⟨s| - I   (inversion about mean)
+# One Grover step G = D·O
+# Optimal iterations r = floor(π/4 · √(N))
+
+ग्रोवर_चरण G = D · O
+आदर्श_पुनरावृत्ति r = ⌊ (π/4) √N ⌋
+
+# self-test hook
+परीक्षा {
+  लेख "grover.sakquant loaded"
+  लेख(लेटेक्स(आदर्श_पुनरावृत्ति r = ⌊ (π/4) √N ⌋))
+}

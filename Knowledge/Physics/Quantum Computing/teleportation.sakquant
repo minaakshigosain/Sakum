@@ -1,0 +1,16 @@
+# teleportation.sakquant - Sakum quantum: Teleportation
+# domain=Physics/Quantum Computing  format=sakquant
+
+# --- Protocol (no-cloning, uses Bell pair + classical 2-bit) ---
+# State to send: |ψ⟩ = α|0⟩ + β|1⟩
+# 1. Alice + Bob share Bell pair (H on q1, CX 1→2)
+# 2. Alice CNOT (ψ, q1), then H on ψ
+# 3. Alice measures ψ, q1  → 2 classical bits
+# 4. Bob applies X^{b1} Z^{b0} on q2 to recover |ψ⟩
+
+टेलीपोर्ट |ψ⟩_A → |ψ⟩_B  via  (H·CX) + CNOT + माप + (X^{b1} Z^{b0})
+
+# self-test hook
+परीक्षा {
+  लेख "teleportation.sakquant loaded"
+}

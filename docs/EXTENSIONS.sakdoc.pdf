@@ -1,0 +1,604 @@
+%PDF-1.3
+%יכס¿
+1 0 obj
+<<
+/Count 2
+/Kids [3 0 R
+5 0 R]
+/MediaBox [0 0 595.28 841.89]
+/Type /Pages
+>>
+endobj
+2 0 obj
+<<
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+/Pages 1 0 R
+/Type /Catalog
+>>
+endobj
+3 0 obj
+<<
+/Contents 4 0 R
+/Parent 1 0 R
+/Resources 11 0 R
+/Type /Page
+>>
+endobj
+4 0 obj
+<<
+/Length 13553
+>>
+stream
+2 J
+0.57 w
+BT /F1 16.00 Tf ET
+BT 31.18 797.40 Td (Sakum Lang - File-Type Extension Reference) Tj ET
+BT /F2 10.00 Tf ET
+BT 31.18 780.78 Td (Generated from EXTENSIONS.sakdoc  |  single source of truth: tools/sakum_ext.py + sakum_lang.sakproj) Tj ET
+BT /F1 13.00 Tf ET
+BT 31.18 754.37 Td (Extension Registry) Tj ET
+q 0.1569 0.1569 0.1569 rg 28.35 729.51 68.03 16.00 re B Q
+0.1569 0.1569 0.1569 rg
+BT /F4 8.00 Tf ET
+q BT 31.18 735.11 Td 1 g (ext) Tj ET Q
+0 g
+q 0.1569 0.1569 0.1569 rg 96.38 729.51 62.36 16.00 re B Q
+0.1569 0.1569 0.1569 rg
+BT /F4 8.00 Tf ET
+q BT 99.21 735.11 Td 1 g (category) Tj ET Q
+0 g
+q 0.1569 0.1569 0.1569 rg 158.74 729.51 62.36 16.00 re B Q
+0.1569 0.1569 0.1569 rg
+BT /F4 8.00 Tf ET
+q BT 161.58 735.11 Td 1 g (dispatch) Tj ET Q
+0 g
+q 0.1569 0.1569 0.1569 rg 221.10 729.51 345.83 16.00 re B Q
+0.1569 0.1569 0.1569 rg
+BT /F4 8.00 Tf ET
+q BT 223.94 735.11 Td 1 g (purpose) Tj ET Q
+0 g
+28.35 713.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 719.11 Td (.sak) Tj ET
+96.38 713.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 719.11 Td (source) Tj ET
+158.74 713.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 719.11 Td (build) Tj ET
+221.10 713.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 719.11 Td (Sakum source code) Tj ET
+28.35 697.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 703.11 Td (.sakm) Tj ET
+96.38 697.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 703.11 Td (source) Tj ET
+158.74 697.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 703.11 Td (build) Tj ET
+221.10 697.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 703.11 Td (Sakum module / package source) Tj ET
+28.35 681.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 687.11 Td (.sakh) Tj ET
+96.38 681.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 687.11 Td (source) Tj ET
+158.74 681.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 687.11 Td (build) Tj ET
+221.10 681.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 687.11 Td (Header / interface declarations) Tj ET
+28.35 665.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 671.11 Td (.sakpkg) Tj ET
+96.38 665.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 671.11 Td (package) Tj ET
+158.74 665.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 671.11 Td (manifest) Tj ET
+221.10 665.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 671.11 Td (Package manifest) Tj ET
+28.35 649.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 655.11 Td (.sakproj) Tj ET
+96.38 649.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 655.11 Td (package) Tj ET
+158.74 649.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 655.11 Td (manifest) Tj ET
+221.10 649.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 655.11 Td (Project configuration) Tj ET
+28.35 633.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 639.11 Td (.saklock) Tj ET
+96.38 633.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 639.11 Td (package) Tj ET
+158.74 633.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 639.11 Td (manifest) Tj ET
+221.10 633.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 639.11 Td (Dependency lock file) Tj ET
+28.35 617.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 623.11 Td (.sakir) Tj ET
+96.38 617.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 623.11 Td (ir) Tj ET
+158.74 617.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 623.11 Td (build) Tj ET
+221.10 617.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 623.11 Td (Intermediate Representation \(SIR\)) Tj ET
+28.35 601.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 607.11 Td (.sakast) Tj ET
+96.38 601.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 607.11 Td (ast) Tj ET
+158.74 601.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 607.11 Td (build) Tj ET
+221.10 601.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 607.11 Td (Abstract Syntax Tree) Tj ET
+28.35 585.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 591.11 Td (.sakbc) Tj ET
+96.38 585.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 591.11 Td (binary) Tj ET
+158.74 585.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 591.11 Td (link) Tj ET
+221.10 585.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 591.11 Td (Bytecode) Tj ET
+28.35 569.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 575.11 Td (.sakobj) Tj ET
+96.38 569.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 575.11 Td (binary) Tj ET
+158.74 569.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 575.11 Td (link) Tj ET
+221.10 569.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 575.11 Td (Object file) Tj ET
+28.35 553.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 559.11 Td (.saklib) Tj ET
+96.38 553.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 559.11 Td (binary) Tj ET
+158.74 553.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 559.11 Td (link) Tj ET
+221.10 553.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 559.11 Td (Static library) Tj ET
+28.35 537.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 543.11 Td (.sakdll) Tj ET
+96.38 537.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 543.11 Td (binary) Tj ET
+158.74 537.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 543.11 Td (link) Tj ET
+221.10 537.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 543.11 Td (Dynamic library \(Windows\)) Tj ET
+28.35 521.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 527.11 Td (.sakso) Tj ET
+96.38 521.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 527.11 Td (binary) Tj ET
+158.74 521.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 527.11 Td (link) Tj ET
+221.10 521.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 527.11 Td (Dynamic library \(Linux\)) Tj ET
+28.35 505.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 511.11 Td (.sakdylib) Tj ET
+96.38 505.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 511.11 Td (binary) Tj ET
+158.74 505.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 511.11 Td (link) Tj ET
+221.10 505.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 511.11 Td (Dynamic library \(macOS\)) Tj ET
+28.35 489.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 495.11 Td (.sakexe) Tj ET
+96.38 489.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 495.11 Td (binary) Tj ET
+158.74 489.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 495.11 Td (link) Tj ET
+221.10 489.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 495.11 Td (Platform-independent executable bundle) Tj ET
+28.35 473.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 479.11 Td (.sakdoc) Tj ET
+96.38 473.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 479.11 Td (doc) Tj ET
+158.74 473.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 479.11 Td (view) Tj ET
+221.10 473.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 479.11 Td (Language documentation) Tj ET
+28.35 457.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 463.11 Td (.sakapi) Tj ET
+96.38 457.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 463.11 Td (doc) Tj ET
+158.74 457.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 463.11 Td (view) Tj ET
+221.10 457.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 463.11 Td (API documentation) Tj ET
+28.35 441.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 447.11 Td (.saktest) Tj ET
+96.38 441.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 447.11 Td (test) Tj ET
+158.74 441.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 447.11 Td (test) Tj ET
+221.10 441.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 447.11 Td (Unit tests) Tj ET
+28.35 425.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 431.11 Td (.sakbench) Tj ET
+96.38 425.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 431.11 Td (test) Tj ET
+158.74 425.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 431.11 Td (test) Tj ET
+221.10 425.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 431.11 Td (Benchmarks) Tj ET
+28.35 409.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 415.11 Td (.sakmath) Tj ET
+96.38 409.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 415.11 Td (domain) Tj ET
+158.74 409.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 415.11 Td (view) Tj ET
+221.10 409.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 415.11 Td (Mathematical formulas / symbolic expressions) Tj ET
+28.35 393.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 399.11 Td (.sakphys) Tj ET
+96.38 393.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 399.11 Td (domain) Tj ET
+158.74 393.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 399.11 Td (view) Tj ET
+221.10 393.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 399.11 Td (Physics formulas) Tj ET
+28.35 377.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 383.11 Td (.sakchem) Tj ET
+96.38 377.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 383.11 Td (domain) Tj ET
+158.74 377.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 383.11 Td (view) Tj ET
+221.10 377.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 383.11 Td (Chemistry equations) Tj ET
+28.35 361.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 367.11 Td (.sakbio) Tj ET
+96.38 361.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 367.11 Td (domain) Tj ET
+158.74 361.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 367.11 Td (view) Tj ET
+221.10 361.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 367.11 Td (Biology / biotechnology models) Tj ET
+28.35 345.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 351.11 Td (.sakquant) Tj ET
+96.38 345.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 351.11 Td (domain) Tj ET
+158.74 345.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 351.11 Td (view) Tj ET
+221.10 345.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 351.11 Td (Quantum algorithms and circuits) Tj ET
+28.35 329.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 335.11 Td (.sakml) Tj ET
+96.38 329.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 335.11 Td (domain) Tj ET
+158.74 329.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 335.11 Td (view) Tj ET
+221.10 329.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 335.11 Td (Machine learning models / graphs) Tj ET
+28.35 313.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 319.11 Td (.saktensor) Tj ET
+96.38 313.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 319.11 Td (domain) Tj ET
+158.74 313.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 319.11 Td (view) Tj ET
+221.10 313.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 319.11 Td (Tensor expressions) Tj ET
+28.35 297.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 303.11 Td (.sakproof) Tj ET
+96.38 297.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 303.11 Td (domain) Tj ET
+158.74 297.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 303.11 Td (view) Tj ET
+221.10 297.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 303.11 Td (Formal proofs) Tj ET
+28.35 281.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 287.11 Td (.sakgraph) Tj ET
+96.38 281.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 287.11 Td (domain) Tj ET
+158.74 281.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 287.11 Td (view) Tj ET
+221.10 281.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 287.11 Td (Graph / network definitions) Tj ET
+28.35 265.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 271.11 Td (.sakquery) Tj ET
+96.38 265.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 271.11 Td (script) Tj ET
+158.74 265.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 271.11 Td (run) Tj ET
+221.10 265.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 271.11 Td (Query language scripts) Tj ET
+28.35 249.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 255.11 Td (.sakschema) Tj ET
+96.38 249.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 255.11 Td (data) Tj ET
+158.74 249.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 255.11 Td (validate) Tj ET
+221.10 249.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 255.11 Td (Data schemas) Tj ET
+28.35 233.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 239.11 Td (.sakcfg) Tj ET
+96.38 233.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 239.11 Td (config) Tj ET
+158.74 233.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 239.11 Td (validate) Tj ET
+221.10 233.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 239.11 Td (Configuration) Tj ET
+28.35 217.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 223.11 Td (.sakcache) Tj ET
+96.38 217.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 223.11 Td (cache) Tj ET
+158.74 217.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 223.11 Td (ignore) Tj ET
+221.10 217.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 223.11 Td (Compiler cache) Tj ET
+28.35 201.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 207.11 Td (.sakidx) Tj ET
+96.38 201.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 207.11 Td (index) Tj ET
+158.74 201.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 207.11 Td (ignore) Tj ET
+221.10 201.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 207.11 Td (Search / index database) Tj ET
+28.35 185.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 191.11 Td (.sakdb) Tj ET
+96.38 185.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 191.11 Td (data) Tj ET
+158.74 185.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 191.11 Td (validate) Tj ET
+221.10 185.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 191.11 Td (Embedded database) Tj ET
+28.35 169.51 68.03 16.00 re S
+BT /F3 8.00 Tf ET
+BT 31.18 175.11 Td (.saklog) Tj ET
+96.38 169.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 99.21 175.11 Td (log) Tj ET
+158.74 169.51 62.36 16.00 re S
+BT /F3 8.00 Tf ET
+BT 161.58 175.11 Td (view) Tj ET
+221.10 169.51 345.83 16.00 re S
+BT /F3 8.00 Tf ET
+BT 223.94 175.11 Td (Logs) Tj ET
+BT /F1 13.00 Tf ET
+BT 31.18 147.19 Td (Reserved Core Set) Tj ET
+BT /F3 10.00 Tf ET
+BT 31.18 131.08 Td (.sak  .sakir  .sakast  .sakmath  .sakquant  .sakdoc) Tj ET
+BT /F1 13.00 Tf ET
+BT 31.18 107.50 Td (Dispatch Semantics) Tj ET
+BT /F2 9.00 Tf ET
+BT 31.18 91.69 Td (build    - compile through the pipeline \(source -> AST -> IR -> binary\).) Tj ET
+BT 31.18 77.52 Td (link     - feed to linker / loader.) Tj ET
+BT 31.18 63.35 Td (manifest - resolve dependencies / validate package.) Tj ET
+
+endstream
+endobj
+5 0 obj
+<<
+/Contents 6 0 R
+/Parent 1 0 R
+/Resources 12 0 R
+/Type /Page
+>>
+endobj
+6 0 obj
+<<
+/Length 769
+>>
+stream
+2 J
+0.57 w
+BT /F2 9.00 Tf ET
+BT 31.18 803.76 Td (view     - render to human-readable \(doc / domain knowledge\).) Tj ET
+BT 31.18 789.58 Td (test     - run the test / benchmark harness.) Tj ET
+BT 31.18 775.41 Td (run      - execute query scripts.) Tj ET
+BT 31.18 761.24 Td (validate - schema / config validation.) Tj ET
+BT 31.18 747.06 Td (ignore   - derived data \(cache / index\); safe to drop.) Tj ET
+BT /F1 13.00 Tf ET
+BT 31.18 723.19 Td (Generated Knowledge Files) Tj ET
+BT /F3 9.00 Tf ET
+BT 31.18 707.38 Td (Knowledge/Mathematics/~/Calculus.sakmath) Tj ET
+BT 31.18 693.21 Td (Knowledge/Physics/~/mechanics.sakphys) Tj ET
+BT 31.18 679.03 Td (Knowledge/Chemistry/~/organic.sakchem) Tj ET
+BT 31.18 664.86 Td (Knowledge/Physics/Quantum Computing/gates.sakquant) Tj ET
+
+endstream
+endobj
+7 0 obj
+<<
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+8 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+9 0 obj
+<<
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+10 0 obj
+<<
+/BaseFont /Courier-Bold
+/Encoding /WinAnsiEncoding
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+11 0 obj
+<<
+/Font <</F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R>>
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+>>
+endobj
+12 0 obj
+<<
+/Font <</F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R>>
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+>>
+endobj
+13 0 obj
+<<
+/CreationDate (D:20260718120015Z)
+>>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000015 00000 n 
+0000000108 00000 n 
+0000000211 00000 n 
+0000000292 00000 n 
+0000013898 00000 n 
+0000013979 00000 n 
+0000014799 00000 n 
+0000014901 00000 n 
+0000014998 00000 n 
+0000015093 00000 n 
+0000015194 00000 n 
+0000015313 00000 n 
+0000015421 00000 n 
+trailer
+<<
+/Size 14
+/Root 2 0 R
+/Info 13 0 R
+/ID [<19C0B411BCC589430B9417FBFED6D018><19C0B411BCC589430B9417FBFED6D018>]
+>>
+startxref
+15477
+%%EOF

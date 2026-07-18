@@ -61,7 +61,7 @@ They are reserved on every target. Category ids (0..12) are unchanged:
 ```
 
 The full 148-row table lives in `assembly/sakum_keywords.s` (machine-level
-registry) and is mirrored in `spec/spec_keywords.sakum`.
+registry) and is mirrored in `spec/spec_keywords.sak`.
 
 ## 3. New machine-level DB shapes (requirement 2 & 3)
 

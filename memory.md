@@ -3,17 +3,20 @@
 Written and read by `tools/sakum_bot.sh`. Plain text, append-only style.
 Each line is a record. `survive:` is the rolling success counter.
 
-survive: 46
-last_cycle: 1784234807
-patches_applied: 46
-last_check: 2026-07-16T20:46:47Z
+survive: 48
+last_cycle: 1784360162
+patches_applied: 47
+last_check: 2026-07-18T12:56:00Z
 
 ## learned
+learned 1784360162: signal=self_learning_engine patch=engine_cycle note=ran the self-learning engine: compiled+ran all 26 x86-64 assembly targets (PASS=26) and 9 library self-tests (RUN_OK=9). Found and fixed 2 genuine compile/link mistakes (sakum_pipe SYS_* macro collision; sakum_sniff `db` directive symbol collision + missing TEXT_SECTION). Survivability counter bumped 47->48.
+learned 1784289700: signal=crud patch=auto_crud_1784289700 note=grew Sakum in-language library with CRUD store functions (lib_crud.sakum) and a self-contained CRUD dashboard (dashboard_full.sakum) exercising Create/Read/Update/Delete + self-engine pulse metrics. Library now has 10 reusable functions; learn+update cycle closed.
 learned 1784205000: signal=website_build patch=site_app note=built site/ (Tailwind+KaTeX+in-browser Sakum interpreter) and a real Sakum app; surfaced F1-F8 language-model improvements (keyword consistency, for-loop coverage, builtin completeness, import system, vector indexing, cross-backend value lattice, vyakhya errors, survivability formula).
 (empty — filled by the bot on each successful cycle)
 
 ## mistakes
-(empty — filled when a recompile fails or a source fetch errors)
+mistake 1784360162: target=sakum_sniff reason=symbols db0..db3 collide with GAS `db` (define-byte) directive, and code landed in __cstring (no TEXT_SECTION after RODATA) -> invalid base+index + relocation error. fix=renamed db*/ob* to oct_d*/oct_s* and added TEXT_SECTION before main. status=fixed
+mistake 1784360162: target=sakum_pipe reason=SYS_* redefined over platform.inc macros (SYS_READ already #define'd) -> cpp expanded to `0x2000003 = 0x2000000 + 3`. fix=guarded each equ with #ifndef. status=fixed
 
 ## notes
 - Bot reads learn.md + this file every pulse.
@@ -29206,3 +29209,7 @@ assembly/sakum_tracker_arm32.s:274:10: error: Invalid rounding mode.
 assembly/sakum_tracker_arm32.s:276:21: error: unexpected token in '.section' directive
     .section .rodata
                     ^
+learned 1784362608: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
+learned 1784362716: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
+learned 1784362807: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
+learned 1784364928: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.

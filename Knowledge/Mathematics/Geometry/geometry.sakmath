@@ -1,0 +1,21 @@
+# geometry.sakmath - Sakum symbolic mathematics: Geometry
+# domain=Mathematics/Geometry  format=sakmath
+
+# --- Euclidean ---
+क्षेत्र_वृत्त A = π r^2
+परिधि_वृत्त C = 2 π r
+पाइथागोरस c^2 = a^2 + b^2   (समकोण त्रिभुज)
+
+# --- Analytic ---
+दूरी d = √((x2-x1)^2 + (y2-y1)^2)
+रेखा y = m x + c
+# --- Vectors ---
+सदिश_योग v + w = (v1+w1, v2+w2, v3+w3)
+अदिश_गुणन v · w = |v||w| cos θ
+सदिश_गुणन v × w = |v||w| sin θ n̂
+
+# self-test hook
+परीक्षा {
+  लेख "geometry.sakmath loaded"
+  लेख(लेटेक्स(पाइथागोरस c^2 = a^2 + b^2))
+}

@@ -1,0 +1,184 @@
+# dashboard_full.sak — Sakhum Sample Dashboard (self-contained CRUD).
+# = lib_crud.sak + dashboard.sak concatenated, runnable as ONE program.
+# Pure Sakum Lang. Uses the self engine pulse (पल्स/puls) for live metrics.
+
+# ---------------------------------------------------------------------------
+# LIBRARY (flat single-index store)
+# ---------------------------------------------------------------------------
+kriya r_id(rec)   { pratyagam rec[0]; }
+kriya r_qty(rec)  { pratyagam rec[1]; }
+kriya r_price(rec){ pratyagam rec[2]; }
+
+kriya push(v, x) {
+    naam n = len(v);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        out[i] = v[i];
+        i = i + 1;
+    }
+    out[n] = x;
+    pratyagam out;
+}
+
+kriya make_rec(id, qty, price) {
+    pratyagam vec(id, qty, price);
+}
+
+kriya store_new() {
+    pratyagam vec();
+}
+
+kriya store_count(store) {
+    pratyagam len(store) / 3;
+}
+
+kriya store_add(store, id, qty, price) {
+    naam out = store;
+    out = push(out, id);
+    out = push(out, qty);
+    out = push(out, price);
+    pratyagam out;
+}
+
+kriya store_get(store, id) {
+    naam n = store_count(store);
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] == id) {
+            pratyagam vec(store[base], store[base + 1], store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam shunya;
+}
+
+kriya store_update(store, id, qty, price) {
+    naam n = store_count(store);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] == id) {
+            out = push(out, id);
+            out = push(out, qty);
+            out = push(out, price);
+        } anyotha {
+            out = push(out, store[base]);
+            out = push(out, store[base + 1]);
+            out = push(out, store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam out;
+}
+
+kriya store_delete(store, id) {
+    naam n = store_count(store);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] != id) {
+            out = push(out, store[base]);
+            out = push(out, store[base + 1]);
+            out = push(out, store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam out;
+}
+
+kriya store_max_id(store) {
+    naam n = store_count(store);
+    naam mx = 0;
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] > mx) { mx = store[base]; }
+        i = i + 1;
+    }
+    pratyagam mx;
+}
+
+kriya record_total(rec) {
+    pratyagam rec[1] * rec[2];
+}
+
+kriya store_value(store) {
+    naam n = store_count(store);
+    naam total = 0;
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        total = total + store[base + 1] * store[base + 2];
+        i = i + 1;
+    }
+    pratyagam total;
+}
+
+# ===========================================================================
+# DASHBOARD
+# ===========================================================================
+naam store = store_new();
+
+lek("=== SAKHUM SAMPLE DASHBOARD ===");
+lek("pulse:", puls(1));
+
+lek("");
+lek("--- CREATE ---");
+store = store_add(store, 1, 10, 25);
+store = store_add(store, 2, 4, 100);
+store = store_add(store, 3, 7, 60);
+store = store_add(store, 4, 2, 250);
+lek("records created:", store_count(store));
+
+lek("");
+lek("--- READ (all: [id, qty, price, line-total]) ---");
+naam n = store_count(store);
+naam i = 0;
+yavat (i < n) {
+    naam rec = store_get(store, store[i * 3]);
+    lek("  id=", rec[0], " qty=", rec[1], " price=", rec[2], " total=", record_total(rec));
+    i = i + 1;
+}
+
+lek("");
+lek("--- READ (single id=2) ---");
+naam one = store_get(store, 2);
+yadi (one != shunya) {
+    lek("  found: id=", one[0], " qty=", one[1], " price=", one[2]);
+} anyotha {
+    lek("  not found");
+}
+
+lek("");
+lek("--- UPDATE (id=2 -> qty 9, price 90) ---");
+store = store_update(store, 2, 9, 90);
+naam upd = store_get(store, 2);
+lek("  after: id=", upd[0], " qty=", upd[1], " price=", upd[2]);
+
+lek("");
+lek("--- DELETE (id=3) ---");
+store = store_delete(store, 3);
+lek("  records after delete:", store_count(store));
+
+lek("");
+lek("--- DASHBOARD METRICS ---");
+lek("  total records  :", store_count(store));
+lek("  inventory worth:", store_value(store));
+lek("  next auto-key  :", store_max_id(store) + 1);
+lek("  engine pulses  :", puls(1));
+
+lek("");
+lek("--- FINAL STATE ---");
+naam m = store_count(store);
+naam j = 0;
+yavat (j < m) {
+    naam rr = store_get(store, store[j * 3]);
+    lek("  id=", rr[0], " qty=", rr[1], " price=", rr[2], " total=", record_total(rr));
+    j = j + 1;
+}
+lek("");
+lek("=== END (survive) ===");

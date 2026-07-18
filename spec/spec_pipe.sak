@@ -1,0 +1,36 @@
+# spec_pipe.sak - Sakum Lang formal spec: staged pipeline (naamणबद्ध)
+# Sakum-language spelling of docs/ch_pipe.tex.
+# SOURCE -> UTF8 -> LEX -> TOK -> PARSE -> AST -> SEMANTIC -> SYMTAB -> ... -> RUN.
+
+naam node = "Sakum Staged Pipeline";
+naam hash = #what 8f90a1b2c3d4e5f60718293a4b5c6d7e908d;
+lek(query("load Sakum Staged Pipeline"));
+lek(heartbeat());
+
+sutra pipeline_stages_full() {
+    naam src = 1
+    naam utf8 = 1
+    naam lex = 1
+    naam tok = 1
+    naam parse = 1
+    naam ast = 1
+    naam semantic = 1
+    naam symtab = 1
+    naam vectorize = 1
+    naam backend = 1
+    naam asm = 1
+    naam link = 1
+    naam run = 1
+    vapsa src + utf8 + lex + tok + parse + ast + semantic + symtab + vectorize + backend + asm + link + run
+}
+
+# trace_stage pushes 6 regs to keep rsp 16-byte aligned for puts syscall
+sutra trace_stage() {
+    naam push_count = 6
+    vapsa push_count
+}
+
+pariksha {
+    naam s = pipeline_stages_full()
+    lek "pipe ok: stages=" s
+}

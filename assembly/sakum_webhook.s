@@ -20,9 +20,11 @@
 # then:  curl -X POST http://127.0.0.1:8088/update
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
+#ifdef PLAT_MACOS
 SYS_SOCKET = 0x2000000 + 97
 SYS_BIND   = 0x2000000 + 104
 SYS_LISTEN = 0x2000000 + 106
@@ -31,6 +33,16 @@ SYS_RECV   = 0x2000000 + 131
 SYS_SEND   = 0x2000000 + 133
 SYS_CLOSE  = 0x2000000 + 6
 SYS_WAIT4  = 0x2000000 + 7
+#else
+SYS_SOCKET = 41
+SYS_BIND   = 49
+SYS_LISTEN = 50
+SYS_ACCEPT = 43
+SYS_RECV   = 45
+SYS_SEND   = 44
+SYS_CLOSE  = 3
+SYS_WAIT4  = 61
+#endif
 
 AF_INET     = 2
 SOCK_STREAM = 1
@@ -55,8 +67,12 @@ webhook_serve_once:
 
     # build sockaddr_in: 0.0.0.0:8088
     lea rbx, [rip + saddr]
+#ifdef PLAT_MACOS
     mov byte ptr [rbx + 0], 16
     mov byte ptr [rbx + 1], AF_INET
+#else
+    mov word ptr [rbx + 0], AF_INET
+#endif
     mov word ptr [rbx + 2], 0x381F   # port 8088 network order (0x381F)
     mov dword ptr [rbx + 4], 0        # 0.0.0.0
 
@@ -129,7 +145,7 @@ webhook_serve_once:
     # Instead just log locally.
     lea rdi, [rip + msg_ok]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     mov rax, 0
     pop r13
@@ -139,7 +155,7 @@ webhook_serve_once:
 .sv_fail:
     lea rdi, [rip + msg_fail]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     pop r13
     pop r12
     pop rbx
@@ -171,21 +187,21 @@ run_bot_cycle:
     push rbx
     lea rdi, [rip + bot_cmd]
     xor eax, eax
-    call _system
+    call CDECL(system)
     pop rbx
     ret
 
 # ---------------------------------------------------------------------------
 # main — single-shot server (launchd/serve.py drive repeats)
 # ---------------------------------------------------------------------------
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
     sub rsp, 16
     lea rdi, [rip + msg_start]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     call webhook_serve_once
     mov rsp, rbp
     pop rbp
@@ -194,7 +210,7 @@ _main:
 # ---------------------------------------------------------------------------
 # data / bss
 # ---------------------------------------------------------------------------
-.bss
+BSS_SECTION
 .balign 8
 saddr:     .skip 16
 req_buf:   .skip 4096
@@ -202,7 +218,7 @@ nerve_buf: .skip 256
 nerve_head:.skip 4
 nerve_count:.skip 4
 
-.data
+DATA_SECTION
 msg_start:  .asciz "SAKUM WEBHOOK (asm) listening on :8088  POST /update\n"
 msg_ok:     .asciz "WEBHOOK OK: webhook.update signal emitted -> bot cycle run\n"
 msg_fail:   .asciz "WEBHOOK FAIL: socket/bind/listen error\n"

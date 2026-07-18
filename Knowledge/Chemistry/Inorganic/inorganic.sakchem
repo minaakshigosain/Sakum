@@ -1,0 +1,21 @@
+# inorganic.sakchem - Sakum chemistry: Inorganic Chemistry
+# domain=Chemistry/Inorganic  format=sakchem
+
+# --- Periodic trends ---
+परमाणु_त्रिज्या रासायनिक आवर्त में बाएँ→दाएँ घटती है
+आयनन_ऊर्जा रासायनिक आवर्त में बाएँ→दाएँ बढ़ती है
+विद्युत_ऋणात्मकता EN(F) > EN(O) > EN(N)
+
+# --- Coordination ---
+संयोजन_संख्या CN = लिगैंड्स की संख्या (e.g. [Co(NH3)6]^{3+} CN=6)
+क्रिस्टल_क्षेत्र Δ_o (octahedral splitting)
+
+# --- Acid-base ---
+pH = -log10[H+]
+pKa = -log10 Ka
+
+# self-test hook
+परीक्षा {
+  लेख "inorganic.sakchem loaded"
+  लेख(लेटेक्स(pH = -log10[H+]))
+}

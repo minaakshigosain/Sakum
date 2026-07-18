@@ -1,0 +1,133 @@
+# lib_crud.sak — Sakhum Sample Dashboard CRUD store library
+# A reusable, in-language CRUD library. The store is ONE flat vektr of numbers
+# laid out as [id, qty, price, id, qty, price, ...] so every access is a
+# SINGLE-level index (store[k]) — the same pattern proven in site/app.sak.
+# Pure Sakum, no host language.
+#
+# Public functions:
+#   store_new()                       -> empty store
+#   store_count(store)                -> integer record count
+#   store_add(store, id, qty, price)  -> new store with one appended record
+#   store_get(store, id)              -> vec(id,qty,price) or shunya if absent
+#   store_update(store, id, qty, price) -> new store with that record replaced
+#   store_delete(store, id)           -> new store with that record removed
+#   store_max_id(store)               -> highest id (for auto-key)
+#   record_total(rec)                 -> qty * price
+#   store_value(store)                -> sum of all line totals
+
+# ---- internal helpers (3 lanes per record) -------------------------------
+kriya r_id(rec)   { pratyagam rec[0]; }
+kriya r_qty(rec)  { pratyagam rec[1]; }
+kriya r_price(rec){ pratyagam rec[2]; }
+
+# append one value to a vektr, return a new vektr
+kriya push(v, x) {
+    naam n = len(v);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        out[i] = v[i];
+        i = i + 1;
+    }
+    out[n] = x;
+    pratyagam out;
+}
+
+# build a record vektr from three numbers
+kriya make_rec(id, qty, price) {
+    pratyagam vec(id, qty, price);
+}
+
+# ---- store ops ------------------------------------------------------------
+kriya store_new() {
+    pratyagam vec();
+}
+
+kriya store_count(store) {
+    pratyagam len(store) / 3;
+}
+
+kriya store_add(store, id, qty, price) {
+    naam out = store;
+    out = push(out, id);
+    out = push(out, qty);
+    out = push(out, price);
+    pratyagam out;
+}
+
+kriya store_get(store, id) {
+    naam n = store_count(store);
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] == id) {
+            pratyagam vec(store[base], store[base + 1], store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam shunya;
+}
+
+kriya store_update(store, id, qty, price) {
+    naam n = store_count(store);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] == id) {
+            out = push(out, id);
+            out = push(out, qty);
+            out = push(out, price);
+        } anyotha {
+            out = push(out, store[base]);
+            out = push(out, store[base + 1]);
+            out = push(out, store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam out;
+}
+
+kriya store_delete(store, id) {
+    naam n = store_count(store);
+    naam out = vec();
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] != id) {
+            out = push(out, store[base]);
+            out = push(out, store[base + 1]);
+            out = push(out, store[base + 2]);
+        }
+        i = i + 1;
+    }
+    pratyagam out;
+}
+
+kriya store_max_id(store) {
+    naam n = store_count(store);
+    naam mx = 0;
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        yadi (store[base] > mx) { mx = store[base]; }
+        i = i + 1;
+    }
+    pratyagam mx;
+}
+
+kriya record_total(rec) {
+    pratyagam rec[1] * rec[2];
+}
+
+kriya store_value(store) {
+    naam n = store_count(store);
+    naam total = 0;
+    naam i = 0;
+    yavat (i < n) {
+        naam base = i * 3;
+        total = total + store[base + 1] * store[base + 2];
+        i = i + 1;
+    }
+    pratyagam total;
+}

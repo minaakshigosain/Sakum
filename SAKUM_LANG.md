@@ -190,7 +190,7 @@ The base must remain **more capable than raw assembly** for the target domains
   - **`grantha`** — property graph store with typed edges and `naadi` (nerve)
     driven traversal.
 - All six share the `hriday` (heart) allocator and `sutra` (sutra) crypto, so
-  there is one memory model and one security model. Spec: `spec/spec_db.sakum`.
+  there is one memory model and one security model. Spec: `spec/spec_db.sak`.
 
 ### 1.14 Systems engineering (`तन्त्र` / tantra)
 
@@ -203,7 +203,7 @@ The base must remain **more capable than raw assembly** for the target domains
   `अन्वेष` (binary search), `सारणी` (open-addressing hash table), `चक्र`
   (ring buffer / producer-consumer on the nerve bus). The SIR form (`stha`/
   `chot`/`yoj`) is the portable hub the back ends lower from. Spec:
-  `spec/spec_sys.sakum`.
+  `spec/spec_sys.sak`.
 
 ---
 
@@ -251,11 +251,11 @@ assembly/                      raw x86-64 machine-level core (no host language)
  ```
 
 Pipeline (all in assembly):
-`source.sakum → lexer (asm) → parser (asm) → IR → {wasm | x64/ARM asm | SIMD}`
+`source.sak → lexer (asm) → parser (asm) → IR → {wasm | x64/ARM asm | SIMD}`
 and the `self` engine grows the code buffer between pulses.
 
 Pipeline:
-`source.sakum → lexer → parser → AST → ir → {vm | compiler→ISA}`
+`source.sak → lexer → parser → AST → ir → {vm | compiler→ISA}`
 and in parallel the `engine` runs `pulse` ticks feeding `self` + `agent` + `query_engine`.
 
 ---

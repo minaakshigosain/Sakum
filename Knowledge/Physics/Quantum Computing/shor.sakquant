@@ -1,0 +1,17 @@
+# shor.sakquant - Sakum quantum: Shor's factoring
+# domain=Physics/Quantum Computing  format=sakquant
+
+# --- Period-finding subroutine ---
+# 1. Choose random a < N, gcd(a,N)=1
+# 2. Build QFT on n qubits where N^2 ≤ Q = 2^n
+# 3. f(x) = a^x mod N  (quantum parallel)
+# 4. Measure → period r of f
+# 5. If r even and a^{r/2} ≢ -1 (mod N):  gcd(a^{r/2}±1, N) = factors
+
+आवृत्ति_खोज r = period(x ↦ a^x mod N)
+खोज_गुणन गुणन बहुपद gcd(a^{r/2} - 1, N), gcd(a^{r/2} + 1, N)
+
+# self-test hook
+परीक्षा {
+  लेख "shor.sakquant loaded"
+}

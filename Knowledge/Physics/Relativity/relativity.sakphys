@@ -1,0 +1,17 @@
+# relativity.sakphys - Sakum physics: Relativity
+# domain=Physics/Relativity  format=sakphys
+
+# --- Special relativity ---
+सापेक्ष_१ E = m c^2
+लोरेंट्ज_गुणक γ = 1 / √(1 - v^2/c^2)
+समय_विस्फारण Δt = γ Δt0
+लंबाई_संकुचन L = L0 / γ
+
+# --- General relativity ---
+आइंस्टाइन G_{μν} + Λ g_{μν} = (8πG/c^4) T_{μν}
+
+# self-test hook
+परीक्षा {
+  लेख "relativity.sakphys loaded"
+  लेख(लेटेक्स(सापेक्ष_१ E = m c^2))
+}

@@ -19,7 +19,15 @@
     launchctl load  ~/Library/LaunchAgents/com.sakum.bot.plist
   Stop:
     launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist
--->
+
+  IMPORTANT (if the engine appears "stuck" / bot.err.log floods with
+  "serve.py: No such file"): a STALE launchd agent from the pre-retirement
+  build is still calling the removed Python server. Remove it FIRST:
+    launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist 2>/dev/null
+    # delete any OTHER plist that runs python3 .../serve.py, then:
+    launchctl load ~/Library/LaunchAgents/com.sakum.bot.plist
+  This plist runs the NATIVE serve.sh (raw x86-64, no Python) only.
+ -->
 <plist version="1.0">
   <dict>
     <key>Label</key>

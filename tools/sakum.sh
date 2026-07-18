@@ -9,6 +9,6 @@ ROOT="$(cd "$DIR/.." && pwd)"
 BIN="$DIR/sakum"
 SRC="$DIR/sakum.s"
 
-gcc -arch x86_64 "$SRC" -o "$BIN" || { echo "sakum build failed"; exit 1; }
+gcc -arch x86_64 -include "$DIR/../assembly/platform.inc" "$SRC" -o "$BIN" || { echo "sakum build failed"; exit 1; }
 cd "$ROOT"
 exec "$BIN" "$@"

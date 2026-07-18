@@ -407,10 +407,10 @@ demo_bramann:
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     cmp r12, 0
     jle .demo_done
@@ -423,10 +423,10 @@ demo_bramann:
     mov rsi, rax
     lea rdi, [rip + fmt_i]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
     # learn from the sphere (title scraped)
     lea rdi, [rip + scrape_out]
@@ -438,10 +438,10 @@ demo_bramann:
     lea rdi, [rip + fmt_s]
     lea rsi, [rip + research_buf]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
     lea rdi, [rip + nl]
     xor eax, eax
-    call _printf
+    call CDECL(printf)
 
 .demo_done:
     pop rbx
@@ -450,7 +450,7 @@ demo_bramann:
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
-_main:
+CDECL(main):
     push rbp
     mov rbp, rsp
     and rsp, -16
@@ -463,7 +463,7 @@ _main:
 # ---------------------------------------------------------------------------
 # data / bss
 # ---------------------------------------------------------------------------
-.bss
+BSS_SECTION
 .balign 8
 sockaddr:   .skip 16
 recv_buf:   .skip 8192
@@ -473,7 +473,7 @@ research_buf:.skip 512
 learn_hash: .skip 4
 learn_count:.skip 4
 
-.data
+DATA_SECTION
 fmt_i: .asciz "%d"
 fmt_s: .asciz "%s"
 nl:    .asciz "\n"

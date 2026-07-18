@@ -1,0 +1,19 @@
+# topology.sakmath - Sakum symbolic mathematics: Topology
+# domain=Mathematics/Topology  format=sakmath
+
+# --- Open sets ---
+खुला_समुच्चय U ⊆ X   ⇔   (∀ x ∈ U)(∃ ε>0)(B_ε(x) ⊆ U)
+
+# --- Continuous ---
+संतत f: X→Y   ⇔   (∀ V खुला ⊆ Y)(f^{-1}(V) खुला ⊆ X)
+
+# --- Homeomorphism ---
+गृहसमरूपता f: X→Y जो बिजेक्टिव, संतत, और f^{-1} भी संतत
+
+# --- Fundamental group ---
+मूल_समूह π_1(X, x0) = {लूप at x0 under समरूपता}
+
+# self-test hook
+परीक्षा {
+  लेख "topology.sakmath loaded"
+}

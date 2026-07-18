@@ -1,0 +1,60 @@
+# EXTENSIONS.sakdoc - Sakum Lang file-type registry
+# format=sakdoc  topic=extensions
+#
+# Every artifact in Sakum Lang carries a purpose-specific extension so the
+# compiler and tooling can recognise specialised data directly instead of
+# treating everything as plain text / Markdown.
+
+@ext .sak       Sakum source code
+@ext .sakm      Sakum module / package source
+@ext .sakh      Header / interface declarations
+@ext .sakpkg    Package manifest
+@ext .sakproj   Project configuration
+@ext .saklock   Dependency lock file
+@ext .sakir     Intermediate Representation (SIR)
+@ext .sakast    Abstract Syntax Tree
+@ext .sakbc     Bytecode
+@ext .sakobj    Object file
+@ext .saklib    Static library
+@ext .sakdll    Dynamic library (Windows)
+@ext .sakso     Dynamic library (Linux)
+@ext .sakdylib  Dynamic library (macOS)
+@ext .sakexe    Platform-independent executable bundle
+@ext .sakdoc    Language documentation
+@ext .sakapi    API documentation
+@ext .saktest   Unit tests
+@ext .sakbench  Benchmarks
+@ext .sakmath   Mathematical formulas / symbolic expressions
+@ext .sakphys   Physics formulas
+@ext .sakchem   Chemistry equations
+@ext .sakbio    Biology / biotechnology models
+@ext .sakquant  Quantum algorithms and circuits
+@ext .sakml     Machine learning models / graphs
+@ext .saktensor Tensor expressions
+@ext .sakproof  Formal proofs
+@ext .sakgraph  Graph / network definitions
+@ext .sakquery  Query language scripts
+@ext .sakschema Data schemas
+@ext .sakcfg    Configuration
+@ext .sakcache  Compiler cache
+@ext .sakidx    Search / index database
+@ext .sakdb     Embedded database
+@ext .saklog    Logs
+
+# Human-readable docs keep common formats:
+#   .md  Markdown,  .tex LaTeX,  .pdf generated,  .html web
+
+# Reserved core set:
+#   .sak     source code
+#   .sakir   IR
+#   .sakast  AST
+#   .sakmath symbolic mathematics
+#   .sakquant quantum algorithms
+#   .sakdoc  language documentation
+#
+# ENFORCEMENT (resolves the learning/trade-off cost):
+#   This file is the single source of truth. The mapping is loaded by
+#   tools/sakum_ext.py (classify/list/dispatch/check) and mirrored in
+#   sakum_lang.sakproj. `make ext-pdf` regenerates docs/EXTENSIONS.sakdoc.pdf
+#   + .tex from this document, so docs and tooling can never drift.
+#   `make ext-check` scans the tree and flags any file with an unknown ext.

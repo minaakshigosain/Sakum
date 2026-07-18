@@ -1,0 +1,20 @@
+# statistics.sakmath - Sakum symbolic mathematics: Statistics
+# domain=Mathematics/Statistics  format=sakmath
+
+# --- Descriptive ---
+माध्य μ = (1/n) Σ x_i
+प्रसरण σ^2 = (1/n) Σ (x_i - μ)^2
+मानक_विचलन σ = √(σ^2)
+
+# --- Distributions ---
+सामान्य f(x) = (1/(σ√2π)) e^{-(x-μ)^2/(2σ^2)}
+द्विपद P(k) = C(n,k) p^k (1-p)^{n-k}
+
+# --- Inference ---
+विश्वास_�ंतराल μ ± z·(σ/√n)
+
+# self-test hook
+परीक्षा {
+  लेख "statistics.sakmath loaded"
+  लेख(लेटेक्स(माध्य μ = (1/n) Σ x_i))
+}

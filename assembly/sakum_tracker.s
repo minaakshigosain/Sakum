@@ -26,18 +26,18 @@
 .intel_syntax noprefix
 #include "platform.inc"
 TEXT_SECTION
-.globl _main
+.globl CDECL(main)
 
 # ---- libc imports ----
-.extern _printf
-.extern _fopen
-.extern _fread
-.extern _fclose
-.extern _sleep
-.extern _usleep
-.extern _time
-.extern _isatty
-.extern _fflush
+.extern CDECL(printf)
+.extern CDECL(fopen)
+.extern CDECL(fread)
+.extern CDECL(fclose)
+.extern CDECL(sleep)
+.extern CDECL(usleep)
+.extern CDECL(time)
+.extern CDECL(isatty)
+.extern CDECL(fflush)
 
 # ---- constants ----
 .set BUFSZ, 1<<20            # 1 MiB read buffer (feed is append-only, small
@@ -71,7 +71,7 @@ _main:
 
     # is stdout a tty? if not, force color off
     mov  rdi, 1
-    call _isatty
+    call CDECL(isatty)
     test eax, eax
     jz   .color_off
 
@@ -130,7 +130,7 @@ _main:
 .do_help:
     lea  rdi, [rip + usage_msg]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .exit
 
 .argdone:
@@ -145,14 +145,14 @@ _main:
 .liveloop:
     call render_once
     mov  rdi, 3
-    call _sleep
+    call CDECL(sleep)
     jmp  .liveloop
 
 .mode_follow:
 .followloop:
     call render_once
     mov  edi, 3000000        # 3s
-    call _usleep
+    call CDECL(usleep)
     jmp  .followloop
 
 .exit:
@@ -201,7 +201,7 @@ render_once:
     jz   .no_clear
     lea  rdi, [rip + clr]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 .no_clear:
 
     call render_header
@@ -234,7 +234,7 @@ read_feed:
     mov  qword ptr [rip + row_count], 0
 
     lea  rsi, [rip + rmode]
-    call _fopen
+    call CDECL(fopen)
     mov  r12, rax              # FILE*
     test rax, rax
     jz   .nofile
@@ -243,10 +243,10 @@ read_feed:
     mov  rsi, 1
     mov  rdx, BUFSZ-1
     mov  rcx, r12
-    call _fread
+    call CDECL(fread)
     lea  r8, [rip + gbuf]
     mov  byte ptr [r8 + rax], 0
-    xor  edi, edi; call _fflush
+    xor  edi, edi;     call CDECL(fflush)
 
     lea  r14, [rip + gbuf]
     lea  r15, [rip + gbuf]
@@ -273,7 +273,7 @@ read_feed:
     call classify_line
 .close:
     mov  rdi, r12
-    call _fclose
+    call CDECL(fclose)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -281,7 +281,7 @@ read_feed:
     lea  rdi, [rip + errnofile]
     mov  rsi, [rsp+8]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -350,7 +350,7 @@ classify_line:
     call push_row
 
 .cl_done:
-    xor  edi, edi; call _fflush
+    xor  edi, edi;     call CDECL(fflush)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -373,10 +373,15 @@ push_row:
     lea  r9, [rip + rowlbl]     # array of label pointers
     mov  r10, [rip + row_count]
 
-    # shift existing rows down by one: rowbuf[i] -> rowbuf[i+1] (cap NROWS-1)
+    # shift existing rows down by one: rowbuf[i] -> rowbuf[i+1].
+    # At most NROWS-1 items are shifted so the max write index stays NROWS-1
+    # (rowbuf has exactly NROWS slots, indices 0..NROWS-1).
     cmp  r10, 0
     jz   .ps_store
     mov  r11, r10              # r11 = count
+    cmp  r11, NROWS
+    jl   .ps_sh
+    mov  r11, NROWS-1          # when full, shift only NROWS-1 items
 .ps_sh:
     cmp  r11, 0
     jle  .ps_store
@@ -430,14 +435,14 @@ render_header:
     and  rsp, -16
     lea  rdi, [rip + banner]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     lea  rdi, [rip + nowbuf]
     mov  rsi, 0
-    call _time
+    call CDECL(time)
     lea  rdi, [rip + timelbl]
     mov  rsi, rax
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -458,7 +463,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .ct_done
 .ct_plain:
     lea  rdi, [rip + ct_plain_fmt]
@@ -468,7 +473,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 .ct_done:
     mov  rsp, rbp
     pop  rbp
@@ -486,12 +491,12 @@ render_pipeline:
     jz   .pl_plain
     lea  rdi, [rip + cols_color]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .pl_loop
 .pl_plain:
     lea  rdi, [rip + cols]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 
 .pl_loop:
     mov  rcx, 0
@@ -511,14 +516,14 @@ render_pipeline:
     mov  rsi, r15
     mov  rdx, r11
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .pl_skip
 .pl_no_color_row:
     lea  rdi, [rip + row_plain]
     mov  rsi, r15
     mov  rdx, r11
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 .pl_skip:
     inc  rcx
     jmp  .pl_next
@@ -539,12 +544,12 @@ render_destpanel:
     jz   .dp_plain
     lea  rdi, [rip + dest_color_hdr]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .dp_walk
 .dp_plain:
     lea  rdi, [rip + dest_hdr]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 
 .dp_walk:
     mov  rcx, [rip + c_upgrade]
@@ -552,7 +557,7 @@ render_destpanel:
     jnz  .dp_has
     lea  rdi, [rip + dest_none]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .dp_end
 .dp_has:
     lea  r14, [rip + gbuf]
@@ -615,14 +620,14 @@ print_dest:
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     jmp  .pd_done
 .pd_plain:
     lea  rdi, [rip + dest_plain_row]
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
 .pd_done:
     mov  rsp, rbp
     pop  rbp
@@ -698,10 +703,10 @@ render_footer:
     and  rsp, -16
     lea  rdi, [rip + rule]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     lea  rdi, [rip + foot]
     xor  eax, eax
-    call _printf
+    call CDECL(printf)
     mov  rsp, rbp
     pop  rbp
     ret
@@ -747,7 +752,7 @@ line_has:
 # =====================================================================
 # data
 # =====================================================================
-.data
+DATA_SECTION
 feedpath:  .quad 0
 defpathstr:  .asciz "query_logs/fetch_live.jsonl"
 rmode:     .asciz "rb"
@@ -830,7 +835,7 @@ c_mistake:  .quad 0
 row_count:  .quad 0
 rowbuf:     .skip NROWS*8
 rowlbl:     .skip NROWS*8
-efbuf:      .skip 512
+ efbuf:      .skip 512
 
-.bss
+BSS_SECTION
 gbuf: .skip BUFSZ

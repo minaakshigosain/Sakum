@@ -1,0 +1,21 @@
+# organic.sakchem - Sakum chemistry: Organic Chemistry
+# domain=Chemistry/Organic  format=sakchem
+
+# --- Functional groups (skeletal) ---
+एल्केन   R-H          (संतृप्त)
+एल्कीन   R-C=C-R      (असंतृप्त, द्वि-बंध)
+एल्कोहल  R-OH
+कार्बोक्सिलिक R-COOH
+एमीन    R-NH2
+
+# --- Reaction: esterification ---
+एस्टरीकरण R-COOH + R'-OH ⇌ R-COOR' + H2O   (अम्ल उत्प्रेरित)
+
+# --- SN2 substitution ---
+SN2 Nu^- + R-LG → Nu-R + LG^-   (पश्च-आक्रमण, प्रतिवर्ती ज्यामिति)
+
+# self-test hook
+परीक्षा {
+  लेख "organic.sakchem loaded"
+  लेख(लेटेक्स(एस्टरीकरण R-COOH + R'-OH ⇌ R-COOR' + H2O))
+}

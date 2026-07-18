@@ -1,0 +1,25 @@
+{
+  "name": "sakum-knowledge",
+  "version": "1.0.0",
+  "description": "Domain knowledge packages for Sakum Lang (math/physics/chem/quantum)",
+  "modules": [
+    "Knowledge/Mathematics/Calculus/calculus.sakmath",
+    "Knowledge/Mathematics/Algebra/algebra.sakmath",
+    "Knowledge/Mathematics/Geometry/geometry.sakmath",
+    "Knowledge/Mathematics/Statistics/statistics.sakmath",
+    "Knowledge/Mathematics/Number Theory/number_theory.sakmath",
+    "Knowledge/Mathematics/Topology/topology.sakmath",
+    "Knowledge/Physics/Classical Mechanics/mechanics.sakphys",
+    "Knowledge/Physics/Thermodynamics/thermodynamics.sakphys",
+    "Knowledge/Physics/Electromagnetism/electromagnetism.sakphys",
+    "Knowledge/Physics/Relativity/relativity.sakphys",
+    "Knowledge/Physics/Quantum Computing/gates.sakquant",
+    "Knowledge/Physics/Quantum Computing/grover.sakquant",
+    "Knowledge/Physics/Quantum Computing/shor.sakquant",
+    "Knowledge/Physics/Quantum Computing/teleportation.sakquant",
+    "Knowledge/Chemistry/Organic/organic.sakchem",
+    "Knowledge/Chemistry/Inorganic/inorganic.sakchem",
+    "Knowledge/Chemistry/Reaction/reaction.sakchem"
+  ],
+  "entry": "EXTENSIONS.sakdoc"
+}

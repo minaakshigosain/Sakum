@@ -1,9 +1,8 @@
-# sakum.s — raw x86-64 (AT&T) CLI for the Sakum language/self-updater.
+# tools/sakum.s - Sakum CLI — raw x86-64 agent (no host language), intel syntax.
 #
 # A from-scratch agent-style command line (in the spirit of opencode) written
 # entirely in raw assembly — NO host-language interpreter. It dispatches to the
-# existing tools/ scripts (pure bash + native .s, which are permitted by
-# SAKUM_LANG.md §2) via libc system().
+# existing tools/ scripts (pure bash + native .s) via libc system().
 #
 # Usage:
 #   sakum                 -> interactive chat REPL (sakum> prompt)
@@ -25,22 +24,22 @@
 #   help      show this help
 #   exit/quit (REPL only)
 
-    .section __TEXT,__text,regular,pure_instructions
-    .globl _main
-    .p2align 4
+.intel_syntax noprefix
+# platform.inc is force-included by the launcher (gcc -include assembly/platform.inc)
+# so this file stays a single, buildable machine-code module from the repo root.
+TEXT_SECTION
+.globl CDECL(main)
 
-    .extern _printf
-    .extern _system
-    .extern _strcmp
-    .extern _exit
-    .extern _fork
-    .extern _setsid
-    .extern _execl
+.extern CDECL(printf)
+.extern CDECL(system)
+.extern CDECL(strcmp)
+.extern CDECL(exit)
+.extern CDECL(fork)
+.extern CDECL(setsid)
+.extern CDECL(execl)
+.extern CDECL(read)
 
-# ---------------------------------------------------------------------------
-# data
-# ---------------------------------------------------------------------------
-    .section __TEXT,__cstring,regular
+RODATA_SECTION
 b_banner:  .asciz "Sakum CLI — raw x86-64 agent (no host language)\nType 'help' for commands, 'exit' to quit.\n\n"
 p_prompt:  .asciz "sakum> "
 b_nl:      .asciz "\n"
@@ -84,8 +83,8 @@ serve_sh_path: .asciz "tools/serve.sh"
 s_dhelp:    .asciz "--help"
 s_h:        .asciz "-h"
 
-    .section __DATA,__bss,regular
-    .p2align 4
+BSS_SECTION
+.p2align 4
 linebuf:    .space 4096
 wordbuf:    .space 256
 syscmd:     .space 4096
@@ -95,41 +94,41 @@ my_argv:    .quad 0
 # ---------------------------------------------------------------------------
 # append_str: copy NUL-terminated string at %rsi into buffer at %rbx; adv %rbx
 # ---------------------------------------------------------------------------
-    .text
+TEXT_SECTION
 append_str:
-    push %rax
+    push rax
 .a_s:
-    mov (%rsi), %al
-    test %al, %al
+    mov al, byte ptr [rsi]
+    test al, al
     jz .a_sd
-    mov %al, (%rbx)
-    inc %rsi
-    inc %rbx
+    mov byte ptr [rbx], al
+    inc rsi
+    inc rbx
     jmp .a_s
 .a_sd:
-    pop %rax
+    pop rax
     ret
 
 # ---------------------------------------------------------------------------
 # strip_nl: replace first \n or \r in buffer at %rdi with NUL
 # ---------------------------------------------------------------------------
 strip_nl:
-    push %rbx
-    mov %rdi, %rbx
+    push rbx
+    mov rbx, rdi
 .sn_l:
-    mov (%rbx), %al
-    test %al, %al
+    mov al, byte ptr [rbx]
+    test al, al
     jz .sn_d
-    cmp $'\n', %al
+    cmp al, '\n'
     je .sn_hit
-    cmp $'\r', %al
+    cmp al, '\r'
     je .sn_hit
-    inc %rbx
+    inc rbx
     jmp .sn_l
 .sn_hit:
-    movb $0, (%rbx)
+    mov byte ptr [rbx], 0
 .sn_d:
-    pop %rbx
+    pop rbx
     ret
 
 # ---------------------------------------------------------------------------
@@ -137,350 +136,349 @@ strip_nl:
 #   returns %rax = 0 (continue) or 1 (quit)
 # ---------------------------------------------------------------------------
 dispatch_line:
-    push %rbx
-    push %r12
-    push %r13
-    push %r14
-    mov %rdi, %r12            # p = line
+    push rbx
+    push r12
+    push r13
+    push r14
+    mov r12, rdi            # p = line
 
     # skip leading spaces/tabs
 .sn_sp:
-    mov (%r12), %al
-    cmp $' ', %al
+    mov al, byte ptr [r12]
+    cmp al, ' '
     je .ds_skip
-    cmp $'\t', %al
+    cmp al, '\t'
     je .ds_skip
     jmp .ds_start
 .ds_skip:
-    inc %r12
+    inc r12
     jmp .sn_sp
 
 .ds_start:
-    lea wordbuf(%rip), %r13
+    lea r13, [rip + wordbuf]
 .dw_copy:
-    mov (%r12), %al
-    cmp $0, %al
+    mov al, byte ptr [r12]
+    cmp al, 0
     je .dw_end
-    cmp $' ', %al
+    cmp al, ' '
     je .dw_end
-    cmp $'\t', %al
+    cmp al, '\t'
     je .dw_end
-    mov %al, (%r13)
-    inc %r12
-    inc %r13
+    mov byte ptr [r13], al
+    inc r12
+    inc r13
     jmp .dw_copy
 .dw_end:
-    movb $0, (%r13)           # null-terminate wordbuf
-    mov %r12, %r14            # rest starts at space/null
-    mov (%r14), %al
-    cmp $' ', %al
+    mov byte ptr [r13], 0           # null-terminate wordbuf
+    mov r14, r12            # rest starts at space/null
+    mov al, byte ptr [r14]
+    cmp al, ' '
     je .ds_rsp
-    cmp $'\t', %al
+    cmp al, '\t'
     je .ds_rsp
     jmp .ds_rok
 .ds_rsp:
-    inc %r14
+    inc r14
 .ds_rok:
 
     # compare wordbuf to known commands
-    lea wordbuf(%rip), %rdi
-    lea w_help(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_help]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_help
 
-    lea wordbuf(%rip), %rdi
-    lea w_build(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_build]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_build
 
-    lea wordbuf(%rip), %rdi
-    lea w_run(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_run]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_run
 
-    lea wordbuf(%rip), %rdi
-    lea w_serve(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_serve]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_serve
 
-    lea wordbuf(%rip), %rdi
-    lea w_bot(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_bot]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_bot
 
-    lea wordbuf(%rip), %rdi
-    lea w_status(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_status]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_status
 
-    lea wordbuf(%rip), %rdi
-    lea w_track(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_track]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_track
 
-    lea wordbuf(%rip), %rdi
-    lea w_gen(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_gen]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_gen
 
-    lea wordbuf(%rip), %rdi
-    lea w_self(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_self]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_self
 
-    lea wordbuf(%rip), %rdi
-    lea w_scan(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_scan]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_scan
 
-    lea wordbuf(%rip), %rdi
-    lea w_sniff(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_sniff]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_sniff
 
-    lea wordbuf(%rip), %rdi
-    lea w_ai(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_ai]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_ai
 
-    lea wordbuf(%rip), %rdi
-    lea w_exit(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_exit]
+    call CDECL(strcmp)
+    test eax, eax
     jz .ds_quit
 
-    lea wordbuf(%rip), %rdi
-    lea w_quit(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_quit]
+    call CDECL(strcmp)
+    test eax, eax
     jz .ds_quit
 
     # unknown
-    lea unk_fmt(%rip), %rdi
-    lea wordbuf(%rip), %rsi
-    xor %rax, %rax
-    call _printf
+    lea rdi, [rip + unk_fmt]
+    lea rsi, [rip + wordbuf]
+    xor eax, eax
+    call CDECL(printf)
     jmp .ds_ret0
 
 .do_help:
-    lea help_txt(%rip), %rdi
-    call _printf
+    lea rdi, [rip + help_txt]
+    call CDECL(printf)
     jmp .ds_ret0
 
 .do_build:
-    lea g_build(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_build]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_run:
-    lea g_run(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_run]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_bot:
-    lea g_bot(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_bot]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_status:
-    lea g_status(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_status]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_track:
-    lea g_track(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_track]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_self:
-    lea g_self(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_self]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_scan:
-    lea syscmd(%rip), %rbx
-    lea g_scan(%rip), %rsi
+    lea rbx, [rip + syscmd]
+    lea rsi, [rip + g_scan]
     call append_str
-    mov %r14, %rsi
+    mov rsi, r14
     call append_str
-    movb $0, (%rbx)
-    lea syscmd(%rip), %rdi
-    call _system
+    mov byte ptr [rbx], 0
+    lea rdi, [rip + syscmd]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_sniff:
-    lea syscmd(%rip), %rbx
-    lea g_sniff(%rip), %rsi
+    lea rbx, [rip + syscmd]
+    lea rsi, [rip + g_sniff]
     call append_str
-    mov %r14, %rsi
+    mov rsi, r14
     call append_str
-    movb $0, (%rbx)
-    lea syscmd(%rip), %rdi
-    call _system
+    mov byte ptr [rbx], 0
+    lea rdi, [rip + syscmd]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_ai:
-    lea g_ai(%rip), %rdi
-    call _system
+    lea rdi, [rip + g_ai]
+    call CDECL(system)
     jmp .ds_ret0
 
 .do_serve:
     # fork a detached child that exec's the server (survives sakum's exit)
-    call _fork
-    test %rax, %rax
+    call CDECL(fork)
+    test rax, rax
     jz .serve_child          # child: rax == 0
     # parent: return immediately (do not wait)
     jmp .ds_ret0
 .serve_child:
-    call _setsid             # new session: detach from controlling terminal/pgrp
-    lea bash_path(%rip), %rdi
-    lea bash_arg0(%rip), %rsi
-    lea serve_sh_path(%rip), %rdx
-    xor %rcx, %rcx           # NULL terminator for execl
-    call _execl
+    call CDECL(setsid)             # new session: detach from controlling terminal/pgrp
+    lea rdi, [rip + bash_path]
+    lea rsi, [rip + bash_arg0]
+    lea rdx, [rip + serve_sh_path]
+    xor rcx, rcx           # NULL terminator for execl
+    call CDECL(execl)
     # exec failed
-    mov $1, %rdi
-    call _exit
+    mov rdi, 1
+    call CDECL(exit)
 
 .do_gen:
-    lea syscmd(%rip), %rbx
-    lea g_gen(%rip), %rsi
+    lea rbx, [rip + syscmd]
+    lea rsi, [rip + g_gen]
     call append_str
-    mov %r14, %rsi
+    mov rsi, r14
     call append_str
-    movb $0, (%rbx)
-    lea syscmd(%rip), %rdi
-    call _system
+    mov byte ptr [rbx], 0
+    lea rdi, [rip + syscmd]
+    call CDECL(system)
     jmp .ds_ret0
 
 .ds_quit:
-    mov $1, %rax
-    pop %r14
-    pop %r13
-    pop %r12
-    pop %rbx
+    mov rax, 1
+    pop r14
+    pop r13
+    pop r12
+    pop rbx
     ret
 
 .ds_ret0:
-    mov $0, %rax
-    pop %r14
-    pop %r13
-    pop %r12
-    pop %rbx
+    mov rax, 0
+    pop r14
+    pop r13
+    pop r12
+    pop rbx
     ret
 
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
-_main:
-    push %rbp
-    mov %rsp, %rbp
+CDECL(main):
+    push rbp
+    mov rbp, rsp
     # capture args (rdi=argc, rsi=argv) into our own globals
-    mov %edi, my_argc(%rip)
-    mov %rsi, my_argv(%rip)
+    mov dword ptr [rip + my_argc], edi
+    mov qword ptr [rip + my_argv], rsi
 
-    mov my_argc(%rip), %eax
-    cmp $1, %eax
+    mov eax, dword ptr [rip + my_argc]
+    cmp eax, 1
     jle .main_chat
 
     # argv[1] == "chat" ?
-    mov my_argv(%rip), %rdx
-    mov 8(%rdx), %rdi
-    lea w_chat(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    mov rdx, qword ptr [rip + my_argv]
+    mov rdi, qword ptr [rdx + 8]
+    lea rsi, [rip + w_chat]
+    call CDECL(strcmp)
+    test eax, eax
     jz .main_chat
 
     # argv[1] == "--help" / "-h" ?
-    mov my_argv(%rip), %rdx
-    mov 8(%rdx), %rdi
-    lea s_dhelp(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    mov rdx, qword ptr [rip + my_argv]
+    mov rdi, qword ptr [rdx + 8]
+    lea rsi, [rip + s_dhelp]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_help_main
-    mov my_argv(%rip), %rdx
-    mov 8(%rdx), %rdi
-    lea s_h(%rip), %rsi
-    call _strcmp
-    test %eax, %eax
+    mov rdx, qword ptr [rip + my_argv]
+    mov rdi, qword ptr [rdx + 8]
+    lea rsi, [rip + s_h]
+    call CDECL(strcmp)
+    test eax, eax
     jz .do_help_main
     jmp .main_buildline
 .do_help_main:
-    lea help_txt(%rip), %rdi
-    call _printf
-    mov $0, %rdi
-    call _exit
+    lea rdi, [rip + help_txt]
+    call CDECL(printf)
+    mov rdi, 0
+    call CDECL(exit)
 
     # build a synthetic line: argv[1] + " " + argv[2]
 .main_buildline:
-    lea linebuf(%rip), %rbx
-    mov my_argv(%rip), %rdx
-    mov 8(%rdx), %rsi
+    lea rbx, [rip + linebuf]
+    mov rdx, qword ptr [rip + my_argv]
+    mov rsi, qword ptr [rdx + 8]
     call append_str
-    mov my_argc(%rip), %eax
-    cmp $2, %eax
+    mov eax, dword ptr [rip + my_argc]
+    cmp eax, 2
     jle .main_dispatch
-    mov $2, %r15d              # arg index (argv[2]..)
+    mov r15d, 2              # arg index (argv[2]..)
 .argv_loop:
-    cmp my_argc(%rip), %r15d
+    cmp r15d, dword ptr [rip + my_argc]
     jge .main_dispatch
-    movb $' ', (%rbx)
-    inc %rbx
-    mov my_argv(%rip), %rdx
-    mov %r15d, %ecx
-    shl $3, %rcx
-    mov (%rdx,%rcx), %rsi
+    mov byte ptr [rbx], ' '
+    inc rbx
+    mov rdx, qword ptr [rip + my_argv]
+    mov ecx, r15d
+    shl rcx, 3
+    mov rsi, qword ptr [rdx + rcx]
     call append_str
-    inc %r15d
+    inc r15d
     jmp .argv_loop
 .main_dispatch:
-    movb $0, (%rbx)
-    lea linebuf(%rip), %rdi
+    mov byte ptr [rbx], 0
+    lea rdi, [rip + linebuf]
     call dispatch_line
-    mov $0, %rdi
-    call _exit
+    mov rdi, 0
+    call CDECL(exit)
 
 .main_chat:
-    lea b_banner(%rip), %rdi
-    call _printf
+    lea rdi, [rip + b_banner]
+    call CDECL(printf)
 .chat_loop:
-    lea p_prompt(%rip), %rdi
-    call _printf
-    # read a line from stdin (fd 0) via raw syscall
-    mov $0x2000003, %rax       # SYS_read
-    mov $0, %rdi               # fd 0
-    lea linebuf(%rip), %rsi
-    mov $4096, %rdx
-    syscall
-    test %rax, %rax
+    lea rdi, [rip + p_prompt]
+    call CDECL(printf)
+    # read a line from stdin (fd 0) via libc read (portable: macOS/Linux/Windows)
+    mov rdi, 0               # fd 0
+    lea rsi, [rip + linebuf]
+    mov rdx, 4096
+    call CDECL(read)
+    test rax, rax
     jle .chat_eof              # <=0 bytes = EOF / error
-    lea linebuf(%rip), %rdi
+    lea rdi, [rip + linebuf]
     call strip_nl
-    lea linebuf(%rip), %rdi
-    cmpb $0, (%rdi)
+    lea rdi, [rip + linebuf]
+    cmp byte ptr [rdi], 0
     je .chat_loop
     call dispatch_line
-    cmp $1, %rax
+    cmp rax, 1
     je .chat_bye
     jmp .chat_loop
 
 .chat_eof:
-    lea b_nl(%rip), %rdi
-    call _printf
+    lea rdi, [rip + b_nl]
+    call CDECL(printf)
 .chat_bye:
-    lea b_bye(%rip), %rdi
-    call _printf
-    mov $0, %rdi
-    call _exit
+    lea rdi, [rip + b_bye]
+    call CDECL(printf)
+    mov rdi, 0
+    call CDECL(exit)

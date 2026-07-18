@@ -1,0 +1,33 @@
+# spec_tracker.sak - Sakum Lang formal spec: brahma live-history tracker (इतिहास)
+# Sakum-language spelling of docs/ch_tracker.tex.
+# Reads query_logs/fetch_live.jsonl; prints स्रोत → भाषा → गंतव्य + pulse clock.
+
+naam node = "Sakum Tracker";
+naam hash = #what 60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8ff4;
+lek(query("load Sakum Tracker"));
+lek(heartbeat());
+
+# modes
+sutra tracker_modes() {
+    naam once = 1            # print feed once
+    naam live = 1            # tail, re-read every 3s (_sleep)
+    naam custom = 1          # read a custom feed path
+    vapsa once + live + custom
+}
+
+# cross-ISA ports (बहु-ISA)
+sutra tracker_ports() {
+    naam x86_64 = 1
+    naam arm64 = 1
+    naam arm64_neon = 1      # vectorised newline scan: ld1/dup/cmeq/cnt
+    naam arm32_sys = 1       # svc #0 (openat=56 read=63 write=64 close=57 exit=93)
+    naam rv64_sys = 1        # ecall same numbers
+    naam rv64_rvv = 1        # vsetvli/vle8.v/vmseq.vx/vfirst.m
+    vapsa x86_64 + arm64 + arm64_neon + arm32_sys + rv64_sys + rv64_rvv
+}
+
+pariksha {
+    naam m = tracker_modes()
+    naam p = tracker_ports()
+    lek "tracker ok: modes=" m " ports=" p
+}

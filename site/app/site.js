@@ -217,7 +217,7 @@ lek(simd_info());      # reported by the backend
         : `<li class="text-slate-500">no entries yet — run the engine.</li>`;
       // survivability: derive from memory.md's own counters
       const survive = parseInt((text.match(/survive:\s*(\d+)/) || [])[1] || "0", 10);
-      const mistakes = (text.match(/mistake/g) || []).length;
+      const mistakes = (text.match(/^mistake\s/gm) || []).length;
       const total = survive + mistakes || 1;
       const score = Math.round((survive / total) * 100);
       document.getElementById("survScore").textContent = score + "%";

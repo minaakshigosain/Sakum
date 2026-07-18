@@ -1,0 +1,20 @@
+# number_theory.sakmath - Sakum symbolic mathematics: Number Theory
+# domain=Mathematics/Number Theory  format=sakmath
+
+# --- Primes ---
+अभाज्य p > 1 जिसके भाजक केवल 1 और p हैं
+यूक्लिड_विभाजन a = q·b + r,  0 ≤ r < b
+
+# --- Modular arithmetic ---
+कांग्रुएंस a ≡ b (mod n)   ⇔   n | (a - b)
+फर्मट्_लघु a^{p-1} ≡ 1 (mod p)   जब p अभाज्य और gcd(a,p)=1
+
+# --- Euler ---
+ऑयलर_फलन φ(n) = n Π_{p|n} (1 - 1/p)
+ऑयलर_प्रमेय a^{φ(n)} ≡ 1 (mod n)   जब gcd(a,n)=1
+
+# self-test hook
+परीक्षा {
+  लेख "number_theory.sakmath loaded"
+  लेख(लेटेक्स(कांग्रुएंस a ≡ b (mod n)))
+}

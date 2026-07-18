@@ -1,0 +1,22 @@
+# algebra.sakmath - Sakum symbolic mathematics: Algebra
+# domain=Mathematics/Algebra  format=sakmath
+
+# --- Polynomial ---
+बहुपद P(x) = a_n x^n + ... + a_1 x + a_0
+
+# --- Quadratic formula ---
+मूल x = (-b ± √(b^2 - 4ac)) / (2a)   जब  ax^2 + bx + c = 0
+
+# --- Binomial theorem ---
+द्विपद (x + y)^n = Σ_{k=0}^{n} C(n,k) x^{n-k} y^k
+
+# --- Matrix algebra ---
+गुणन A·B[i,j] = Σ_k A[i,k]·B[k,j]
+व्युत्क्रम A·A^{-1} = I
+सारणिक det(A)  (Laplace expansion)
+
+# self-test hook
+परीक्षा {
+  लेख "algebra.sakmath loaded"
+  लेख(लेटेक्स(मूल x = (-b ± √(b^2 - 4ac)) / (2a)))
+}

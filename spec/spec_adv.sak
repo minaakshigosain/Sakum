@@ -1,0 +1,44 @@
+# spec_adv.sak - Sakum Lang formal spec: advanced core (उन्नत)
+# Sakum-language spelling of docs/ch_adv.tex.
+# varg (OOP vtable), hriday (memory safety), vyakhya (error explainer), svadhyaya (self-learn).
+
+naam node = "Sakum Advanced";
+naam hash = #what 4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9049;
+lek(query("load Sakum Advanced"));
+lek(heartbeat());
+
+# varg: runtime-built vtable; object buffer must be 8-byte aligned (.balign 8)
+sutra varga() {
+    varg Shape {
+        sutra area() { vapsa 0 }
+        sutra describe() { vapsa 0 }
+    }
+    vapsa 1
+}
+
+# hriday: fixed pool with used-flag + 0xCAFE canary; double free -> -1
+sutra heart_alloc(pool, i) {
+    vapsa i
+}
+sutra heart_free(pool, i, used) {
+    yadi (used == 0) { vapsa -1 }   # already freed -> double free
+    vapsa 0
+}
+
+# vyakhya: error code -> message (codes 1..5)
+sutra vyakhya(code) {
+    yadi (code >= 1 aur code <= 5) { vapsa code }
+    vapsa 0
+}
+
+# svadhyaya: record mistake to ring-buffer, return friendly patch note
+sutra svadhyaya(mistake) {
+    brahma.learn(mistake)
+    vapsa 1
+}
+
+pariksha {
+    naam v = varga()
+    naam h = heart_free(0, 0, 0)
+    lek "adv ok: varga=" v " heart_doublefree=" h
+}

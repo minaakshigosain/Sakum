@@ -1,0 +1,78 @@
+# dashboard.sak — Sakhum Sample Dashboard (CRUD, inventory / metrics)
+# Uses the reusable store library (lib_crud.sak). Demonstrates the full
+# Create / Read / Update / Delete lifecycle, then shows aggregate metrics from
+# the self engine. Pure Sakum.
+#
+# Run with the in-browser interpreter, or concatenate with lib_crud.sak.
+
+# ===========================================================================
+# DASHBOARD
+# ===========================================================================
+naam store = store_new();
+
+lek("=== SAKHUM SAMPLE DASHBOARD ===");
+lek("pulse:", puls(1));
+
+# ---- CREATE --------------------------------------------------------------
+lek("");
+lek("--- CREATE ---");
+store = store_add(store, 1, 10, 25);
+store = store_add(store, 2, 4, 100);
+store = store_add(store, 3, 7, 60);
+store = store_add(store, 4, 2, 250);
+lek("records created:", store_count(store));
+
+# ---- READ (list all) -----------------------------------------------------
+lek("");
+lek("--- READ (all: [id, qty, price, line-total]) ---");
+naam n = store_count(store);
+naam i = 0;
+yavat (i < n) {
+    naam rec = store_get(store, store[i * 3]);
+    lek("  id=", rec[0], " qty=", rec[1], " price=", rec[2], " total=", record_total(rec));
+    i = i + 1;
+}
+
+# ---- READ (single by id) -------------------------------------------------
+lek("");
+lek("--- READ (single id=2) ---");
+naam one = store_get(store, 2);
+yadi (one != shunya) {
+    lek("  found: id=", one[0], " qty=", one[1], " price=", one[2]);
+} anyotha {
+    lek("  not found");
+}
+
+# ---- UPDATE --------------------------------------------------------------
+lek("");
+lek("--- UPDATE (id=2 -> qty 9, price 90) ---");
+store = store_update(store, 2, 9, 90);
+naam upd = store_get(store, 2);
+lek("  after: id=", upd[0], " qty=", upd[1], " price=", upd[2]);
+
+# ---- DELETE --------------------------------------------------------------
+lek("");
+lek("--- DELETE (id=3) ---");
+store = store_delete(store, 3);
+lek("  records after delete:", store_count(store));
+
+# ---- AGGREGATE METRICS (self engine) -------------------------------------
+lek("");
+lek("--- DASHBOARD METRICS ---");
+lek("  total records  :", store_count(store));
+lek("  inventory worth:", store_value(store));
+lek("  next auto-key  :", store_max_id(store) + 1);
+lek("  engine pulses  :", puls(1));
+
+# ---- final listing -------------------------------------------------------
+lek("");
+lek("--- FINAL STATE ---");
+naam m = store_count(store);
+naam j = 0;
+yavat (j < m) {
+    naam rr = store_get(store, store[j * 3]);
+    lek("  id=", rr[0], " qty=", rr[1], " price=", rr[2], " total=", record_total(rr));
+    j = j + 1;
+}
+lek("");
+lek("=== END (survive) ===");

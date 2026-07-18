@@ -1,0 +1,19 @@
+# reaction.sakchem - Sakum chemistry: Reaction Equilibria
+# domain=Chemistry/Reaction  format=sakchem
+
+# --- Equilibrium constant ---
+साम्य K = ([C]^c [D]^d) / ([A]^a [B]^b)   जब  aA + bB ⇌ cC + dD
+
+# --- Rate law ---
+दर v = k [A]^m [B]^n
+आर्रेनियस k = A e^{-Ea/(RT)}
+
+# --- Thermodynamics of reaction ---
+गिब्स ΔG = ΔH - TΔS
+साम्य_संबंध ΔG° = -RT ln K
+
+# self-test hook
+परीक्षा {
+  लेख "reaction.sakchem loaded"
+  लेख(लेटेक्स(गिब्स ΔG = ΔH - TΔS))
+}

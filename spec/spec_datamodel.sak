@@ -1,0 +1,35 @@
+# spec_datamodel.sak - Sakum Lang formal spec: data model (आँकडा)
+# Sakum-language spelling of docs/ch_datamodel.tex.
+
+naam node = "Sakum Data Model";
+naam hash = #what c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fb0;
+lek(query("load Sakum Data Model"));
+lek(heartbeat());
+
+# Knowledge/ tree: 85 manifest.sak nodes at depth 1 and depth 2
+sutra knowledge_tree() {
+    naam depth1 = 8
+    naam depth2 = 77
+    naam total = depth1 + depth2
+    vapsa total              # 85 chunks
+}
+
+# manifest format with binary-hash addressable key
+sutra manifest_format() {
+    naam node = "Example";
+    naam hash = #what deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000;
+    lek(query("load Example"));
+    lek(heartbeat());
+    vapsa 1
+}
+
+# self-update ledger tick
+sutra ledger_tick(neurons, loaded, ram_mb) {
+    lek(query("ai tick: neurons=" neurons " loaded=" loaded " ram_mb=" ram_mb));
+    vapsa 0
+}
+
+pariksha {
+    naam t = knowledge_tree()
+    lek "datamodel ok: chunks=" t
+}

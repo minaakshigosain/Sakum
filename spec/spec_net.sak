@@ -1,0 +1,27 @@
+# spec_net.sak - Sakum Lang formal spec: network subsystems (नेटवर्क)
+# Sakum-language spelling of docs/ch_net.tex. Port scanner + BPF sniffer.
+
+naam node = "Sakum Network";
+naam hash = #what 18293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9016;
+lek(query("load Sakum Network"));
+lek(heartbeat());
+
+# port scanner: socket + per-port connect; prints [OPEN]/[closed]
+sutra port_scan(host, lo, hi) {
+    naam sock = 1            # socket(AF_INET, SOCK_STREAM, 0)
+    naam probes = hi - lo + 1
+    vapsa sock + probes
+}
+
+# BPF sniffer: /dev/bpf0, BIOCSETIF, BIOCIMMEDIATE, decode Eth->IPv4->TCP/UDP
+sutra packet_sniff(iface, n) {
+    naam bpf = 1             # _open /dev/bpf0
+    naam decode = 1          # Ethernet -> IPv4 -> TCP/UDP
+    vapsa bpf + decode
+}
+
+pariksha {
+    naam s = port_scan("127.0.0.1", 1, 1024)
+    naam p = packet_sniff("en0", 50)
+    lek "net ok: scan=" s " sniff=" p
+}

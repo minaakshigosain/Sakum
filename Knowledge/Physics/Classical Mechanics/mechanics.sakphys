@@ -1,0 +1,22 @@
+# mechanics.sakphys - Sakum physics: Classical Mechanics
+# domain=Physics/Classical Mechanics  format=sakphys
+
+# --- Newton's laws ---
+न्यूटन_१ ΣF = 0 ⇒ v स्थिर
+न्यूटन_२ F = m a = d/dt (m v)
+न्यूटन_३ F_{12} = -F_{21}
+
+# --- Energy ---
+गतिज K = (1/2) m v^2
+स्थितिज U = m g h
+संरक्षण E = K + U = स्थिर
+
+# --- Momentum ---
+संवेग p = m v
+संवेग_संरक्षण Σp_initial = Σp_final
+
+# self-test hook
+परीक्षा {
+  लेख "mechanics.sakphys loaded"
+  लेख(लेटेक्स(न्यूटन_२ F = m a))
+}

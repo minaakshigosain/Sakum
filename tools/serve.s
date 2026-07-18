@@ -1,9 +1,9 @@
-# tools/serve.s - Sakum self-updater native trigger server (raw x86-64, AT&T).
+# tools/serve.s - Sakum self-updater native trigger server (raw x86-64, intel).
 #
 # Replaces tools/serve.py (Python) to stay doctrine-compliant: no host
-# language, only raw assembly + libc syscalls.
+# language, only raw assembly + libc.
 #
-# Behaviour (mirrors the old serve.py):
+# Behaviour:
 #   * HTTP POST /update  -> runs tools/sakum_bot.sh, returns "ok\n"
 #   * HTTP GET  /status  -> dumps memory.md (last cycle info)
 #   * HTTP GET  /nerve   -> prints the local नाडी (nerve) bus channel firings
@@ -11,45 +11,50 @@
 #   * timer pulse        -> forked child sleeps --pulse secs, runs bot on
 #                           the timer.pulse nerve channel
 #
+# Cross-platform: BSD socket libc calls exist on macOS & Linux; paths are
+# relative so it runs from any checkout.
+#
 # Build:  gcc -arch x86_64 tools/serve.s -o /tmp/serve
 # Run:    /tmp/serve [--http 8080] [--pulse 600]
 
-    .section __TEXT,__text,regular,pure_instructions
-    .globl _main
-    .p2align 4
+.intel_syntax noprefix
+# platform.inc is force-included by the launcher (gcc -include assembly/platform.inc)
+# so this file stays a single, buildable machine-code module from the repo root.
+TEXT_SECTION
+.globl CDECL(main)
 
-    .extern _socket
-    .extern _bind
-    .extern _listen
-    .extern _accept
-    .extern _recv
-    .extern _send
-    .extern _close
-    .extern _fork
-    .extern _execl
-    .extern _waitpid
-    .extern _sleep
-    .extern _printf
-    .extern _strncmp
-    .extern _atoi
-    .extern _open
-    .extern _read
-    .extern _exit
-    .extern _setsockopt
+.extern CDECL(socket)
+.extern CDECL(bind)
+.extern CDECL(listen)
+.extern CDECL(accept)
+.extern CDECL(recv)
+.extern CDECL(send)
+.extern CDECL(close)
+.extern CDECL(fork)
+.extern CDECL(execl)
+.extern CDECL(waitpid)
+.extern CDECL(sleep)
+.extern CDECL(printf)
+.extern CDECL(strncmp)
+.extern CDECL(atoi)
+.extern CDECL(open)
+.extern CDECL(read)
+.extern CDECL(exit)
+.extern CDECL(setsockopt)
 
-    .set AF_INET, 2
-    .set SOCK_STREAM, 1
-    .set BUFLEN, 4096
-    .set PORT_DEFAULT, 8080
-    .set PULSE_DEFAULT, 600
+.set AF_INET, 2
+.set SOCK_STREAM, 1
+.set BUFLEN, 4096
+.set PORT_DEFAULT, 8080
+.set PULSE_DEFAULT, 600
 
-    .data
+DATA_SECTION
 # nerve bus channel fire counts: 0=webhook.update, 1=ws.trigger, 2=timer.pulse
 nerve_count:   .quad 0, 0, 0
-root_dir:      .asciz "/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang"
+root_dir:      .asciz "tools/"
 bot_arg:       .asciz "tools/sakum_bot.sh"
 bash_path:     .asciz "/bin/bash"
-mem_path:      .asciz "/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/memory.md"
+mem_path:      .asciz "memory.md"
 
 sockaddr:
     .short AF_INET
@@ -73,15 +78,14 @@ hdr_ok_html:   .asciz "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8
 hdr_404:       .asciz "HTTP/1.1 404 Not Found\r\nContent-Length: 9\r\nConnection: close\r\n\r\n"
 body_404:      .asciz "not found"
 body_ok:       .asciz "ok\n"
-nerve_body:    .asciz "webhook.update: fired="    # (prefix, retained for compatibility)
-
+nerve_body:    .asciz "webhook.update: fired="
 
 m_post_update: .asciz "POST /update"
 m_get_status:  .asciz "GET /status"
 m_get_nerve:   .asciz "GET /nerve"
 m_get_root:    .asciz "GET / "
 m_get_index:   .asciz "GET /index.html"
-site_path:     .asciz "/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/site/index.html"
+site_path:     .asciz "site/index.html"
 arg_http:      .asciz "--http"
 arg_pulse:     .asciz "--pulse"
 
@@ -92,446 +96,440 @@ s_n3pre:       .asciz "timer.pulse: fired="
 _argc:         .quad 0
 _argv:         .quad 0
 
-    .text
-
 # send_resp(fd=%rdi, header=%rsi, body=%rdx, bodylen=%rcx)
 send_resp:
-    push %rbx
-    push %r12
-    push %r13
-    push %r14
-    mov %rdi, %r12
-    mov %rsi, %r13
-    mov %rdx, %r14
-    mov %rcx, %r15
+    push rbx
+    push r12
+    push r13
+    push r14
+    mov r12, rdi
+    mov r13, rsi
+    mov r14, rdx
+    mov r15, rcx
     # copy body into body_tmp first (body may alias outbuf)
-    lea body_tmp(%rip), %rbx
-    mov %r15, %rcx
-    test %rcx, %rcx
+    lea rbx, [rip + body_tmp]
+    mov rcx, r15
+    test rcx, rcx
     jz .body_done
 .copy_body_tmp:
-    mov (%r14), %al
-    mov %al, (%rbx)
-    inc %r14
-    inc %rbx
-    dec %rcx
+    mov al, byte ptr [r14]
+    mov byte ptr [rbx], al
+    inc r14
+    inc rbx
+    dec rcx
     jnz .copy_body_tmp
 .body_done:
     # now build header + body_tmp into outbuf
-    lea outbuf(%rip), %rbx
+    lea rbx, [rip + outbuf]
 .copy_hdr:
-    mov (%r13), %al
-    mov %al, (%rbx)
-    inc %r13
-    inc %rbx
-    test %al, %al
+    mov al, byte ptr [r13]
+    mov byte ptr [rbx], al
+    inc r13
+    inc rbx
+    test al, al
     jnz .copy_hdr
-    dec %rbx               # step back over header NUL
-    mov %r15, %rcx
-    test %rcx, %rcx
+    dec rbx               # step back over header NUL
+    mov rcx, r15
+    test rcx, rcx
     jz .do_send
-    lea body_tmp(%rip), %r14
+    lea r14, [rip + body_tmp]
 .copy_body:
-    mov (%r14), %al
-    mov %al, (%rbx)
-    inc %r14
-    inc %rbx
-    dec %rcx
+    mov al, byte ptr [r14]
+    mov byte ptr [rbx], al
+    inc r14
+    inc rbx
+    dec rcx
     jnz .copy_body
 .do_send:
-    lea outbuf(%rip), %rsi
-    mov %r12, %rdi
-    mov %rbx, %rdx
-    sub %rsi, %rdx
-    xor %rcx, %rcx
-    xor %r8, %r8
-    xor %r9, %r9
-    call _send
-    pop %r14
-    pop %r13
-    pop %r12
-    pop %rbx
+    lea rsi, [rip + outbuf]
+    mov rdi, r12
+    mov rdx, rbx
+    sub rdx, rsi
+    xor rcx, rcx
+    xor r8, r8
+    xor r9, r9
+    call CDECL(send)
+    pop r14
+    pop r13
+    pop r12
+    pop rbx
     ret
 
 # run_bot(channel=%rdi)  channel: 0 webhook, 1 ws, 2 timer
 run_bot:
-    push %rbx
-    push %r12
-    mov %rdi, %r12
-    call _fork
-    cmp $0, %rax
+    push rbx
+    push r12
+    mov r12, rdi
+    call CDECL(fork)
+    cmp rax, 0
     je .rb_child
-    mov %rax, %rdi
-    xor %rsi, %rsi
-    xor %rdx, %rdx
-    call _waitpid
-    lea nerve_count(%rip), %rbx
-    mov %r12, %rax
-    shl $3, %rax
-    add %rax, %rbx
-    incq (%rbx)
-    pop %r12
-    pop %rbx
+    mov rdi, rax
+    xor rsi, rsi
+    xor rdx, rdx
+    call CDECL(waitpid)
+    lea rbx, [rip + nerve_count]
+    mov rax, r12
+    shl rax, 3
+    add rax, rbx
+    inc qword ptr [rbx]
+    pop r12
+    pop rbx
     ret
 .rb_child:
-    lea bash_path(%rip), %rdi
-    lea bash_path(%rip), %rsi
-    lea bot_arg(%rip), %rdx
-    xor %rcx, %rcx
-    call _execl
-    xor %rdi, %rdi
-    call _exit
+    lea rdi, [rip + bash_path]
+    lea rsi, [rip + bash_path]
+    lea rdx, [rip + bot_arg]
+    xor rcx, rcx
+    call CDECL(execl)
+    xor edi, edi
+    call CDECL(exit)
 
 # dump_memory -> %rax = length of memory.md loaded into filebuf
 dump_memory:
-    push %rbx
-    xor %eax, %eax
-    lea mem_path(%rip), %rdi
-    mov $0, %rsi          # O_RDONLY
-    xor %rdx, %rdx
-    call _open
-    cmp $0, %rax
+    push rbx
+    xor eax, eax
+    lea rdi, [rip + mem_path]
+    mov rsi, 0                  # O_RDONLY
+    xor rdx, rdx
+    call CDECL(open)
+    cmp rax, 0
     jl .dm_fail
-    mov %rax, %rbx         # fd
-    mov %rbx, %rdi          # fd for read
-    lea filebuf(%rip), %rsi
-    mov $1048576, %rdx
-    call _read              # rax = bytes read
-    mov %rax, %r8           # keep bytes (caller-saved scratch)
-    lea filebuf(%rip), %rsi
-    mov %r8, %rdx           # index = bytes
-    cmp $0, %r8
+    mov rbx, rax              # fd
+    mov rdi, rbx              # fd for read
+    lea rsi, [rip + filebuf]
+    mov rdx, 1048576
+    call CDECL(read)              # rax = bytes read
+    mov r8, rax               # keep bytes
+    lea rsi, [rip + filebuf]
+    mov rdx, r8               # index = bytes
+    cmp r8, 0
     jle .dm_close
-    movb $0, (%rsi,%rdx)    # null-terminate at end
+    mov byte ptr [rsi+rdx], 0   # null-terminate at end
 .dm_close:
-    mov %r8, %rax           # return byte count
-    pop %rbx
+    mov rax, r8               # return byte count
+    pop rbx
     ret
 .dm_fail:
-    xor %rax, %rax
-    pop %rbx
+    xor rax, rax
+    pop rbx
     ret
 
 # load_file(path in %rdi) -> %rax = length of file loaded into filebuf (0 on error)
 load_file:
-    push %rbx
-    xor %eax, %eax
-    mov %rdi, %rdi           # path already in rdi
-    mov $0, %rsi             # O_RDONLY
-    xor %rdx, %rdx
-    call _open
-    cmp $0, %rax
+    push rbx
+    xor eax, eax
+    mov rdi, rdi              # path already in rdi
+    mov rsi, 0              # O_RDONLY
+    xor rdx, rdx
+    call CDECL(open)
+    cmp rax, 0
     jl .lf_fail
-    mov %rax, %rbx           # fd
-    mov %rbx, %rdi           # fd for read
-    lea filebuf(%rip), %rsi
-    mov $1048576, %rdx
-    call _read               # rax = bytes read
-    mov %rax, %r8            # keep bytes
-    lea filebuf(%rip), %rsi
-    mov %r8, %rdx            # index = bytes
-    cmp $0, %r8
+    mov rbx, rax              # fd
+    mov rdi, rbx              # fd for read
+    lea rsi, [rip + filebuf]
+    mov rdx, 1048576
+    call CDECL(read)              # rax = bytes read
+    mov r8, rax               # keep bytes
+    lea rsi, [rip + filebuf]
+    mov rdx, r8               # index = bytes
+    cmp r8, 0
     jle .lf_close
-    movb $0, (%rsi,%rdx)     # null-terminate at end
+    mov byte ptr [rsi+rdx], 0   # null-terminate at end
 .lf_close:
-    mov %r8, %rax            # return byte count
-    pop %rbx
+    mov rax, r8               # return byte count
+    pop rbx
     ret
 .lf_fail:
-    xor %rax, %rax
-    pop %rbx
+    xor rax, rax
+    pop rbx
     ret
 
 # handle_req(clientfd=%rdi)
 handle_req:
-    push %rbx
-    push %r12
-    mov %rdi, %r12
-    lea reqbuf(%rip), %rbx
+    push rbx
+    push r12
+    mov r12, rdi
+    lea rbx, [rip + reqbuf]
 
-    lea m_post_update(%rip), %rsi
-    mov %rbx, %rdi
-    mov $11, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rsi, [rip + m_post_update]
+    mov rdi, rbx
+    mov rdx, 11
+    call CDECL(strncmp)
+    test eax, eax
     jnz .hr_status
-    mov $0, %rdi
+    mov rdi, 0
     call run_bot
-    mov %r12, %rdi
-    lea hdr_ok_pre(%rip), %rsi
-    lea body_ok(%rip), %rdx
-    mov $3, %rcx
+    mov rdi, r12
+    lea rsi, [rip + hdr_ok_pre]
+    lea rdx, [rip + body_ok]
+    mov rcx, 3
     call send_resp
-    pop %r12
-    pop %rbx
+    pop r12
+    pop rbx
     ret
 .hr_status:
-    lea m_get_status(%rip), %rsi
-    mov %rbx, %rdi
-    mov $11, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rsi, [rip + m_get_status]
+    mov rdi, rbx
+    mov rdx, 11
+    call CDECL(strncmp)
+    test eax, eax
     jnz .hr_nerve
     call dump_memory
-    mov %r12, %rdi
-    lea hdr_ok_pre(%rip), %rsi
-    lea filebuf(%rip), %rdx
-    mov %rax, %rcx
+    mov rdi, r12
+    lea rsi, [rip + hdr_ok_pre]
+    lea rdx, [rip + filebuf]
+    mov rcx, rax
     call send_resp
-    pop %r12
-    pop %rbx
+    pop r12
+    pop rbx
     ret
 .hr_nerve:
-    lea m_get_nerve(%rip), %rsi
-    mov %rbx, %rdi
-    mov $10, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rsi, [rip + m_get_nerve]
+    mov rdi, rbx
+    mov rdx, 10
+    call CDECL(strncmp)
+    test eax, eax
     jnz .hr_root
     # build nerve counts into outbuf using manual routines (no printf)
-    lea outbuf(%rip), %rbx
-    lea s_n1pre(%rip), %rsi
+    lea rbx, [rip + outbuf]
+    lea rsi, [rip + s_n1pre]
     call append_str
-    mov nerve_count(%rip), %r15
+    mov r15, qword ptr [rip + nerve_count]
     call append_u64
-    movb $'\n', (%rbx); inc %rbx
-    lea s_n2pre(%rip), %rsi
+    mov byte ptr [rbx], '\n'; inc rbx
+    lea rsi, [rip + s_n2pre]
     call append_str
-    mov nerve_count+8(%rip), %r15
+    mov r15, qword ptr [rip + nerve_count + 8]
     call append_u64
-    movb $'\n', (%rbx); inc %rbx
-    lea s_n3pre(%rip), %rsi
+    mov byte ptr [rbx], '\n'; inc rbx
+    lea rsi, [rip + s_n3pre]
     call append_str
-    mov nerve_count+16(%rip), %r15
+    mov r15, qword ptr [rip + nerve_count + 16]
     call append_u64
-    movb $'\n', (%rbx); inc %rbx
-    mov %r12, %rdi
-    lea hdr_ok_pre(%rip), %rsi
-    lea outbuf(%rip), %rdx
-    mov %rbx, %rcx
-    lea outbuf(%rip), %r8
-    sub %r8, %rcx
+    mov byte ptr [rbx], '\n'; inc rbx
+    mov rdi, r12
+    lea rsi, [rip + hdr_ok_pre]
+    lea rdx, [rip + outbuf]
+    mov rcx, rbx
+    lea r8, [rip + outbuf]
+    sub rcx, r8
     call send_resp
-    pop %r12
-    pop %rbx
+    pop r12
+    pop rbx
     ret
 .hr_root:
-    lea m_get_root(%rip), %rsi
-    mov %rbx, %rdi
-    mov $6, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rsi, [rip + m_get_root]
+    mov rdi, rbx
+    mov rdx, 6
+    call CDECL(strncmp)
+    test eax, eax
     jnz .hr_index
     jmp .hr_serve_page
 .hr_index:
-    lea m_get_index(%rip), %rsi
-    mov %rbx, %rdi
-    mov $15, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rsi, [rip + m_get_index]
+    mov rdi, rbx
+    mov rdx, 15
+    call CDECL(strncmp)
+    test eax, eax
     jnz .hr_404
 .hr_serve_page:
-    lea site_path(%rip), %rdi
+    lea rdi, [rip + site_path]
     call load_file
-    mov %r12, %rdi
-    lea hdr_ok_html(%rip), %rsi
-    lea filebuf(%rip), %rdx
-    mov %rax, %rcx
+    mov rdi, r12
+    lea rsi, [rip + hdr_ok_html]
+    lea rdx, [rip + filebuf]
+    mov rcx, rax
     call send_resp
-    pop %r12
-    pop %rbx
+    pop r12
+    pop rbx
     ret
 .hr_404:
-    mov %r12, %rdi
-    lea hdr_404(%rip), %rsi
-    lea body_404(%rip), %rdx
-    mov $9, %rcx
+    mov rdi, r12
+    lea rsi, [rip + hdr_404]
+    lea rdx, [rip + body_404]
+    mov rcx, 9
     call send_resp
-    pop %r12
-    pop %rbx
+    pop r12
+    pop rbx
     ret
 
 # append_str: copy NUL-terminated string at %rsi into buffer at %rbx; advances %rbx
 append_str:
-    push %rax
+    push rax
 .ap_s:
-    mov (%rsi), %al
-    test %al, %al
+    mov al, byte ptr [rsi]
+    test al, al
     jz .ap_s_done
-    mov %al, (%rbx)
-    inc %rsi
-    inc %rbx
+    mov byte ptr [rbx], al
+    inc rsi
+    inc rbx
     jmp .ap_s
 .ap_s_done:
-    pop %rax
+    pop rax
     ret
 
 # append_u64: write decimal of %r15 into buffer at %rbx; advances %rbx
 append_u64:
-    push %rax
-    push %rcx
-    push %rdx
-    lea digits_tmp(%rip), %rcx   # digit buffer (MSB-first built reversed)
-    mov %r15, %rax
-    mov $10, %r8
-    test %rax, %rax
+    push rax
+    push rcx
+    push rdx
+    lea rcx, [rip + digits_tmp]   # digit buffer (MSB-first built reversed)
+    mov rax, r15
+    mov r8, 10
+    test rax, rax
     jnz .au_l
-    movb $'0', (%rcx)
-    inc %rcx
+    mov byte ptr [rcx], '0'
+    inc rcx
     jmp .au_rev
 .au_l:
-    xor %rdx, %rdx
-    div %r8
-    add $'0', %dl
-    mov %dl, (%rcx)
-    inc %rcx
-    test %rax, %rax
+    xor rdx, rdx
+    div r8
+    add dl, '0'
+    mov byte ptr [rcx], dl
+    inc rcx
+    test rax, rax
     jnz .au_l
 .au_rev:
-    dec %rcx
+    dec rcx
 .au_out:
-    lea digits_tmp(%rip), %r8
-    cmp %rcx, %r8
+    lea r8, [rip + digits_tmp]
+    cmp rcx, r8
     jg .au_done
-    mov (%rcx), %al
-    mov %al, (%rbx)
-    inc %rbx
-    dec %rcx
+    mov al, byte ptr [rcx]
+    mov byte ptr [rbx], al
+    inc rbx
+    dec rcx
     jmp .au_out
 .au_done:
-    pop %rdx
-    pop %rcx
-    pop %rax
+    pop rdx
+    pop rcx
+    pop rax
     ret
 
-_main:
-    push %rbp
-    mov %rsp, %rbp
-    and $-16, %rsp
-    sub $64, %rsp
+CDECL(main):
+    push rbp
+    mov rbp, rsp
+    and rsp, -16
+    sub rsp, 64
 
-    mov %rdi, _argc(%rip)
-    mov %rsi, _argv(%rip)
+    mov qword ptr [rip + _argc], rdi
+    mov qword ptr [rip + _argv], rsi
 
-    mov $PORT_DEFAULT, %r15
-    mov $PULSE_DEFAULT, %r14
+    mov r15, PORT_DEFAULT
+    mov r14, PULSE_DEFAULT
 
-    cmpq $1, _argc(%rip)
+    cmp qword ptr [rip + _argc], 1
     jle .args_done
-    mov $1, %rbx
+    mov rbx, 1
 .arg_loop:
-    cmp _argc(%rip), %rbx
+    cmp qword ptr [rip + _argc], rbx
     jge .args_done
-    mov _argv(%rip), %rsi
-    mov (%rsi,%rbx,8), %rsi
-    lea arg_http(%rip), %rdi
-    mov $6, %rdx
-    call _strncmp
-    test %eax, %eax
+    mov rsi, qword ptr [rip + _argv]
+    mov rsi, qword ptr [rsi + rbx*8]
+    lea rdi, [rip + arg_http]
+    mov rdx, 6
+    call CDECL(strncmp)
+    test eax, eax
     jnz .chk_pulse
-    inc %rbx
-    mov _argv(%rip), %rsi
-    mov (%rsi,%rbx,8), %rdi
-    call _atoi
-    mov %rax, %r15
+    inc rbx
+    mov rsi, qword ptr [rip + _argv]
+    mov rdi, qword ptr [rsi + rbx*8]
+    call CDECL(atoi)
+    mov r15, rax
     jmp .arg_next
 .chk_pulse:
-    lea arg_pulse(%rip), %rdi
-    mov $7, %rdx
-    call _strncmp
-    test %eax, %eax
+    lea rdi, [rip + arg_pulse]
+    mov rdx, 7
+    call CDECL(strncmp)
+    test eax, eax
     jnz .arg_next
-    inc %rbx
-    mov _argv(%rip), %rsi
-    mov (%rsi,%rbx,8), %rdi
-    call _atoi
-    mov %rax, %r14
+    inc rbx
+    mov rsi, qword ptr [rip + _argv]
+    mov rdi, qword ptr [rsi + rbx*8]
+    call CDECL(atoi)
+    mov r14, rax
 .arg_next:
-    inc %rbx
+    inc rbx
     jmp .arg_loop
 .args_done:
     # htons(port)
-    mov %r15w, %ax
-    xchg %al, %ah
-    mov %ax, sockaddr+2(%rip)
+    mov ax, r15w
+    xchg al, ah
+    mov word ptr [rip + sockaddr + 2], ax
 
-    mov $AF_INET, %rdi
-    mov $SOCK_STREAM, %rsi
-    xor %rdx, %rdx
-    call _socket
-    mov %rax, %r13
+    mov rdi, AF_INET
+    mov rsi, SOCK_STREAM
+    xor rdx, rdx
+    call CDECL(socket)
+    mov r13, rax
 
     # setsockopt SO_REUSEADDR so rapid restarts don't hit TIME_WAIT
-    mov %r13, %rdi
-    mov $0xffff, %rsi      # SOL_SOCKET
-    mov $4, %rdx           # SO_REUSEADDR
-    lea reuse_on(%rip), %rcx
-    mov $4, %r8            # optlen
-    xor %r9, %r9
-    call _setsockopt
+    mov rdi, r13
+    mov rsi, 0xffff          # SOL_SOCKET
+    mov rdx, 4              # SO_REUSEADDR
+    lea rcx, [rip + reuse_on]
+    mov r8, 4              # optlen
+    xor r9, r9
+    call CDECL(setsockopt)
 
-    mov %r13, %rdi
-    lea sockaddr(%rip), %rsi
-    mov $16, %rdx
-    call _bind
+    mov rdi, r13
+    lea rsi, [rip + sockaddr]
+    mov rdx, 16
+    call CDECL(bind)
 
-    mov %r13, %rdi
-    mov $8, %rsi
-    call _listen
+    mov rdi, r13
+    mov rsi, 8
+    call CDECL(listen)
 
-    lea fmt_listen(%rip), %rdi
-    mov %r15, %rsi
-    xor %eax, %eax
-    call _printf
+    lea rdi, [rip + fmt_listen]
+    mov rsi, r15
+    xor eax, eax
+    call CDECL(printf)
 
-    cmp $0, %r14
+    cmp r14, 0
     jle .accept_loop
-    call _fork
-    cmp $0, %rax
+    call CDECL(fork)
+    cmp rax, 0
     je .timer_child
-    lea fmt_pulse(%rip), %rdi
-    mov %r14, %rsi
-    xor %eax, %eax
-    call _printf
+    lea rdi, [rip + fmt_pulse]
+    mov rsi, r14
+    xor eax, eax
+    call CDECL(printf)
     jmp .accept_loop
 
 .timer_child:
 .timer_loop:
-    mov %r14, %rdi
-    call _sleep
-    mov $2, %rdi
+    mov rdi, r14
+    call CDECL(sleep)
+    mov rdi, 2
     call run_bot
     jmp .timer_loop
 
 .accept_loop:
-    mov %r13, %rdi
-    xor %rsi, %rsi
-    xor %rdx, %rdx
-    call _accept
-    mov %rax, %r12
-    lea fmt_accept(%rip), %rdi
-    mov %r12, %rsi
-    xor %eax, %eax
-    call _printf
+    mov rdi, r13
+    xor rsi, rsi
+    xor rdx, rdx
+    call CDECL(accept)
+    mov r12, rax
+    lea rdi, [rip + fmt_accept]
+    mov rsi, r12
+    xor eax, eax
+    call CDECL(printf)
 
-    mov %r12, %rdi
-    lea reqbuf(%rip), %rsi
-    mov $BUFLEN-1, %rdx
-    xor %rcx, %rcx
-    xor %r8, %r8
-    xor %r9, %r9
-    call _recv
-    mov %rax, %rbx
-    lea reqbuf(%rip), %rdi
-    movb $0, (%rdi,%rbx)
+    mov rdi, r12
+    lea rsi, [rip + reqbuf]
+    mov rdx, BUFLEN-1
+    xor rcx, rcx
+    xor r8, r8
+    xor r9, r9
+    call CDECL(recv)
+    mov rbx, rax
+    lea rdi, [rip + reqbuf]
+    mov byte ptr [rdi+rbx], 0
 
-    mov %r12, %rdi
+    mov rdi, r12
     call handle_req
 
-    mov %r12, %rdi
-    call _close
+    mov rdi, r12
+    call CDECL(close)
     jmp .accept_loop
-
-    .data
-
-

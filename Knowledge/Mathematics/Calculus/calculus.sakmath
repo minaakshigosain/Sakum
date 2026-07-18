@@ -1,0 +1,26 @@
+# calculus.sakmath - Sakum symbolic mathematics: Calculus
+# domain=Mathematics/Calculus  format=sakmath
+# Symbolic expressions authored in Sakum's native notation.
+
+# --- Limits ---
+सीमा f(x) -> L जब x -> a   :=   (∀ ε > 0)(∃ δ > 0)(|x - a| < δ ⇒ |f(x) - L| < ε)
+
+# --- Derivatives ---
+व्युत्पन्न d/dx[f(x)]        :=   सीमा (f(x+h) - f(x)) / h   जब h -> 0
+नियम_गुणन d/dx[u·v]         :=   u'·v + u·v'
+नियम_भाग d/dx[u/v]          :=   (u'·v - u·v') / v^2
+नियम_श्रृंखला d/dx[f(g(x))] :=   f'(g(x)) · g'(x)
+
+# --- Integrals ---
+समाकल ∫ f(x) dx             :=   F(x) + C   जहाँ  dF/dx = f
+निश्चित ∫_a^b f(x) dx       :=   F(b) - F(a)
+भाग_समाकल ∫ u dv            :=   uv - ∫ v du
+
+# --- Fundamental theorem of calculus ---
+प्रमेय d/dx[∫_a^x f(t) dt]   :=   f(x)
+
+# self-test hook
+परीक्षा {
+  लेख "calculus.sakmath loaded"
+  लेख(लेटेक्स(व्युत्पन्न d/dx[x^2]))
+}

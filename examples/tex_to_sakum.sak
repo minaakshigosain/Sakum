@@ -1,0 +1,64 @@
+# examples/tex_to_sakum.sak
+#
+# Demonstrates LaTeX math transpiled to Sakum Lang via tools/sakum_tex.py.
+# Each block shows the LaTeX source and the generated Sakum expression using
+# the built-in scientific core (vec / mat / cplx / ket / bra / inner / ...).
+# The transpiler: LaTeX -> lexer -> parser -> AST -> Sakum (this file) + SIR.
+
+# ---------------------------------------------------------------------------
+# Quadratic formula  \frac{-b\pm\sqrt{b^2-4ac}}{2a}
+# Generated:  pm((-b), sqrt((pow(b, 2) - (4 * (a * c))))) / (2 * a)
+naam tex1 = (pm((-b), sqrt((pow(b, 2) - (4 * (a * c))))) / (2 * a));
+lek(latex(tex1));
+
+# ---------------------------------------------------------------------------
+# 2x2 matrix  \begin{bmatrix}1 & 2\\3 & 4\end{bmatrix}
+# Generated:  mat([[1, 2], [3, 4]])
+naam tex2 = mat([[1, 2], [3, 4]]);
+lek(latex(tex2));
+
+# ---------------------------------------------------------------------------
+# Bra-ket  \langle\phi|\psi\rangle
+# Generated:  inner(phi, psi)
+naam tex3 = inner(phi, psi);
+lek(latex(tex3));
+
+# ---------------------------------------------------------------------------
+# Ket  |\psi\rangle
+# Generated:  ket(psi)
+naam tex4 = ket(psi);
+lek(latex(tex4));
+
+# ---------------------------------------------------------------------------
+# Definite integral  \int_a^b f(x)\,dx
+# Generated:  integrate(f, a, b) * x
+naam tex5 = integrate(f, a, b) * x;
+lek(latex(tex5));
+
+# ---------------------------------------------------------------------------
+# Summation  \sum_{i=1}^{n} i
+# Generated:  sum(i, (i = 1), n, i)
+naam tex6 = sum(i, (i = 1), n, i);
+lek(latex(tex6));
+
+# ---------------------------------------------------------------------------
+# Piecewise / cases  \begin{cases}x^2,&x>0\\0,&x=0\end{cases}
+# Generated:  cases(pow(x, 2) if (x > 0), 0 if (x = 0))
+naam tex7 = cases(pow(x, 2) if (x > 0), 0 if (x = 0));
+lek(latex(tex7));
+
+# ---------------------------------------------------------------------------
+# Tensor product  A\otimes B
+# Generated:  (A ⊗ B)
+naam tex8 = (A ⊗ B);
+lek(latex(tex8));
+
+# ---------------------------------------------------------------------------
+# Cube root  \sqrt[3]{x}
+# Generated:  root(x, 3)
+naam tex9 = root(x, 3);
+lek(latex(tex9));
+
+aarambh {
+  lek("LaTeX -> Sakum transpiler demo complete.");
+}

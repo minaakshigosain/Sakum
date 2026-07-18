@@ -1,0 +1,28 @@
+{
+  "name": "sakum-lang",
+  "version": "1.0.0",
+  "root": ".",
+  "source_ext": [".sak", ".sakm", ".sakh"],
+  "ir_ext": ".sakir",
+  "ast_ext": ".sakast",
+  "bytecode_ext": ".sakbc",
+  "doc_ext": [".sakdoc", ".sakapi"],
+  "domain_ext": {
+    "math": ".sakmath",
+    "physics": ".sakphys",
+    "chemistry": ".sakchem",
+    "biology": ".sakbio",
+    "quantum": ".sakquant",
+    "ml": ".sakml",
+    "tensor": ".saktensor",
+    "proof": ".sakproof",
+    "graph": ".sakgraph"
+  },
+  "knowledge_index_ext": ".sakidx",
+  "knowledge_cache_ext": ".sakcache",
+  "config_ext": ".sakcfg",
+  "build": {
+    "pipeline": "source.sak -> lexer -> parser -> AST(.sakast) -> IR(.sakir) -> {vm|compiler->ISA}",
+    "emit": [".sakbc", ".sakobj", ".saklib", ".sakexe"]
+  }
+}

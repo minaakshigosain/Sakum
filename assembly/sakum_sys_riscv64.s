@@ -78,7 +78,8 @@ ring_produce:
 rvv_find_nonneg:
     vsetvli t0, a1, e32, m8, ta, ma
     vle32.v v0, (a0)
-    vmsle.vf v1, v0, zero       # mask of lanes >= 0
+    vmv.v.x v1, zero            # v1 = 0.0 in every lane
+    vmsle.vv v1, v0, v1         # mask of lanes >= 0.0
     vfirst.m t1, v1
     mv   a0, t1
     ret

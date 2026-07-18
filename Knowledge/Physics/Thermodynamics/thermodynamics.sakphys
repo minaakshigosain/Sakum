@@ -1,0 +1,19 @@
+# thermodynamics.sakphys - Sakum physics: Thermodynamics
+# domain=Physics/Thermodynamics  format=sakphys
+
+# --- Laws ---
+ऊष्मागतिकी_१ ΔU = Q - W
+ऊष्मागतिकी_२ ΔS_universe ≥ 0
+ऊष्मागतिकी_० T → 0 ⇒ S → S_min
+
+# --- Ideal gas ---
+आदर्श_गैस P V = n R T
+
+# --- Entropy ---
+एन्ट्रॉपी dS = δQ_rev / T
+
+# self-test hook
+परीक्षा {
+  लेख "thermodynamics.sakphys loaded"
+  लेख(लेटेक्स(आदर्श_गैस P V = n R T))
+}

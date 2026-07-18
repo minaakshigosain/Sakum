@@ -1,0 +1,23 @@
+# gates.sakquant - Sakum quantum: Gate primitives
+# domain=Physics/Quantum Computing  format=sakquant
+
+# --- Single-qubit gates (matrix form) ---
+पैलि    X = [[0,1],[1,0]]
+पैलि    Y = [[0,-i],[i,0]]
+पैलि    Z = [[1,0],[0,-1]]
+हेडमर्ड H = (1/√2) [[1,1],[1,-1]]
+
+# --- Two-qubit gates ---
+सीएनओटी CX|0,1 = |0⟩⟨0|⊗I + |1⟩⟨1|⊗X
+स्वैप  SWAP = CX(a,b)·CX(b,a)·CX(a,b)
+
+# --- Circuit builder ---
+परिपथ c = circuit(n)
+द्वार(c, "h", 0)
+द्वार(c, "cx", 0, 1)
+
+# self-test hook
+परीक्षा {
+  लेख "gates.sakquant loaded"
+  लेख(लेटेक्स(H = (1/√2) [[1,1],[1,-1]]))
+}
