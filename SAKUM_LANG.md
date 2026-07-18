@@ -36,7 +36,13 @@ The base must remain **more capable than raw assembly** for the target domains
 ## 1. DO — required capabilities
 
 ### 1.1 Core language
-- Sanskrit Devanagari keywords (with optional ASCII aliases for tooling).
+- **Hinglish (romanized Sanskrit) keywords only.** Every keyword is typeable
+  ASCII. Devanagari is NOT required and is not part of the language surface.
+  The canonical spelling lives in `SAKUM_HINGLISH.md`.
+  Pure-English keywords (`let`, `fn`, `if`, `else`, `while`, `for`, `return`,
+  `print`, `class`, `and`, `or`, ...) are intentionally NOT part of the
+  language — the compiler/lexer rejects them. Write Hinglish
+  (e.g. `naam`, `yadi`, `lek`, `kriya`, `vapsa`).
 - Static-typed where provable, dynamic where ergonomic; a Curry–Howard friendly
   type core.
 - First-class functions, closures, structs, and vectors.
@@ -55,12 +61,22 @@ The base must remain **more capable than raw assembly** for the target domains
     evaluator for an embedded Sakum source (the language bootstraps itself).
   - **`sakum_wasm.s`** — emits a spec-valid `.wasm` binary byte-by-byte
     (verified by `wasm-validate` / `wasmtime` / `node`).
-   - **`sakum_self.s`** — the `self` engine at machine level: a code buffer
-     that grows by appending generated instruction bytes (continuous growth).
+  - **`sakum_self.s`** — the `self` engine at machine level: a code buffer
+    that grows by appending generated instruction bytes (continuous growth).
+  - **`sakum_db.s`** — the `sanchay` database engine (kech / vektor / anukra /
+    sthit / asthit / grantha) at machine level.
+  - **`sakum_engine.s`** — the kernel + runtime engine (`hriday` / `spand` /
+    `naadi`) at machine level: allocator, pulse scheduler, signal bus,
+    and the syscall hub (ring-3 -> ring-0 boundary for I/O/memory/time).
+  - **`sakum_tex.s`** — the LaTeX -> Sakum transpiler at machine level (no
+    Python/bash); reads LaTeX math from stdin, emits Sakum source to stdout.
+    Handles \frac, \sqrt[n]{}, powers, subscripts, implicit multiplication,
+    unary minus, parentheses, relations, and bmatrix.
 - The implementation is **raw machine-level assembly only** — there is no
-  Python (or any other host-language) layer in the repo. Build/run with the
-  native toolchain (`gcc`/`as`) and validate portable output with
-  `wasm-validate` / `wasmtime` / `node`.
+  Python, bash, or any other host-language layer in the repo. Build/run with
+  the native toolchain (`gcc`/`as`) and validate portable output with
+  `wasm-validate` / `wasmtime` / `node`. Helper tools that were historically
+  written in Python/bash have been retired and reimplemented in assembly.
 - One-pass friendly design to keep the compiler simple and bootstrappable.
 - Ahead-of-time compile to binary (`.wasm` / `.s` / SIMD) is the primary path.
 
@@ -97,11 +113,14 @@ The base must remain **more capable than raw assembly** for the target domains
 - `self.create(...)` and `self.update(...)` for living patching of the language
   and its own modules.
 - Self-diagnostic: bug detection, patch generation, git upload.
-- A local **self-updater bot** (`tools/sakum_bot.sh` + `tools/serve.py`) reads
+- A local **self-updater bot** (`tools/sakum_bot.sh`, triggered by the native
+  raw-assembly server `tools/serve.s` via `tools/serve.sh`) reads
   `learn.md`/`memory.md`, webfetch-checks programming-language updates, writes
-  self-patches to `self/patches/`, recompiles the `assembly/` core, and rolls
-  back on any compile failure (see `tools/README.md`). Triggered by a timer,
-  a `POST /update` webhook, or a WebSocket frame — all runnable locally.
+  self-patches to `self/patches/`, recompiles the x86-64 `assembly/` core, and
+  rolls back on any compile failure (see `tools/README.md`). Triggered by a
+  timer pulse, a `POST /update` webhook, or a `GET /status` poll — all runnable
+  locally. (The old Python `tools/serve.py` was retired; `serve.s` is its
+  machine-code replacement, per §2 no-host-language doctrine.)
 
 ### 1.12 ब्रम्ह (bramann / गुमन) — the web-crawler activity
 - `ब्रम्ह` (literally "to wander / spider") is the Sakum web-crawler + web-scraper
@@ -153,21 +172,38 @@ The base must remain **more capable than raw assembly** for the target domains
 - The portable bytecode VM carries vector values natively (VEC / VGET / VSET).
 - The source program stays portable; the back end chooses the vector width.
 
-### 1.13 Database engine (`सञ्चय` / sanchay)
+### 1.13 Database engine (`sanchay`)
 
-- A single machine-level store that unifies four primitive data shapes, all
+- A single machine-level store that unifies **six** primitive data shapes, all
   addressable by the binary-hash query engine (`#what`) and portable across
-  ISAs/OSes via `platform.inc`:
-  - **`केच` (`kech`)** — in-memory key/value store (Redis / Valkey style),
+  ISAs/OSes via `platform.inc`. Implemented in `assembly/sakum_db.s`:
+  - **`kech`** — in-memory key/value store (Redis / Valkey style),
     sutra-encrypted at rest, optionally persisted.
-  - **`वेक्टर` (`vektor`)** — vector index for ANN search (Milvus style);
-    distance computed by the SIMD back end (AVX2/AVX-512/NEON/RVV).
-  - **`अनुक्र` (`anukra`)** — vectorless classical index (B-tree / inverted)
-    for scalars, strings, and structs.
-  - **`ग्रन्थ` (`grantha`)** — property graph store with typed edges and
-    `नाडी` (nerve) driven traversal.
-- All four share the `हृदय` (heart) allocator and `सूत्र` (sutra) crypto, so
+  - **`vektor`** — vector index for ANN search (Milvus style); distance
+    computed by the SIMD back end (AVX2/AVX-512/NEON/RVV).
+  - **`anukra`** — vectorless classical index (B-tree / inverted) for scalars,
+    strings, and structs.
+  - **`sthit`** — **stateful** store: mutable, persisted, addressable by hash;
+    keeps state across pulses (the language's durable memory).
+  - **`asthit`** — **stateless** store: pure key->value, no persistence, no
+    mutation of prior state; used for request-scoped / side-effect-free data.
+  - **`grantha`** — property graph store with typed edges and `naadi` (nerve)
+    driven traversal.
+- All six share the `hriday` (heart) allocator and `sutra` (sutra) crypto, so
   there is one memory model and one security model. Spec: `spec/spec_db.sakum`.
+
+### 1.14 Systems engineering (`तन्त्र` / tantra)
+
+- Algorithm + data structure + system design are written **once** in Sakum and
+  lowered to every target in the matrix, all addressable by `#what` and sharing
+  the `हृदय` allocator + `सूत्र` crypto + `नाडी` bus:
+  - **ISA:** x86-64 (AVX2/AVX-512), ARM64 (NEON), RISC-V rv64 (RVV).
+  - **OS:** macOS, Linux, Windows.
+- Primitives demonstrated in `assembly/sakum_sys.s` (+ `_arm64`, `_riscv64`):
+  `अन्वेष` (binary search), `सारणी` (open-addressing hash table), `चक्र`
+  (ring buffer / producer-consumer on the nerve bus). The SIR form (`stha`/
+  `chot`/`yoj`) is the portable hub the back ends lower from. Spec:
+  `spec/spec_sys.sakum`.
 
 ---
 
@@ -175,6 +211,13 @@ The base must remain **more capable than raw assembly** for the target domains
 
 - Do **not** depend on a foreign high-level runtime to (re)build the core.
   Bootstrap must reach self-hosting from machine-level code only.
+- Do **not** use a foreign host language (Python, bash, Go, Rust, C, ...)
+  anywhere in the project — not for the core, not for libraries, not for the
+  engine, not for the kernel, not for the database, and not for helper tools.
+  Anything the project needs that does not yet exist at machine level MUST be
+  created at machine level (raw x86-64 / ARM64 / RISC-V assembly). The old
+  `serve.py`, `gen_sir.sh`, and the `sakum_tex.py` transpiler were retired and
+  reimplemented in assembly for this reason.
 - Do **not** silently drop security checks in production (Hoare: life-jacket at
   sea, not on dry land).
 - Do **not** repeat rules in this document — align and fix, never duplicate.
@@ -202,6 +245,9 @@ assembly/                      raw x86-64 machine-level core (no host language)
    sakum_quantum.s (planned)  QCB1 quantum-circuit binary emitter
    sakum_arm.s    (planned)    aarch64 NEON back end
    sakum_db.s     (planned)    सञ्चय: kech/vektor/anukra/grantha unified store
+   sakum_sys.s     (planned)    तन्त्र: binary search + hash table + ring buffer (x86_64)
+   sakum_sys_arm64.s   (planned) तन्त्र ARM64 NEON port
+   sakum_sys_riscv64.s (planned) तन्त्र RISC-V rv64 + RVV port
  ```
 
 Pipeline (all in assembly):
@@ -231,38 +277,126 @@ host-language) layer. The assembly core is the bootstrap.
 
 ## 5. Keyword glossary
 
-| Sakum (Devanagari) | ASCII alias | Meaning |
+ | Sakum (Devanagari) | Hinglish spelling | Meaning |
 |---|---|---|
-| आरम्भ | begin | program / main block |
-| नाम | let | declare variable |
-| क्रिया | fn | function |
-| यदि | if | conditional |
-| अन्यथा | else | alternative |
-| यावत् | while | loop |
-| पर्यन्तम् | for | counted loop |
-| प्रत्यागम | return | return |
-| सत्य | true | boolean true |
-| असत्य | false | boolean false |
-| शून्य | null | nil |
-| लेख | print | output |
-| हृदय | heart | engine allocator |
-| स्पन्द | pulse | engine tick |
-| नाडी | nerve | signal bus |
-| सूत्र | sutra | creator encryption key (user-installed) |
-| वर्ग | varga | declare a class (object-oriented, vtable dispatch) |
-| व्याख्या | vyakhya | explain an error code into a human message |
-| स्वाध्याय | svadhyaya | self-learn: log a fault, return an Elixir-style patch note |
-| संतृप्तिः | saturate | saturating arithmetic (overflow-safe) |
-| वेक्टर | vektor | declare a SIMD vector |
-| अङ्क | ank | integer vector element type |
-| परिपथ | circuit | build a quantum circuit |
-| द्वार | gate | apply a quantum gate |
-| माप | measure | measure a qubit / circuit |
-| ब्रम्ह | bramann | web-crawler / web-scraper activity (गुमन: to wander) |
-| सञ्चय | sanchay | the unified database engine (store) |
-| केच | kech | key/value store (Redis / Valkey style) |
-| अनुक्र | anukra | vectorless classical index (B-tree / inverted) |
-| ग्रन्थ | grantha | graph store (property graph + typed edges) |
+ | आरम्भ | aarambh | program / main block |
+ | नाम / चर | naam / char | declare variable |
+ | क्रिया / सूत्र | kriya / sutra | function |
+ | यदि | yadi | conditional |
+ | अन्यथा / anyotha | anyatha / anyotha | alternative |
+ | यावत् / जबतक | yavat / jabtak | loop |
+ | पर्यन्तम् | paryantam | counted loop |
+ | प्रत्यागम / वापस | pratyagam / vapsa | return |
+ | सत्य | satya | boolean true |
+ | असत्य | asatya | boolean false |
+ | शून्य | shunya | nil |
+ | लेख / मुद्रण | lekh / mudran | output |
+ | हृदय | hriday | engine allocator |
+ | स्पन्द | spand | engine tick |
+ | नाडी | naadi | signal bus |
+ | सूत्र | sutra | creator encryption key (user-installed) |
+ | वर्ग | varg | declare a class (object-oriented, vtable dispatch) |
+ | व्याख्या | vyakhya | explain an error code into a human message |
+ | स्वाध्याय | svadhyaya | self-learn: log a fault, return an Elixir-style patch note |
+ | संतृप्तिः | santripti | saturating arithmetic (overflow-safe) |
+ | वेक्टर | vektor | declare a SIMD vector |
+ | अङ्क | ank | integer vector element type |
+ | परिपथ | paripath | build a quantum circuit |
+ | द्वार | dvar | apply a quantum gate |
+ | माप | map | measure a qubit / circuit |
+ | ब्रम्ह | brahma | web-crawler / web-scraper activity (गुमन: to wander) |
+ | परीक्षा | pariksha | self-test block (परीक्षा { ... }) |
+ | और / अथवा | aur / athava | logical and / or |
+ | लंबाई | lambai | length (len) of a vector/string |
+ | सञ्चय | sanchay | the unified database engine (store) |
+ | केच | kech | key/value store (Redis / Valkey style) |
+ | अनुक्र | anukra | vectorless classical index (B-tree / inverted) |
+ | ग्रन्थ | grantha | graph store (property graph + typed edges) |
+ | तन्त्र | tantra | systems engineering: algorithm + data structure + system design |
+ | अन्वेष | anvesh | search / lookup algorithm (e.g. binary search) |
+ | सारणी | sarani | hash table / associative data structure |
+| चक्र | chakra | ring buffer (system-design queue on the nerve bus) |
+
+---
+
+## 6. Domain keyword registry (Sanskrit-inspired, by subsystem)
+
+The 148 keywords below are reserved across the **entire** Sakum ecosystem and
+implemented as machine-level library functions in
+`assembly/sakum_lib_domains.s` (x86-64 / ARM64 / RISC-V) plus the registry in
+`assembly/sakum_keywords.s`. They are grouped by domain, not by syntax, and are
+reserved on every target (Windows / macOS / Linux × x86-64 / ARM64 / RISC-V).
+
+### Types & Objects
+`vastu` object · `rupa` type · `akruti` struct · `samuha` collection · `gan`
+group · `kosh` map/dict · `shrunkhala` list · `rekha` array · `bindu` point ·
+`jod` tuple · `prakar` variant/enum · `lakshan` trait/interface
+
+### Functions
+`ahvaan` invoke · `pravah` pipeline · `sangrah` collect · `vibhaj` split ·
+`milan` merge · `parivartan` transform · `anukram` sequence · `punaravartan`
+recursion · `pratinidhi` delegate · `vistrit` expand · `sankuchit` reduce
+
+### Concurrency
+`sutra` thread · `prakriya` process · `samayojan` sync · `samantar` parallel ·
+`sandesh` message · `pravahan` stream · `vahini` channel · `prerak` sender ·
+`grahak` receiver · `pratiksha` await · `jagrit` wake · `nidra` sleep
+
+### Memory
+`smriti` memory · `smritikosh` cache · `aavantan` allocate · `mukti` free ·
+`sthaan` address · `suchak` pointer · `sandarbh` reference · `sthir` immutable
+· `chal` mutable · `raksha` protection
+
+### Filesystem
+`granth` file · `granthagar` directory · `path` · `patan` read · `lekhan`
+write · `jodan` append · `pratilipi` copy · `sthanantar` move · `naamkaran`
+rename · `vinash` delete
+
+### Networking
+`jaal` network · `sampark` connect · `viyog` disconnect · `pravesh` login ·
+`nirgam` logout · `agrah` request · `uttar` response · `prasaran` broadcast ·
+`grahan` receive · `prasthaan` send · `dvaar` port · `marg` route
+
+### AI
+`prajna` intelligence · `buddhi` reasoning · `chintan` inference · `smaran`
+recall · `adhigam` learning · `abhyas` training · `nirnay` decision ·
+`drishti` vision · `shravan` audio · `vak` speech · `bhasha` language ·
+`manan` reflection · `kalpana` imagination · `chetana` awareness · `sankalp`
+planning
+
+### Robotics
+`hasta` actuator · `netra` camera · `karna` mic · `charan` locomotion ·
+`gati` movement · `disha` direction · `veg` speed · `santulan` balance ·
+`spandan` sensor event · `sparsh` touch
+
+### Quantum
+`anu` quantum · `kan` particle · `adhisthiti` superposition · `samyojan`
+entanglement · `tarang` wave · `kaksha` orbital/state · `kampan` oscillation ·
+`urja` energy · `pariman` measurement · `nirikshan` observe
+
+### Compiler
+`varna` token · `pad` symbol · `vakya` syntax · `artha` semantics ·
+`vishleshan` parser · `sankalan` compile · `nirman` build · `bandhan` link ·
+`chalana` execute · `sudhar` optimize · `pariksha` validate · `utpadan`
+generate
+
+### Security
+`raksha` secure · `gopan` encrypt · `vigopan` decrypt · `praman` authenticate
+· `adhikar` authorize · `mudra` signature · `kunji` key · `gupt` private ·
+`sarvajanik` public · `kavach` shield/firewall
+
+### Distributed
+`mandal` cluster · `ganana` compute · `vitaran` distribute · `samanvay`
+coordinate · `samvedan` synchronize · `pratinidhi` replica · `nayak` leader ·
+`anuyayi` follower · `matdaan` consensus · `sthirata` consistency
+
+### Living System (reserved)
+`hriday` Heart (resource mgr) · `manas` Mind (planner) · `buddhi` Reasoning
+engine · `chetana` Conscious context · `smriti` Long-term memory · `sankalp`
+Goal/intent · `prerna` Motivation/trigger · `indriya` Sensor interface ·
+`drishti` Vision subsystem · `vak` Speech subsystem · `shravan` Audio
+subsystem · `sparsh` Touch subsystem · `prana` Runtime lifecycle · `atma` Root
+runtime identity
 
 ---
 

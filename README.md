@@ -1,10 +1,12 @@
 # Sakum Lang
 
-Sanskrit-keyword systems language with a self-aware engine, built-in scientific/quantum
-core, binary-hash query engine, self-rewriting `self` library, and a creator-owned
-hash key (सूत्र). Implemented as **raw machine-level assembly** (x86-64, AT&T/GAS
-syntax) — there is no Python or other host-language layer. Per `SAKUM_LANG.md`,
-the core emits native code and portable WASM binaries.
+Sakum Lang is a **Hinglish-keyword** (romanized Sanskrit, typeable ASCII) systems
+language with a self-aware engine, built-in scientific/quantum core, binary-hash
+query engine, self-rewriting `self` library, and a creator-owned hash key (sutra).
+Implemented as **raw machine-level assembly** (x86-64 / ARM64 / RISC-V) — there is
+**no Python, bash, or any other host-language layer anywhere in the project**
+(per `SAKUM_LANG.md` §2). The core emits native code and portable WASM binaries.
+Keyword spelling is defined in `SAKUM_HINGLISH.md`.
 
 ## Build & run (native toolchain only)
 
@@ -17,9 +19,6 @@ gcc -arch x86_64 assembly/sakum_webhook.s -o /tmp/wh && /tmp/wh          # from-
 gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen && /tmp/wasmgen > /tmp/out.wasm
 wasm-validate /tmp/out.wasm                                          # check the emitted WASM
 node -e "WebAssembly.instantiate(require('fs').readFileSync('/tmp/out.wasm')).then(x=>console.log(x.instance.exports.run()))"
-
-# Compiler pipeline (lexer -> parser -> IR -> fold -> codegen -> eval)
-gcc -arch x86_64 assembly/sakum_pipeline.s -o /tmp/pl && /tmp/pl    # -> result: 186
 ```
 
 All artifacts are machine code or binary (`.wasm`). SIMD (`AVX2`/`AVX-512`/`NEON`/`RVV`)
@@ -48,41 +47,13 @@ Knowledge/     binary-hash-addressable knowledge tree (sciences + engineering)
 research.md    ब्रम्ह (crawler) research log — what it learned from each sphere
 upgrade.md     what the crawler/self engine improved in its own core
 update.md      live self-update cycle log (what shipped this session)
-tools/         self-updater bot + native trigger server + CLI + generators
-               gen_kb.sh     -> builds Knowledge/ binary-hash tree
-               fetch_updates.sh (webfetch) -> checks PL update sources
-               sakum_bot.sh  -> reads learn.md/memory.md, self-patches, recompiles
-               serve.s/.sh    -> NATIVE trigger server (raw x86-64, no host language):
-                                 POST /update, GET /status, GET /nerve, GET / (webpage)
-               sakum.s/.sh    -> raw x86-64 CLI agent (dispatcher + interactive REPL)
-site/          the self-updater web dashboard (index.html, app/, tutorials/)
+tools/         native build launchers + assembly server (NO host-language tools)
+               serve.sh      -> builds + runs assembly/sakum_webhook.s (POST /update)
+               sakum.sh      -> builds + runs tools/sakum.s (native Sakum CLI)
+               build_trackers.sh / build_app.sh -> compile assembly targets
 SAKUM_LANG.md design doctrine (DO / DON'T / roadmap)
+SAKUM_HINGLISH.md canonical Hinglish keyword glossary (single source)
 ```
-
-## Run the Sakum CLI (agent)
-
-`tools/sakum.s` is a from-scratch **raw x86-64 assembly** CLI (in the spirit of
-opencode) — no host-language interpreter. The launcher compiles it and runs it
-from the repo root:
-
-```bash
-bash tools/sakum.sh                 # interactive REPL  (sakum> prompt; exit/quit to leave)
-bash tools/sakum.sh help            # list commands
-bash tools/sakum.sh run             # compile + run the pipeline demo (result: 186)
-bash tools/sakum.sh serve           # background native trigger server on :8080 (persists)
-bash tools/sakum.sh self            # fire a self-update (POST /update, or run bot if no server)
-bash tools/sakum.sh gen simd        # generate a Sakum library for a topic
-bash tools/sakum.sh build           # build all assembly cores + trackers
-```
-
-Once `serve` is running, open the dashboard in a browser:
-
-```bash
-open http://127.0.0.1:8080/        # serves site/index.html
-```
-
-Other live endpoints: `GET /status` (dumps `memory.md`), `GET /nerve` (nerve-bus
-firing counts), `POST /update` (runs one bot cycle).
 
 ## Status
 
@@ -90,28 +61,22 @@ Machine-level core (phase 2 of roadmap reached: the language bootstraps itself i
 assembly). Additional ISA back ends (aarch64 NEON, RISC-V RVV) and the live quantum
 backend are in progress — see `SAKUM_LANG.md` §4.
 
-## Self-updater bot (local, self-hosting)
+## Self-updater bot (local, self-hosting, machine-level only)
 
 A small agent that keeps the Sakum core current with upstream programming-language
-developments and rewrites its own code through the `self` engine. It is **tooling**
-(outside the language core) but every patch it emits must compile to raw assembly.
+developments and rewrites its own code through the `self` engine. It runs as
+**raw assembly** — no Python, no bash script performing project logic. Every
+patch it emits must compile to raw assembly (`assembly/sakum_*.s`).
 
 ```
-# one cycle (read learn.md + memory.md, webfetch updates, self-patch, recompile)
-bash tools/sakum_bot.sh            # live
-bash tools/sakum_bot.sh --dry-run # decide only, no patch/recompile
-bash tools/sakum_bot.sh --once    # single pulse
-
-# local webhook + websocket server (stdlib python, no deps)
-python3 tools/serve.py --http 8080
-python3 tools/serve.py --http 8080 --pulse 3600   # also a timer pulse
-#   POST /update        -> publishes webhook.update on the nerve bus -> cycle
+# run the from-scratch assembly webhook server (POST /update + GET /status)
+bash tools/serve.sh 8080 600        # port 8080, pulse every 600s
+#   POST /update        -> publishes webhook.update on the naadi bus -> cycle
 #   GET  /status        -> dumps memory.md
-#   GET  /nerve         -> nerve bus channels + last signals
-#   GET  /ws (ws://…)  -> any frame publishes ws.trigger -> cycle, pulse back
+#   GET  /nerve         -> naadi bus channels + last signals
 curl -X POST http://127.0.0.1:8080/update
 
-# OS-native timer (macOS launchd) — pulses even with serve.py stopped
+# OS-native timer (macOS launchd) — pulses even with the server stopped
 cp tools/com.sakum.bot.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sakum.bot.plist
 launchctl start com.sakum.bot
@@ -124,11 +89,10 @@ mistake to the binary-hash ledger (`query_logs/type_1_memory.jsonl`). See
 `tools/README.md` for the full contract.
 
 The bot stays **keep-alive and silently learning**: a macOS launchd timer
-(`tools/com.sakum.bot.plist`, `StartInterval=600`, `KeepAlive` on failure) or
-`serve.py --pulse N` runs a cycle forever. Each cycle the bot **generates real,
-compilable library functions** (`tools/gen_lib.sh` → `assembly/sakum_lib_*.s`
-+ `examples/lib_*.sakum`), recompiles the whole core, and **rolls back + self-
-heals** any patch that fails to build. The `ब्रम्ह` crawler
+(`tools/com.sakum.bot.plist`, `StartInterval=600`, `KeepAlive` on failure) runs a
+cycle forever. Each cycle the bot **generates real, compilable library functions**
+in `assembly/sakum_lib_*.s` + `examples/lib_*.sakum`, recompiles the whole core,
+and **rolls back + self-heals** any patch that fails to build. The `brahma` crawler
 (`assembly/sakum_bramann.s`) quantum-learns across spheres each pulse, logging
 research to `research.md` and improvements to `upgrade.md` / `update.md`. A
 from-scratch assembly webhook receiver (`assembly/sakum_webhook.s`) also answers
@@ -143,12 +107,11 @@ cp tools/com.sakum.bot.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.sakum.bot.plist
 launchctl start com.sakum.bot
 
-# or run the local webhook + websocket + timer server
-python3 tools/serve.py --http 8080 --pulse 600
+# or run the local assembly webhook + timer server
+bash tools/serve.sh 8080 600
 ```
 
 To stop: `launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist`
-(respectively `C-c` serve.py).
 
 
 # both the method will work user can call any to any place 
@@ -440,11 +403,12 @@ Serving Millions of Users
 
 ---
 
-# Phase 1 – Python
+# Phase 1 – Foundations
 
 Before AI comes programming.
 
-Learn
+Learn (in Sakum Lang or your host language of choice — the Sakum project
+itself contains no foreign host-language code, per SAKUM_LANG.md §2):
 
 * Variables
 * Functions
@@ -1130,10 +1094,10 @@ Since you've mentioned you want to build your own open-source AI system and you'
 
 The progression would look like this:
 
-1. Python for AI (practical)
+1. Programming foundations for AI (practical)
 2. Math with visual examples
 3. Build a neuron from scratch
-4. Build a neural network using NumPy
+4. Build a neural network from first principles
 5. Implement backpropagation yourself
 6. Build a tokenizer
 7. Build attention

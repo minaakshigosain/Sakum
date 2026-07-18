@@ -2,139 +2,139 @@
 # and bug-resolve subsystem (Elixir-style friendly diagnostics + auto-patch).
 #
 # Built-in engines used:
-#   व्याख्या  (vyakhya)   -> explain an error code into a message
-#   स्वाध्याय (svadhyaya) -> self-learn: log the fault, return a patch note
-#   हृदय    (heart)       -> memory-safe allocator (bounds + double-free guard)
-#   नाडी     (nerve)       -> signal bus for diagnostics
-#   स्पन्द    (pulse)       -> periodic tick that drives the learning loop
+#   vyakhya  (vyakhya)   -> explain an error code into a message
+#   svadhyaya (svadhyaya) -> self-learn: log the fault, return a patch note
+#   hriday    (heart)       -> memory-safe allocator (bounds + double-free guard)
+#   naadi     (nerve)       -> signal bus for diagnostics
+#   spand    (pulse)       -> periodic tick that drives the learning loop
 #
 # Each example shows a typical fault and how Sakum compiles it into a clear
 # explanation and a concrete fix the engine learned from past mistakes.
 
 # ===================== 1-10: NULL DEREF (ERR1) =======================
-नाम e1 = vyakhya(1);  लेख(e1);
-नाम p1 = svadhyaya(1); लेख(p1);
-नाम x1 = हृदय.alloc(8);
-यदि (x1 == शून्य) { लेख("safe: allocation guarded"); }
-नाम d1 = nerve.emit("null_deref_detected", x1);
-लेख(svadhyaya(1));
-लेख(vyakhya(1));
-नाम g1 = pulse.tick(); लेख(g1);
-नाम m1 = heart.used(x1); लेख(m1);
-नाम n1 = nerve.peek("null_deref_detected"); लेख(n1);
-नाम f1 = svadhyaya(1); लेख(f1);
+naam e1 = vyakhya(1);  lek(e1);
+naam p1 = svadhyaya(1); lek(p1);
+naam x1 = hriday.alloc(8);
+yadi (x1 == shunya) { lek("safe: allocation guarded"); }
+naam d1 = nerve.emit("null_deref_detected", x1);
+lek(svadhyaya(1));
+lek(vyakhya(1));
+naam g1 = pulse.tick(); lek(g1);
+naam m1 = heart.used(x1); lek(m1);
+naam n1 = nerve.peek("null_deref_detected"); lek(n1);
+naam f1 = svadhyaya(1); lek(f1);
 
 # ===================== 11-20: BOUNDS (ERR2) =========================
-नाम e2 = vyakhya(2);  लेख(e2);
-नाम p2 = svadhyaya(2); लेख(p2);
-वेक्टर ank D[8];
-यदि (8 < 8) { लेख(D[8]); } अन्यथा { लेख("bounds guard: index 8 rejected"); }
-नाम c2 = simd_info(); लेख(c2);
-लेख(svadhyaya(2));
-नाम q2 = query("why index out of bounds?"); लेख(q2);
-लेख(vyakhya(2));
-नाम b2 = heart.bounds(D, 8); लेख(b2);
-नाम s2 = simd(8); लेख(s2);
-नाम n2 = nerve.emit("bounds_fault", 8); लेख(n2);
-नाम t2 = pulse.tick(); लेख(t2);
-नाम r2 = svadhyaya(2); लेख(r2);
+naam e2 = vyakhya(2);  lek(e2);
+naam p2 = svadhyaya(2); lek(p2);
+vektor ank D[8];
+yadi (8 < 8) { lek(D[8]); } anyatha { lek("bounds guard: index 8 rejected"); }
+naam c2 = simd_info(); lek(c2);
+lek(svadhyaya(2));
+naam q2 = query("why index out of bounds?"); lek(q2);
+lek(vyakhya(2));
+naam b2 = heart.bounds(D, 8); lek(b2);
+naam s2 = simd(8); lek(s2);
+naam n2 = nerve.emit("bounds_fault", 8); lek(n2);
+naam t2 = pulse.tick(); lek(t2);
+naam r2 = svadhyaya(2); lek(r2);
 
 # ===================== 21-30: DOUBLE FREE (ERR3) =====================
-नाम e3 = vyakhya(3);  लेख(e3);
-नाम p3 = svadhyaya(3); लेख(p3);
-नाम h3 = हृदय.alloc(16);
-नाम k3 = हृदय.free(h3); लेख(k3);          # 0 ok
-नाम k3b = हृदय.free(h3); लेख(k3b);        # -1 double free
-लेख(svadhyaya(3));
-लेख(vyakhya(3));
-नाम n3 = nerve.emit("double_free", h3); लेख(n3);
-नाम t3 = pulse.tick(); लेख(t3);
-नाम g3 = heart.used(h3); लेख(g3);
-नाम q3 = query("double free resolved?"); लेख(q3);
-नाम m3 = svadhyaya(3); लेख(m3);
+naam e3 = vyakhya(3);  lek(e3);
+naam p3 = svadhyaya(3); lek(p3);
+naam h3 = hriday.alloc(16);
+naam k3 = hriday.free(h3); lek(k3);          # 0 ok
+naam k3b = hriday.free(h3); lek(k3b);        # -1 double free
+lek(svadhyaya(3));
+lek(vyakhya(3));
+naam n3 = nerve.emit("double_free", h3); lek(n3);
+naam t3 = pulse.tick(); lek(t3);
+naam g3 = heart.used(h3); lek(g3);
+naam q3 = query("double free resolved?"); lek(q3);
+naam m3 = svadhyaya(3); lek(m3);
 
 # ===================== 31-40: OVERFLOW (ERR4) ========================
-नाम e4 = vyakhya(4);  लेख(e4);
-नाम p4 = svadhyaya(4); लेख(p4);
-नाम sat = संतृप्तिः(2147483647 + 1); लेख(sat);  # saturating add
-लेख(svadhyaya(4));
-लेख(vyakhya(4));
-नाम n4 = nerve.emit("overflow", 2147483647); लेख(n4);
-नाम t4 = pulse.tick(); लेख(t4);
-नाम q4 = query("explain overflow fix"); लेख(q4);
-नाम r4 = heart.check(h3); लेख(r4);
-नाम m4 = svadhyaya(4); लेख(m4);
-नाम x4 = संतृप्तिः(-2147483648 - 1); लेख(x4);
+naam e4 = vyakhya(4);  lek(e4);
+naam p4 = svadhyaya(4); lek(p4);
+naam sat = santripti(2147483647 + 1); lek(sat);  # saturating add
+lek(svadhyaya(4));
+lek(vyakhya(4));
+naam n4 = nerve.emit("overflow", 2147483647); lek(n4);
+naam t4 = pulse.tick(); lek(t4);
+naam q4 = query("explain overflow fix"); lek(q4);
+naam r4 = heart.check(h3); lek(r4);
+naam m4 = svadhyaya(4); lek(m4);
+naam x4 = santripti(-2147483648 - 1); lek(x4);
 
 # ===================== 41-50: TYPE MISMATCH (ERR5) ===================
-नाम e5 = vyakhya(5);  लेख(e5);
-नाम p5 = svadhyaya(5); लेख(p5);
-वर्ग Vec2 { नाम x; नाम y; क्रिया len() { प्रत्यागम sqrt(x*x + y*y); } }
-नाम v5 = Vec2(3, 4); लेख(v5.len());
-लेख(svadhyaya(5));
-लेख(vyakhya(5));
-नाम n5 = nerve.emit("type_mismatch", 0); लेख(n5);
-नाम t5 = pulse.tick(); लेख(t5);
-नाम q5 = query("why vtable mismatch?"); लेख(q5);
-नाम m5 = svadhyaya(5); लेख(m5);
-नाम u5 = unify_vtable(Vec2); लेख(u5);
+naam e5 = vyakhya(5);  lek(e5);
+naam p5 = svadhyaya(5); lek(p5);
+varg Vec2 { naam x; naam y; kriya len() { vapsa sqrt(x*x + y*y); } }
+naam v5 = Vec2(3, 4); lek(v5.len());
+lek(svadhyaya(5));
+lek(vyakhya(5));
+naam n5 = nerve.emit("type_mismatch", 0); lek(n5);
+naam t5 = pulse.tick(); lek(t5);
+naam q5 = query("why vtable mismatch?"); lek(q5);
+naam m5 = svadhyaya(5); lek(m5);
+naam u5 = unify_vtable(Vec2); lek(u5);
 
 # =================== 51-60: SELF-LEARN LOOP ==========================
-नाम learn1 = svadhyaya(1); लेख(learn1);
-नाम learn2 = svadhyaya(2); लेख(learn2);
-नाम learn3 = svadhyaya(3); लेख(learn3);
-नाम learn4 = svadhyaya(4); लेख(learn4);
-नाम learn5 = svadhyaya(5); लेख(learn5);
-नाम ledger = self.ledger(); लेख(ledger);
-नाम count = self.mistakes(); लेख(count);
-नाम best = self.best_patch(); लेख(best);
-नाम tick = स्पन्द(); लेख(tick);
-नाम pulse2 = pulse.tick(); लेख(pulse2);
+naam learn1 = svadhyaya(1); lek(learn1);
+naam learn2 = svadhyaya(2); lek(learn2);
+naam learn3 = svadhyaya(3); lek(learn3);
+naam learn4 = svadhyaya(4); lek(learn4);
+naam learn5 = svadhyaya(5); lek(learn5);
+naam ledger = self.ledger(); lek(ledger);
+naam count = self.mistakes(); lek(count);
+naam best = self.best_patch(); lek(best);
+naam tick = spand(); lek(tick);
+naam pulse2 = pulse.tick(); lek(pulse2);
 
 # =================== 61-70: NERVE BUS ================================
-नाम s61 = nerve.emit("compile", "ok"); लेख(s61);
-नाम s62 = nerve.emit("warn", "unused var"); लेख(s62);
-नाम s63 = nerve.on("compile", vyakhya); लेख(s63);
-नाम s64 = nerve.peek("compile"); लेख(s64);
-नाम s65 = nerve.peek("warn"); लेख(s65);
-नाम s66 = nerve.clear("warn"); लेख(s66);
-नाम s67 = nerve.count(); लेख(s67);
-नाम s68 = nerve.route("fault", svadhyaya); लेख(s68);
-नाम s69 = nerve.heartbeat(); लेख(s69);
-नाम s70 = nerve.flush(); लेख(s70);
+naam s61 = nerve.emit("compile", "ok"); lek(s61);
+naam s62 = nerve.emit("warn", "unused var"); lek(s62);
+naam s63 = nerve.on("compile", vyakhya); lek(s63);
+naam s64 = nerve.peek("compile"); lek(s64);
+naam s65 = nerve.peek("warn"); lek(s65);
+naam s66 = nerve.clear("warn"); lek(s66);
+naam s67 = nerve.count(); lek(s67);
+naam s68 = nerve.route("fault", svadhyaya); lek(s68);
+naam s69 = nerve.heartbeat(); lek(s69);
+naam s70 = nerve.flush(); lek(s70);
 
 # =================== 71-80: PULSE / SCHEDULER =======================
-नाम p71 = स्पन्द(); लेख(p71);
-नाम p72 = pulse.every(100, svadhyaya); लेख(p72);
-नाम p73 = pulse.every(50, vyakhya); लेख(p73);
-नाम p74 = pulse.now(); लेख(p74);
-नाम p75 = pulse.due(); लेख(p75);
-नाम p76 = pulse.run(); लेख(p76);
-नाम p77 = pulse.learn(); लेख(p77);
-नाम p78 = pulse.stop(); लेख(p78);
-नाम p79 = pulse.heartbeat(); लेख(p79);
-नाम p80 = pulse.resume(); लेख(p80);
+naam p71 = spand(); lek(p71);
+naam p72 = pulse.every(100, svadhyaya); lek(p72);
+naam p73 = pulse.every(50, vyakhya); lek(p73);
+naam p74 = pulse.now(); lek(p74);
+naam p75 = pulse.due(); lek(p75);
+naam p76 = pulse.run(); lek(p76);
+naam p77 = pulse.learn(); lek(p77);
+naam p78 = pulse.stop(); lek(p78);
+naam p79 = pulse.heartbeat(); lek(p79);
+naam p80 = pulse.resume(); lek(p80);
 
 # =================== 81-90: QUERY ENGINE ============================
-नाम q81 = query("learn from mistake in memory"); लेख(q81);
-नाम q82 = query("memory retention"); लेख(q82);
-नाम q83 = query("why does my vector overflow?"); लेख(q83);
-नाम q84 = query("explain double free"); लेख(q84);
-नाम q85 = query("how to avoid null deref"); लेख(q85);
-नाम q86 = query("best patch for bounds fault"); लेख(q86);
-नाम q87 = query("#what 101011111110101"); लेख(q87);
-नाम q88 = query("sutra key status"); लेख(q88);
-नाम q89 = query("heartbeat"); लेख(q89);
-नाम q90 = query("self rewrite plan"); लेख(q90);
+naam q81 = query("learn from mistake in memory"); lek(q81);
+naam q82 = query("memory retention"); lek(q82);
+naam q83 = query("why does my vector overflow?"); lek(q83);
+naam q84 = query("explain double free"); lek(q84);
+naam q85 = query("how to avoid null deref"); lek(q85);
+naam q86 = query("best patch for bounds fault"); lek(q86);
+naam q87 = query("#what 101011111110101"); lek(q87);
+naam q88 = query("sutra key status"); lek(q88);
+naam q89 = query("heartbeat"); lek(q89);
+naam q90 = query("self rewrite plan"); lek(q90);
 
 # =================== 91-100: SELF REWRITE / PATCH ====================
-नाम w91 = self.create("k", 99); लेख(w91);
-नाम w92 = self.update("k", 100); लेख(w92);
-नाम w93 = self.patch(vyakhya, 2); लेख(w93);
-नाम w94 = self.patch(svadhyaya, 3); लेख(w94);
-नाम w95 = self.grow(); लेख(w95);
-नाम w96 = self.diagnose(); लेख(w96);
-नाम w97 = self.rewrite("bounds"); लेख(w97);
-नाम w98 = self.upload(); लेख(w98);
-नाम w99 = self.status(); लेख(w99);
-नाम w100 = self.bootstrap(); लेख(w100);
+naam w91 = self.create("k", 99); lek(w91);
+naam w92 = self.update("k", 100); lek(w92);
+naam w93 = self.patch(vyakhya, 2); lek(w93);
+naam w94 = self.patch(svadhyaya, 3); lek(w94);
+naam w95 = self.grow(); lek(w95);
+naam w96 = self.diagnose(); lek(w96);
+naam w97 = self.rewrite("bounds"); lek(w97);
+naam w98 = self.upload(); lek(w98);
+naam w99 = self.status(); lek(w99);
+naam w100 = self.bootstrap(); lek(w100);

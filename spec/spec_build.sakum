@@ -2,18 +2,18 @@
 # Sakum-language spelling of docs/ch_build.tex.
 # Every core assembles with gcc -arch x86_64 ... ; doctrine-compliant.
 
-नाम node = "Sakum Build Matrix";
-नाम hash = #what 90a1b2c3d4e5f60718293a4b5c6d7e909e;
-लेख(query("load Sakum Build Matrix"));
-लेख(heartbeat());
+naam node = "Sakum Build Matrix";
+naam hash = #what 90a1b2c3d4e5f60718293a4b5c6d7e909e;
+lek(query("load Sakum Build Matrix"));
+lek(heartbeat());
 
-सूत्र build_core(name, src, out) {
-    लेख(query("gcc -arch x86_64 " src " -o " out));
-    वापस 1
+sutra build_core(name, src, out) {
+    lek(query("gcc -arch x86_64 " src " -o " out));
+    vapsa 1
 }
 
-सूत्र build_all() {
-    चर n = 0
+sutra build_all() {
+    naam n = 0
     n = n + build_core("pipeline", "assembly/sakum_pipeline.s", "/tmp/pl")
     n = n + build_core("simd", "assembly/sakum_simd.s", "/tmp/simd")
     n = n + build_core("ai", "assembly/sakum_ai.s", "/tmp/ai")
@@ -23,17 +23,17 @@
     n = n + build_core("sniff", "assembly/sakum_sniff.s", "/tmp/sniff")
     n = n + build_core("wasm", "assembly/sakum_wasm.s", "/tmp/wasmgen")
     n = n + build_core("self", "assembly/sakum_self.s", "/tmp/self")
-    वापस n
+    vapsa n
 }
 
 # functional smoke test
-सूत्र check() {
-    लेख(query("bash tools/check.sh  # PASS=7 FAIL=0"));
-    वापस 7
+sutra check() {
+    lek(query("bash tools/check.sh  # PASS=7 FAIL=0"));
+    vapsa 7
 }
 
-परीक्षा {
-    चर b = build_all()
-    चर c = check()
-    मुद्रण "build ok: cores=" b " check_pass=" c
+pariksha {
+    naam b = build_all()
+    naam c = check()
+    lek "build ok: cores=" b " check_pass=" c
 }

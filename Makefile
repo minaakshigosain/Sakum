@@ -87,11 +87,13 @@ TOOLS_DIR := tools
 X86_64_TARGETS := cipher eval simd self adv pipe pipeline wasm scan sniff \
                   bramann webhook ai tracker serve sakum \
                   lib_crypto lib_quantum lib_bounds lib_overflow \
-                  lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv db
+                  lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv db sys
 
-ARM64_TARGETS := tracker_arm64 tracker_arm64_neon
+ARM64_TARGETS := tracker_arm64 tracker_arm64_neon sys_arm64
 
-ALL_TARGETS := $(X86_64_TARGETS) $(ARM64_TARGETS)
+RISCV64_TARGETS := sys_riscv64
+
+ALL_TARGETS := $(X86_64_TARGETS) $(ARM64_TARGETS) $(RISCV64_TARGETS)
 
 .PHONY: all clean test cross info $(ALL_TARGETS)
 
@@ -142,6 +144,17 @@ $(BUILD_DIR)/tracker_arm64: $(ASM_DIR)/sakum_tracker_arm64.s | $(BUILD_DIR)
 $(BUILD_DIR)/tracker_arm64_neon: $(ASM_DIR)/sakum_tracker_arm64_neon.s | $(BUILD_DIR)
 	$(CC) $(ARM64_FLAGS) $< -o $@
 
+# tantra sys kit: x86_64 (already in X86_64_TARGETS), arm64, riscv64
+$(BUILD_DIR)/sys_arm64: $(ASM_DIR)/sakum_sys_arm64.s | $(BUILD_DIR)
+	$(CC) $(ARM64_FLAGS) $< -o $@
+
+$(BUILD_DIR)/sys_riscv64: $(ASM_DIR)/sakum_sys_riscv64.s | $(BUILD_DIR)
+ifeq ($(CROSS_RISCV64),)
+	@echo "SKIP sys_riscv64: no riscv64 cross-compiler (install riscv64-linux-gnu-gcc)"
+else
+	$(CROSS_RISCV64) -march=rv64gcv -mabi=lp64d -static -nostdlib $< -o $@
+endif
+
 # ============================================================
 # Phony target aliases (make cipher -> make /tmp/sakum_build/cipher)
 # ============================================================
@@ -149,6 +162,9 @@ $(X86_64_TARGETS): %: $(BUILD_DIR)/%
 	@echo "OK  $<"
 
 $(ARM64_TARGETS): %: $(BUILD_DIR)/%
+	@echo "OK  $<"
+
+$(RISCV64_TARGETS): %: $(BUILD_DIR)/%
 	@echo "OK  $<"
 
 # ============================================================

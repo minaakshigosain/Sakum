@@ -1,17 +1,17 @@
-वेक्टर A = vec(1, 2, 3, 4);
-वेक्टर B = vec(5, 6, 7, 8);
-वेक्टर C = A + B;
-लेख(C);
+vektor A = vec(1, 2, 3, 4);
+vektor B = vec(5, 6, 7, 8);
+vektor C = A + B;
+lek(C);
 
-वेक्टर ank D[8];
-लेख(D);
+vektor ank D[8];
+lek(D);
 
-वेक्टर E = C * 2;
-लेख(E);
+vektor E = C * 2;
+lek(E);
 
 D[0] = 42;
-लेख(D[0]);
+lek(D[0]);
 
-लेख(simd_info());
+lek(simd_info());
 
-लेख(simd(1024));
+lek(simd(1024));

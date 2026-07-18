@@ -3,135 +3,135 @@
 # Covers: vectors, matrices, complex numbers, trigonometry, hyperbolic
 # functions, special functions (gamma / Bessel stubs), calculus (derivative,
 # integral, taylor), statistics, linear algebra, number theory, and LaTeX
-# rendering (लेख of a math node prints TeX). Each example is self-contained
+# rendering (lek of a math node prints TeX). Each example is self-contained
 # and uses Sakum's built-in scientific core (no library import).
 #
 # Keyword reminder:
-#   नाम = let   लेख = print   क्रिया = fn   प्रत्यागम = return
-#   वेक्टर = vektor   vec() literal   latex() -> TeX string
+#   naam = let   lek = print   kriya = fn   vapsa = return
+#   vektor = vektor   vec() literal   latex() -> TeX string
 
 # ============================ 1-10: VECTORS ============================
-नाम v1 = vec(1, 2, 3);                    लेख(v1);
-नाम v2 = vec(4, 5, 6);                    लेख(v2);
-लेख(v1 + v2);                             # vector add
-लेख(v1 - v2);                             # vector sub
-लेख(v1 * 2);                              # broadcast scalar mul
-लेख(v1 / 2);                              # broadcast scalar div
-लेख(dot(v1, v2));                         # dot product = 32
-लेख(cross(vec(1,0,0), vec(0,1,0)));      # cross = (0,0,1)
-लेख(norm(v1));                            # euclidean norm
-लेख(latex(v1));                           # TeX of a vector
+naam v1 = vec(1, 2, 3);                    lek(v1);
+naam v2 = vec(4, 5, 6);                    lek(v2);
+lek(v1 + v2);                             # vector add
+lek(v1 - v2);                             # vector sub
+lek(v1 * 2);                              # broadcast scalar mul
+lek(v1 / 2);                              # broadcast scalar div
+lek(dot(v1, v2));                         # dot product = 32
+lek(cross(vec(1,0,0), vec(0,1,0)));      # cross = (0,0,1)
+lek(norm(v1));                            # euclidean norm
+lek(latex(v1));                           # TeX of a vector
 
 # ========================= 11-20: MATRICES ============================
-नाम m1 = mat([[1,2],[3,4]]);             लेख(m1);
-नाम m2 = mat([[5,6],[7,8]]);             लेख(m2);
-लेख(m1 + m2);                             # matrix add
-लेख(m1 * m2);                             # matrix mul
-लेख(transpose(m1));                       # transpose
-लेख(det(m1));                             # determinant = -2
-लेख(inv(m1));                             # inverse
-लेख(trace(m1));                           # trace = 5
-लेख(eigenvals(m1));                       # eigenvalues
-लेख(latex(m1));                           # TeX of a matrix
+naam m1 = mat([[1,2],[3,4]]);             lek(m1);
+naam m2 = mat([[5,6],[7,8]]);             lek(m2);
+lek(m1 + m2);                             # matrix add
+lek(m1 * m2);                             # matrix mul
+lek(transpose(m1));                       # transpose
+lek(det(m1));                             # determinant = -2
+lek(inv(m1));                             # inverse
+lek(trace(m1));                           # trace = 5
+lek(eigenvals(m1));                       # eigenvalues
+lek(latex(m1));                           # TeX of a matrix
 
 # ======================= 21-30: COMPLEX NUMBERS =======================
-नाम z1 = cplx(1, 2);                     लेख(z1);           # 1+2i
-नाम z2 = cplx(3, -1);                    लेख(z2);           # 3-i
-लेख(z1 + z2);                            # complex add
-लेख(z1 * z2);                            # complex mul
-लेख(conj(z1));                           # conjugate
-लेख(abs(z1));                            # modulus
-लेख(arg(z1));                            # phase angle
-लेख(exp(z1));                            # complex exp
-लेख(sqrt(z1));                           # complex sqrt
-लेख(latex(z1));                          # TeX of a complex
+naam z1 = cplx(1, 2);                     lek(z1);           # 1+2i
+naam z2 = cplx(3, -1);                    lek(z2);           # 3-i
+lek(z1 + z2);                            # complex add
+lek(z1 * z2);                            # complex mul
+lek(conj(z1));                           # conjugate
+lek(abs(z1));                            # modulus
+lek(arg(z1));                            # phase angle
+lek(exp(z1));                            # complex exp
+lek(sqrt(z1));                           # complex sqrt
+lek(latex(z1));                          # TeX of a complex
 
 # ======================= 31-40: TRIGONOMETRY ==========================
-नाम pi = 3.141592653589793;
-लेख(sin(pi/2));                          # 1
-लेख(cos(0));                             # 1
-लेख(tan(pi/4));                          # 1
-लेख(asin(1));                            # pi/2
-लेख(acos(0));                            # pi/2
-लेख(atan(1));                            # pi/4
-लेख(sinh(1));                            # hyperbolic sin
-लेख(cosh(0));                            # 1
-लेख(tanh(1));                            # hyperbolic tan
-लेख(latex(sin(x)));                      # TeX sin(x)
+naam pi = 3.141592653589793;
+lek(sin(pi/2));                          # 1
+lek(cos(0));                             # 1
+lek(tan(pi/4));                          # 1
+lek(asin(1));                            # pi/2
+lek(acos(0));                            # pi/2
+lek(atan(1));                            # pi/4
+lek(sinh(1));                            # hyperbolic sin
+lek(cosh(0));                            # 1
+lek(tanh(1));                            # hyperbolic tan
+lek(latex(sin(x)));                      # TeX sin(x)
 
 # ======================= 41-50: HYPERBOLIC / INVERSE =================
-लेख(asinh(1));
-लेख(acosh(2));
-लेख(atanh(0.5));
-लेख(csch(1));
-लेख(sech(0));
-लेख(coth(1));
-लेख(deg2rad(180));                       # pi
-लेख(rad2deg(pi));                        # 180
-लेख(sec(pi/3));                          # 2
-लेख(csc(pi/6));                          # 2
+lek(asinh(1));
+lek(acosh(2));
+lek(atanh(0.5));
+lek(csch(1));
+lek(sech(0));
+lek(coth(1));
+lek(deg2rad(180));                       # pi
+lek(rad2deg(pi));                        # 180
+lek(sec(pi/3));                          # 2
+lek(csc(pi/6));                          # 2
 
 # ======================= 51-60: CALCULUS =============================
-क्रिया f(x) { प्रत्यागम x*x; }
-लेख(deriv(f, 3));                        # derivative ~6
-लेख(integrate(f, 0, 4));                 # integral ~21.33
-लेख(limit(f, 0));                        # limit -> 0
-लेख(taylor(f, 0, 4));                    # taylor series
-क्रिया g(x) { प्रत्यागम sin(x); }
-लेख(deriv(g, 0));                        # cos(0)=1
-लेख(integrate(g, 0, pi));                # 2
-लेख(gradient(vec(x,y) -> x*x+y*y, vec(1,1)));   # (2,2)
-लेख(hessian(vec(x,y) -> x*x+y*y));       # [[2,0],[0,2]]
-लेख(latex(deriv(f(x), x)));              # TeX d/dx
+kriya f(x) { vapsa x*x; }
+lek(deriv(f, 3));                        # derivative ~6
+lek(integrate(f, 0, 4));                 # integral ~21.33
+lek(limit(f, 0));                        # limit -> 0
+lek(taylor(f, 0, 4));                    # taylor series
+kriya g(x) { vapsa sin(x); }
+lek(deriv(g, 0));                        # cos(0)=1
+lek(integrate(g, 0, pi));                # 2
+lek(gradient(vec(x,y) -> x*x+y*y, vec(1,1)));   # (2,2)
+lek(hessian(vec(x,y) -> x*x+y*y));       # [[2,0],[0,2]]
+lek(latex(deriv(f(x), x)));              # TeX d/dx
 
 # ======================= 61-70: STATISTICS ===========================
-नाम s = vec(2,4,4,4,5,5,7,9);
-लेख(mean(s));                            # 5
-लेख(median(s));                          # 4.5
-लेख(mode(s));                            # 4
-लेख(variance(s));                        # population var
-लेख(stddev(s));                          # std deviation
-लेख(min(s));                             # 2
-लेख(max(s));                             # 9
-लेख(sum(s));                             # 40
-लेख(correlation(vec(1,2,3), vec(3,2,1))); # -1
-लेख(quartile(s, 1));                     # Q1
+naam s = vec(2,4,4,4,5,5,7,9);
+lek(mean(s));                            # 5
+lek(median(s));                          # 4.5
+lek(mode(s));                            # 4
+lek(variance(s));                        # population var
+lek(stddev(s));                          # std deviation
+lek(min(s));                             # 2
+lek(max(s));                             # 9
+lek(sum(s));                             # 40
+lek(correlation(vec(1,2,3), vec(3,2,1))); # -1
+lek(quartile(s, 1));                     # Q1
 
 # ======================= 71-80: NUMBER THEORY ========================
-लेख(gcd(48, 18));                        # 6
-लेख(lcm(4, 6));                          # 12
-लेख(isprime(97));                        # सत्य
-लेख(factorial(5));                       # 120
-लेख(fib(10));                            # 55
-लेख(primefactors(60));                   # 2,2,3,5
-लेख(eulerphi(9));                        # 6
-लेख(modpow(2, 10, 1000));               # 24
-लेख(bigint("123456789012345678901234567890") + bigint(1)); # big integer add
-लेख(latex(gcd(a,b)));                    # TeX
+lek(gcd(48, 18));                        # 6
+lek(lcm(4, 6));                          # 12
+lek(isprime(97));                        # satya
+lek(factorial(5));                       # 120
+lek(fib(10));                            # 55
+lek(primefactors(60));                   # 2,2,3,5
+lek(eulerphi(9));                        # 6
+lek(modpow(2, 10, 1000));               # 24
+lek(bigint("123456789012345678901234567890") + bigint(1)); # big integer add
+lek(latex(gcd(a,b)));                    # TeX
 
 # ======================= 81-90: SPECIAL FUNCTIONS ====================
-लेख(gamma(5));                           # 24
-लेख(log_gamma(10));                      # ln(9!)
-लेख(beta(2, 3));                         # 1/12
-लेख(erf(0));                             # 0
-लेख(erfc(0));                            # 1
-लेख(besselj(0, 1.0));                    # J0(1) stub
-लेख(bessely(0, 1.0));                    # Y0(1) stub
-लेख(zeta(2));                            # pi^2/6
-लेख(legendre(2, 0.5));                   # legendre poly
-लेख(latex(gamma(z)));                    # TeX
+lek(gamma(5));                           # 24
+lek(log_gamma(10));                      # ln(9!)
+lek(beta(2, 3));                         # 1/12
+lek(erf(0));                             # 0
+lek(erfc(0));                            # 1
+lek(besselj(0, 1.0));                    # J0(1) stub
+lek(bessely(0, 1.0));                    # Y0(1) stub
+lek(zeta(2));                            # pi^2/6
+lek(legendre(2, 0.5));                   # legendre poly
+lek(latex(gamma(z)));                    # TeX
 
 # ======================= 91-100: LINEAR ALGEBRA / SOLVE ==============
-नाम A = mat([[2,1],[1,3]]);
-नाम b = vec(1, 2);
-लेख(solve(A, b));                        # Ax = b
-लेख(rank(A));                            # 2
-लेख(nullspace(A));                        # kernel
-लेख(cond(A));                            # condition number
-लेख(svd(A));                             # singular value decomp
-लेख(qr(A));                              # QR factorisation
-लेख(cholesky(A));                        # cholesky (if SPD)
-नाम R = mat([[4,12,-16],[12,37,-43],[-16,-43,98]]);
-लेख(cholesky(R));                        # cholesky of SPD
-लेख(latex(solve(A x = b)));              # TeX of a solve
-लेख(vecnorm(v1, 2));                     # p-norm
+naam A = mat([[2,1],[1,3]]);
+naam b = vec(1, 2);
+lek(solve(A, b));                        # Ax = b
+lek(rank(A));                            # 2
+lek(nullspace(A));                        # kernel
+lek(cond(A));                            # condition number
+lek(svd(A));                             # singular value decomp
+lek(qr(A));                              # QR factorisation
+lek(cholesky(A));                        # cholesky (if SPD)
+naam R = mat([[4,12,-16],[12,37,-43],[-16,-43,98]]);
+lek(cholesky(R));                        # cholesky of SPD
+lek(latex(solve(A x = b)));              # TeX of a solve
+lek(vecnorm(v1, 2));                     # p-norm

@@ -1,0 +1,51 @@
+# spec_tex.sakum - Sakum Lang LaTeX -> Sakum transpiler spec (machine-level)
+
+> Maps LaTeX mathematical notation into Sakum source via the front end:
+> `LaTeX -> lexer -> parser -> Sakum source (scientific core)`.
+> Implemented at machine level in `assembly/sakum_tex.s` (no host language),
+> per SAKUM_LANG.md §2. Reads LaTeX math from stdin, emits Sakum to stdout.
+
+## 1. Pipeline
+
+```
+stdin (LaTeX string)
+  -> read_all        (kernel_read into in_buf)
+  -> parse_expr      (recursive descent: expr/term/factor/atom)
+  -> char_out/str_out (kernel_write to stdout)
+```
+
+## 2. Grammar (seed)
+
+```
+expr   := term (('+'|'-') term)*
+term   := ['-'] factor (('*'|'/') factor)*      # leading '-' = unary minus
+factor := atom ('^' factor)?                     # power, right-assoc
+        |  atom ('_' atom)?                       # subscript -> idx(...)
+        |  atom implicit-mult factor              # 4ac -> 4 * a * c
+atom   := num | id | '(' expr ')' | '\frac{..}{..}'
+        | '\sqrt{..}' | '\sqrt[n]{..}' | '\begin{bmatrix}..\end{bmatrix}'
+```
+
+## 3. LaTeX -> Sakum mapping
+
+| LaTeX                | Sakum                        |
+|----------------------|------------------------------|
+| `\frac{a}{b}`        | `(a / b)`                    |
+| `\sqrt{x}`           | `sqrt(x)`                    |
+| `\sqrt[n]{x}`        | `root(n, x)`                 |
+| `x^y`                | `pow(x, y)`                  |
+| `x_y`                | `idx(x, y)`                  |
+| `4ac`                | `4 * a * c` (implicit mult)  |
+| `-b`                 | `-b` (unary minus)           |
+| `\begin{bmatrix}..`  | `mat(...)` (seed; full matrix parse planned) |
+
+## 4. Usage
+
+```
+printf '%s' '\frac{-b+\sqrt{b^2-4ac}}{2a}' | \
+  gcc -arch x86_64 -include assembly/platform.inc assembly/sakum_tex.s -o /tmp/tex && /tmp/tex
+# -> naam tex_expr = (-b + sqrt(bpow(2) - 4 * ac) / 2 * a)
+```
+
+The emitted `.sakum` then flows through the normal Sakum compiler
+(lexer -> parser -> AST -> SIR -> native/VM) documented in SAKUM_LANG.md.

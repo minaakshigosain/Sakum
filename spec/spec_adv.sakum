@@ -1,44 +1,44 @@
 # spec_adv.sakum - Sakum Lang formal spec: advanced core (उन्नत)
 # Sakum-language spelling of docs/ch_adv.tex.
-# वर्ग (OOP vtable), हृदय (memory safety), व्याख्या (error explainer), स्वाध्याय (self-learn).
+# varg (OOP vtable), hriday (memory safety), vyakhya (error explainer), svadhyaya (self-learn).
 
-नाम node = "Sakum Advanced";
-नाम hash = #what 4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9049;
-लेख(query("load Sakum Advanced"));
-लेख(heartbeat());
+naam node = "Sakum Advanced";
+naam hash = #what 4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9049;
+lek(query("load Sakum Advanced"));
+lek(heartbeat());
 
-# वर्ग: runtime-built vtable; object buffer must be 8-byte aligned (.balign 8)
-सूत्र varga() {
-    वर्ग Shape {
-        सूत्र area() { वापस 0 }
-        सूत्र describe() { वापस 0 }
+# varg: runtime-built vtable; object buffer must be 8-byte aligned (.balign 8)
+sutra varga() {
+    varg Shape {
+        sutra area() { vapsa 0 }
+        sutra describe() { vapsa 0 }
     }
-    वापस 1
+    vapsa 1
 }
 
-# हृदय: fixed pool with used-flag + 0xCAFE canary; double free -> -1
-सूत्र heart_alloc(pool, i) {
-    वापस i
+# hriday: fixed pool with used-flag + 0xCAFE canary; double free -> -1
+sutra heart_alloc(pool, i) {
+    vapsa i
 }
-सूत्र heart_free(pool, i, used) {
-    यदि (used == 0) { वापस -1 }   # already freed -> double free
-    वापस 0
-}
-
-# व्याख्या: error code -> message (codes 1..5)
-सूत्र vyakhya(code) {
-    यदि (code >= 1 और code <= 5) { वापस code }
-    वापस 0
+sutra heart_free(pool, i, used) {
+    yadi (used == 0) { vapsa -1 }   # already freed -> double free
+    vapsa 0
 }
 
-# स्वाध्याय: record mistake to ring-buffer, return friendly patch note
-सूत्र svadhyaya(mistake) {
-    ब्रम्ह.learn(mistake)
-    वापस 1
+# vyakhya: error code -> message (codes 1..5)
+sutra vyakhya(code) {
+    yadi (code >= 1 aur code <= 5) { vapsa code }
+    vapsa 0
 }
 
-परीक्षा {
-    चर v = varga()
-    चर h = heart_free(0, 0, 0)
-    मुद्रण "adv ok: varga=" v " heart_doublefree=" h
+# svadhyaya: record mistake to ring-buffer, return friendly patch note
+sutra svadhyaya(mistake) {
+    brahma.learn(mistake)
+    vapsa 1
+}
+
+pariksha {
+    naam v = varga()
+    naam h = heart_free(0, 0, 0)
+    lek "adv ok: varga=" v " heart_doublefree=" h
 }

@@ -25,12 +25,14 @@
 # so the user sees exactly what the compiler is doing, live.
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # ---------------------------------------------------------------------------
-# macOS syscalls (base 0x2000000)
+# Syscall numbers — cross-platform
 # ---------------------------------------------------------------------------
+#ifdef PLAT_MACOS
 SYS_READ   = 0x2000000 + 3
 SYS_WRITE  = 0x2000000 + 4
 SYS_OPEN   = 0x2000000 + 5
@@ -38,6 +40,16 @@ SYS_CLOSE  = 0x2000000 + 6
 SYS_EXIT   = 0x2000000 + 1
 SYS_FORK   = 0x2000000 + 2
 SYS_WAIT4  = 0x2000000 + 7
+O_APPEND_MAC = 0x8
+#else
+SYS_READ   = 0
+SYS_WRITE  = 1
+SYS_OPEN   = 2
+SYS_CLOSE  = 3
+SYS_EXIT   = 60
+SYS_FORK   = 57
+SYS_WAIT4  = 61
+#endif
 
 O_RDONLY   = 0
 STDIN      = 0
@@ -47,7 +59,7 @@ STDERR     = 2
 # ---------------------------------------------------------------------------
 # Buffers / state (static)
 # ---------------------------------------------------------------------------
-.bss
+BSS_SECTION
 .align 16
 src_buf:    .skip 65536      # raw source bytes (after UTF-8 validation)
 src_len:    .skip 8
@@ -69,7 +81,7 @@ prompt_buf:  .skip 64
 line_buf:   .skip 256       # trace_stage line buffer
 lex_count:  .skip 8         # token counter
 
-.text
+TEXT_SECTION
 # ---------------------------------------------------------------------------
 # Stage tracer: trace_stage(idx, name_ptr, ok, note_ptr)
 #   prints:  [idx] OK/FAIL  NAME  note\n
@@ -128,7 +140,7 @@ trace_stage:
 # ---------------------------------------------------------------------------
 # main: open source, run pipeline stages, sandbox, ask, patch
 # ---------------------------------------------------------------------------
-_main:
+CDECL(main):
     # Read the source PATH from stdin (one line) — avoids argv ABI guesswork.
     lea rdi, [rip + prompt_path]
     call puts
@@ -1432,7 +1444,11 @@ patch_production:
     # write a production patch marker into update.md (the live endpoint log)
     # open update.md O_WRONLY|O_APPEND
     lea rdi, [rip + update_path]
-    mov rsi, 0x1 | 0x8      # O_WRONLY | O_APPEND (mac: 0x1|0x8)
+#ifdef PLAT_MACOS
+    mov rsi, 0x1 | 0x8      # O_WRONLY | O_APPEND (macOS)
+#else
+    mov rsi, 0x1 | 0x400    # O_WRONLY | O_APPEND (Linux)
+#endif
     xor rdx, rdx
     mov rax, SYS_OPEN
     syscall
@@ -1571,7 +1587,7 @@ uitoa:
 # ---------------------------------------------------------------------------
 # data: strings
 # ---------------------------------------------------------------------------
-.data
+DATA_SECTION
 banner:
 .asciz "ब्रम्ह :: UNIVERSAL COMPILER PIPELINE  (stage-by-stage, opencode-style)\n"
 usage_msg:

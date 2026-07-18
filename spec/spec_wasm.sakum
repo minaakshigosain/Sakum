@@ -2,28 +2,28 @@
 # Sakum-language spelling of docs/ch_wasm.tex.
 # Emits spec-valid .wasm byte-by-byte (LEB128). func run() -> i32 { 1 + 2*3 }.
 
-नाम node = "Sakum WASM";
-नाम hash = #what 293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9027;
-लेख(query("load Sakum WASM"));
-लेख(heartbeat());
+naam node = "Sakum WASM";
+naam hash = #what 293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e9027;
+lek(query("load Sakum WASM"));
+lek(heartbeat());
 
-सूत्र wasm_module() {
-    चर magic = 0x0061736d   # \0asm
-    चर version = 1
-    चर type_sec = 1
-    चर func_sec = 1
-    चर export_sec = 1       # "run"
-    चर code_sec = 1         # i32.const/i32.mul/i32.add/return/end
-    वापस magic + version + type_sec + func_sec + export_sec + code_sec
+sutra wasm_module() {
+    naam magic = 0x0061736d   # \0asm
+    naam version = 1
+    naam type_sec = 1
+    naam func_sec = 1
+    naam export_sec = 1       # "run"
+    naam code_sec = 1         # i32.const/i32.mul/i32.add/return/end
+    vapsa magic + version + type_sec + func_sec + export_sec + code_sec
 }
 
 # 1 + 2 * 3 = 7
-सूत्र wasm_result() {
-    वापस 1 + 2 * 3
+sutra wasm_result() {
+    vapsa 1 + 2 * 3
 }
 
-परीक्षा {
-    चर m = wasm_module()
-    चर r = wasm_result()
-    मुद्रण "wasm ok: module=" m " result=" r
+pariksha {
+    naam m = wasm_module()
+    naam r = wasm_result()
+    lek "wasm ok: module=" m " result=" r
 }

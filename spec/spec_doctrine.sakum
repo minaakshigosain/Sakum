@@ -2,31 +2,31 @@
 # Sakum-language spelling of docs/ch_doctrine.tex.
 # Binary-hash addressable, raw machine-level only, no host language, no SHA-256.
 
-नाम node = "Sakum Doctrine";
-नाम hash = #what a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f9;
-लेख(query("load Sakum Doctrine"));
-लेख(heartbeat());
+naam node = "Sakum Doctrine";
+naam hash = #what a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f9;
+lek(query("load Sakum Doctrine"));
+lek(heartbeat());
 
 # §1 DO — required capabilities
-सूत्र doctrine_do() {
-    चर raw_machine = 1          # back ends emit raw machine-level code
-    चर binary_hash = 1          # every construct addressable by #what
-    चर sutra_key = 1            # creator-owned key, not SHA-derived
-    चर vektor_first = 1         # वेक्टर is first-class
-    वापस raw_machine + binary_hash + sutra_key + vektor_first
+sutra doctrine_do() {
+    naam raw_machine = 1          # back ends emit raw machine-level code
+    naam binary_hash = 1          # every construct addressable by #what
+    naam sutra_key = 1            # creator-owned key, not SHA-derived
+    naam vektor_first = 1         # vektor is first-class
+    vapsa raw_machine + binary_hash + sutra_key + vektor_first
 }
 
 # §2 DON'T — hard constraints
-सूत्र doctrine_dont() {
-    चर no_host_runtime = 1      # do not depend on a foreign high-level runtime
-    चर no_erase_doctrine = 1    # do not let AI erase prior doctrine
-    चर no_single_isa = 1        # back ends are pluggable
-    चर no_slow = 1              # do not make it slower than necessary
-    वापस no_host_runtime + no_erase_doctrine + no_single_isa + no_slow
+sutra doctrine_dont() {
+    naam no_host_runtime = 1      # do not depend on a foreign high-level runtime
+    naam no_erase_doctrine = 1    # do not let AI erase prior doctrine
+    naam no_single_isa = 1        # back ends are pluggable
+    naam no_slow = 1              # do not make it slower than necessary
+    vapsa no_host_runtime + no_erase_doctrine + no_single_isa + no_slow
 }
 
-परीक्षा {
-    चर d = doctrine_do()
-    चर x = doctrine_dont()
-    मुद्रण "doctrine ok: do=" d " dont=" x
+pariksha {
+    naam d = doctrine_do()
+    naam x = doctrine_dont()
+    lek "doctrine ok: do=" d " dont=" x
 }

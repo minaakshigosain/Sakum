@@ -1,28 +1,28 @@
-नाम x = 10;
-लेख(x);
+naam x = 10;
+lek(x);
 
-यदि (x > 5) {
-  लेख("बृहत्");
-} अन्यथा {
-  लेख("लघु");
+yadi (x > 5) {
+  lek("बृहत्");
+} anyatha {
+  lek("लघु");
 }
 
-यावत् (x > 0) {
-  लेख(x);
+yavat (x > 0) {
+  lek(x);
   x = x - 1;
 }
 
-क्रिया योग(a, b) {
-  प्रत्यागम a + b;
+kriya योग(a, b) {
+  vapsa a + b;
 }
-लेख(योग(3, 4));
+lek(योग(3, 4));
 
-नाम v = vec(1, 2, 3);
-लेख(latex(v));
+naam v = vec(1, 2, 3);
+lek(latex(v));
 
-नाम q = qubit(1);
-लेख(measure(q));
+naam q = qubit(1);
+lek(measure(q));
 
-लेख(query("learn from mistake in memory"));
-लेख(sutra_key());
-लेख(heartbeat());
+lek(query("learn from mistake in memory"));
+lek(sutra_key());
+lek(heartbeat());

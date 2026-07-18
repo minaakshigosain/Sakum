@@ -1,12 +1,12 @@
-वेक्टर A = vec(1, 2, 3, 4);
-वेक्टर B = vec(5, 6, 7, 8);
-वेक्टर C = A + B;
-लेख(C);
+vektor A = vec(1, 2, 3, 4);
+vektor B = vec(5, 6, 7, 8);
+vektor C = A + B;
+lek(C);
 
-नाम c = circuit(2);
+naam c = circuit(2);
 gate(c, "h", 0);
 gate(c, "cx", 0, 1);
-लेख(circuit_binary(c));
-लेख(circuit_formula(c));
-लेख(circuit_state(c));
-लेख(measure_circuit(c));
+lek(circuit_binary(c));
+lek(circuit_formula(c));
+lek(circuit_state(c));
+lek(measure_circuit(c));

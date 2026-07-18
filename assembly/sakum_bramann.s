@@ -23,17 +23,26 @@
 # brevity; a real fetch failure is reported by a negative return code.
 
 .intel_syntax noprefix
-.text
-.globl _main
+#include "platform.inc"
+TEXT_SECTION
+.globl CDECL(main)
 
 # ---------------------------------------------------------------------------
-# Syscall numbers (macOS x86-64, base 0x2000000)
+# Syscall numbers — cross-platform
 # ---------------------------------------------------------------------------
+#ifdef PLAT_MACOS
 SYS_SOCKET = 0x2000000 + 97
 SYS_CONNECT= 0x2000000 + 98
 SYS_SEND   = 0x2000000 + 133
 SYS_RECV   = 0x2000000 + 131
 SYS_CLOSE  = 0x2000000 + 6
+#else
+SYS_SOCKET = 41
+SYS_CONNECT= 42
+SYS_SEND   = 44        # sendto (works as send for connected sockets)
+SYS_RECV   = 45        # recvfrom (works as recv for connected sockets)
+SYS_CLOSE  = 3
+#endif
 
 AF_INET    = 2
 SOCK_STREAM= 1
@@ -65,12 +74,18 @@ BRA_get:
     jl  .get_fail
     mov r12, rax                # sockfd
 
-    # --- build sockaddr_in in .bss: sin_len, sin_family, sin_port, sin_addr ---
+    # --- build sockaddr_in in .bss ---
     lea rbx, [rip + sockaddr]
+#ifdef PLAT_MACOS
     mov byte ptr [rbx + 0], 16      # sin_len
     mov byte ptr [rbx + 1], AF_INET # sin_family
     mov word ptr [rbx + 2], r14w    # sin_port (already network order caller)
     mov dword ptr [rbx + 4], edi    # sin_addr (network order)
+#else
+    mov word ptr [rbx + 0], AF_INET # sin_family (no sin_len on Linux)
+    mov word ptr [rbx + 2], r14w    # sin_port
+    mov dword ptr [rbx + 4], edi    # sin_addr
+#endif
 
     # --- connect(sockfd, &sockaddr, 16) ---
     mov rax, SYS_CONNECT
@@ -124,6 +139,10 @@ BRA_get:
     lea rsi, [rip + req_buf]
     mov rdx, r13
     mov r10, 0
+#ifndef PLAT_MACOS
+    xor r8, r8
+    xor r9, r9
+#endif
     syscall
     cmp rax, 0
     jl  .get_fail
@@ -137,6 +156,10 @@ BRA_get:
     lea rsi, [rbx + r13]
     mov rdx, 4096
     xor r10, r10
+#ifndef PLAT_MACOS
+    xor r8, r8
+    xor r9, r9
+#endif
     syscall
     cmp rax, 0                 # EOF
     jle .recv_done

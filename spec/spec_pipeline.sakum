@@ -2,30 +2,30 @@
 # Sakum-language spelling of docs/ch_pipeline.tex.
 # lexer -> parser -> IR -> constant-fold -> codegen + eval -> result 186.
 
-नाम node = "Sakum Compiler Pipeline";
-नाम hash = #what d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fc1;
-लेख(query("load Sakum Compiler Pipeline"));
-लेख(heartbeat());
+naam node = "Sakum Compiler Pipeline";
+naam hash = #what d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fc1;
+lek(query("load Sakum Compiler Pipeline"));
+lek(heartbeat());
 
 # 5-stage compile of: let x = 2 + 3 * 4; let y = x * x; y - 10;
-सूत्र pipeline_stages() {
-    चर lex = 1
-    चर parse = 1
-    चर ir_emit = 1
-    चर fold = 1
-    चर codegen = 1
-    वापस lex + parse + ir_emit + fold + codegen
+sutra pipeline_stages() {
+    naam lex = 1
+    naam parse = 1
+    naam ir_emit = 1
+    naam fold = 1
+    naam codegen = 1
+    vapsa lex + parse + ir_emit + fold + codegen
 }
 
 # semantic result: 2 + 3*4 = 14 ; 14*14 = 196 ; 196 - 10 = 186
-सूत्र pipeline_result() {
-    चर x = 2 + 3 * 4
-    चर y = x * x
-    वापस y - 10            # 186
+sutra pipeline_result() {
+    naam x = 2 + 3 * 4
+    naam y = x * x
+    vapsa y - 10            # 186
 }
 
-परीक्षा {
-    चर s = pipeline_stages()
-    चर r = pipeline_result()
-    मुद्रण "pipeline ok: stages=" s " result=" r
+pariksha {
+    naam s = pipeline_stages()
+    naam r = pipeline_result()
+    lek "pipeline ok: stages=" s " result=" r
 }

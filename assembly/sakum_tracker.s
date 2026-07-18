@@ -1,53 +1,53 @@
-# sakum_tracker.s - ब्रम्ह LIVE SELF-UPDATE TRACKER (Sakum's own machine core).
+# sakum_tracker.s - ब्रम्ह LIVE SELF-UPDATE TRACKER (Sakum's own machine core.
 #
 # Raw x86-64 assembly. NO Python, NO host language. This is the live tracker
 # that replaces the dead serve.py + sakum_status.sh: it reads the ब्रम्ह self-update
-# feed (query_logs/fetch_live.jsonl — the real history.md) and prints the
+# feed (query_logs/fetch_live.jsonl — the real history.md and prints the
 # pipeline  स्रोत → भाषा → गंतव्य  plus live counters, in Sakum flavor.
 #
 #   Usage:
 #     gcc -arch x86_64 assembly/sakum_tracker.s -o /tmp/tracker
-#     /tmp/tracker                 # print current history once (newest first)
-#     /tmp/tracker --live          # tail the feed, refreshing every 3s (clear)
-#     /tmp/tracker --follow        # tail the feed, scrolling (no clear)
+#     /tmp/tracker                 # print current history once (newest first
+#     /tmp/tracker --live          # tail the feed, refreshing every 3s (clear
+#     /tmp/tracker --follow        # tail the feed, scrolling (no clear
 #     /tmp/tracker --once          # single render, no animation
-#     /tmp/tracker --no-color      # force plain text (e.g. for pipes)
+#     /tmp/tracker --no-color      # force plain text (e.g. for pipes
 #     /tmp/tracker --help          # show usage
 #     /tmp/tracker <feedpath>      # use a different feed file
 #
 # New in this upgrade:
-#   * ANSI color pipeline (SOURCE cyan, LEARN yellow, UPGRADE green, NOFET red)
+#   * ANSI color pipeline (SOURCE cyan, LEARN yellow, UPGRADE green, NOFET red
 #   * newest-first ordering of the live pipeline view
 #   * live counters: fetches / learns / upgrades / nohits / mistakes
-#   * --follow scrolling mode (no clear) for terminal logs
+#   * --follow scrolling mode (no clear for terminal logs
 #   * richer event classification: fetch.start, fetch.nohit, learn, upgrade
-#   * a dedicated DESTINATION panel (where ब्रम्ह upgrades ITSELF)
+#   * a dedicated DESTINATION panel (where ब्रम्ह upgrades ITSELF
 
 .intel_syntax noprefix
 #include "platform.inc"
 TEXT_SECTION
-.globl _(main)
+.globl _main
 
 # ---- libc imports ----
-.extern _(printf)
-.extern _(fopen)
-.extern _(fread)
-.extern _(fclose)
-.extern _(sleep)
-.extern _(usleep)
-.extern _(time)
-.extern _(isatty)
-.extern _(fflush)
+.extern _printf
+.extern _fopen
+.extern _fread
+.extern _fclose
+.extern _sleep
+.extern _usleep
+.extern _time
+.extern _isatty
+.extern _fflush
 
 # ---- constants ----
-.set BUFSZ, 1<<20            # 1 MiB read buffer (feed is append-only, small)
-.set NROWS, 48               # max pipeline rows we keep (newest-first)
-.set ROWSLOT, 1024           # bytes per row string in rowstore (>= max line len)
+.set BUFSZ, 1<<20            # 1 MiB read buffer (feed is append-only, small
+.set NROWS, 48               # max pipeline rows we keep (newest-first
+.set ROWSLOT, 1024           # bytes per row string in rowstore (>= max line len
 
 # =====================================================================
 # main
 # =====================================================================
-_(main):
+_main:
     push rbp
     mov  rbp, rsp
     and  rsp, -16
@@ -57,7 +57,7 @@ _(main):
     mov  qword ptr [rsp+8],  0      # live flag
     mov  qword ptr [rsp+16], 0      # follow flag
     mov  qword ptr [rsp+24], 0      # once flag
-    mov  qword ptr [rsp+32], 1      # color flag (1 = on)
+    mov  qword ptr [rsp+32], 1      # color flag (1 = on
     mov  qword ptr [rip + g_live], 0
     mov  qword ptr [rip + g_color], 1
 
@@ -65,14 +65,13 @@ _(main):
     lea  rax, [rip + defpathstr]
     mov  [rip + feedpath], rax
     # init ring slot
-    mov  qword ptr [rip + row_slot], 0
 
     mov  r12, [rbp+16]        # argc
     lea  r13, [rbp+24]        # argv
 
     # is stdout a tty? if not, force color off
     mov  rdi, 1
-    call _(isatty)
+    call _isatty
     test eax, eax
     jz   .color_off
 
@@ -131,16 +130,14 @@ _(main):
 .do_help:
     lea  rdi, [rip + usage_msg]
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .exit
 
 .argdone:
-    xor  edi, edi;     call _(fflush)
     cmp  qword ptr [rsp+16], 0
     jne  .mode_follow
     cmp  qword ptr [rsp+8], 0
     jne  .mode_live
-    xor  edi, edi;     call _(fflush)
     call render_once
     jmp  .exit
 
@@ -148,23 +145,24 @@ _(main):
 .liveloop:
     call render_once
     mov  rdi, 3
-    call _(sleep)
+    call _sleep
     jmp  .liveloop
 
 .mode_follow:
 .followloop:
     call render_once
     mov  edi, 3000000        # 3s
-    call _(usleep)
+    call _usleep
     jmp  .followloop
 
 .exit:
+    xor  eax, eax
     mov  rsp, rbp
     pop  rbp
     ret
 
 # =====================================================================
-# str_eq: compare string (r15) to (r14); returns 1 if equal else 0
+# str_eq: compare string (r15 to (r14; returns 1 if equal else 0
 # =====================================================================
 str_eq:
     push rbx
@@ -203,20 +201,15 @@ render_once:
     jz   .no_clear
     lea  rdi, [rip + clr]
     xor  eax, eax
-    call _(printf)
+    call _printf
 .no_clear:
 
     call render_header
-    xor  edi, edi;     call _(fflush)
     mov  rdi, [rip + feedpath]
     call read_feed
-    xor  edi, edi;     call _(fflush)
     call render_counters
-    xor  edi, edi;     call _(fflush)
     call render_pipeline
-    xor  edi, edi;     call _(fflush)
     call render_destpanel
-    xor  edi, edi;     call _(fflush)
     call render_footer
 
     mov  rsp, rbp
@@ -239,10 +232,9 @@ read_feed:
     mov  qword ptr [rip + c_nohit], 0
     mov  qword ptr [rip + c_mistake], 0
     mov  qword ptr [rip + row_count], 0
-    mov  qword ptr [rip + row_slot], 0
 
     lea  rsi, [rip + rmode]
-    call _(fopen)
+    call _fopen
     mov  r12, rax              # FILE*
     test rax, rax
     jz   .nofile
@@ -251,13 +243,13 @@ read_feed:
     mov  rsi, 1
     mov  rdx, BUFSZ-1
     mov  rcx, r12
-    call _(fread)
+    call _fread
     lea  r8, [rip + gbuf]
     mov  byte ptr [r8 + rax], 0
+    xor  edi, edi; call _fflush
 
     lea  r14, [rip + gbuf]
     lea  r15, [rip + gbuf]
-    xor  edi, edi;     call _(fflush)
 .walk:
     movzx eax, byte ptr [r15]
     test al, al
@@ -267,7 +259,6 @@ read_feed:
     mov  byte ptr [r15], 0
     mov  rdi, r14
     call classify_line
-    xor  edi, edi;     call _(fflush)
     lea  r14, [r15+1]
     inc  r15
     jmp  .walk
@@ -282,7 +273,7 @@ read_feed:
     call classify_line
 .close:
     mov  rdi, r12
-    call _(fclose)
+    call _fclose
     mov  rsp, rbp
     pop  rbp
     ret
@@ -290,7 +281,7 @@ read_feed:
     lea  rdi, [rip + errnofile]
     mov  rsi, [rsp+8]
     xor  eax, eax
-    call _(printf)
+    call _printf
     mov  rsp, rbp
     pop  rbp
     ret
@@ -359,93 +350,63 @@ classify_line:
     call push_row
 
 .cl_done:
+    xor  edi, edi; call _fflush
     mov  rsp, rbp
     pop  rbp
     ret
 
 # =====================================================================
-# push_row: store label+line at front of newest-first row buffer
+# push_row: store label+line pointers at front of newest-first row buffer.
+#   Zero-copy: rows are substrings of gbuf (already NUL-terminated at their
+#   newline by the .walk loop), so we keep the line pointer plus its label
+#   pointer. No separate store, no overflow.
 # =====================================================================
 push_row:
     push rbp
     mov  rbp, rsp
     and  rsp, -16
     sub  rsp, 32
-    mov  [rsp+8], rdi          # line
-    mov  [rsp+16], rsi         # label
+    mov  [rsp+8], rdi          # line pointer
+    mov  [rsp+16], rsi         # label pointer
 
-    mov  r9, [rip + row_count]
-    cmp  r9, NROWS
-    jl   .ps_notfull
-    # full: shift NROWS-1 items down (0..NROWS-2 -> 1..NROWS-1); safe, no overflow
-    lea  r8, [rip + rowbuf]
-    mov  r10, NROWS-1
-.ps_sh_full:
+    lea  r8, [rip + rowbuf]     # array of line pointers
+    lea  r9, [rip + rowlbl]     # array of label pointers
+    mov  r10, [rip + row_count]
+
+    # shift existing rows down by one: rowbuf[i] -> rowbuf[i+1] (cap NROWS-1)
     cmp  r10, 0
-    jle  .ps_copyslot
-    dec  r10
-    mov  r11, [r8 + r10*8]
-    mov  [r8 + (r10+1)*8], r11
-    jmp  .ps_sh_full
+    jz   .ps_store
+    mov  r11, r10              # r11 = count
+.ps_sh:
+    cmp  r11, 0
+    jle  .ps_store
+    dec  r11
+    mov  r12, [r8 + r11*8]
+    mov  [r8 + (r11+1)*8], r12
+    mov  r12, [r9 + r11*8]
+    mov  [r9 + (r11+1)*8], r12
+    jmp  .ps_sh
 
-.ps_notfull:
-    cmp  r9, 0
-    jz   .ps_copyslot
-    # shift count items down (0..count-1 -> 1..count); count < NROWS, safe
-    lea  r8, [rip + rowbuf]
-    mov  r10, r9
-.ps_sh_loop:
-    cmp  r10, 0
-    jle  .ps_copyslot
-    dec  r10
-    mov  r11, [r8 + r10*8]
-    mov  [r8 + (r10+1)*8], r11
-    jmp  .ps_sh_loop
+.ps_store:
+    mov  r12, [rsp+8]
+    mov  [r8], r12             # rowbuf[0] = newest line
+    mov  r12, [rsp+16]
+    mov  [r9], r12             # rowlbl[0] = newest label
 
-.ps_copyslot:
-    # choose a fixed ring slot (cycles 0..NROWS-1) -> dest in rowstore
-    mov  r11, [rip + row_slot]
-    lea  r12, [rip + rowstore]
-    mov  rax, r11
-    imul rax, ROWSLOT
-    add  r12, rax               # r12 = slot dest (preserved)
-    # advance ring slot
-    inc  r11
-    cmp  r11, NROWS
-    jl   .ps_slot_ok
-    mov  r11, 0
-.ps_slot_ok:
-    mov  [rip + row_slot], r11
-
-    # copy label + ' ' + line into slot at r12
-    mov  rdi, r12
-    mov  rsi, [rsp+16]
-    call strcpy
-    mov  byte ptr [rax], ' '
-    inc  rax
-    mov  rdi, rax
-    mov  rsi, [rsp+8]
-    call strcpy
-    mov  byte ptr [rax], 0
-
-    # store the slot address at rowbuf[0] (newest-first)
-    mov  [rip + rowbuf], r12
-
-    # bump count (cap at NROWS)
-    mov  rcx, [rip + row_count]
-    cmp  rcx, NROWS
-    jl   .ps_bump
-    mov  rcx, NROWS
-.ps_bump:
-    inc  rcx
-    mov  [rip + row_count], rcx
+    # bump count, cap at NROWS
+    mov  r10, [rip + row_count]
+    cmp  r10, NROWS
+    jge  .ps_bump_skip
+    inc  r10
+.ps_bump_skip:
+    mov  [rip + row_count], r10
 
     mov  rsp, rbp
     pop  rbp
     ret
 
 # =====================================================================
-# strcpy: rdi=dst rsi=src ; returns end pointer (dst+len) in rax
+# strcpy: rdi=dst rsi=src ; returns end pointer (dst+len in rax
 # =====================================================================
 strcpy:
     xor  rcx, rcx
@@ -469,14 +430,14 @@ render_header:
     and  rsp, -16
     lea  rdi, [rip + banner]
     xor  eax, eax
-    call _(printf)
+    call _printf
     lea  rdi, [rip + nowbuf]
     mov  rsi, 0
-    call _(time)
+    call _time
     lea  rdi, [rip + timelbl]
     mov  rsi, rax
     xor  eax, eax
-    call _(printf)
+    call _printf
     mov  rsp, rbp
     pop  rbp
     ret
@@ -497,7 +458,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .ct_done
 .ct_plain:
     lea  rdi, [rip + ct_plain_fmt]
@@ -507,7 +468,7 @@ render_counters:
     mov  r8,  [rip + c_nohit]
     mov  r9,  [rip + c_mistake]
     xor  eax, eax
-    call _(printf)
+    call _printf
 .ct_done:
     mov  rsp, rbp
     pop  rbp
@@ -525,12 +486,12 @@ render_pipeline:
     jz   .pl_plain
     lea  rdi, [rip + cols_color]
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .pl_loop
 .pl_plain:
     lea  rdi, [rip + cols]
     xor  eax, eax
-    call _(printf)
+    call _printf
 
 .pl_loop:
     mov  rcx, 0
@@ -539,21 +500,25 @@ render_pipeline:
     cmp  rcx, r9
     jge  .pl_end
     lea  r8, [rip + rowbuf]
+    lea  r14, [rip + rowlbl]
     mov  r11, [r8 + rcx*8]
+    mov  r15, [r14 + rcx*8]
     test r11, r11
     jz   .pl_skip
     cmp  qword ptr [rip + g_color], 0
     jz   .pl_no_color_row
     lea  rdi, [rip + row_color]
-    mov  rsi, r11
+    mov  rsi, r15
+    mov  rdx, r11
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .pl_skip
 .pl_no_color_row:
     lea  rdi, [rip + row_plain]
-    mov  rsi, r11
+    mov  rsi, r15
+    mov  rdx, r11
     xor  eax, eax
-    call _(printf)
+    call _printf
 .pl_skip:
     inc  rcx
     jmp  .pl_next
@@ -574,12 +539,12 @@ render_destpanel:
     jz   .dp_plain
     lea  rdi, [rip + dest_color_hdr]
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .dp_walk
 .dp_plain:
     lea  rdi, [rip + dest_hdr]
     xor  eax, eax
-    call _(printf)
+    call _printf
 
 .dp_walk:
     mov  rcx, [rip + c_upgrade]
@@ -587,7 +552,7 @@ render_destpanel:
     jnz  .dp_has
     lea  rdi, [rip + dest_none]
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .dp_end
 .dp_has:
     lea  r14, [rip + gbuf]
@@ -629,7 +594,7 @@ render_destpanel:
     pop  rbp
     ret
 
-# print_dest: rdi = upgrade JSON line -> print dest + dest2 (colored/plain)
+# print_dest: rdi = upgrade JSON line -> print dest + dest2 (colored/plain
 print_dest:
     push rbp
     mov  rbp, rsp
@@ -650,20 +615,20 @@ print_dest:
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _(printf)
+    call _printf
     jmp  .pd_done
 .pd_plain:
     lea  rdi, [rip + dest_plain_row]
     mov  rsi, r12
     mov  rdx, r13
     xor  eax, eax
-    call _(printf)
+    call _printf
 .pd_done:
     mov  rsp, rbp
     pop  rbp
     ret
 
-# extract_field: rdi=haystack, rsi=key -> pointer to value (after quote) or na_str
+# extract_field: rdi=haystack, rsi=key -> pointer to value (after quote or na_str
 extract_field:
     push rbx
     push r12
@@ -733,10 +698,10 @@ render_footer:
     and  rsp, -16
     lea  rdi, [rip + rule]
     xor  eax, eax
-    call _(printf)
+    call _printf
     lea  rdi, [rip + foot]
     xor  eax, eax
-    call _(printf)
+    call _printf
     mov  rsp, rbp
     pop  rbp
     ret
@@ -782,7 +747,7 @@ line_has:
 # =====================================================================
 # data
 # =====================================================================
-DATA_SECTION
+.data
 feedpath:  .quad 0
 defpathstr:  .asciz "query_logs/fetch_live.jsonl"
 rmode:     .asciz "rb"
@@ -792,23 +757,23 @@ once_str:   .asciz "--once"
 nocolor_str:.asciz "--no-color"
 help_str:   .asciz "--help"
 clr:        .asciz "\033[2J\033[H"
-na_str:     .asciz "(n/a)"
+na_str:     .asciz "(n/a"
 
 g_live:     .quad 0
 g_color:    .quad 1
 
 banner:
-.asciz "\n== ब्रम्ह :: LIVE SELF-UPDATE TRACKER (Sakum machine core) ==\n"
+.asciz "\n== ब्रम्ह :: LIVE SELF-UPDATE TRACKER (Sakum machine core ==\n"
 timelbl:
-.asciz "अद्यतन time (unix): %lld\n"
+.asciz "अद्यतन time (unix: %lld\n"
 
 cols:
-.asciz "\nEVENT   LEDGER (query_logs/fetch_live.jsonl)  [newest first]\n------ -----------------------------------------------------------\n"
+.asciz "\nEVENT   LEDGER (query_logs/fetch_live.jsonl  [newest first]\n------ -----------------------------------------------------------\n"
 cols_color:
-.asciz "\n\033[1mEVENT\033[0m   \033[36mLEDGER (query_logs/fetch_live.jsonl)\033[0m  \033[1m[newest first]\033[0m\n------ -----------------------------------------------------------\n"
+.asciz "\n\033[1mEVENT\033[0m   \033[36mLEDGER (query_logs/fetch_live.jsonl\033[0m  \033[1m[newest first]\033[0m\n------ -----------------------------------------------------------\n"
 
-row_plain:  .asciz "%s\n"
-row_color:  .asciz "\033[37m%s\033[0m\n"
+row_plain:  .asciz "%s %s\n"
+row_color:  .asciz "\033[37m%s %s\033[0m\n"
 
 ct_plain_fmt:
 .asciz "COUNTERS  fetch=%llu  learn=%llu  upgrade=%llu  nohit=%llu  mistake=%llu\n"
@@ -820,7 +785,7 @@ dest_hdr:
 dest_color_hdr:
 .asciz "\n\033[1m\033[32mगंतव्य DESTINATION\033[0m — files ब्रम्ह wrote INTO ITSELF:\n"
 dest_none:
-.asciz "    (no self-upgrade yet this session)\n"
+.asciz "    (no self-upgrade yet this session\n"
 dest_plain_row:
 .asciz "    -> %s  +  %s\n"
 dest_color_row:
@@ -845,13 +810,13 @@ rule:
 .asciz "==================================================================\n"
 
 foot:
-.asciz "सूत्र: every fetch -> learn -> upgrade compiles to raw assembly or rolls back.\nब्रम्ह pulses every 600s; this viewer is machine-code only (no serve.py).\n"
+.asciz "सूत्र: every fetch -> learn -> upgrade compiles to raw assembly or rolls back.\nब्रम्ह pulses every 600s; this viewer is machine-code only (no serve.py.\n"
 
 errnofile:
-.asciz "(ब्रम्ह feed not found: %s) -- run the bot first.\n"
+.asciz "(ब्रम्ह feed not found: %s -- run the bot first.\n"
 
 usage_msg:
-.asciz "ब्रम्ह live tracker usage:\n  tracker [feedpath] [--live] [--follow] [--once] [--no-color] [--help]\n    --live     refresh every 3s (clears screen)\n    --follow   refresh every 3s (scrolls, no clear)\n    --once     single render\n    --no-color force plain text\n"
+.asciz "ब्रम्ह live tracker usage:\n  tracker [feedpath] [--live] [--follow] [--once] [--no-color] [--help]\n    --live     refresh every 3s (clears screen\n    --follow   refresh every 3s (scrolls, no clear\n    --once     single render\n    --no-color force plain text\n"
 
 nowbuf:   .quad 0
 
@@ -863,10 +828,9 @@ c_nohit:    .quad 0
 c_mistake:  .quad 0
 
 row_count:  .quad 0
-row_slot:   .quad 0
 rowbuf:     .skip NROWS*8
-rowstore:   .skip NROWS*ROWSLOT
+rowlbl:     .skip NROWS*8
 efbuf:      .skip 512
 
-BSS_SECTION
+.bss
 gbuf: .skip BUFSZ

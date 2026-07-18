@@ -1,35 +1,35 @@
 # spec_datamodel.sakum - Sakum Lang formal spec: data model (आँकडा)
 # Sakum-language spelling of docs/ch_datamodel.tex.
 
-नाम node = "Sakum Data Model";
-नाम hash = #what c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fb0;
-लेख(query("load Sakum Data Model"));
-लेख(heartbeat());
+naam node = "Sakum Data Model";
+naam hash = #what c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8fb0;
+lek(query("load Sakum Data Model"));
+lek(heartbeat());
 
 # Knowledge/ tree: 85 manifest.sakum nodes at depth 1 and depth 2
-सूत्र knowledge_tree() {
-    चर depth1 = 8
-    चर depth2 = 77
-    चर total = depth1 + depth2
-    वापस total              # 85 chunks
+sutra knowledge_tree() {
+    naam depth1 = 8
+    naam depth2 = 77
+    naam total = depth1 + depth2
+    vapsa total              # 85 chunks
 }
 
 # manifest format with binary-hash addressable key
-सूत्र manifest_format() {
-    नाम node = "Example";
-    नाम hash = #what deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000;
-    लेख(query("load Example"));
-    लेख(heartbeat());
-    वापस 1
+sutra manifest_format() {
+    naam node = "Example";
+    naam hash = #what deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000deadbeefcafe0000;
+    lek(query("load Example"));
+    lek(heartbeat());
+    vapsa 1
 }
 
 # self-update ledger tick
-सूत्र ledger_tick(neurons, loaded, ram_mb) {
-    लेख(query("ai tick: neurons=" neurons " loaded=" loaded " ram_mb=" ram_mb));
-    वापस 0
+sutra ledger_tick(neurons, loaded, ram_mb) {
+    lek(query("ai tick: neurons=" neurons " loaded=" loaded " ram_mb=" ram_mb));
+    vapsa 0
 }
 
-परीक्षा {
-    चर t = knowledge_tree()
-    मुद्रण "datamodel ok: chunks=" t
+pariksha {
+    naam t = knowledge_tree()
+    lek "datamodel ok: chunks=" t
 }
