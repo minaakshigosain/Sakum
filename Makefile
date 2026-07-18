@@ -93,7 +93,7 @@ X86_64_TARGETS := cipher eval simd self adv pipe pipeline wasm scan sniff \
                    bramann webhook ai tracker serve sakum \
                    lib_crypto lib_quantum lib_bounds lib_overflow \
                    lib_memory_safe lib_numeric lib_simd lib_vector lib_rvv lib_survive db sys \
-                   keywords lib_domains
+                   keywords lib_domains lib_icon_x86
 
 # Windows x86-64 subset: only the libc / computational cores. Windows has no
 # raw-syscall ABI and no fork/setsid/BSD-sockets, so the network/daemon files
@@ -104,10 +104,10 @@ X86_64_WINDOWS_TARGETS := cipher eval simd self adv pipeline wasm \
                    keywords lib_domains
 
 ARM64_TARGETS := tracker_arm64 tracker_arm64_neon sys_arm64 \
-                 lib_domains_arm64 keywords_arm64
+                 lib_domains_arm64 keywords_arm64 lib_icon_arm64
 
 RISCV64_TARGETS := sys_riscv64 \
-                   lib_domains_riscv64 keywords_riscv64
+                   lib_domains_riscv64 keywords_riscv64 lib_icon_riscv64
 
 # On Windows, restrict the default x86-64 set to the compatible subset.
 ifeq ($(HOST_OS),windows)
@@ -204,6 +204,32 @@ else
 	$(CROSS_AARCH64) -I $(ASM_DIR) -c $< -o $@.o && echo "OK  (asm) $<"
 endif
 
+# Icon library targets: compile as shared libraries for ctypes (NO_MAIN)
+# macOS: .dylib, Linux: .so, Windows: .dll
+# RISC-V uses bare-metal toolchain -> static object file
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+  SHARED_EXT := dylib
+  SHARED_FLAGS := -dynamiclib
+else
+  SHARED_EXT := so
+  SHARED_FLAGS := -shared
+endif
+
+$(BUILD_DIR)/lib_icon_x86: $(ASM_DIR)/sakum_lib_icon.s | $(BUILD_DIR)
+	$(CC) $(X86_64_FLAGS) -include $(ASM_DIR)/platform.inc -DNO_MAIN -I $(ASM_DIR) $(SHARED_FLAGS) $< -o $(BUILD_DIR)/lib_icon_x86.$(SHARED_EXT)
+
+$(BUILD_DIR)/lib_icon_arm64: $(ASM_DIR)/sakum_lib_icon_arm64.s | $(BUILD_DIR)
+	$(CC) $(ARM64_FLAGS) -I $(ASM_DIR) -DNO_MAIN $(SHARED_FLAGS) $< -o $(BUILD_DIR)/lib_icon_arm64.$(SHARED_EXT)
+
+# RISC-V: bare-metal toolchain -> static object file (no -shared)
+$(BUILD_DIR)/lib_icon_riscv64: $(ASM_DIR)/sakum_lib_icon_riscv64.s | $(BUILD_DIR)
+ifeq ($(CROSS_RISCV64),)
+	@echo "SKIP lib_icon_riscv64: no riscv64 cross-compiler"
+else
+	$(CROSS_RISCV64) -I $(ASM_DIR) -DNO_MAIN -c $< -o $(BUILD_DIR)/lib_icon_riscv64.o
+endif
+
 $(BUILD_DIR)/keywords_arm64: $(ASM_DIR)/sakum_keywords_arm64.s | $(BUILD_DIR)
 ifeq ($(CROSS_AARCH64),)
 	$(CC) $(ARM64_FLAGS) -I $(ASM_DIR) -c $< -o $@.o && echo "OK  (asm) $<" || echo "SKIP keywords_arm64: assembler"
@@ -246,6 +272,9 @@ LIB_TARGETS := lib_crypto lib_quantum lib_bounds lib_overflow \
 
 test: cipher $(LIB_TARGETS)
 	@$(BUILD_DIR)/cipher && echo "PASS: cipher" || echo "FAIL: cipher"
+
+validate:
+	@cd assembly && python3 validate.py
 	@for t in $(LIB_TARGETS); do \
 		$(BUILD_DIR)/$$t >/dev/null 2>&1 && echo "PASS: $$t" || echo "FAIL: $$t"; \
 	done
