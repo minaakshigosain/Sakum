@@ -123,7 +123,7 @@ recompile_gate() {
     local base; base="$(basename "$src" .s)"
     # Compile to object (-c): verifies it assembles + type-checks without
     # requiring a _main (libraries like sakum_db/sakum_sys are link targets).
-    if ! gcc -arch x86_64 -c -include "$ASM/platform.inc" "$src" -o "$BUILD/$base.o" >>"$LOG" 2>>"$ERR"; then
+    if ! gcc -arch x86_64 -c -I "$DIR/include" -include "$ASM/platform.inc" "$src" -o "$BUILD/$base.o" >>"$LOG" 2>>"$ERR"; then
       fail=1; fail_list="$fail_list $base"
     fi
   done

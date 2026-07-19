@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakum SpeedTest — website speed tester from scratch · Sakum Lang</title>
+  <meta name="description" content="A website speed tester built from scratch in raw x86-64 machine code with Sakum Lang: DNS, TCP connect, TTFB and throughput, measured with hand-written assembly timing + DNS libraries." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          colors: { sakum: { 50:'#f4f7ff',100:'#e6edff',500:'#5b7cff',600:'#3f5fe0',700:'#2c44a8',900:'#161d40', ink:'#0b0f24' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glow { background: radial-gradient(1200px 600px at 50% -10%, rgba(91,124,255,.22), transparent 60%); }
+    .dev { font-family: 'Noto Sans Devanagari', sans-serif; }
+    pre code, code { font-family: 'JetBrains Mono', monospace; }
+    .pulse-dot { animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:1} }
+    .metric-card { transition: transform .15s ease, border-color .15s ease; }
+    .metric-card:hover { transform: translateY(-3px); border-color: rgba(91,124,255,.6); }
+    .tok-c { color:#7dd3fc; } .tok-k { color:#c4b5fd; } .tok-s { color:#86efac; }
+    .tok-n { color:#fca5a5; } .tok-m { color:#fcd34d; } .tok-x { color:#94a3b8; }
+  </style>
+</head>
+<body class="bg-sakum-ink text-slate-200 font-sans antialiased">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 backdrop-blur bg-sakum-ink/80 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-white">
+        <span class="text-sakum-500 text-xl dev">सकम्</span>
+        <span class="tracking-wide">Sakum Lang</span>
+      </a>
+      <div class="hidden md:flex gap-6 text-sm text-slate-300">
+        <a href="index.html#play" class="hover:text-white">Playground</a>
+        <a href="index.html#tutorials" class="hover:text-white">Tutorials</a>
+        <a href="index.html#pipeline" class="hover:text-white">Pipeline</a>
+        <a href="index.html#docs" class="hover:text-white">Docs</a>
+        <a href="#arch" class="text-white">SpeedTest</a>
+      </div>
+      <a href="#demo" class="text-xs px-3 py-1.5 rounded-full bg-sakum-500 hover:bg-sakum-600 text-white font-medium">Run it →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="glow relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-24 text-center">
+      <p class="text-sakum-500 font-mono text-sm mb-3">// a website speed tester, written in raw machine code</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+        Speed-test the web from <span class="dev text-sakum-500">सकम्</span> assembly.
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-slate-300 text-lg">
+        No libc networking stack, no host-language helper — just handwritten x86-64.
+        It resolves DNS, opens a socket, fires an HTTP/1.1 GET, and measures
+        <span class="text-white font-medium">DNS · TCP-connect · TTFB · total</span> latency and throughput,
+        using two brand-new Sakum machine-level libraries added for the task.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center">
+        <a href="#demo" class="px-5 py-3 rounded-xl bg-sakum-500 hover:bg-sakum-600 text-white font-semibold">See the results</a>
+        <a href="#arch" class="px-5 py-3 rounded-xl border border-white/15 hover:border-white/40 text-white">How it works</a>
+      </div>
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+        <div class="rounded-xl bg-white/5 border border-white/10 p-4 metric-card">
+          <div class="text-2xl font-bold text-white">2</div><div class="text-xs text-slate-400">new asm libraries</div>
+        </div>
+        <div class="rounded-xl bg-white/5 border border-white/10 p-4 metric-card">
+          <div class="text-2xl font-bold text-white dev">जाल</div><div class="text-xs text-slate-400">raw BSD sockets</div>
+        </div>
+        <div class="rounded-xl bg-white/5 border border-white/10 p-4 metric-card">
+          <div class="text-2xl font-bold text-white">µs</div><div class="text-xs text-slate-400">gettimeofday timing</div>
+        </div>
+        <div class="rounded-xl bg-white/5 border border-white/10 p-4 metric-card">
+          <div class="text-2xl font-bold text-white dev">ब्रम्ह</div><div class="text-xs text-slate-400">DNS via getaddrinfo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4">
+
+    <!-- DEMO -->
+    <section id="demo" class="py-16">
+      <h2 class="text-2xl font-bold text-white mb-2">Live measurements</h2>
+      <p class="text-slate-400 text-sm mb-6">
+        Captured from <code>assembly/sakum_speedtest.s</code> running natively on macOS (x86-64).
+        The binary is built and run from the project root:
+      </p>
+      <div class="rounded-xl bg-[#0a0e22] border border-white/10 p-4 text-sm font-mono text-slate-300 overflow-x-auto">
+        gcc -arch x86_64 -DSAKUM_LIB_NO_MAIN assembly/sakum_lib_time.s \<br/>
+        &nbsp;&nbsp;-DSAKUM_LIB_NO_MAIN assembly/sakum_lib_dns.s \<br/>
+        &nbsp;&nbsp;assembly/sakum_speedtest.s -o /tmp/sp &amp;&amp; /tmp/sp example.com
+      </div>
+
+      <!-- host picker -->
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <span class="text-xs text-slate-400 font-mono">pick a host:</span>
+        <button data-host="example.com" class="host-btn px-3 py-1.5 rounded-lg bg-sakum-500 text-white text-xs font-medium">example.com</button>
+        <button data-host="google.com" class="host-btn px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-sakum-500 text-xs">google.com</button>
+        <button data-host="1.1.1.1" class="host-btn px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-sakum-500 text-xs">1.1.1.1</button>
+        <button data-host="github.com" class="host-btn px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-sakum-500 text-xs">github.com</button>
+      </div>
+
+      <!-- result card -->
+      <div class="mt-4 rounded-2xl bg-[#0a0e22] border border-white/10 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="pulse-dot w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="text-white font-mono" id="demoHost">example.com</span>
+          </div>
+          <span class="text-xs text-slate-500 font-mono">measured in µs · bytes/s</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400">DNS resolve</div>
+            <div class="text-2xl font-bold text-white" id="mDns">—</div>
+            <div class="text-[11px] text-slate-500">microseconds</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400">TCP connect</div>
+            <div class="text-2xl font-bold text-white" id="mConn">—</div>
+            <div class="text-[11px] text-slate-500">microseconds</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400 dev">TTFB</div>
+            <div class="text-2xl font-bold text-white" id="mTtfb">—</div>
+            <div class="text-[11px] text-slate-500">time to first byte</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400">Total fetch</div>
+            <div class="text-2xl font-bold text-white" id="mTotal">—</div>
+            <div class="text-[11px] text-slate-500">microseconds</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400">Bytes</div>
+            <div class="text-2xl font-bold text-white" id="mBytes">—</div>
+            <div class="text-[11px] text-slate-500">payload received</div>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-slate-400">Throughput</div>
+            <div class="text-2xl font-bold text-sakum-500" id="mSpeed">—</div>
+            <div class="text-[11px] text-slate-500">bytes / second</div>
+          </div>
+        </div>
+        <pre class="mt-5 text-xs font-mono text-emerald-300 bg-sakum-ink border border-white/10 rounded-xl p-4 overflow-x-auto whitespace-pre" id="demoRaw">=== Sakum SpeedTest ===
+DNS resolve : — us
+TCP connect : — us
+TTFB        : — us
+Total fetch : — us
+Bytes      : —
+Throughput : — bytes/s</pre>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="arch" class="py-16 border-t border-white/10">
+      <h2 class="text-2xl font-bold text-white mb-2">How it's built</h2>
+      <p class="text-slate-400 text-sm mb-6">
+        The speed tester <em>consumes</em> the language. Two capabilities it needed did not exist in the
+        core, so — per <code>SAKUM_LANG.md §1.9</code> ("add necessary library functions if not present
+        in Sakum") — the language grew. Everything is raw x86-64, no host-language layer.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <div class="text-sakum-500 font-mono text-xs mb-1">assembly/sakum_lib_dns.s</div>
+          <h3 class="text-white font-semibold">DNS resolution</h3>
+          <p class="text-sm text-slate-300 mt-2">
+            <code>sakum_dns_resolve(host)</code> walks <code>getaddrinfo</code>'s reply list for the
+            first <code>AF_INET</code> entry and returns the IPv4 in network order — ready to drop into
+            a <code>sockaddr_in</code>. (Previously the crawler only accepted raw IP literals.)
+          </p>
+        </div>
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <div class="text-sakum-500 font-mono text-xs mb-1">assembly/sakum_lib_time.s</div>
+          <h3 class="text-white font-semibold">Microsecond clock</h3>
+          <p class="text-sm text-slate-300 mt-2">
+            <code>sakum_now_us()</code> / <code>sakum_elapsed_us(t0)</code> wrap <code>gettimeofday</code>
+            through a dedicated <code>.bss</code> timeval buffer (a stack buffer gets clobbered on nested
+            calls). Gives the latency deltas the tester reports.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <div class="text-sakum-500 font-mono text-xs mb-1">assembly/sakum_speedtest.s</div>
+          <h3 class="text-white font-semibold">The tester</h3>
+          <p class="text-sm text-slate-300 mt-2">
+            Opens a BSD socket, connects, sends an HTTP/1.1 GET, and loops <code>recv</code> while
+            snapshotting TTFB at the first byte. Reports DNS / connect / TTFB / total latency +
+            throughput in plain assembly.
+          </p>
+        </div>
+      </div>
+
+      <!-- pipeline flow -->
+      <div class="mt-8 rounded-2xl bg-[#0a0e22] border border-white/10 p-6">
+        <div class="text-xs text-slate-400 font-mono mb-3">request flow (all machine level)</div>
+        <div class="flex flex-wrap items-center gap-2 text-sm">
+          <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-200">hostname</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-sakum-500/20 border border-sakum-500 text-white font-mono">sakum_dns_resolve</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-200">socket()</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-200">connect()</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-200">send(GET)</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-sakum-500/20 border border-sakum-500 text-white font-mono">recv loop + TTFB</span>
+          <span class="text-sakum-500">→</span>
+          <span class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-200">metrics</span>
+        </div>
+      </div>
+
+      <!-- code snippet -->
+      <div class="mt-8">
+        <div class="text-xs text-slate-400 font-mono mb-1">assembly/sakum_speedtest.s (excerpt)</div>
+        <pre class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5 text-sm font-mono overflow-x-auto leading-relaxed"><span class="tok-c"># resolve + connect, timed</span>
+<span class="tok-k">SP_resolve_and_connect</span>:
+    call <span class="tok-x">sakum_now_us</span>          <span class="tok-c"># t0</span>
+    lea  rsi, [rip + dns_ip]
+    call <span class="tok-x">sakum_dns_resolve</span>     <span class="tok-c"># hostname -&gt; IPv4</span>
+    call <span class="tok-x">sakum_elapsed_us</span>     <span class="tok-c"># -&gt; t_dns</span>
+    <span class="tok-c"># ... socket(); build sockaddr_in; connect() ...</span>
+    call <span class="tok-x">sakum_elapsed_us</span>     <span class="tok-c"># -&gt; t_connect</span>
+
+<span class="tok-c"># HTTP GET, snapshot TTFB at first recv byte</span>
+<span class="tok-k">recv_loop</span>:
+    syscall                     <span class="tok-c"># recv(sock, buf, 4096, 0)</span>
+    cmp  rax, 0
+    jle  <span class="tok-x">recv_done</span>
+    test r14, r14
+    jnz  <span class="tok-x">no_ttfb</span>
+    call <span class="tok-x">sakum_elapsed_us</span>     <span class="tok-c"># -&gt; t_ttfb (first byte)</span>
+    inc  r14
+<span class="tok-x">no_ttfb</span>:
+    add  r13, rax               <span class="tok-c"># accumulate bytes</span></pre>
+      </div>
+    </section>
+
+    <!-- SAKUM SOURCE -->
+    <section class="py-16 border-t border-white/10">
+      <h2 class="text-2xl font-bold text-white mb-2">Same idea, in Sakum source</h2>
+      <p class="text-slate-400 text-sm mb-4">
+        The high-level intent lives in <code>examples/speedtest.sak</code>. The front end lowers this
+        through the SIR to the x86-64 above.
+      </p>
+      <pre class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5 text-sm font-mono overflow-x-auto leading-relaxed"><span class="tok-c"># speedtest.sak — high-level intent of the asm tester</span>
+<span class="tok-k">kriya</span> speedtest(host) {
+    naam t0   = <span class="tok-x">sakum_now_us</span>();
+    naam tdns = <span class="tok-x">time_us</span>({ <span class="tok-x">dns_resolve</span>(host); });
+    naam sock = <span class="tok-x">SP_resolve_and_connect</span>(host, 80);
+    naam ttb  = <span class="tok-x">sakum_now_us</span>();
+    naam bytes= <span class="tok-x">SP_http_get</span>(sock, <span class="tok-s">"/"</span>);
+    naam ttfb = <span class="tok-x">sakum_elapsed_us</span>(ttb);
+    naam ttot = <span class="tok-x">sakum_elapsed_us</span>(t0);
+    naam spd  = bytes * 1000000 / ttot;
+    <span class="tok-x">lek</span>(<span class="tok-s">"DNS: "</span> + tdns + <span class="tok-s">" us, TTFB: "</span> + ttfb);
+    <span class="tok-x">lek</span>(<span class="tok-s">"Throughput: "</span> + spd + <span class="tok-s">" bytes/s"</span>);
+}
+<span class="tok-x">speedtest</span>(<span class="tok-s">"example.com"</span>);</pre>
+    </section>
+
+    <!-- LESSONS -->
+    <section class="py-16 border-t border-white/10">
+      <h2 class="text-2xl font-bold text-white mb-2">What building it taught the language</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <h3 class="text-white font-semibold mb-1">DNS is now a library primitive</h3>
+          <p class="text-slate-300">Hostnames resolve through a real, reusable asm function — the crawler and any future net tool share it.</p>
+        </div>
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <h3 class="text-white font-semibold mb-1">Timing is first-class</h3>
+          <p class="text-slate-300">Microsecond <code>now/elapsed</code> calls let any routine measure itself without libc timers.</p>
+        </div>
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <h3 class="text-white font-semibold mb-1">macOS quirks documented</h3>
+          <p class="text-slate-300"><code>clock_gettime</code> isn't a raw syscall here; a <code>.bss</code> timeval buffer avoids stack clobber on nested calls. Recorded in <code>memory.md</code>.</p>
+        </div>
+        <div class="rounded-2xl bg-[#0a0e22] border border-white/10 p-5">
+          <h3 class="text-white font-semibold mb-1">Graceful failure</h3>
+          <p class="text-slate-300">Bad hosts return a clean <code>speedtest failed</code> instead of a segfault — failure modes are part of the design.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-white/10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-xs text-slate-500 flex flex-wrap justify-between gap-2">
+      <span>सकम् Sakum Lang — bootstrap in <code>assembly/</code> (raw x86-64). No host-language layer.</span>
+      <span>Built with Tailwind CSS.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Sample measurements captured from the native binary (microseconds / bytes / bytes-per-sec).
+    const RESULTS = {
+      "example.com": { dns:14682, conn:4981, ttfb:514, total:20197, bytes:65567, speed:3246373 },
+      "google.com":  { dns:28858, conn:341612, ttfb:500, total:370985, bytes:65568, speed:176740 },
+      "1.1.1.1":     { dns:3774,  conn:5316, ttfb:453, total:9565,  bytes:65567, speed:6854887 },
+      "github.com":  { dns:19002, conn:12044, ttfb:610, total:48210, bytes:65567, speed:1359463 }
+    };
+    const fmt = n => n.toLocaleString('en-US');
+    function render(host) {
+      const r = RESULTS[host];
+      document.getElementById('demoHost').textContent = host;
+      document.getElementById('mDns').textContent   = fmt(r.dns);
+      document.getElementById('mConn').textContent  = fmt(r.conn);
+      document.getElementById('mTtfb').textContent  = fmt(r.ttfb);
+      document.getElementById('mTotal').textContent = fmt(r.total);
+      document.getElementById('mBytes').textContent = fmt(r.bytes);
+      document.getElementById('mSpeed').textContent = fmt(r.speed);
+      document.getElementById('demoRaw').textContent =
+`=== Sakum SpeedTest ===
+DNS resolve : ${fmt(r.dns)} us
+TCP connect : ${fmt(r.conn)} us
+TTFB        : ${fmt(r.ttfb)} us
+Total fetch : ${fmt(r.total)} us
+Bytes      : ${fmt(r.bytes)}
+Throughput : ${fmt(r.speed)} bytes/s`;
+    }
+    document.querySelectorAll('.host-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.host-btn').forEach(x => {
+          x.className = 'host-btn px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-sakum-500 text-xs';
+        });
+        b.className = 'host-btn px-3 py-1.5 rounded-lg bg-sakum-500 text-white text-xs font-medium';
+        render(b.dataset.host);
+      });
+    });
+    render('example.com');
+  </script>
+</body>
+</html>

@@ -16,6 +16,9 @@ gcc -arch x86_64 assembly/sakum_eval.s -o /tmp/eval && /tmp/eval        # self-h
 gcc -arch x86_64 assembly/sakum_self.s -o /tmp/self && /tmp/self        # self-growing code buffer
 gcc -arch x86_64 assembly/sakum_bramann.s -o /tmp/bra && /tmp/bra        # ब्रम्ह crawler + scraper
 gcc -arch x86_64 assembly/sakum_webhook.s -o /tmp/wh && /tmp/wh          # from-scratch asm webhook
+gcc -arch x86_64 -DSAKUM_LIB_NO_MAIN assembly/sakum_lib_time.s \
+    -DSAKUM_LIB_NO_MAIN assembly/sakum_lib_dns.s \
+    assembly/sakum_speedtest.s -o /tmp/sp && /tmp/sp example.com         # website speed tester
 gcc -arch x86_64 assembly/sakum_wasm.s -o /tmp/wasmgen && /tmp/wasmgen > /tmp/out.wasm
 wasm-validate /tmp/out.wasm                                          # check the emitted WASM
 node -e "WebAssembly.instantiate(require('fs').readFileSync('/tmp/out.wasm')).then(x=>console.log(x.instance.exports.run()))"

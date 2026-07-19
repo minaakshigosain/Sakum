@@ -53,6 +53,9 @@
 #endif
 
 // ─── Syscall Numbers (per OS + Arch) ────────────────────────────────────
+// Skip if a companion header (e.g. platform.inc) already provides these as
+// C-preprocessor macros; otherwise SYS_* would expand before reaching `.set`.
+#ifndef SYS_READ
 
 // macOS x86_64
 #if __SAKUM_MACOS__ && __SAKUM_X86_64__
@@ -210,6 +213,8 @@
   .set CLOCK_MONOTONIC, 1
   .set CLOCK_REALTIME,  0
 #endif
+
+#endif // SYS_READ guard
 
 // ─── Function Prologue / Epilogue ──────────────────────────────────────
 #if __SAKUM_X86_64__

@@ -1,0 +1,16 @@
+(lldb) target create "build/test/seltest_x86"
+Current executable set to '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/seltest_x86' (x86_64).
+(lldb) run
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+sel=1,1,3,3
+Process 3584 launched: '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/seltest_x86' (x86_64)
+Process 3584 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x2)
+    frame #0: 0x0000000100000982 seltest_x86`.it_nextrow + 32
+seltest_x86`.it_nextrow:
+->  0x100000982 <+32>: movl   %edx, (%rdx)
+    0x100000984 <+34>: movl   (%rdi), %ecx
+    0x100000986 <+36>: incl   %ecx
+    0x100000988 <+38>: movl   %ecx, (%rdi)
+Target 0: (seltest_x86) stopped.

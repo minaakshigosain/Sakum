@@ -1,0 +1,100 @@
+# sakum_module.skm — Sakum Binary Module Format Specification
+#
+# File extension: .skm (Sakum Module)
+# MIME type: application/x-sakum-module
+#
+# ── Binary layout ──────────────────────────────────────────────
+#
+# +==============+========+======================================+
+# |  Section     | Offset | Description                          |
+# +==============+========+======================================+
+# | MAGIC        | 0x0000 | 8 bytes: "SAKUMOD" / "SAKUMSKM"      |
+# | VERSION      | 0x0008 | 4 bytes LE: module format version    |
+# | FLAGS        | 0x000C | 4 bytes LE: feature flags            |
+# | ARCH         | 0x0010 | 4 bytes LE: target arch ID           |
+# | ENTRY        | 0x0014 | 8 bytes LE: entry function offset    |
+# | CODE_OFF     | 0x001C | 8 bytes LE: code section offset      |
+# | CODE_SIZE    | 0x0024 | 8 bytes LE: code section size        |
+# | DATA_OFF     | 0x002C | 8 bytes LE: data section offset      |
+# | DATA_SIZE    | 0x0034 | 8 bytes LE: data section size        |
+# | SYMTAB_OFF   | 0x003C | 8 bytes LE: symbol table offset      |
+# | SYMTAB_ENT   | 0x0044 | 4 bytes LE: number of symbols        |
+# | MODTAB_OFF   | 0x0048 | 8 bytes LE: module dependency table  |
+# | MODTAB_ENT   | 0x0050 | 4 bytes LE: number of dependencies   |
+# | ENC_KEY      | 0x0054 | 32 bytes: AES-256 key (if encrypted)  |
+# | ENC_IV       | 0x0074 | 12 bytes: AES-GCM IV                  |
+# | ENC_TAG      | 0x0080 | 16 bytes: AES-GCM auth tag            |
+# | HMAC         | 0x0090 | 32 bytes: HMAC-SHA256 (whole module)  |
+# | RESERVED     | 0x00B0 | 80 bytes: reserved for future use     |
+# | HEADER_END   | 0x0100 | header size = 256 bytes               |
+# +--------------+--------+--------------------------------------+
+# | MODULE TABLE |        | Array of ModuleEntry (16 bytes each)  |
+# |              |        |   [hash:8][version:4][flags:4]        |
+# +--------------+--------+--------------------------------------+
+# | SYMBOL TABLE |        | Array of SymEntry (16 bytes each)     |
+# |              |        |   [name_offset:8][code_offset:8]      |
+# +--------------+--------+--------------------------------------+
+# | STRING TABLE |        | Null-terminated symbol name strings   |
+# +--------------+--------+--------------------------------------+
+# | CODE SECTION |        | AES-256-GCM encrypted or plain code   |
+# |              |        | Raw machine code (architecture native) |
+# +--------------+--------+--------------------------------------+
+# | DATA SECTION |        | Initialised data / constants          |
+# +--------------+--------+--------------------------------------+
+#
+# ── Architecture IDs ───────────────────────────────────────────
+#   1 = x86-64 (AMD64)
+#   2 = ARM64 (AArch64)
+#   3 = ARM32 (AArch32)
+#   4 = x86 (IA-32)
+#   5 = RISC-V 64
+#   6 = RISC-V 32
+#   7 = WebAssembly (future)
+#
+# ── Flags ──────────────────────────────────────────────────────
+#   bit 0: encrypted (1 = AES-256-GCM encrypted)
+#   bit 1: compressed (1 = section compressed with Sakum-LZ)
+#   bit 2: position-independent (1 = PIC)
+#   bit 3: requires HMAC verification
+#   bit 4: multi-ISA payload present
+#
+# ── Module types ───────────────────────────────────────────────
+#   .skm — Native binary module (compiled Sakum)
+#   .skmb — Module bundle (multi-ISA archive)
+#   .skmi — Module interface (symbol signatures only)
+#
+# ── Encryption ─────────────────────────────────────────────────
+#   Algorithm: AES-256 in GCM mode
+#   Key derivation: HMAC-SHA256(source_hash || module_name, master_key)
+#   Integrity: HMAC-SHA256(header + code + data, module_key)
+#   Nonce: 12 bytes derived from source_hash[0..11]
+#
+# ── The Hinglish base module ───────────────────────────────────
+#   The Hinglish module base (skm_hinglish_base) provides:
+#     - लेख (lek) / print    — console output
+#     - पढ़ो (padho) / read  — console input
+#     - गणित (ganit) / math  — math functions
+#     - समय (samay) / clock  — timing functions
+#     - सरणी (sarni) / array — dynamic arrays
+#     - शब्द (shabd) / str   — string operations
+#     - फ़ाइल (fail) / file  — file I/O
+#     - जाल (jaal) / net     — networking
+#     - कुंजी (kunjee) / key — cryptography
+#     - परीक्षा (pareeksha)   — testing framework
+#
+#   Each Hinglish function maps to a Sakum ABI callable.
+
+# ── Module descriptor (in-memory) ──────────────────────────────
+# Structure returned by skm_module_load:
+#   +0:  pointer to decrypted code (mmap'd)
+#   +8:  code size
+#   +16: pointer to data section
+#   +24: data size
+#   +32: symbol table pointer
+#   +40: num symbols
+#   +48: entry point offset
+#   +56: architecture ID
+#   +64: flags
+#   +72: decryption key (zeroised on close)
+#   +104: module path string
+#   +136: reference count

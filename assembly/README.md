@@ -170,3 +170,37 @@ a feature (e.g. `sakum_quantum.s` emitting the `QCB1` circuit binary, or
   caller-saved and is **not** preserved by `demo_varga`.
 - `heart_alloc`/`heart_free`/`heart_check` model the `हृदय` memory-safety layer
   with a used-flag + canary per slot; `heart_free` returns `-1` on a double free.
+
+## Sakum OS Core (sakum_core/ — pure machine code, all ISAs)
+
+The OS core lives in `sakum_core/` and is built by `sakum_core/build/build_core.sh`
+(it assembles x86-64 / ARM64 / RISC-V64 and runs a native machine-code self-test).
+No C/Python: libraries and test are raw assembly with raw syscalls.
+
+| Library | What it is | Build + run |
+|---------|------------|-------------|
+| `sakum_core/fs/sutrafs.s` | **SutraFS** graph filesystem — every OS object is ONE node ("bindu") in a single vectorless graph space; dirs/deps/versions/sigs/encryption are typed edges. `sutra_init/new_node/node_ptr/link/edge_count/hash`. | `./sakum_core/build/build_core.sh` |
+| `sakum_core/quantum/sakum_quantum_core.s` | **Superposition core** — keeps a history chain `f(x) \|> f(new(x)) \|> ...`; `q_super` origin, `q_pipe` append branch (`\|>`), `q_integrate` (value×amp over whole chain), `q_collapse` (time-travel to any prior step). Never loses a prior state. | `./sakum_core/build/build_core.sh` |
+| `sakum_core/build/sakum_core_test.s` | Native self-test (raw `write`/`exit` syscalls, no libc) exercising SutraFS + quantum core; exit 0 = all pass. | linked by build_core.sh |
+| `sakum_core/inc/sakum_core.inc` | Official component IDs (Aadi/Anth/Chakra/Sutra/Kavac/Aapra/Mudra/Satya/Setu/SakIR/SakVM/SakTerm/Resur), 7 Chakra IDs, native Sakum opcode set ("mantra" ops), node/edge/quantum record layouts, self-heal codes (`SAK_ROLLBACK` / `SAK_GHATAK`). | included by every core file |
+
+### Native file types
+
+`.sak` source · `.skm` module · `.skl` library · `.skc` binary · `.ski` SakIR ·
+`.ske` encrypted object · `.sks` signature · `.skg` graph object · `.skr` recovery ·
+`.skv` snapshot · `.ska` AI knowledge · `.skt` terminal workspace · `.skp` package ·
+`.skb` boot image.
+
+### Sakum OS kernel + runtime layer (sakum_core/, continued)
+
+| Library | What it is | Build + run |
+|---------|------------|-------------|
+| `sakum_core/kernel/aadi.s` | **Aadi** primary kernel: last-known-good boot, `aadi_promote` returns `SAK_OK` on verify-pass, `SAK_ROLLBACK` on verify-fail (keeps last good), `SAK_GHATAK` on a non-core locked-node breach (fatal). | `./sakum_core/build/build_core.sh` |
+| `sakum_core/kernel/anth.s` | **Anth** recovery kernel: `anth_recover` restores the Resur last-good snapshot on `SAK_ROLLBACK` (action 1), or halts on `SAK_GHATAK` (action 2) — the OS never runs corrupted state. | same |
+| `sakum_core/kernel/chakra_loader.s` | **Chakra** modular runtime: links encrypted `.skm` modules under one of the 7 Chakra classes; `chakra_link_module` returns `SAK_GHATAK` if a non-core user edits a `NF_LOCKED` node. | same |
+| `sakum_core/kernel/sakterm.s` | **SakTerm** AI terminal core: ring buffer, vim NORMAL/INSERT mode toggle, `skt_ai_hook` wires any LLM model file (from any path) as the active knowledge source. | same |
+| `sakum_core/vm/sakvm.s` | **SakVM** universal runtime: `sakvm_run` dispatches NATIVE/AOT/JIT; `sakvm_translate` lowers IR via SakIR. | same |
+| `sakum_core/vm/sakir.s` | **SakIR** intermediate representation: 16-byte IR records + `sakir_emit` lowering to native machine code (x86-64 emits real `mov rax,imm`/`add`/`ret`; ARM64/RISC-V record the IR for the per-ISA backend). | same |
+| `sakum_core/build/sakum_core_test.s` | Native self-test (raw `write`/`exit` syscalls, no libc) covering SutraFS, quantum superposition, Aadi/Anth self-heal, Chakra+ghatak, SakVM, SakIR, SakTerm. | run by build_core.sh |
+
+ISA status: **x86-64 / ARM64 / RISC-V64 fully implemented + self-tested**; **ARM32 (`ISA_ARM32`) and x86-32 (`ISA_X86`) are implemented for the Sakum OS core** (`sakum_core/`) and verified by `build_core.sh`. The broader `assembly/` libraries likewise target the three 64-bit ISAs.

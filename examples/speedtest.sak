@@ -1,0 +1,65 @@
+# speedtest.sak — Sakum Lang example: website speed tester
+#
+# This is the HIGH-LEVEL source for the website speed tester that is implemented
+# in raw machine code at assembly/sakum_speedtest.s. It shows the intent of the
+# program in Sakum syntax (naam = var, kriya = function, lek = print,
+# vapsa = return). The front end lowers this through the SIR to x86-64 / ARM64 /
+# RISC-V / WASM, reusing the library functions added for this task:
+#
+#   sakum_dns_resolve()  -> assembly/sakum_lib_dns.s   (was MISSING, added)
+#   sakum_now_us()       -> assembly/sakum_lib_time.s  (was MISSING, added)
+#   sakum_elapsed_us()   -> assembly/sakum_lib_time.s  (was MISSING, added)
+#
+# Per SAKUM_LANG.md §1.9 "learn from it and add necessary library functions if
+# not present in Sakum" — DNS resolution and microsecond timing did not exist in
+# the core, so the speed tester's needs drove two new machine-level libraries.
+#
+# The metrics a run reports:
+#   t_dns    — DNS resolution latency (us)
+#   t_connect— TCP connect latency      (us)
+#   t_ttfb   — time to first byte       (us)
+#   t_total  — total fetch time         (us)
+#   bytes    — payload bytes received
+#   speed    — effective throughput     (bytes/sec)
+
+# --- function: resolve a hostname to an IPv4 address (network order) ---
+kriya dns_resolve(host) {
+    naam ip = sakum_dns_resolve(host);   # calls assembly/sakum_lib_dns.s
+    vapsa ip;
+}
+
+# --- function: time a block using the new microsecond clock ---
+kriya time_us(block) {
+    naam t0 = sakum_now_us();            # calls assembly/sakum_lib_time.s
+    block();
+    vapsa sakum_elapsed_us(t0);
+}
+
+# --- function: run a full timed speed test against a host ---
+kriya speedtest(host) {
+    naam t0   = sakum_now_us();
+
+    # DNS phase (timed)
+    naam tdns = time_us({ dns_resolve(host); });
+
+    # open socket + TCP connect (timed inside SP_resolve_and_connect)
+    naam sock = SP_resolve_and_connect(host, 80);
+
+    # HTTP GET, measure time-to-first-byte + total download
+    naam ttfbbase = sakum_now_us();
+    naam bytes    = SP_http_get(sock, "/");
+    naam ttfb     = sakum_elapsed_us(ttfbbase);
+    naam ttotal   = sakum_elapsed_us(t0);
+    naam speed    = bytes * 1000000 / ttotal;
+
+    lek("=== Sakum SpeedTest ===");
+    lek("DNS resolve : " + tdns + " us");
+    lek("TCP connect : " + t_connect + " us");
+    lek("TTFB        : " + ttfb + " us");
+    lek("Total fetch : " + ttotal + " us");
+    lek("Bytes      : " + bytes);
+    lek("Throughput : " + speed + " bytes/s");
+}
+
+# --- output (example.com is the default host from the asm front end) ---
+speedtest("example.com");

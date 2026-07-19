@@ -44,15 +44,23 @@
 #ifndef ISA_X86_64
 #ifndef ISA_ARM64
 #ifndef ISA_RISCV64
+#ifndef ISA_ARM32
+#ifndef ISA_X86
   #if defined(__x86_64__) || defined(_M_X64)
     #define ISA_X86_64 1
   #elif defined(__aarch64__) || defined(_M_ARM64)
     #define ISA_ARM64 1
   #elif defined(__riscv) && (__riscv_xlen == 64)
     #define ISA_RISCV64 1
+  #elif defined(__arm__) || defined(__thumb__)
+    #define ISA_ARM32 1
+  #elif defined(__i386__) || defined(_M_IX86)
+    #define ISA_X86 1
   #else
-    #error "Unknown ISA. Define ISA_X86_64, ISA_ARM64, or ISA_RISCV64."
+    #error "Unknown ISA. Define ISA_X86_64, ISA_ARM64, ISA_RISCV64, ISA_ARM32, or ISA_X86."
   #endif
+#endif
+#endif
 #endif
 #endif
 #endif

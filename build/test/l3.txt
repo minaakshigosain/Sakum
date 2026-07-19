@@ -1,0 +1,20 @@
+(lldb) target create "build/test/imgtest_x86"
+Current executable set to '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/imgtest_x86' (x86_64).
+(lldb) run
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+FAIL: index
+FAIL: convert gray
+FAIL: convert gray white
+FAIL: gray->rgba roundtrip
+FAIL: align_fix first pixel == anchor
+Process 4089 launched: '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/imgtest_x86' (x86_64)
+Process 4089 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x14)
+    frame #0: 0x00000001000005b2 imgtest_x86`img_index + 4
+imgtest_x86`img_index:
+->  0x1000005b2 <+4>:  movl   0x14(%rdi), %r8d
+    0x1000005b6 <+8>:  testl  %r8d, %r8d
+    0x1000005b9 <+11>: jne    0x1000005d5               ; .idx_stride_ok
+    0x1000005bf <+17>: movl   0x8(%rdi), %r8d
+Target 0: (imgtest_x86) stopped.

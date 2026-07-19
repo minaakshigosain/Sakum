@@ -1,0 +1,18 @@
+(lldb) target create "build/test/t7_x86"
+Current executable set to '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/t7_x86' (x86_64).
+(lldb) run
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+before convert px(0,0)=80FF0000
+Process 33540 launched: '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/build/test/t7_x86' (x86_64)
+Process 33540 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=2, address=0x104124700)
+    frame #0: 0x0000000100000779 t7_x86`.sp_gray + 15
+t7_x86`.sp_gray:
+->  0x100000779 <+15>: movb   %al, (%rdi)
+    0x10000077b <+17>: jmp    0x10000079b               ; .sp_done
+
+t7_x86`.sp_bgr:
+    0x100000780 <+0>:  movb   %sil, (%rdi)
+    0x100000783 <+3>:  movb   %dl, 0x1(%rdi)
+Target 0: (t7_x86) stopped.

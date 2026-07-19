@@ -1,0 +1,136 @@
+# cross_platform_demo.sakum — Hinglish + English Sakum Program
+# Fully cross-platform: compiles on x86-64, ARM64, ARM32, x86, RISC-V
+#
+# Demonstrates ALL Sakum language features with cross-platform
+# macro wrappers. This program is identical across all architectures.
+
+# ── Hinglish module imports ─────────────────────────────────────
+# These resolve through the Hinglish base module (hinglish_base.skm)
+# which provides pure machine-code implementations for every platform.
+
+# ── Constants ───────────────────────────────────────────────────
+naam PLATFORM_X86_64  = 1
+naam PLATFORM_ARM64   = 2
+naam PLATFORM_ARM32   = 3
+naam PLATFORM_X86     = 4
+naam PLATFORM_RISCV64 = 5
+naam PLATFORM_RISCV32 = 6
+
+# ── Cross-platform recursion (Fibonacci) ────────────────────────
+# Machine-level: uses SKM_PROLOGUE/SKM_EPILOGUE which generate
+# correct stack frames on every ISA.
+
+kriya fib(n) {
+    # Base case: fib(0)=0, fib(1)=1
+    yadi (n <= 1) {
+        vapsa n;
+    }
+
+    # Recursive case: fib(n-1) + fib(n-2)
+    naam a = fib(n - 1);
+    naam b = fib(n - 2);
+    vapsa a + b;
+}
+
+# ── Cross-platform sum-to-n (demonstrates loops) ───────────────
+kriya sum_to(n) {
+    naam total = 0;
+    naam i = 1;
+
+    yavat (i <= n) {
+        total = total + i;
+        i = i + 1;
+    }
+
+    vapsa total;
+}
+
+# ── Cross-platform factorial (demonstrates variable mutation) ──
+kriya fact(n) {
+    naam result = 1;
+    naam i = 1;
+
+    yavat (i <= n) {
+        result = result * i;
+        i = i + 1;
+    }
+
+    vapsa result;
+}
+
+# ── Conditional logic with anyatha ──────────────────────────────
+kriya classify(val) {
+    yadi (val > 0) {
+        vapsa 1;    # positive
+    } anyatha {
+        yadi (val < 0) {
+            vapsa -1;   # negative
+        } anyatha {
+            vapsa 0;    # zero
+        }
+    }
+}
+
+# ── String built-in test ────────────────────────────────────────
+kriya test_string(s) {
+    lek(shabd_len(s));
+}
+
+# ── Math built-in test ─────────────────────────────────────────
+kriya test_math(x) {
+    lek(ganit_sqrt(x));
+}
+
+# ── Self-test (pariksha) block ──────────────────────────────────
+pariksha {
+    # Test Fibonacci
+    lek(fib(0));    # 0
+    lek(fib(1));    # 1
+    lek(fib(7));    # 13
+    lek(fib(10));   # 55
+
+    # Test sum_to
+    lek(sum_to(10));    # 55
+    lek(sum_to(100));   # 5050
+
+    # Test factorial
+    lek(fact(5));       # 120
+    lek(fact(7));       # 5040
+
+    # Test conditional
+    lek(classify(5));   # 1
+    lek(classify(-3));  # -1
+    lek(classify(0));   # 0
+
+    # Nested expression test
+    naam x = fib(10) + sum_to(100) - fact(5);
+    lek(x);             # 55 + 5050 - 120 = 4985
+
+    # Comparison chain
+    naam a = 10;
+    naam b = 20;
+    lek(a < b);         # 1
+    lek(a == b);        # 0
+    lek(a != b);        # 1
+    lek(a >= b);        # 0
+
+    # Arithmetic operators
+    lek(100 - 30);      # 70
+    lek(20 * 5);        # 100
+    lek(100 / 3);       # 33
+    lek(100 % 3);       # 1
+
+    # Bare expression statement (discard result)
+    fib(10);
+    sum_to(10);
+}
+
+# ── Main program ────────────────────────────────────────────────
+naam platform = SAKUM_ARCH;  # Set by assembler preprocessor
+
+lek(PLATFORM_X86_64);   # Always prints 1 (arch ID)
+lek(fib(10));           # 55
+lek(sum_to(100));       # 5050
+
+# Final bare expression
+fib(7);                 # 13 (discarded, used as statement)

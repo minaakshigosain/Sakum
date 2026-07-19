@@ -238,9 +238,15 @@ assembly/                      raw x86-64 machine-level core (no host language)
   sakum_eval.s   lexer + recursive-descent parser + evaluator (self-hosted front end)
   sakum_wasm.s   byte-by-byte WASM binary emitter (portable output)
    sakum_self.s   self engine: code buffer that grows by appending instructions
-   sakum_bramann.s ब्रम्ह: from-scratch crawler + scraper + quantum-learn loop
-   sakum_webhook.s from-scratch raw-assembly webhook receiver (POST /update)
-   sakum_adv.s    advanced core: OOP vtable (वर्ग), memory safety (हृदय),
+    sakum_bramann.s ब्रम्ह: from-scratch crawler + scraper + quantum-learn loop
+    sakum_webhook.s from-scratch raw-assembly webhook receiver (POST /update)
+    sakum_lib_time.s  microsecond clock: sakum_now_us/ms, sakum_elapsed_us/ms,
+                      sakum_rdtsc (added to support latency measurement)
+    sakum_lib_dns.s   DNS resolver: sakum_dns_resolve(host) -> IPv4 (added to
+                      support hostname-based networking)
+    sakum_speedtest.s website speed tester: DNS/TCP-connect/TTFB/total latency
+                      + throughput, built from scratch using the two libs above
+    sakum_adv.s    advanced core: OOP vtable (वर्ग), memory safety (हृदय),
                  error explainer (व्याख्या), self-learn bug resolver (स्वाध्याय)
    sakum_quantum.s (planned)  QCB1 quantum-circuit binary emitter
    sakum_arm.s    (planned)    aarch64 NEON back end

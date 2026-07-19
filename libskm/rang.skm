@@ -1,0 +1,136 @@
+# libskm/rang.skm — Rang (Color Palette) Module
+#
+# Pure machine-code color library for all 6 SAKUM target ISAs.
+# Provides named color lookup, PDF RGB string generation, HSV/hex
+# conversion, blending, gradients, and complementary colors.
+#
+# Dependencies: sakum_arch.inc
+
+# ── Module identity ────────────────────────────────────────────
+.skm_name "rang"
+.skm_version 1
+.skm_arch SAKUM_ARCH
+
+# ── Color constants (passed in skm_a0 to rang_get) ────────────
+# Use .set or let the assembler pull from arch/rang.inc:
+#   #include "arch/rang.inc"
+#
+# RANG_SAAFED   0   white    #FFFFFF
+# RANG_KALA     1   black    #000000
+# RANG_LAL      2   red      #FF0000
+# RANG_HARA     3   green    #00FF00
+# RANG_NILA     4   blue     #0000FF
+# RANG_PILA     5   yellow   #FFFF00
+# RANG_NARANGI  6   orange   #FF8800
+# RANG_JAMUNI   7   purple   #8800FF
+# RANG_GULABI   8   pink     #FF88CC
+# RANG_BHURA    9   brown    #885533
+# RANG_SLAATEE  10  slate    #668899
+# RANG_AMBER    11  amber    #FFBF00
+# RANG_SIAN     12  cyan     #00FFFF
+# RANG_NAVY     14  navy     #000080
+# RANG_MARON    15  maroon   #800000
+# RANG_ANK      27  ink      #1A1A2E
+# RANG_PATTA    28  leaf     #228B22
+# RANG_SAAGAR   29  ocean    #006994
+# RANG_COUNT    32
+
+# ── Exported functions ─────────────────────────────────────────
+
+# rang_get(color_id) -> packed RGBA (AA BB GG RR LE)
+#   skm_a0 = color ID (0..31)
+#   returns skm_a0 = packed 32-bit RGBA
+FUNC rang_get
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_get
+    SKM_EPILOGUE
+.endfunc
+
+# rang_pdfstr(rgba, buf) -> string length
+#   skm_a0 = packed RGBA
+#   skm_a1 = buffer (20+ bytes)
+#   returns skm_a0 = length of "R.G G.G B.B rg\0"
+FUNC rang_pdfstr
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_pdfstr
+    SKM_EPILOGUE
+.endfunc
+
+# rang_name(color_id, buf) -> name length
+#   skm_a0 = color ID
+#   skm_a1 = buffer (16+ bytes)
+#   returns skm_a0 = length of null-terminated name
+FUNC rang_name
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_name
+    SKM_EPILOGUE
+.endfunc
+
+# rang_blend(a, b, factor) -> blended RGBA
+#   skm_a0 = color A (packed RGBA)
+#   skm_a1 = color B (packed RGBA)
+#   skm_a2 = blend factor (0=all A, 256=all B)
+#   returns skm_a0 = blended RGBA
+FUNC rang_blend
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_blend
+    SKM_EPILOGUE
+.endfunc
+
+# rang_hsv2rgb(hsv) -> packed RGBA
+#   skm_a0 = packed HSV (0x00VVSSHH)
+#   returns skm_a0 = packed RGBA
+FUNC rang_hsv2rgb
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_hsv2rgb
+    SKM_EPILOGUE
+.endfunc
+
+# rang_hex2rgb(str) -> packed RGBA
+#   skm_a0 = pointer to "#RRGGBB" or "RRGGBB" string
+#   returns skm_a0 = packed RGBA, skm_a1 = 0 (ok) / 1 (error)
+FUNC rang_hex2rgb
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_hex2rgb
+    SKM_EPILOGUE
+.endfunc
+
+# rang_complement(rgba) -> packed RGBA
+#   skm_a0 = packed RGBA
+#   returns skm_a0 = complementary color
+FUNC rang_complement
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_complement
+    SKM_EPILOGUE
+.endfunc
+
+# rang_shade(rgba, amount) -> modified RGBA
+#   skm_a0 = packed RGBA
+#   skm_a1 = amount (-255 darken, +255 lighten)
+#   returns skm_a0 = modified RGBA
+FUNC rang_shade
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_shade
+    SKM_EPILOGUE
+.endfunc
+
+# rang_pdfstr_s(rgba, buf) -> PDF stroke string length
+#   skm_a0 = packed RGBA
+#   skm_a1 = buffer (20+ bytes)
+#   returns skm_a0 = length of "R.G G.G B.B RG\0"
+FUNC rang_pdfstr_s
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_pdfstr_s
+    SKM_EPILOGUE
+.endfunc
+
+# rang_gradient_str(start, end, buf) -> gradient PDF string
+#   skm_a0 = packed RGBA start
+#   skm_a1 = packed RGBA end
+#   skm_a2 = buffer
+#   returns skm_a0 = string length
+FUNC rang_gradient_str
+    SKM_PROLOGUE 0
+    SKM_JMP _rang_gradient_str
+    SKM_EPILOGUE
+.endfunc

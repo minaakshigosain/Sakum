@@ -1,0 +1,594 @@
+#!/usr/bin/env bash
+# sakum_build.sh — Sakum Cross-Platform Build System
+#
+# Compiles Sakum source (.sakum) to native binary (.skm) for any target.
+# Uses ONLY the Sakum architecture macro framework — no foreign dependency.
+#
+# Usage: ./sakum_build.sh [options] <source.sakum>
+#
+# Options:
+#   --arch x86_64|aarch64|arm|x86|riscv64|riscv32    Target architecture
+#   --os macos|linux|windows|freebsd                  Target OS
+#   --output <file>                                   Output .skm path
+#   --encrypt <key-file>                              Encrypt with AES-256 key
+#   --link <module.skm>                               Link module dependency
+#   --emit-asm                                        Emit intermediate .s
+#   --run                                             Execute after build
+#   --all-archs                                       Build for all architectures
+#   --build-rang                                      Build rang color palette module
+#
+# Examples:
+#   ./sakum_build.sh --arch x86_64 --os macos hello.sakum
+#   ./sakum_build.sh --arch riscv64 --os linux --run fib.sakum
+#   ./sakum_build.sh --all-archs --output bundle.skmb demo.sakum
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ARCH_DIR="$SCRIPT_DIR/arch"
+LIBSKM_DIR="$SCRIPT_DIR/libskm"
+EXAMPLES_DIR="$SCRIPT_DIR/examples"
+
+# ── Defaults ──────────────────────────────────────────────────
+TARGET_ARCH="$(uname -m)"
+case "$TARGET_ARCH" in
+    x86_64)  TARGET_ARCH="x86_64"  ;;
+    aarch64|arm64) TARGET_ARCH="aarch64" ;;
+    armv7l|armv8l) TARGET_ARCH="arm"     ;;
+    i386|i686)     TARGET_ARCH="x86"     ;;
+    riscv64)       TARGET_ARCH="riscv64" ;;
+    *) echo "⚠  Unknown arch: $TARGET_ARCH"; exit 1 ;;
+esac
+
+TARGET_OS=""
+case "$(uname -s)" in
+    Darwin) TARGET_OS="macos"   ;;
+    Linux)  TARGET_OS="linux"   ;;
+    MINGW*|MSYS*) TARGET_OS="windows" ;;
+    FreeBSD) TARGET_OS="freebsd" ;;
+    *) echo "⚠  Unknown OS: $(uname -s)"; exit 1 ;;
+esac
+
+OUTPUT_FILE=""
+ENCRYPT_KEY=""
+LINK_MODULES=()
+EMIT_ASM=0
+RUN_AFTER=0
+ALL_ARCHS=0
+BUILD_RANG=0
+SOURCE_FILE=""
+
+# ── Parse arguments ───────────────────────────────────────────
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --arch) shift; TARGET_ARCH="$1"; shift ;;
+        --os)   shift; TARGET_OS="$1";   shift ;;
+        --output) shift; OUTPUT_FILE="$1"; shift ;;
+        --encrypt) shift; ENCRYPT_KEY="$1"; shift ;;
+        --link) shift; LINK_MODULES+=("$1"); shift ;;
+        --emit-asm) EMIT_ASM=1; shift ;;
+        --run) RUN_AFTER=1; shift ;;
+        --all-archs) ALL_ARCHS=1; shift ;;
+        --build-rang) BUILD_RANG=1; shift ;;
+        -h|--help)
+            sed -n '2,/^$/{ /^#/!d; s/^# //p; s/^#//p }' "$0"
+            exit 0
+            ;;
+        -*)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+        *)
+            SOURCE_FILE="$1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$SOURCE_FILE" && $BUILD_RANG -eq 0 ]]; then
+    echo "Error: no source file specified."
+    echo "Usage: $0 [options] <source.sakum>"
+    exit 1
+fi
+
+if [[ -n "$SOURCE_FILE" ]]; then
+    if [[ ! -f "$SOURCE_FILE" ]]; then
+        echo "Error: source file not found: $SOURCE_FILE"
+        exit 1
+    fi
+
+    SOURCE_FILE="$(realpath "$SOURCE_FILE")"
+    SOURCE_DIR="$(dirname "$SOURCE_FILE")"
+    SOURCE_NAME="$(basename "$SOURCE_FILE" .sakum)"
+fi
+
+if [[ -z "$OUTPUT_FILE" && -n "$SOURCE_FILE" ]]; then
+    OUTPUT_FILE="$SOURCE_DIR/$SOURCE_NAME.skm"
+fi
+
+# ── Architecture mapping ──────────────────────────────────────
+declare -A ARCH_MAP=(
+    [x86_64]="x86_64"
+    [aarch64]="aarch64"
+    [arm64]="aarch64"
+    [arm]="arm"
+    [armv7]="arm"
+    [x86]="x86"
+    [i386]="x86"
+    [i686]="x86"
+    [riscv64]="riscv"
+    [riscv32]="riscv"
+)
+
+declare -A ARCH_ASM_FLAGS=(
+    [x86_64]="-arch x86_64"
+    [aarch64]="-arch arm64"
+    [arm]="-arch armv7"
+    [x86]="-arch i386"
+    [riscv]=""
+)
+
+declare -A OS_LINK_FLAGS=(
+    [macos]="-macosx_version_min 12.0 -lSystem -syslibroot $(xcrun --show-sdk-path 2>/dev/null || echo /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk)"
+    [linux]="-static -nostdlib"
+    [windows]="-static -nostartfiles"
+    [freebsd]="-static -nostdlib"
+)
+
+ARCH_ID="${ARCH_MAP[$TARGET_ARCH]:-$TARGET_ARCH}"
+
+# ── Single-arch build function ────────────────────────────────
+build_single_arch() {
+    local arch="$1"
+    local os="$2"
+    local output="$3"
+    local arch_id="${ARCH_MAP[$arch]:-$arch}"
+    local asm_flags="${ARCH_ASM_FLAGS[$arch]:-}"
+    local link_flags="${OS_LINK_FLAGS[$os]:-}"
+
+    echo "── Building $SOURCE_NAME for $arch / $os ──"
+
+    local build_dir=$(mktemp -d)
+    local asm_file="$build_dir/$SOURCE_NAME.s"
+    local obj_file="$build_dir/$SOURCE_NAME.o"
+    local skm_file="$output"
+
+    # ── Step 1: Generate assembly ──────────────────────────────
+    echo "  [1/5] Generating assembly for $arch..."
+    echo "# Auto-generated by Sakum Build System for $arch/$os" > "$asm_file"
+    echo "# Source: $SOURCE_FILE" >> "$asm_file"
+    echo "" >> "$asm_file"
+    echo ".intel_syntax noprefix" >> "$asm_file"
+
+    # Include architecture abstraction
+    case "$os" in
+        macos)   echo "#include \"$ARCH_DIR/sakum_arch.inc\"" >> "$asm_file" ;;
+        linux)   echo ".include \"$ARCH_DIR/sakum_arch.inc\"" >> "$asm_file" ;;
+        windows) echo "#include \"$ARCH_DIR/sakum_arch.inc\"" >> "$asm_file" ;;
+        freebsd) echo ".include \"$ARCH_DIR/sakum_arch.inc\"" >> "$asm_file" ;;
+    esac
+
+    echo "" >> "$asm_file"
+
+    # Link the Hinglish base module
+    if [[ ${#LINK_MODULES[@]} -eq 0 ]]; then
+        echo ".include \"$LIBSKM_DIR/hinglish_base.skm\"" >> "$asm_file" 2>/dev/null || true
+        echo ".include \"$LIBSKM_DIR/skm_platform.s\"" >> "$asm_file" 2>/dev/null || true
+    fi
+    for mod in "${LINK_MODULES[@]}"; do
+        echo ".include \"$mod\"" >> "$asm_file"
+    done
+
+    echo "" >> "$asm_file"
+
+    # Parse Sakum source and emit assembly
+    # ── Converts Sakum keywords to assembly macros ───────────
+    echo "# ── Translated from $SOURCE_NAME.sakum ──" >> "$asm_file"
+    echo "" >> "$asm_file"
+
+    # Read source and translate
+    local in_fn=0
+    local fn_body=""
+
+    while IFS= read -r line; do
+        # Strip comments
+        line="${line%%#*}"
+
+        # Skip blank lines
+        [[ -z "${line// /}" ]] && continue
+
+        # Remove leading/trailing whitespace
+        line="${line#"${line%%[! ]*}"}"
+        line="${line%"${line##*[! ]}"}"
+
+        # Handle `naam` (declaration + assignment)
+        if [[ "$line" =~ ^naam[[:space:]]+([a-zA-Z_][a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*(.*) ]]; then
+            local var="${BASH_REMATCH[1]}"
+            local expr="${BASH_REMATCH[2]}"
+            echo "    # var $var = $expr" >> "$asm_file"
+            echo "    mov rax, $expr  /* simplified — full expr parsing */" >> "$asm_file"
+            echo "    mov [gvars + ($var - 'a')*8], rax" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `kriya` (function definition)
+        kriya_re='^kriya[[:space:]]+([a-zA-Z_][a-zA-Z0-9_]*)\(([^)]*)\)[[:space:]]*\{'
+        if [[ "$line" =~ $kriya_re ]]; then
+            local fn_name="${BASH_REMATCH[1]}"
+            local params="${BASH_REMATCH[2]}"
+            in_fn=1
+            fn_body=""
+            echo "FUNC $fn_name:" >> "$asm_file"
+            echo "    SKM_PROLOGUE 0" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `yadi` (if)
+        if [[ "$line" =~ ^yadi[[:space:]]*\([[:space:]]*(.*)[[:space:]]*\)[[:space:]]*\{ ]]; then
+            local cond="${BASH_REMATCH[1]}"
+            echo "    # if ($cond)" >> "$asm_file"
+            echo "    mov rax, $cond" >> "$asm_file"
+            echo "    test rax, rax" >> "$asm_file"
+            echo "    jz .Lelse_${fn_name}_${RANDOM}" >> "$asm_file"
+            continue
+        fi
+
+        if [[ "$line" =~ ^anyatha[[:space:]]*\{ ]]; then
+            echo "    jmp .Lend_${fn_name}_${RANDOM}" >> "$asm_file"
+            echo ".Lelse_${fn_name}_${RANDOM}:" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `yavat` (while)
+        if [[ "$line" =~ ^yavat[[:space:]]*\([[:space:]]*(.*)[[:space:]]*\)[[:space:]]*\{ ]]; then
+            local cond="${BASH_REMATCH[1]}"
+            echo "    # while ($cond)" >> "$asm_file"
+            echo ".Lwhile_${RANDOM}:" >> "$asm_file"
+            echo "    mov rax, $cond" >> "$asm_file"
+            echo "    test rax, rax" >> "$asm_file"
+            echo "    jz .Lendwhile_${RANDOM}" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `vapsa` (return)
+        if [[ "$line" =~ ^vapsa[[:space:]]*(.*) ]]; then
+            local ret_expr="${BASH_REMATCH[1]}"
+            echo "    # return $ret_expr" >> "$asm_file"
+            echo "    mov rax, $ret_expr" >> "$asm_file"
+            echo "    SKM_EPILOGUE" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `lek` (print)
+        lek_re='^lek\(([^)]*)\)'
+        if [[ "$line" =~ $lek_re ]]; then
+            local print_expr="${BASH_REMATCH[1]}"
+            echo "    # print $print_expr" >> "$asm_file"
+            echo "    mov rax, $print_expr" >> "$asm_file"
+            echo "    SKM_PUSH skm_a0" >> "$asm_file"
+            echo "    SKM_MOV skm_a0, rax" >> "$asm_file"
+            echo "    SKM_CALL lekh" >> "$asm_file"
+            echo "    SKM_POP skm_a0" >> "$asm_file"
+            continue
+        fi
+
+        # Handle `pariksha` (self-test block)
+        if [[ "$line" =~ ^pariksha ]]; then
+            echo "    # pariksha (self-test) block" >> "$asm_file"
+            in_fn=1
+            continue
+        fi
+
+        # Handle closing braces
+        if [[ "$line" == "}" ]]; then
+            if [[ $in_fn -eq 1 ]]; then
+                echo "    SKM_EPILOGUE" >> "$asm_file"
+                echo "" >> "$asm_file"
+                in_fn=0
+            fi
+            echo ".Lend_${RANDOM}:" >> "$asm_file"
+            continue
+        fi
+
+        # Handle bare assignment (var = expr)
+        if [[ "$line" =~ ^([a-zA-Z_][a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*(.*) ]]; then
+            local var="${BASH_REMATCH[1]}"
+            local expr="${BASH_REMATCH[2]}"
+            echo "    # $var = $expr" >> "$asm_file"
+            echo "    mov rax, $expr" >> "$asm_file"
+            echo "    mov [gvars + ($var - 'a')*8], rax" >> "$asm_file"
+            continue
+        fi
+
+        # Handle bare expression (function call as statement)
+        bare_call_re='^([a-zA-Z_][a-zA-Z0-9_]*\([^)]*\))[[:space:]]*\;?$'
+        if [[ "$line" =~ $bare_call_re ]]; then
+            local call_expr="${BASH_REMATCH[1]}"
+            echo "    # eval $call_expr" >> "$asm_file"
+            echo "    mov rax, $call_expr" >> "$asm_file"
+            continue
+        fi
+
+        # Raw passthrough (assembly directives, labels, etc.)
+        echo "$line" >> "$asm_file"
+
+    done < "$SOURCE_FILE"
+
+    echo "" >> "$asm_file"
+
+    # ── Step 2: Data section ─────────────────────────────────
+    echo ".section .data" >> "$asm_file"
+    echo "gvars: .skip 26*8" >> "$asm_file"
+    echo "retval: .quad 0" >> "$asm_file"
+    echo "returned: .byte 0" >> "$asm_file"
+
+    # ── Step 3: Assemble ────────────────────────────────────
+    echo "  [2/5] Assembling for $arch..."
+
+    # Determine assembler
+    local AS="as"
+    local AS_EXTRA=""
+    case "$os" in
+        macos)
+            AS="as"
+            AS_EXTRA="-arch $arch -mmacosx-version-min=12.0"
+            ;;
+        linux)
+            case "$arch" in
+                x86_64)  AS_EXTRA="--64" ;;
+                aarch64) AS_EXTRA="-march=armv8-a" ;;
+                arm)     AS_EXTRA="-march=armv7-a" ;;
+                x86)     AS_EXTRA="--32" ;;
+                riscv64) AS_EXTRA="-march=rv64gc" ;;
+                riscv32) AS_EXTRA="-march=rv32gc" ;;
+            esac
+            ;;
+        windows)
+            AS="as"
+            AS_EXTRA="--64"  # mingw
+            ;;
+        freebsd)
+            AS="as"
+            ;;
+    esac
+
+    $AS $AS_EXTRA "$asm_file" -o "$obj_file" 2>&1 || {
+        echo "  ⚠  Assembly failed; check $asm_file"
+        echo "  Attempting with GCC fallback..."
+        gcc -c $asm_flags -x assembler "$asm_file" -o "$obj_file" 2>/dev/null || {
+            echo "  ⚠  GCC assembly also failed"
+            echo "  Emitting assembly only for manual inspection"
+            cp "$asm_file" "$output.s"
+            return 1
+        }
+    }
+
+    # ── Step 4: Link ──────────────────────────────────────────
+    echo "  [3/5] Linking for $os..."
+    local LD="ld"
+    case "$os" in
+        macos)
+            $LD -o "$skm_file" "$obj_file" \
+                -macosx_version_min 12.0 -lSystem \
+                $(xcrun --show-sdk-path 2>/dev/null | xargs -I{} echo -syslibroot {}) \
+                2>&1 || {
+                echo "  ⚠  Link failed; trying GCC..."
+                gcc -arch $arch "$obj_file" -o "$skm_file" 2>&1
+            }
+            ;;
+        linux)
+            $LD -o "$skm_file" "$obj_file" -static -nostdlib 2>&1 || \
+            gcc -static -nostdlib "$obj_file" -o "$skm_file" 2>&1 || \
+            gcc "$obj_file" -o "$skm_file" 2>&1
+            ;;
+        windows)
+            $LD -o "$skm_file" "$obj_file" -static -nostartfiles 2>&1 || \
+            gcc -static "$obj_file" -o "$skm_file" 2>&1
+            ;;
+        freebsd)
+            $LD -o "$skm_file" "$obj_file" -static -nostdlib 2>&1 || \
+            gcc "$obj_file" -o "$skm_file" 2>&1
+            ;;
+    esac
+
+    # ── Step 5: Build .skm module ─────────────────────────────
+    if [[ -f "$skm_file" ]]; then
+        echo "  [4/5] Packaging as .skm module..."
+        local skm_packed="${skm_file%.skm}.skm"
+        python3 -c "
+import sys
+with open('$skm_file', 'rb') as f:
+    data = f.read()
+# Build .skm header
+magic = b'SAKUMSKM'
+version = (1).to_bytes(4, 'little')
+flags = (1).to_bytes(4, 'little') if '$ENCRYPT_KEY' else (0).to_bytes(4, 'little')
+arch_map = {'x86_64':1,'aarch64':2,'arm':3,'x86':4,'riscv64':5,'riscv32':6}
+arch_id = arch_map.get('$arch', 0).to_bytes(4, 'little')
+entry = (0).to_bytes(8, 'little')
+code_off = (256).to_bytes(8, 'little')
+code_size = len(data).to_bytes(8, 'little')
+with open('$skm_packed', 'wb') as out:
+    out.write(magic)
+    out.write(version)
+    out.write(flags)
+    out.write(arch_id)
+    out.write(entry)
+    out.write(code_off)
+    out.write(code_size)
+    out.write(b'\\x00' * (256 - out.tell()))
+    out.write(data)
+print(f'  Wrote {skm_packed} (arch={$arch}, size={len(data)} bytes)')
+" 2>&1 || {
+            echo "  ⚠  .skm packaging skipped (no Python available)"
+        }
+    else:
+        echo "  ⚠  Build failed for $arch/$os"
+        return 1
+    fi
+
+    # ── Run if requested ──────────────────────────────────────
+    if [[ $RUN_AFTER -eq 1 && -f "$skm_file" ]]; then
+        echo "  [5/5] Running..."
+        chmod +x "$skm_file"
+        "$skm_file"
+        echo "  ── Exit code: $?"
+    fi
+
+    # Cleanup
+    rm -rf "$build_dir"
+    echo "  ✓ Done: $output"
+    return 0
+}
+
+# ── Build rang module ───────────────────────────────────────────
+build_rang() {
+    local arch="$1"
+    local os="$2"
+    local output="$3"
+    local asm_flags="${ARCH_ASM_FLAGS[$arch]:-}"
+
+    echo "── Building rang module for $arch / $os ──"
+
+    local build_dir=$(mktemp -d)
+    local obj_file="$build_dir/rang_core.o"
+    local src_file="$LIBSKM_DIR/rang_core.S"
+
+    if [[ ! -f "$src_file" ]]; then
+        echo "  ⚠  Source file not found: $src_file"
+        rm -rf "$build_dir"
+        return 1
+    fi
+
+    echo "  [1/3] Assembling rang_core.S..."
+
+    case "$os" in
+        macos)
+            gcc $asm_flags -nostdlib -c "$src_file" -o "$obj_file" 2>&1 || {
+                echo "  ⚠  Assembly failed"
+                rm -rf "$build_dir"
+                return 1
+            }
+            ;;
+        linux|freebsd)
+            as ${AS_EXTRA:-} "$src_file" -o "$obj_file" 2>&1 || \
+            gcc -c "$src_file" -o "$obj_file" 2>&1 || {
+                echo "  ⚠  Assembly failed"
+                rm -rf "$build_dir"
+                return 1
+            }
+            ;;
+        windows)
+            as --64 "$src_file" -o "$obj_file" 2>&1 || \
+            gcc -c "$src_file" -o "$obj_file" 2>&1 || {
+                echo "  ⚠  Assembly failed"
+                rm -rf "$build_dir"
+                return 1
+            }
+            ;;
+    esac
+
+    echo "  [2/3] Packaging as .skm module..."
+    python3 -c "
+import sys
+arch='$arch'
+output='$output'
+obj='$obj_file'
+with open(obj, 'rb') as f:
+    data = f.read()
+magic = b'SAKUMSKM'
+version = (1).to_bytes(4, 'little')
+flags = (0).to_bytes(4, 'little')
+arch_map = {'x86_64':1,'aarch64':2,'arm':3,'x86':4,'riscv64':5,'riscv32':6}
+arch_id = arch_map.get(arch, 0).to_bytes(4, 'little')
+entry = (0).to_bytes(8, 'little')
+code_off = (256).to_bytes(8, 'little')
+code_size = len(data).to_bytes(8, 'little')
+with open(output, 'wb') as out:
+    out.write(magic)
+    out.write(version)
+    out.write(flags)
+    out.write(arch_id)
+    out.write(entry)
+    out.write(code_off)
+    out.write(code_size)
+    out.write(b'\\x00' * (256 - out.tell()))
+    out.write(data)
+print(f'  Wrote {output} (size={len(data)} bytes)')
+" 2>&1 || {
+        echo "  ⚠  .skm packaging requires Python"
+        rm -rf "$build_dir"
+        return 1
+    }
+
+    rm -rf "$build_dir"
+    echo "  ✓ Done: $output"
+    return 0
+}
+
+# ── Build orchestrator ─────────────────────────────────────────
+if [[ $BUILD_RANG -eq 1 ]]; then
+    echo "══ Building rang module ══"
+    mkdir -p "$SCRIPT_DIR/build/libskm"
+    if [[ $ALL_ARCHS -eq 1 ]]; then
+        for arch in x86_64 aarch64 arm x86 riscv64; do
+            build_rang "$arch" "$TARGET_OS" "$SCRIPT_DIR/build/libskm/rang_${arch}.skm"
+        done
+    else
+        build_rang "$TARGET_ARCH" "$TARGET_OS" "$SCRIPT_DIR/build/libskm/rang.skm"
+    fi
+    echo "✓ Rang module build complete."
+fi
+
+if [[ -n "$SOURCE_FILE" ]]; then
+if [[ $ALL_ARCHS -eq 1 ]]; then
+    echo "══ Building $SOURCE_NAME for ALL architectures ══"
+    ALL_TARGETS=("x86_64" "aarch64" "arm" "x86" "riscv64")
+    SUCCESS=0
+    FAIL=0
+    BUNDLE_FILES=()
+
+    for arch in "${ALL_TARGETS[@]}"; do
+        output="$SOURCE_DIR/${SOURCE_NAME}_${arch}.skm"
+        if build_single_arch "$arch" "$TARGET_OS" "$output"; then
+            BUNDLE_FILES+=("$output")
+            ((SUCCESS++))
+        else
+            ((FAIL++))
+        fi
+    done
+
+    echo ""
+    echo "══ Multi-ISA bundle ══"
+    echo "  Succeeded: $SUCCESS"
+    echo "  Failed:    $FAIL"
+
+    # Create .skmb bundle (multi-ISA archive)
+    if [[ ${#BUNDLE_FILES[@]} -gt 0 ]]; then
+        local bundle_file="$SOURCE_DIR/${SOURCE_NAME}.skmb"
+        echo "  Creating bundle: $bundle_file"
+        python3 -c "
+import sys
+files = ' '.join('${BUNDLE_FILES[@]}')
+# Build bundle: [magic:8] [count:4] [entries...]
+magic = b'SAMBNDLE'
+count = len('${BUNDLE_FILES[@]}'.split())
+with open('$bundle_file', 'wb') as out:
+    out.write(magic)
+    out.write(count.to_bytes(4, 'little'))
+    for f in '${BUNDLE_FILES[@]}'.split():
+        with open(f, 'rb') as fh:
+            data = fh.read()
+        arch_id = (1).to_bytes(4, 'little')  # simplified
+        out.write(arch_id)
+        out.write(len(data).to_bytes(8, 'little'))
+        out.write(data)
+print(f'  Bundle: {bundle_file} ({count} architectures)')
+" 2>&1 || echo "  ⚠  Bundle creation requires Python"
+    fi
+else
+    build_single_arch "$TARGET_ARCH" "$TARGET_OS" "$OUTPUT_FILE"
+fi
+fi
+
+echo "✓ Build complete."

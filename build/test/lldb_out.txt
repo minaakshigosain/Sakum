@@ -1,0 +1,7 @@
+(lldb) target create "build/test/imgtest_x86"
+Current executable set to 'build/test/imgtest_x86' (x86_64).
+(lldb) run
+Process launched: 'build/test/imgtest_x86' (x86_64)
+ALL IMAGE LIB TESTS PASSED
+Process exited with status = 0 (0x00000000)
+(lldb) quit
