@@ -171,19 +171,19 @@ dom_tab:
 # ---- dispatch ----
 # x0 = kw_id, x1 = a, x2 = b
 sakum_domain_dispatch:
-    cmp w0, #148
+    cmp w0,#148
     b.ge .dd_bad
-    adrp x3, dom_tab
-    add  x3, x3, :lo12:dom_tab
-    ldr  x4, [x3, x0, lsl #3]      // offset
-    add  x4, x4, x3                // absolute handler
+    adrp x3, dom_tab@PAGE
+    add  x3, x3, dom_tab@PAGEOFF
+    ldr  x4, [x3, x0, lsl#3]      // offset
+    add  x4, x4, x3// absolute handler
     br   x4
 .dd_bad:
-    mov  w0, #-1
+    mov  w0,#-1
     ret
 
 sakum_domain_count:
-    mov  w0, #148
+    mov  w0,#148
     ret
 
 # ---- helpers ----
@@ -193,40 +193,40 @@ sakum_domain_count:
 .dom_kosh:
     mov x0, x1
     udiv x1, x0, x2
-    msub x0, x1, x2, x0          // a % b
+    msub x0, x1, x2, x0// a % b
     ret
 .dom_rekha:
     mul x0, x1, x2
     ret
 .dom_ahvaan:
-    // a = fn ptr, b = arg -> call it
+// a = fn ptr, b = arg -> call it
     mov x0, x2
     blr x1
     ret
 .dom_pravah:
-    // a = inner fn, b = outer fn ; outer(inner(0))
-    mov x4, x30                 // preserve return address
-    mov x0, #0
+// a = inner fn, b = outer fn ; outer(inner(0))
+    mov x4, x30// preserve return address
+    mov x0,#0
     blr x1
     blr x2
     mov x30, x4
     ret
 .dom_sangrah:
-    // sum a..b
+// sum a..b
     mov x3, x1
     mov x4, x2
-    mov x0, #0
+    mov x0,#0
     cmp x3, x4
     b.gt .sg_done
 .sg_loop:
     add x0, x0, x3
-    add x3, x3, #1
+    add x3, x3,#1
     cmp x3, x4
     b.le .sg_loop
 .sg_done:
     ret
 .dom_vibhaj:
-    lsr x0, x1, #1
+    lsr x0, x1,#1
     ret
 .dom_milan:
     add x0, x1, x2
@@ -235,22 +235,22 @@ sakum_domain_count:
     add x0, x1, x1
     ret
 .dom_anukram:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_punaravartan:
-    // fib(a)
+// fib(a)
     mov w3, w1
-    cmp w3, #1
+    cmp w3,#1
     b.le .fib_n
-    mov w0, #0
-    mov w2, #1
+    mov w0,#0
+    mov w2,#1
 .fib_loop:
     add w0, w0, w2
     mov w4, w2
     mov w2, w0
     mov w0, w4
-    sub w3, w3, #1
-    cmp w3, #1
+    sub w3, w3,#1
+    cmp w3,#1
     b.gt .fib_loop
     mov w0, w2
     ret
@@ -261,36 +261,36 @@ sakum_domain_count:
     add x0, x1, x1
     ret
 .dom_sankuchit:
-    lsr x0, x1, #1
+    lsr x0, x1,#1
     ret
 .dom_samayojan:
-    // a = ptr to lock, b = newval -> atomic swap (use swap primitive)
+// a = ptr to lock, b = newval -> atomic swap (use swap primitive)
     mov x3, x1
     ldr x0, [x3]
     str x2, [x3]
     ret
 .dom_sandesh:
-    // pack a,b into one word: (a<<16)|b
-    lsl w0, w1, #16
+// pack a,b into one word: (a<<16)|b
+    lsl w0, w1,#16
     orr w0, w0, w2
     ret
 .dom_pravahan:
     add x0, x1, x2
     ret
 .dom_pratiksha:
-    // spin until a==0
+// spin until a==0
     mov x0, x1
 .pr_spin:
     cbz x0, .pr_done
-    sub x0, x0, #1
+    sub x0, x0,#1
     b .pr_spin
 .pr_done:
     ret
 .dom_jagrit:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_nidra:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_smriti:
     mov x0, x1
@@ -304,7 +304,7 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_mukti:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_sthaan:
     mov x0, x1
@@ -319,10 +319,10 @@ sakum_domain_count:
     eor x0, x1, x2
     ret
 .dom_granth:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_granthagar:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_path:
     mov x0, x1
@@ -334,65 +334,65 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_jodan:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_pratilipi:
     mov x0, x1
     ret
 .dom_sthanantar:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_naamkaran:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_vinash:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_jaal:
     mov x0, x1
     ret
 .dom_sampark:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_viyog:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_pravesh:
     mov x0, x1
-    mov x3, #31
+    mov x3,#31
     udiv x1, x0, x3
     msub x0, x1, x3, x0
     ret
 .dom_nirgam:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_agrah:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_uttar:
     mov x0, x1
     ret
 .dom_prasaran:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_grahan:
     mov x0, x1
     ret
 .dom_prasthaan:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_dvaar:
-    // byte-swap low 16 bits
+// byte-swap low 16 bits
     rev w0, w1
     ret
 .dom_marg:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_prajna:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_buddhi:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_chintan:
     add x0, x1, x2
@@ -401,7 +401,7 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_adhigam:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_abhyas:
     mov x0, x1
@@ -409,23 +409,23 @@ sakum_domain_count:
 .dom_nirnay:
     cmp x1, x2
     b.ge .nir_yes
-    mov w0, #0
+    mov w0,#0
     ret
 .nir_yes:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_drishti:
     cbz x1, .vis_no
-    mov w0, #1
+    mov w0,#1
     ret
 .vis_no:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_shravan:
     mov x0, x1
     ret
 .dom_vak:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_bhasha:
     mov x0, x1
@@ -437,7 +437,7 @@ sakum_domain_count:
     eor x0, x1, x2
     ret
 .dom_chetana:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_sankalp:
     mov x0, x1
@@ -452,21 +452,21 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_charan:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_gati:
     sub x0, x1, x2
     ret
 .dom_disha:
     cbz x1, .dir_z
-    tbz x1, #63, .dir_pos
-    mov w0, #-1
+    tbz x1,#63, .dir_pos
+    mov w0,#-1
     ret
 .dir_pos:
-    mov w0, #1
+    mov w0,#1
     ret
 .dir_z:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_veg:
     add x0, x1, x1
@@ -476,24 +476,24 @@ sakum_domain_count:
     ret
 .dom_spandan:
     cbz x1, .sp_no
-    mov w0, #1
+    mov w0,#1
     ret
 .sp_no:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_sparsh:
     cmp x1, x2
     b.eq .spc_yes
-    mov w0, #0
+    mov w0,#0
     ret
 .spc_yes:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_anu:
     mov x0, x1
     ret
 .dom_kan:
-    and x0, x1, #1
+    and x0, x1,#1
     ret
 .dom_adhisthiti:
     orr x0, x1, x2
@@ -503,7 +503,7 @@ sakum_domain_count:
     ret
 .dom_tarang:
     mov x0, x1
-    mov x3, #360
+    mov x3,#360
     udiv x1, x0, x3
     msub x0, x1, x3, x0
     ret
@@ -513,24 +513,24 @@ sakum_domain_count:
     msub x0, x1, x2, x0
     ret
 .dom_kampan:
-    eor x0, x1, #1
+    eor x0, x1,#1
     ret
 .dom_urja:
     mul x0, x1, x1
     ret
 .dom_pariman:
-    and x0, x1, #1
+    and x0, x1,#1
     ret
 .dom_nirikshan:
     mov x0, x1
     ret
 .dom_varna:
-    cmp x1, #10
+    cmp x1,#10
     b.lt .tk_num
-    mov w0, #1
+    mov w0,#1
     ret
 .tk_num:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_pad:
     mov x0, x1
@@ -540,45 +540,45 @@ sakum_domain_count:
 .dom_vakya:
     cmp x1, x2
     b.eq .sy_ok
-    mov w0, #0
+    mov w0,#0
     ret
 .sy_ok:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_artha:
     add x0, x1, x2
     ret
 .dom_vishleshan:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_sankalan:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_nirman:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_bandhan:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_chalana:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_sudhar:
-    sub x0, x1, #1
+    sub x0, x1,#1
     ret
 .dom_pariksha:
     cmp x1, x2
     b.eq .pk_ok
-    mov w0, #0
+    mov w0,#0
     ret
 .pk_ok:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_utpadan:
     mov x0, x1
     ret
 .dom_raksha_sec:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_gopan:
     eor x0, x1, x2
@@ -588,41 +588,41 @@ sakum_domain_count:
     ret
 .dom_praman:
     mov x0, x1
-    mov x3, #31
+    mov x3,#31
     udiv x1, x0, x3
     msub x0, x1, x3, x0
     ret
 .dom_adhikar:
     cmp x1, x2
     b.ge .ad_yes
-    mov w0, #0
+    mov w0,#0
     ret
 .ad_yes:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_mudra:
     add x0, x1, x2
     ret
 .dom_kunji:
     mov x0, x1
-    movz x3, #0x9e37, lsl #16
-    movk x3, #0x79b1
+    movz x3,#0x9e37, lsl #16
+    movk x3,#0x79b1
     mul x0, x0, x3
     udiv x1, x0, x2
     msub x0, x1, x2, x0
     ret
 .dom_gupt:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_sarvajanik:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_kavach:
     cbz x1, .kv_no
-    mov w0, #1
+    mov w0,#1
     ret
 .kv_no:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_mandal:
     mov x0, x1
@@ -636,10 +636,10 @@ sakum_domain_count:
     msub x0, x1, x2, x0
     ret
 .dom_samanvay:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_samvedan:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_pratinidhi_d:
     mov x0, x1
@@ -648,7 +648,7 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_anuyayi:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_matdaan:
     add x0, x1, x2
@@ -656,22 +656,22 @@ sakum_domain_count:
 .dom_sthirata:
     cmp x1, x2
     b.eq .st_ok
-    mov w0, #0
+    mov w0,#0
     ret
 .st_ok:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_hriday:
     mov x0, x1
     ret
 .dom_manass:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_buddhi_l:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_chetana_l:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_smriti_l:
     mov x0, x1
@@ -680,20 +680,20 @@ sakum_domain_count:
     mov x0, x1
     ret
 .dom_prerna:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_indriya:
     mov x0, x1
     ret
 .dom_drishti_l:
     cbz x1, .dv_no
-    mov w0, #1
+    mov w0,#1
     ret
 .dv_no:
-    mov w0, #0
+    mov w0,#0
     ret
 .dom_vak_l:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_shravan_l:
     mov x0, x1
@@ -701,13 +701,13 @@ sakum_domain_count:
 .dom_sparsh_l:
     cmp x1, x2
     b.eq .tou_yes
-    mov w0, #0
+    mov w0,#0
     ret
 .tou_yes:
-    mov w0, #1
+    mov w0,#1
     ret
 .dom_prana:
-    add x0, x1, #1
+    add x0, x1,#1
     ret
 .dom_atma:
     mov x0, x1
@@ -715,28 +715,28 @@ sakum_domain_count:
 
 # ---- self-test main ----
 main:
-    stp x29, x30, [sp, #-16]!
+    stp x29, x30, [sp,#-16]!
     mov x29, sp
-    // fib(10)
-    mov w0, #19
-    mov w1, #10
-    mov w2, #0
+// fib(10)
+    mov w0,#19
+    mov w1,#10
+    mov w2,#0
     bl sakum_domain_dispatch
     mov w1, w0
-    adrp x0, fmt
-    add  x0, x0, :lo12:fmt
+    adrp x0, fmt@PAGE
+    add  x0, x0, fmt@PAGEOFF
     bl printf
-    // pariman(7)
-    mov w0, #100
-    mov w1, #7
-    mov w2, #0
+// pariman(7)
+    mov w0,#100
+    mov w1,#7
+    mov w2,#0
     bl sakum_domain_dispatch
     mov w1, w0
-    adrp x0, fmt2
-    add  x0, x0, :lo12:fmt2
+    adrp x0, fmt2@PAGE
+    add  x0, x0, fmt2@PAGEOFF
     bl printf
-    mov w0, #0
-    ldp x29, x30, [sp], #16
+    mov w0,#0
+    ldp x29, x30, [sp],#16
     ret
 
     .text

@@ -4,6 +4,9 @@
 # Build with: gcc -c -include assembly/platform.inc file.s -o file.o
 # Or just paste the relevant macros at the top.
 #
+#ifndef PLATFORM_INC
+#define PLATFORM_INC
+
 # Defines:
 #   PLAT_MACOS, PLAT_LINUX, PLAT_WINDOWS
 #   ISA_X86_64, ISA_ARM64, ISA_RISCV64
@@ -69,6 +72,77 @@
   #define SYS_READ  0x2000003
 #endif
 
+# --- Cross-ISA helper macros (prologues, address loading) ---
+# ADR(reg, sym)  : load address of sym into reg (handles >1MB ranges)
+# FUNC_PROLOG    : standard function entry (preserve lr/fp + callee-saved)
+# FUNC_EPILOG    : matching function exit
+#
+# NOTE (Apple/LLVM assembler bug): never place stp/ldp on the same line as
+# other instructions separated by ';' -- the assembler silently drops them.
+# These macros therefore emit each instruction on its own line.
+
+#ifdef ISA_ARM64
+  # ARM64 uses native AArch64 assembly syntax (not Intel). Do NOT switch
+  # to .intel_syntax here.
+  #ifndef ADR
+  .macro ADR reg, sym
+    adrp \reg, \sym@PAGE
+    add \reg, \reg, \sym@PAGEOFF
+  .endm
+  #endif
+  #ifndef FUNC_PROLOG
+  .macro FUNC_PROLOG
+    sub sp, sp, #16
+    stp x29, x30, [sp]
+    mov x29, sp
+  .endm
+  #endif
+  #ifndef FUNC_EPILOG
+  .macro FUNC_EPILOG
+    ldp x29, x30, [sp], #16
+    ret
+  .endm
+  #endif
+#endif
+
+#ifdef ISA_X86_64
+  .intel_syntax noprefix
+  # On Apple's assembler, a bare-register memory base (e.g. [rdi]) gets the
+  # enclosing symbol prepended as a displacement. Always use a non-zero
+  # displacement (e.g. lea rTmp,[reg+1]; op [rTmp-1]) or a non-zero offset.
+  # Also, `mov reg, 0` loads the function-symbol address instead of 0; use
+  # `xor reg, reg` for a zero value.
+  #ifndef FUNC_PROLOG
+  .macro FUNC_PROLOG
+    push rbp
+    mov rbp, rsp
+  .endm
+  #endif
+  #ifndef FUNC_EPILOG
+  .macro FUNC_EPILOG
+    pop rbp
+    ret
+  .endm
+  #endif
+#endif
+
+#ifdef ISA_RISCV64
+  #ifndef FUNC_PROLOG
+  .macro FUNC_PROLOG
+    addi sp, sp, -16
+    sd ra, 8(sp)
+  .endm
+  #endif
+  #ifndef FUNC_EPILOG
+  .macro FUNC_EPILOG
+    ld ra, 8(sp)
+    addi sp, sp, 16
+    ret
+  .endm
+  #endif
+#endif
+
+
 #ifdef PLAT_LINUX
   #define CDECL(name) name
   #define TEXT_SECTION  .section .text
@@ -91,3 +165,5 @@
   #define BSS_SECTION   .section .bss
   #define BUILD_FLAGS
 #endif
+
+#endif /* PLATFORM_INC */

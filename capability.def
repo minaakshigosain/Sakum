@@ -1,0 +1,119 @@
+# capability.def — SAKUM Capability Manifest
+# All capabilities provided by modules
+
+# CAPABILITY: pdf.generate
+CAPABILITY pdf.generate
+  MODULE   sakum_pdf_v2
+  PERMS    EXEC | FS_READ | FS_WRITE
+  DEPS     font.helvetica, fs.local
+  MAX_MEM  4MB
+  MAX_TIME 500ms
+  VERSION  2.0.0
+
+# CAPABILITY: http.server
+CAPABILITY http.server
+  MODULE   sakum_http_v3
+  PERMS    EXEC | NET_BIND | NET_CONNECT | FS_READ
+  DEPS     tls.mbedtls, fs.local, log.structured
+  MAX_MEM  16MB
+  MAX_TIME unbounded
+  VERSION  3.1.0
+
+# CAPABILITY: tls.mbedtls
+CAPABILITY tls.mbedtls
+  MODULE   sakum_tls_v1
+  PERMS    EXEC | NET_CONNECT | CRYPTO
+  DEPS     crypto.aes, crypto.sha256, rng.system
+  MAX_MEM  8MB
+  MAX_TIME 100ms
+  VERSION  1.2.0
+
+# CAPABILITY: fs.local
+CAPABILITY fs.local
+  MODULE   sakum_fs_v2
+  PERMS    EXEC | FS_READ | FS_WRITE | FS_LIST
+  DEPS     none
+  MAX_MEM  2MB
+  MAX_TIME 50ms
+  VERSION  2.0.1
+
+# CAPABILITY: log.structured
+CAPABILITY log.structured
+  MODULE   sakum_log_v1
+  PERMS    EXEC | FS_WRITE | IPC
+  DEPS     fs.local
+  MAX_MEM  1MB
+  MAX_TIME 10ms
+  VERSION  1.0.0
+
+# CAPABILITY: crypto.aes
+CAPABILITY crypto.aes
+  MODULE   sakum_crypto_v1
+  PERMS    EXEC | CRYPTO
+  DEPS     rng.system
+  MAX_MEM  512KB
+  MAX_TIME 5ms
+  VERSION  1.0.0
+
+# CAPABILITY: crypto.sha256
+CAPABILITY crypto.sha256
+  MODULE   sakum_crypto_v1
+  PERMS    EXEC | CRYPTO
+  DEPS     none
+  MAX_MEM  256KB
+  MAX_TIME 2ms
+  VERSION  1.0.0
+
+# CAPABILITY: rng.system
+CAPABILITY rng.system
+  MODULE   sakum_rng_v1
+  PERMS    EXEC | CRYPTO
+  DEPS     none
+  MAX_MEM  64KB
+  MAX_TIME 1ms
+  VERSION  1.0.0
+
+# CAPABILITY: font.helvetica
+CAPABILITY font.helvetica
+  MODULE   sakum_font_v1
+  PERMS    EXEC | FS_READ
+  DEPS     fs.local
+  MAX_MEM  1MB
+  MAX_TIME 5ms
+  VERSION  1.0.0
+
+# CAPABILITY: health.monitor
+CAPABILITY health.monitor
+  MODULE   sakum_health_v1
+  PERMS    EXEC | FS_READ | IPC
+  DEPS     log.structured
+  MAX_MEM  2MB
+  MAX_TIME 100ms
+  VERSION  1.0.0
+
+# CAPABILITY: ipc.relay
+CAPABILITY ipc.relay
+  MODULE   sakum_relay_v1
+  PERMS    EXEC | IPC | NET_CONNECT
+  DEPS     log.structured, tls.mbedtls
+  MAX_MEM  4MB
+  MAX_TIME 50ms
+  VERSION  1.0.0
+
+# CAPABILITY: pdf.stream
+CAPABILITY pdf.stream
+  MODULE   sakum_pdf_stream_v1
+  PERMS    EXEC | FS_READ | FS_WRITE | NET_CONNECT
+  DEPS     pdf.generate, http.client
+  MAX_MEM  8MB
+  MAX_TIME 1s
+  VERSION  1.0.0
+
+# CAPABILITY: http.client
+CAPABILITY http.client
+  MODULE   sakum_http_client_v1
+  PERMS    EXEC | NET_CONNECT | FS_READ
+  DEPS     tls.mbedtls
+  MAX_MEM  4MB
+  MAX_TIME 30s
+  VERSION  1.0.0

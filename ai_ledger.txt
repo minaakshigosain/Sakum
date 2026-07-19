@@ -23,3 +23,6 @@ ai tick: neurons=64 loaded=85 ram_mb=8192
 ai tick: neurons=64 loaded=85 ram_mb=8192
 ai tick: neurons=64 loaded=85 ram_mb=8192
 ai tick: neurons=64 loaded=85 ram_mb=8192
+ai tick: neurons=0 loaded=0 ram_mb=8192
+ai tick: neurons=0 loaded=0 ram_mb=8192
+ai tick: neurons=0 loaded=0 ram_mb=8192

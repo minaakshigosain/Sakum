@@ -1,0 +1,7 @@
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/tatva.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/edit_cache.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/rebuild_cache.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/list_install_components.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/install.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/install/local.dir
+/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/sakum_core/sakum_core/tatva/generated/build/CMakeFiles/install/strip.dir

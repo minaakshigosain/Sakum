@@ -276,7 +276,8 @@ _sakum_icon_rasterize:
     ands w1, w1, 1
     b.eq .gx_next
 
-    // px0 = originX + (i*6 + gx)*scale ; py0 = originY + gy*scale
+        // px0 = originX + (i*6 + gx)*scale
+     py0 = originY + gy*scale
     mov w5, w8
     mov w7, 6
     mul w5, w5, w7         // i*6

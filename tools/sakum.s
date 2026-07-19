@@ -61,6 +61,7 @@ w_self:     .asciz "self"
 w_scan:     .asciz "scan"
 w_sniff:    .asciz "sniff"
 w_ai:       .asciz "ai"
+w_validate: .asciz "validate"
 w_exit:     .asciz "exit"
 w_quit:     .asciz "quit"
 
@@ -73,7 +74,13 @@ g_self:     .asciz "curl -s -m90 -X POST http://127.0.0.1:8080/update || bash to
 g_scan:     .asciz "gcc -arch x86_64 assembly/sakum_scan.s -o /tmp/scan && /tmp/scan "
 g_sniff:    .asciz "gcc -arch x86_64 assembly/sakum_sniff.s -o /tmp/sniff && /tmp/sniff "
 g_ai:       .asciz "gcc -arch x86_64 assembly/sakum_ai.s -o /tmp/ai && /tmp/ai"
-g_serve:    .asciz "nohup bash tools/serve.sh"
+g_validate: .asciz "cd '/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/assembly' && python3 -u validate.py 2>&1"
+
+dbg_val:    .asciz "VALIDATE HANDLER ENTERED\n"
+dbg_sys:    .asciz "RUNNING SYSTEM: %s\n"
+dbg_b4sys: .asciz "BEFORE SYSTEM CALL\n"
+dbg_sys2:   .asciz "SYSTEM RETURNED\n"
+dbg_ret:    .asciz "SYSTEM RET=%d\n"
 g_gen:      .asciz "bash tools/gen_lib.sh "
 g_defport:  .asciz " 8080 600"
 g_bg:       .asciz " >/tmp/sakum_serve.log 2>&1 </dev/null &"
@@ -82,14 +89,17 @@ bash_arg0:  .asciz "bash"
 serve_sh_path: .asciz "tools/serve.sh"
 s_dhelp:    .asciz "--help"
 s_h:        .asciz "-h"
+s_validate: .asciz "--validate"
+s_no_validate: .asciz "--no-validate"
 
 BSS_SECTION
 .p2align 4
-linebuf:    .space 4096
-wordbuf:    .space 256
-syscmd:     .space 4096
-my_argc:    .long 0
-my_argv:    .quad 0
+linebuf:        .space 4096
+wordbuf:        .space 256
+syscmd:         .space 4096
+my_argc:        .long 0
+my_argv:        .quad 0
+validate_enabled: .byte 0   # toggle: 0=off, 1=on (set via --validate/--no-validate)
 
 # ---------------------------------------------------------------------------
 # append_str: copy NUL-terminated string at %rsi into buffer at %rbx; adv %rbx
@@ -255,6 +265,12 @@ dispatch_line:
     jz .do_ai
 
     lea rdi, [rip + wordbuf]
+    lea rsi, [rip + w_validate]
+    call CDECL(strcmp)
+    test eax, eax
+    jz .do_validate
+
+    lea rdi, [rip + wordbuf]
     lea rsi, [rip + w_exit]
     call CDECL(strcmp)
     test eax, eax
@@ -333,6 +349,29 @@ dispatch_line:
 .do_ai:
     lea rdi, [rip + g_ai]
     call CDECL(system)
+    jmp .ds_ret0
+
+.do_validate:
+    lea rdi, [rip + dbg_val]
+    call CDECL(printf)
+    cmp byte ptr [rip + validate_enabled], 0
+    jz .ds_ret0           # validation disabled, silently return
+    lea rdi, [rip + g_validate]
+    lea rsi, [rip + dbg_sys]
+    xor eax, eax
+    call CDECL(printf)
+    lea rdi, [rip + dbg_b4sys]
+    xor eax, eax
+    call CDECL(printf)
+    lea rdi, [rip + g_validate]
+    call CDECL(system)
+    lea rdi, [rip + dbg_sys2]
+    xor eax, eax
+    call CDECL(printf)
+    lea rdi, [rip + dbg_ret]
+    xor eax, eax
+    mov esi, eax
+    call CDECL(printf)
     jmp .ds_ret0
 
 .do_serve:
@@ -415,7 +454,34 @@ CDECL(main):
     call CDECL(strcmp)
     test eax, eax
     jz .do_help_main
+
+    # argv[1] == "--validate" ?
+    mov rdx, qword ptr [rip + my_argv]
+    mov rdi, qword ptr [rdx + 8]
+    lea rsi, [rip + s_validate]
+    call CDECL(strcmp)
+    test eax, eax
+    jz .main_enable_validate
+
+    # argv[1] == "--no-validate" ?
+    mov rdx, qword ptr [rip + my_argv]
+    mov rdi, qword ptr [rdx + 8]
+    lea rsi, [rip + s_no_validate]
+    call CDECL(strcmp)
+    test eax, eax
+    jz .main_disable_validate
+
     jmp .main_buildline
+
+.main_enable_validate:
+    mov byte ptr [rip + validate_enabled], 1
+    mov rdi, 0
+    call CDECL(exit)
+
+.main_disable_validate:
+    mov byte ptr [rip + validate_enabled], 0
+    mov rdi, 0
+    call CDECL(exit)
 .do_help_main:
     lea rdi, [rip + help_txt]
     call CDECL(printf)

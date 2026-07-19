@@ -21,7 +21,7 @@
 # Grammar (superset of sakum_eval.s):
 #   prog   := stmt*
 #   stmt   := 'let' ident '=' expr ';'
-#   expr   := term (('+'|'-') term)*
+#   expr   := term (('+'|'-'|'|>') term)*
 #   term   := factor (('*'|'/') factor)*
 #   factor := number | ident | '(' expr ')'
 #
@@ -46,7 +46,7 @@ TEXT_SECTION
 # ---- stage 2: LEXER --------------------------------------------------------
 # next_token: read one token from [rsi], store at [tokbuf + r12*8], r12++.
 # token word: low byte = kind, next 4 bytes = payload (number value / var idx).
-# kinds: 0=EOF 1=NUM 2=IDENT 3='+' 4='-' 5='*' 6='/' 7='(' 8=')' 9='=' 10=';' 11=LET
+# kinds: 0=EOF 1=NUM 2=IDENT 3='+' 4='-' 5='*' 6='/' 7='(' 8=')' 9='=' 10=';' 11=LET 12=PIPE( |> )
 skip_ws:
 .sws:
     mov al, [rsi]
@@ -120,6 +120,8 @@ next_token:
     je .t_eq
     cmp al, ';'
     je .t_semi
+    cmp al, '|'
+    je .t_pipe
     cmp al, 'l'
     jne .t_ident
     cmp byte ptr [rsi+1], 'e'
@@ -153,6 +155,7 @@ next_token:
 .t_rp:    inc rsi; mov al, 8;  call emit_tok; ret
 .t_eq:    inc rsi; mov al, 9;  call emit_tok; ret
 .t_semi:  inc rsi; mov al, 10; call emit_tok; ret
+.t_pipe:  inc rsi; cmp byte ptr [rsi], '>'; jne .t_ident; inc rsi; mov al, 12; call emit_tok; ret
 .t_eof:
     mov al, 0
     call emit_tok
@@ -160,7 +163,7 @@ next_token:
 
 # ---- stage 3: PARSER -> AST -------------------------------------------------
 # AST node (24 bytes): [0]=ntype, [4]=val/idx, [8]=A(child ptr), [16]=B(child ptr)
-# ntype: 1=NUM(leaf,val) 2=VAR(leaf,idx) 3=ADD 4=SUB 5=MUL 6=DIV 7=LET(stmt)
+# ntype: 1=NUM(leaf,val) 2=VAR(leaf,idx) 3=ADD 4=SUB 5=MUL 6=DIV 7=LET(stmt) 8=PIPE
 new_node:
     mov rax, r13
     add r13, 24
@@ -256,6 +259,8 @@ parse_expr:
     je .expr_add
     cmp eax, 4
     je .expr_sub
+    cmp eax, 12
+    je .expr_pipe
     mov rax, [rip + r14_save]
     ret
 .expr_add:
@@ -275,6 +280,17 @@ parse_expr:
     mov rcx, rax
     call new_node
     mov byte ptr [rax], 4
+    mov r8, [rip + r14_save]
+    mov [rax + 8], r8
+    mov [rax + 16], rcx
+    mov [rip + r14_save], rax
+    jmp .expr_loop
+.expr_pipe:
+    inc qword ptr [rip + pc]
+    call parse_term
+    mov rcx, rax
+    call new_node
+    mov byte ptr [rax], 8          # PIPE node type
     mov r8, [rip + r14_save]
     mov [rax + 8], r8
     mov [rax + 16], rcx
@@ -476,6 +492,8 @@ eval_codegen:
     je .ec_var
     cmp eax, 7
     je .ec_let
+    cmp eax, 8
+    je .ec_pipe
     mov r8, [rdi + 8]
     movzx eax, byte ptr [r8]
     cmp eax, 1
@@ -598,6 +616,31 @@ eval_codegen:
 .ec_badd: mov eax, [rip + _vala]; add eax, [rip + _valb]; pop r14; pop r13; ret
 .ec_bsub: mov eax, [rip + _vala]; sub eax, [rip + _valb]; pop r14; pop r13; ret
 .ec_bmul: mov eax, [rip + _vala]; imul eax, [rip + _valb]; pop r14; pop r13; ret
+.ec_pipe:
+    # Pipe: a |> f(b) → f(a, b)
+    # Evaluate left side
+    mov r8, [rdi + 8]
+    mov rdi, r8
+    call eval_codegen
+    push rax                     # save left result
+    # Evaluate right side (function call)
+    mov r8, [rip + _parent]
+    mov rdi, r8
+    mov r8, [rdi + 16]
+    mov rdi, r8
+    call eval_codegen
+    pop rcx                      # restore left result
+    # For now: return right value (pipe semantics handled in full pipeline)
+    # In a full implementation, right would be a call with left as first arg
+    # Emit IR for pipe
+    push rax
+    mov byte ptr [rip + _opch], '|'
+    mov byte ptr [rip + _opkind], 8
+    pop rax
+    pop r14
+    pop r13
+    ret
+
 .ec_let:
     mov eax, [rdi + 4]
     mov [rip + _letidx], eax

@@ -338,7 +338,8 @@ rmode:     .asciz "rb"
 livestr:   .asciz "--live"
 
 banner:
-.asciz "\n== ब्रम्ह :: LIVE SELF-UPDATE TRACKER (Sakum machine core, arm64 native) ==\nsource -> language -> destination   [no host language; raw assembly]\n"
+.asciz "\n== ब्रम्ह :: LIVE SELF-UPDATE TRACKER (Sakum machine core, arm64 native) ==\nsource -> language -> destination   [no host language
+ raw assembly]\n"
 
 timelbl:
 .asciz "अद्यतन time (unix): %lld\n"
@@ -361,7 +362,8 @@ rule:
 .asciz "==================================================================\n"
 
 foot:
-.asciz "सूत्र: every fetch -> learn -> upgrade compiles to raw assembly or rolls back.\nब्रम्ह pulses every 600s; this viewer is machine-code only (no serve.py).\n"
+.asciz "सूत्र: every fetch -> learn -> upgrade compiles to raw assembly or rolls back.\nब्रम्ह pulses every 600s
+ this viewer is machine-code only (no serve.py).\n"
 
 errnofile:
 .asciz "(ब्रम्ह feed not found: %s) -- run the bot first.\n"

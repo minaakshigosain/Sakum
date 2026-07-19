@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtatva.a CMakeFiles/tatva.dir/tatva.c.o CMakeFiles/tatva.dir/tatva_arm64.c.o
+/usr/bin/ranlib libtatva.a

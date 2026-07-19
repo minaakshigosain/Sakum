@@ -1,0 +1,23 @@
+{
+  "name": "sakum-lang-icons",
+  "displayName": "Sakum Lang File Icons",
+  "description": "File icons for Sakum Lang extensions",
+  "version": "0.1.0",
+  "publisher": "sakum-lang",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "iconThemes": [
+      {
+        "id": "sakum-icons",
+        "label": "Sakum Lang Icons",
+        "path": "./icon-theme.json"
+      }
+    ]
+  },
+  "icon": "icon.png"
+}

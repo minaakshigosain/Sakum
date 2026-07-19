@@ -1,0 +1,123 @@
+%PDF-1.4
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Count 8/Kids[4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R 11 0 R ]>>
+endobj
+3 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+4 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 12 0 R>>
+endobj
+12 0 obj
+<</Length 87>>
+stream
+BT /F1 12 Tf 72 720 Td(- AI coding assistant built for terminal-first workflows) Tj ET
+
+endstream
+endobj
+5 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 13 0 R>>
+endobj
+13 0 obj
+<</Length 72>>
+stream
+BT /F1 12 Tf 72 720 Td(- Powered by deepseek-v4-flash-free model) Tj ET
+
+endstream
+endobj
+6 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 14 0 R>>
+endobj
+14 0 obj
+<</Length 79>>
+stream
+BT /F1 12 Tf 72 720 Td(- Executes code, edits files, searches codebases) Tj ET
+
+endstream
+endobj
+7 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 15 0 R>>
+endobj
+15 0 obj
+<</Length 72>>
+stream
+BT /F1 12 Tf 72 720 Td(- Pure x86-64 assembly toolchain on macOS) Tj ET
+
+endstream
+endobj
+8 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 16 0 R>>
+endobj
+16 0 obj
+<</Length 78>>
+stream
+BT /F1 12 Tf 72 720 Td(- No libc dependencies -- raw BSD syscalls only) Tj ET
+
+endstream
+endobj
+9 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 17 0 R>>
+endobj
+17 0 obj
+<</Length 86>>
+stream
+BT /F1 12 Tf 72 720 Td(- Self-healing architecture: detect -> diagnose -> heal) Tj ET
+
+endstream
+endobj
+10 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 18 0 R>>
+endobj
+18 0 obj
+<</Length 80>>
+stream
+BT /F1 12 Tf 72 720 Td(- Three-layer protection: Hardware -> OS -> Agent) Tj ET
+
+endstream
+endobj
+11 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 19 0 R>>
+endobj
+19 0 obj
+<</Length 84>>
+stream
+BT /F1 12 Tf 72 720 Td(- Survivability metric tracks system health over time) Tj ET
+
+endstream
+endobj
+20 0 obj
+<<
+/Title(Opencode)/Author(Sakum Lang)
+>>
+endobj
+xref
+0 21
+0000000000 65535 f 
+0000000009 0000 n 
+0000000054 0000 n 
+0000000150 0000 n 
+0000000213 0000 n 
+0000000406 0000 n 
+0000000599 0000 n 
+0000000792 0000 n 
+0000000985 0000 n 
+0000001178 0000 n 
+0000001371 0000 n 
+0000001565 0000 n 
+0000000326 0000 n 
+0000000519 0000 n 
+0000000712 0000 n 
+0000000905 0000 n 
+0000001098 0000 n 
+0000001291 0000 n 
+0000001485 0000 n 
+0000001679 0000 n 
+0000001759 0000 n 
+0000000000 0000 n 
+trailer<</Size 21/Root 1 0 R/Info 20 0 R>>
+startxref
+1799
+%%EOF

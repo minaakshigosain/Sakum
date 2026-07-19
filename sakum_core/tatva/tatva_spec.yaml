@@ -1,0 +1,860 @@
+# Tatva - Universal Instruction Set Specification
+# Cross-platform: x86, x86_64, ARM32, ARM64, RISC-V32, RISC-V64, WASM32, WASM64
+# OS: Windows, macOS, Linux, bare-metal
+
+version: "1.0"
+architecture: "universal"
+endianness: "little"
+
+types:
+  - name: "i8"
+    size: 1
+    signed: true
+  - name: "u8"
+    size: 1
+    signed: false
+  - name: "i16"
+    size: 2
+    signed: true
+  - name: "u16"
+    size: 2
+    signed: false
+  - name: "i32"
+    size: 4
+    signed: true
+  - name: "u32"
+    size: 4
+    signed: false
+  - name: "i64"
+    size: 8
+    signed: true
+  - name: "u64"
+    size: 8
+    signed: false
+  - name: "f32"
+    size: 4
+    ieee754: true
+  - name: "f64"
+    size: 8
+    ieee754: true
+  - name: "ptr"
+    size: "arch_dependent"
+    signed: false
+
+register_classes:
+  - name: "gpr"
+    description: "General purpose registers"
+    count: "arch_dependent"
+  - name: "fpr"
+    description: "Floating point registers"
+    count: "arch_dependent"
+  - name: "vec"
+    description: "Vector/SIMD registers"
+    count: "arch_dependent"
+  - name: "pred"
+    description: "Predicate registers (ARM SVE, AVX-512)"
+    count: "arch_dependent"
+
+instructions:
+  - name: "chala"
+    mnemonic: "MOV"
+    category: "datamov"
+    meaning: "Move data between registers/memory"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src", class: "gpr|imm|mem", constraint: "read"}
+    flags_affected: []
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "mov {dst}, {src}"
+          opcode: "89 /r"
+          rex_w: true
+      arm64:
+        - pattern: "mov {dst}, {src}"
+          opcode: "D2800000 | ({dst} << 5) | {src}"
+      riscv64:
+        - pattern: "mv {dst}, {src}"
+          opcode: "0000000 {src} 00000 {dst} 0010011"
+      wasm64:
+        - pattern: "local.set {dst}; local.get {src}"
+          opcode: "21 {dst} 20 {src}"
+
+  - name: "chala_imm"
+    mnemonic: "MOVI"
+    category: "datamov"
+    meaning: "Load immediate value into register"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "imm", class: "imm", constraint: "read", size: "arch_dependent"}
+    flags_affected: []
+    latency: 1
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "mov {dst}, {imm}"
+          opcode: "B8+{dst} {imm32}"
+          rex_w: true
+      arm64:
+        - pattern: "mov {dst}, #{imm}"
+          opcode: "D2800000 | ({dst} << 5) | ({imm} << 10)"
+      riscv64:
+        - pattern: "li {dst}, {imm}"
+          opcode: "lui {dst}, {imm[31:12]}; addi {dst}, {dst}, {imm[11:0]}"
+      wasm64:
+        - pattern: "i64.const {imm}; local.set {dst}"
+          opcode: "42 {imm_leb128} 21 {dst}"
+
+  - name: "jodo"
+    mnemonic: "ADD"
+    category: "arith"
+    meaning: "Integer addition"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["carry", "overflow", "zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "add {dst}, {src2}"
+          opcode: "48 01 /r"
+      arm64:
+        - pattern: "add {dst}, {src1}, {src2}"
+          opcode: "8B000000 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "add {dst}, {src1}, {src2}"
+          opcode: "0000000 {src2} {src1} 000 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.add; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7C 21 {dst}"
+
+  - name: "ghata"
+    mnemonic: "SUB"
+    category: "arith"
+    meaning: "Integer subtraction"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["carry", "overflow", "zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "sub {dst}, {src2}"
+          opcode: "48 29 /r"
+      arm64:
+        - pattern: "sub {dst}, {src1}, {src2}"
+          opcode: "CB000000 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "sub {dst}, {src1}, {src2}"
+          opcode: "40000000 | ({src2} << 20) | ({src1} << 15) | {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.sub; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7D 21 {dst}"
+
+  - name: "guna"
+    mnemonic: "MUL"
+    category: "arith"
+    meaning: "Integer multiplication (low bits)"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["overflow", "zero", "sign"]
+    latency: 3
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "imul {dst}, {src2}"
+          opcode: "48 0F AF /r"
+      arm64:
+        - pattern: "mul {dst}, {src1}, {src2}"
+          opcode: "9B007C00 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "mul {dst}, {src1}, {src2}"
+          opcode: "0000001 {src2} {src1} 000 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.mul; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7E 21 {dst}"
+
+  - name: "bhaga"
+    mnemonic: "DIV"
+    category: "arith"
+    meaning: "Integer signed division"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr", constraint: "read"}
+    flags_affected: ["overflow", "zero", "sign"]
+    latency: 20
+    throughput: 20
+    encodings:
+      x86_64:
+        - pattern: "cqo; idiv {src2}; mov {dst}, rax"
+          opcode: "48 99; 48 F7 F{src2}; 48 89 C{dst}"
+      arm64:
+        - pattern: "sdiv {dst}, {src1}, {src2}"
+          opcode: "9AC00800 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "div {dst}, {src1}, {src2}"
+          opcode: "0000001 {src2} {src1} 100 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.div_s; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 83 21 {dst}"
+
+  - name: "bandh"
+    mnemonic: "AND"
+    category: "logic"
+    meaning: "Bitwise AND"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "and {dst}, {src2}"
+          opcode: "48 21 /r"
+      arm64:
+        - pattern: "and {dst}, {src1}, {src2}"
+          opcode: "8A000000 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "and {dst}, {src1}, {src2}"
+          opcode: "0000000 {src2} {src1} 111 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.and; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7A 21 {dst}"
+
+  - name: "yog"
+    mnemonic: "OR"
+    category: "logic"
+    meaning: "Bitwise OR"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "or {dst}, {src2}"
+          opcode: "48 09 /r"
+      arm64:
+        - pattern: "orr {dst}, {src1}, {src2}"
+          opcode: "AA000000 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "or {dst}, {src1}, {src2}"
+          opcode: "0000000 {src2} {src1} 110 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.or; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7B 21 {dst}"
+
+  - name: "viyog"
+    mnemonic: "XOR"
+    category: "logic"
+    meaning: "Bitwise XOR"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: ["zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "xor {dst}, {src2}"
+          opcode: "48 31 /r"
+      arm64:
+        - pattern: "eor {dst}, {src1}, {src2}"
+          opcode: "CA000000 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "xor {dst}, {src1}, {src2}"
+          opcode: "0000000 {src2} {src1} 100 {dst} 0110011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.xor; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 7C 21 {dst}"
+
+  - name: "nahi"
+    mnemonic: "NOT"
+    category: "logic"
+    meaning: "Bitwise NOT"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src", class: "gpr", constraint: "read"}
+    flags_affected: ["zero", "sign"]
+    latency: 1
+    throughput: 0.33
+    encodings:
+      x86_64:
+        - pattern: "not {dst}"
+          opcode: "48 F7 D{dst}"
+      arm64:
+        - pattern: "mvn {dst}, {src}"
+          opcode: "AA0003E0 | ({src} << 16) | {dst}"
+      riscv64:
+        - pattern: "xori {dst}, {src}, -1"
+          opcode: "FFF00000 | ({src} << 15) | {dst} 0010011"
+      wasm64:
+        - pattern: "local.get {src}; i64.const -1; i64.xor; local.set {dst}"
+          opcode: "20 {src} 42 FF 7C 21 {dst}"
+
+  - name: "dahine"
+    mnemonic: "SHR"
+    category: "shift"
+    meaning: "Logical right shift"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src", class: "gpr", constraint: "read"}
+      - {name: "amt", class: "gpr|imm", constraint: "read", size: 6}
+    flags_affected: ["zero", "sign", "carry"]
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "shr {dst}, {amt}"
+          opcode: "48 D3 E{dst}"
+      arm64:
+        - pattern: "lsr {dst}, {src}, {amt}"
+          opcode: "D3400000 | ({amt} << 10) | ({src} << 5) | {dst}"
+      riscv64:
+        - pattern: "srli {dst}, {src}, {amt}"
+          opcode: "0000000 {amt} {src} 101 {dst} 0010011"
+      wasm64:
+        - pattern: "local.get {src}; local.get {amt}; i64.shr_u; local.set {dst}"
+          opcode: "20 {src} 20 {amt} 88 21 {dst}"
+
+  - name: "baaye"
+    mnemonic: "SHL"
+    category: "shift"
+    meaning: "Logical left shift"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src", class: "gpr", constraint: "read"}
+      - {name: "amt", class: "gpr|imm", constraint: "read", size: 6}
+    flags_affected: ["zero", "sign", "carry"]
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "shl {dst}, {amt}"
+          opcode: "48 D3 C{dst}"
+      arm64:
+        - pattern: "lsl {dst}, {src}, {amt}"
+          opcode: "D3000000 | ({amt} << 10) | ({src} << 5) | {dst}"
+      riscv64:
+        - pattern: "slli {dst}, {src}, {amt}"
+          opcode: "0000000 {amt} {src} 001 {dst} 0010011"
+      wasm64:
+        - pattern: "local.get {src}; local.get {amt}; i64.shl; local.set {dst}"
+          opcode: "20 {src} 20 {amt} 86 21 {dst}"
+
+  - name: "tolo"
+    mnemonic: "CMP"
+    category: "compare"
+    meaning: "Compare two values, set flags"
+    operands:
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm|mem", constraint: "read"}
+    flags_affected: ["carry", "overflow", "zero", "sign"]
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "cmp {src1}, {src2}"
+          opcode: "48 39 /r"
+      arm64:
+        - pattern: "cmp {src1}, {src2}"
+          opcode: "EB00001F | ({src2} << 16) | ({src1} << 5)"
+      riscv64:
+        - pattern: "sltu x0, {src1}, {src2}"
+          pseudo: true
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.lt_s"
+          opcode: "20 {src1} 20 {src2} 4E"
+
+  - name: "samaan"
+    mnemonic: "SEQ"
+    category: "compare"
+    meaning: "Set destination to 1 if equal, 0 otherwise"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "src1", class: "gpr", constraint: "read"}
+      - {name: "src2", class: "gpr|imm", constraint: "read"}
+    flags_affected: []
+    latency: 1
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "cmp {src1}, {src2}; sete {dst}; movzx {dst}, {dst}"
+          opcode: "48 39 /r; 0F 94 /r; 0F B6 /r"
+      arm64:
+        - pattern: "cmp {src1}, {src2}; cset {dst}, eq"
+          opcode: "EB00001F | ({src2} << 16) | ({src1} << 5); 1A9F07E0 | {dst}"
+      riscv64:
+        - pattern: "xor {dst}, {src1}, {src2}; seqz {dst}, {dst}"
+          opcode: "0000000 {src2} {src1} 100 {dst} 0110011; 0000000 00000 {dst} 011 {dst} 0010011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.eq; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 4C 21 {dst}"
+
+  - name: "jao"
+    mnemonic: "JMP"
+    category: "branch"
+    meaning: "Unconditional jump"
+    operands:
+      - {name: "target", class: "label", constraint: "read"}
+    flags_affected: []
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "jmp {target}"
+          opcode: "E9 {rel32}"
+      arm64:
+        - pattern: "b {target}"
+          opcode: "14000000 | ({target} >> 2)"
+      riscv64:
+        - pattern: "j {target}"
+          opcode: "6F | ({target} << 21)"
+      wasm64:
+        - pattern: "br {target}"
+          opcode: "0C {target}"
+
+  - name: "jao_agar"
+    mnemonic: "JCC"
+    category: "branch"
+    meaning: "Conditional jump"
+    operands:
+      - {name: "cond", class: "flag", constraint: "read"}
+      - {name: "target", class: "label", constraint: "read"}
+    flags_affected: []
+    latency: 1
+    throughput: 0.5
+    encodings:
+      x86_64:
+        - pattern: "j{cond} {target}"
+          cond_map:
+            eq: "84"
+            ne: "85"
+            lt: "8C"
+            gt: "8F"
+            le: "8E"
+            ge: "8D"
+            carry: "82"
+            overflow: "80"
+          opcode: "0F {cond_map} {rel32}"
+      arm64:
+        - pattern: "b.{cond} {target}"
+          cond_map:
+            eq: "0"
+            ne: "1"
+            lt: "B"
+            gt: "C"
+            le: "D"
+            ge: "A"
+            carry: "2"
+            overflow: "6"
+          opcode: "54000000 | ({cond_map} << 24) | ({target} >> 2)"
+      riscv64:
+        - pattern: "b{cond} {src1}, {src2}, {target}"
+          cond_map:
+            eq: "beq"
+            ne: "bne"
+            lt: "blt"
+            gt: "bgt"
+            le: "ble"
+            ge: "bge"
+            carry: "bltu"
+          opcode: "63 | ({src2} << 20) | ({src1} << 15) | {cond_map} | ({target} << 21)"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; i64.{cond}; br_if {target}"
+          cond_map:
+            eq: "eq"
+            ne: "ne"
+            lt: "lt_s"
+            gt: "gt_s"
+            le: "le_s"
+            ge: "ge_s"
+
+  - name: "bhar"
+    mnemonic: "LOAD"
+    category: "memory"
+    meaning: "Load from memory"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "base", class: "gpr", constraint: "read"}
+      - {name: "offset", class: "imm|gpr", constraint: "read", default: 0}
+      - {name: "size", class: "imm", constraint: "read", values: [1,2,4,8]}
+    flags_affected: []
+    latency: 3
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "mov{sz} {dst}, [{base}{offset}]"
+          sz_map:
+            1: "zx"
+            2: "zx"
+            4: ""
+            8: ""
+          opcode: "48 8B /r"
+      arm64:
+        - pattern: "ldr{sz} {dst}, [{base}, {offset}]"
+          sz_map:
+            1: "b"
+            2: "h"
+            4: ""
+            8: ""
+          opcode: "F8400000 | ({dst} << 22) | ({base} << 5) | {offset}"
+      riscv64:
+        - pattern: "l{sz} {dst}, {offset}({base})"
+          sz_map:
+            1: "b"
+            2: "h"
+            4: "w"
+            8: "d"
+          opcode: "03 | ({sz} << 12) | ({base} << 15) | {dst} 0000011"
+      wasm64:
+        - pattern: "local.get {base}; i64.const {offset}; i64.add; i64.load{sz}"
+          sz_map:
+            8: ""
+            4: "32"
+            2: "16"
+            1: "8"
+          opcode: "20 {base} 42 {offset_leb128} 7C {load_opcode}"
+
+  - name: "rakh"
+    mnemonic: "STORE"
+    category: "memory"
+    meaning: "Store to memory"
+    operands:
+      - {name: "src", class: "gpr", constraint: "read"}
+      - {name: "base", class: "gpr", constraint: "read"}
+      - {name: "offset", class: "imm|gpr", constraint: "read", default: 0}
+      - {name: "size", class: "imm", constraint: "read", values: [1,2,4,8]}
+    flags_affected: []
+    latency: 2
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "mov [{base}{offset}], {src}"
+          opcode: "48 89 /r"
+      arm64:
+        - pattern: "str{sz} {src}, [{base}, {offset}]"
+          sz_map:
+            1: "b"
+            2: "h"
+            4: ""
+            8: ""
+          opcode: "F8000000 | ({src} << 22) | ({base} << 5) | {offset}"
+      riscv64:
+        - pattern: "s{sz} {src}, {offset}({base})"
+          sz_map:
+            1: "b"
+            2: "h"
+            4: "w"
+            8: "d"
+          opcode: "23 | ({sz} << 12) | ({base} << 15) | {src} 0100011"
+      wasm64:
+        - pattern: "local.get {base}; i64.const {offset}; i64.add; local.get {src}; i64.store"
+          opcode: "20 {base} 42 {offset_leb128} 7C 20 {src} 36"
+
+  - name: "bulao"
+    mnemonic: "CALL"
+    category: "call"
+    meaning: "Call function"
+    operands:
+      - {name: "target", class: "label|gpr", constraint: "read"}
+    flags_affected: []
+    latency: 5
+    throughput: 5
+    encodings:
+      x86_64:
+        - pattern: "call {target}"
+          opcode: "E8 {rel32}"
+          alt: "FF D{reg}"
+      arm64:
+        - pattern: "bl {target}"
+          opcode: "94000000 | ({target} >> 2)"
+          alt: "blr {reg}"
+      riscv64:
+        - pattern: "call {target}"
+          pseudo: true
+          alt: "jalr x1, {reg}"
+      wasm64:
+        - pattern: "call {target}"
+          opcode: "10 {target_leb128}"
+          alt: "call_indirect {type_idx}"
+
+  - name: "laut"
+    mnemonic: "RET"
+    category: "call"
+    meaning: "Return from function"
+    operands: []
+    flags_affected: []
+    latency: 3
+    throughput: 3
+    encodings:
+      x86_64:
+        - pattern: "ret"
+          opcode: "C3"
+      arm64:
+        - pattern: "ret"
+          opcode: "D65F03C0"
+      riscv64:
+        - pattern: "ret"
+          pseudo: true
+          opcode: "00008067"
+      wasm64:
+        - pattern: "return"
+          opcode: "0F"
+
+  - name: "jodo_jal"
+    mnemonic: "FADD"
+    category: "float"
+    meaning: "Floating point addition"
+    operands:
+      - {name: "dst", class: "fpr", constraint: "write"}
+      - {name: "src1", class: "fpr", constraint: "read"}
+      - {name: "src2", class: "fpr", constraint: "read"}
+    flags_affected: ["fp_except"]
+    latency: 4
+    throughput: 1
+    encodings:
+      x86_64:
+        - pattern: "addsd {dst}, {src2}"
+          opcode: "F2 0F 58 /r"
+      arm64:
+        - pattern: "fadd {dst}, {src1}, {src2}"
+          opcode: "1E202800 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      riscv64:
+        - pattern: "fadd.d {dst}, {src1}, {src2}"
+          opcode: "0000000 {src2} {src1} 000 {dst} 1010011"
+      wasm64:
+        - pattern: "local.get {src1}; local.get {src2}; f64.add; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} 92 21 {dst}"
+
+  - name: "samanvay"
+    mnemonic: "VADD"
+    category: "vector"
+    meaning: "Vector addition"
+    operands:
+      - {name: "dst", class: "vec", constraint: "write"}
+      - {name: "src1", class: "vec", constraint: "read"}
+      - {name: "src2", class: "vec", constraint: "read"}
+    flags_affected: []
+    latency: 2
+    throughput: 0.5
+    encodings:
+      x86_64_avx2:
+        - pattern: "vpaddd {dst}, {src1}, {src2}"
+          opcode: "C4 E2 78 FD /r"
+      x86_64_avx512:
+        - pattern: "vpaddd {dst}, {src1}, {src2}"
+          opcode: "62 F1 78 48 FD /r"
+      arm64_neon:
+        - pattern: "add {dst}.4s, {src1}.4s, {src2}.4s"
+          opcode: "0E200800 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      arm64_sve:
+        - pattern: "add {dst}.d, {src1}.d, {src2}.d"
+          opcode: "44800400 | ({src2} << 16) | ({src1} << 5) | {dst}"
+      wasm128:
+        - pattern: "local.get {src1}; local.get {src2}; i32x4.add; local.set {dst}"
+          opcode: "20 {src1} 20 {src2} FD 0A 21 {dst}"
+
+  - name: "ekatra"
+    mnemonic: "CAS"
+    category: "atomic"
+    meaning: "Compare-and-swap"
+    operands:
+      - {name: "dst", class: "gpr", constraint: "write"}
+      - {name: "ptr", class: "gpr", constraint: "read"}
+      - {name: "expected", class: "gpr", constraint: "read"}
+      - {name: "desired", class: "gpr", constraint: "read"}
+    flags_affected: ["zero"]
+    latency: 20
+    throughput: 20
+    encodings:
+      x86_64:
+        - pattern: "lock cmpxchg [{ptr}], {desired}"
+          opcode: "F0 48 0F B1 /r"
+      arm64:
+        - pattern: "cas {dst}, {desired}, [{ptr}]"
+          opcode: "2A810000 | ({desired} << 16) | ({ptr} << 5) | {dst}"
+      riscv64:
+        - pattern: "amoswap.d {dst}, {desired}, ({ptr})"
+          opcode: "0010000 {desired} {ptr} 010 {dst} 0100011"
+          note: "Use LR/SC loop for true CAS"
+      wasm64:
+        - pattern: "local.get {ptr}; local.get {expected}; local.get {desired}; i64.atomic.cas"
+          opcode: "20 {ptr} 20 {expected} 20 {desired} FE 00 3F"
+
+arch_registers:
+  x86_64:
+    gpr: [rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp, r8, r9, r10, r11, r12, r13, r14, r15]
+    fpr: [xmm0..15, ymm0..15, zmm0..31]
+    vec: [ymm0..15, zmm0..31]
+    calling_convention: "SystemV"
+    arg_regs: [rdi, rsi, rdx, rcx, r8, r9]
+    ret_reg: rax
+    caller_saved: [rax, rcx, rdx, rsi, rdi, r8, r9, r10, r11]
+    callee_saved: [rbx, rbp, r12, r13, r14, r15]
+
+  arm64:
+    gpr: [x0..x30]
+    fpr: [v0..v31]
+    vec: [v0..v31]
+    calling_convention: "AAPCS64"
+    arg_regs: [x0, x1, x2, x3, x4, x5, x6, x7]
+    ret_reg: x0
+    caller_saved: [x0..x18]
+    callee_saved: [x19..x29, sp]
+
+  riscv64:
+    gpr: [x0..x31]
+    fpr: [f0..f31]
+    vec: [v0..v31]
+    calling_convention: "RISC-V"
+    arg_regs: [a0..a7]
+    ret_reg: a0
+    caller_saved: [ra, t0..t6, a0..a7]
+    callee_saved: [s0..s11, sp, gp, tp]
+
+  wasm64:
+    gpr: "locals"
+    fpr: "locals"
+    vec: "locals"
+    calling_convention: "WASM"
+    arg_regs: "params"
+    ret_reg: "result"
+
+os_syscalls:
+  linux_x86_64:
+    write: 1
+    read: 0
+    open: 2
+    close: 3
+    exit: 60
+    mmap: 9
+    munmap: 11
+  linux_arm64:
+    write: 64
+    read: 63
+    open: 56
+    close: 57
+    exit: 93
+  linux_riscv64:
+    write: 64
+    read: 63
+    open: 1024
+    close: 57
+    exit: 93
+  macos_x86_64:
+    write: 0x2000004
+    read: 0x2000003
+    open: 0x2000005
+    close: 0x2000006
+    exit: 0x2000001
+  macos_arm64:
+    write: 0x2000004
+    read: 0x2000003
+    open: 0x2000005
+    close: 0x2000006
+    exit: 0x2000001
+  windows_x86_64:
+    write: "WriteFile"
+    read: "ReadFile"
+    open: "CreateFile"
+    close: "CloseHandle"
+    exit: "ExitProcess"
+    calling_convention: "Microsoft x64"
+    arg_regs: [rcx, rdx, r8, r9]
+    ret_reg: rax
+    caller_saved: [rax, rcx, rdx, r8, r9, r10, r11]
+    callee_saved: [rbx, rbp, rdi, rsi, r12, r13, r14, r15]
+
+optimization:
+  peephole:
+    - pattern: "chala x, x"
+      replacement: "nop"
+    - pattern: "jodo x, 0"
+      replacement: "nop"
+    - pattern: "ghata x, 0"
+      replacement: "nop"
+    - pattern: "guna x, 1"
+      replacement: "nop"
+    - pattern: "guna x, 2"
+      replacement: "dahine x, 1"
+    - pattern: "bhaga x, 2"
+      replacement: "baaye x, 1"
+    - pattern: "bandh x, -1"
+      replacement: "nop"
+    - pattern: "yog x, 0"
+      replacement: "nop"
+    - pattern: "viyog x, 0"
+      replacement: "nop"
+    - pattern: "jao_agar eq, L; jao L"
+      replacement: "jao L"
+
+  strength_reduction:
+    - '"guna x, 2^n" -> "dahine x, n"'
+    - '"bhaga x, 2^n" -> "baaye x, n"'
+    - '"bandh x, 2^n-1" -> "bandh x, (1<<n)-1"'
+
+  loop_invariants:
+    - "hoist invariant jodo/ghata out of loops"
+
+  vectorization:
+    - '"scalar jodo in loop" -> "samanvay vjodo"'
+    - '"scalar guna in loop" -> "samanvay vguna"'
+
+ai_metadata:
+  cost_model:
+    chala: 1
+    jodo: 1
+    ghata: 1
+    guna: 3
+    bhaga: 20
+    bandh: 1
+    yog: 1
+    viyog: 1
+    nahi: 1
+    dahine: 1
+    baaye: 1
+    tolo: 1
+    samaan: 1
+    jao: 1
+    jao_agar: 2
+    bhar: 3
+    rakh: 2
+    bulao: 5
+    laut: 3
+    jodo_jal: 4
+    samanvay: 2
+    ekatra: 20
+
+  parallelism:
+    jodo: "fully_parallel"
+    ghata: "fully_parallel"
+    bandh: "fully_parallel"
+    yog: "fully_parallel"
+    viyog: "fully_parallel"
+    nahi: "fully_parallel"
+    guna: "limited_parallel"
+    bhaga: "sequential"
+    bhar: "memory_bound"
+    rakh: "memory_bound"
+    samanvay: "vector_parallel"
+    ekatra: "serializing"
+
+  security:
+    ekatra: "side_channel_resistant"
+    bhar: "bounds_check_required"
+    rakh: "bounds_check_required"
+    bulao: "cfi_check_required"

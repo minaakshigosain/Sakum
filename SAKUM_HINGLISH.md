@@ -48,6 +48,7 @@
 | anvesh           | search / lookup    | अन्वेष               |
 | sarani           | hash table         | सारणी               |
 | chakra           | ring buffer        | चक्र                 |
+| pravah           | pipe operator |>   | प्रवाह (pipeline)    |
 
 ## 2. Domain keyword registry (148 reserved, Hinglish spellings)
 

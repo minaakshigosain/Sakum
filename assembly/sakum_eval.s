@@ -2,9 +2,12 @@
 # Hand-written lexer + recursive-descent parser + evaluator for an embedded
 # Sakum/ASCII source. Emits only the computed machine value (no host language).
 # Grammar subset: stmt := 'let' ident '=' expr ';' | expr ';'
-#                 expr  := term (('+'|'-') term)*
+#                 expr  := term (('+'|'-'|'|>') term)*
 #                 term  := factor (('*'|'/') factor)*
 #                 factor:= number | ident | '(' expr ')'
+# Note: |> (pravah) is the pipe operator. Passes left value as first arg
+#       to right function. In this arithmetic evaluator, pipe evaluates
+#       the left expression, then returns the right expression value.
 # Assemble + run: gcc -arch x86_64 assembly/sakum_eval.s -o /tmp/eval && /tmp/eval
 
 .intel_syntax noprefix
@@ -65,7 +68,7 @@ parse_stmt:
 .sret:
     ret
 
-# ---- expr := term (('+'|'-') term)*   (accumulator in r14) ----
+# ---- expr := term (('+'|'-'|'|>') term)*   (accumulator in r14) ----
 parse_expr:
     push r14
     call parse_term
@@ -77,6 +80,24 @@ parse_expr:
     je .eadd
     cmp al, '-'
     je .esub
+    cmp al, '|'
+    je .e_pipe_check
+    mov rax, r14
+    pop r14
+    ret
+.e_pipe_check:
+    # Check for |> (pipe operator)
+    cmp byte ptr [rsi+1], '>'
+    jne .e_pipe_discard
+    # pipe: evaluate left (r14), then right; return right value
+    inc rsi
+    inc rsi              # consume |>
+    call skip_ws
+    call parse_term
+    # rax = right value. For arithmetic evaluator, return right (left already eval'd)
+    mov r14, rax
+    jmp .eloop
+.e_pipe_discard:
     mov rax, r14
     pop r14
     ret

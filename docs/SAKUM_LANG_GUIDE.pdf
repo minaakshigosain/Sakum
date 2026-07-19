@@ -1,0 +1,101 @@
+%PDF-1.4
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Count 2/Kids[4 0 R 6 0 R]>>
+endobj
+3 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+4 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 5 0 R>>
+endobj
+5 0 obj
+<</Length 3296>>
+stream
+BT /F1 12 Tf 72 720 Td(=== SAKUM LANG: A PURE ASSEMBLY AGENTIC AI SYSTEM ===) Tj ET
+BT /F1 12 Tf 72 706 Td() Tj ET
+BT /F1 12 Tf 72 692 Td(PART 1: CORE PHILOSOPHY) Tj ET
+BT /F1 12 Tf 72 678 Td(Sakum is an agentic AI runtime written entirely in x86-64 assembly) Tj ET
+BT /F1 12 Tf 72 664 Td(No libc, no runtime, no dependencies -- raw BSD syscalls only) Tj ET
+BT /F1 12 Tf 72 650 Td(Inspired by human immune system: danger theory + self-healing) Tj ET
+BT /F1 12 Tf 72 636 Td(Survivability metric S\(t\) = integral of health over time) Tj ET
+BT /F1 12 Tf 72 622 Td() Tj ET
+BT /F1 12 Tf 72 608 Td(PART 2: THREE-LAYER PROTECTION MODEL) Tj ET
+BT /F1 12 Tf 72 594 Td(Layer 1 -- Hardware: CPU rings, memory protection, NX bit) Tj ET
+BT /F1 12 Tf 72 580 Td(Layer 2 -- OS: macOS sandbox, pledge/unveil, syscall filtering) Tj ET
+BT /F1 12 Tf 72 566 Td(Layer 3 -- Agent: Decision gates, capability tokens, audit log) Tj ET
+BT /F1 12 Tf 72 552 Td(Agent can NEVER override Layer 1 or Layer 2 decisions) Tj ET
+BT /F1 12 Tf 72 538 Td() Tj ET
+BT /F1 12 Tf 72 524 Td(PART 3: KEY COMPONENTS) Tj ET
+BT /F1 12 Tf 72 510 Td(serve.s -- HTTP server, request routing, capability enforcement) Tj ET
+BT /F1 12 Tf 72 496 Td(health.s -- Continuous self-monitoring, anomaly detection) Tj ET
+BT /F1 12 Tf 72 482 Td(relay.s -- Inter-agent messaging, capability delegation) Tj ET
+BT /F1 12 Tf 72 468 Td(monitor.s -- Metrics collection, survivability scoring) Tj ET
+BT /F1 12 Tf 72 454 Td(pdf.s -- Pure assembly PDF generation \(this document\)) Tj ET
+BT /F1 12 Tf 72 440 Td() Tj ET
+BT /F1 12 Tf 72 426 Td(PART 4: SELF-HEAL CYCLE) Tj ET
+BT /F1 12 Tf 72 412 Td(1. DETECT: Health checks, heartbeat timeouts, invariant violations) Tj ET
+BT /F1 12 Tf 72 398 Td(2. DIAGNOSE: Root cause isolation via dependency graph) Tj ET
+BT /F1 12 Tf 72 384 Td(3. HEAL: Restart component, rollback state, re-route traffic) Tj ET
+BT /F1 12 Tf 72 370 Td(4. VERIFY: Post-heal health check, metric regression test) Tj ET
+BT /F1 12 Tf 72 356 Td() Tj ET
+BT /F1 12 Tf 72 342 Td(PART 5: DEVELOPMENT WORKFLOW) Tj ET
+BT /F1 12 Tf 72 328 Td(Write .s files in assembly/sakum/ directory) Tj ET
+BT /F1 12 Tf 72 314 Td(Build: gcc -arch x86_64 assembly/*.s -o sakum) Tj ET
+BT /F1 12 Tf 72 300 Td(Run: ./sakum [args] -- single binary, zero dependencies) Tj ET
+BT /F1 12 Tf 72 286 Td(Test: Assembly-level unit tests in test/*.s) Tj ET
+BT /F1 12 Tf 72 272 Td() Tj ET
+BT /F1 12 Tf 72 258 Td(PART 6: SAFETY GUARANTEES) Tj ET
+BT /F1 12 Tf 72 244 Td(Memory safety: No heap allocator -- stack + static only) Tj ET
+BT /F1 12 Tf 72 230 Td(No code injection: W^X enforced, no JIT, no eval) Tj ET
+BT /F1 12 Tf 72 216 Td(Capability-based: Every action requires explicit token) Tj ET
+BT /F1 12 Tf 72 202 Td(Audit trail: Every syscall logged with timestamp + decision) Tj ET
+BT /F1 12 Tf 72 188 Td() Tj ET
+BT /F1 12 Tf 72 174 Td(PART 7: EXTENDING SAKUM) Tj ET
+BT /F1 12 Tf 72 160 Td(Add new agents by implementing the Agent interface in .s) Tj ET
+BT /F1 12 Tf 72 146 Td(Register capabilities in capability.def at build time) Tj ET
+BT /F1 12 Tf 72 132 Td(Health checks auto-discovered via section naming convention) Tj ET
+BT /F1 12 Tf 72 118 Td(Survivability dashboard at /metrics endpoint) Tj ET
+BT /F1 12 Tf 72 104 Td() Tj ET
+BT /F1 12 Tf 72 90 Td(PART 8: GETTING STARTED) Tj ET
+endstream
+endobj
+6 0 obj
+<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 7 0 R>>
+endobj
+7 0 obj
+<</Length 498>>
+stream
+BT /F1 12 Tf 72 720 Td(1. Clone repo, cd to root) Tj ET
+BT /F1 12 Tf 72 706 Td(2. make build \(produces single sakum binary\)) Tj ET
+BT /F1 12 Tf 72 692 Td(3. ./sakum serve -- starts HTTP on :8080) Tj ET
+BT /F1 12 Tf 72 678 Td(4. curl localhost:8080/health -- verify survivability > 0.95) Tj ET
+BT /F1 12 Tf 72 664 Td(5. Read assembly/serve.s to understand request flow) Tj ET
+BT /F1 12 Tf 72 650 Td() Tj ET
+BT /F1 12 Tf 72 636 Td(SEE ALSO: docs/ARCHITECTURE.md, docs/SAFETY.md, docs/API.md) Tj ET
+endstream
+endobj
+8 0 obj
+<<
+/Title(Sakum Lang Learning Guide)
+/Author(Sakum Lang Team)
+>>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 0000 n 
+0000000054 0000 n 
+0000000111 0000 n 
+0000000174 0000 n 
+0000000286 0000 n 
+0000003631 0000 n 
+0000003743 0000 n 
+0000004289 0000 n 
+0000000000 0000 n 
+trailer<</Size 9/Root 1 0 R/Info 8 0 R>>
+startxref
+4369
+%%EOF

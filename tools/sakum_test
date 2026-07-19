@@ -1,0 +1,44 @@
+#!/bin/bash
+# tools/sakum_test - Run end-to-end tests for Sakum
+# Usage: ./sakum_test [options]
+# Options:
+#   -v, --verbose    Verbose output
+#   -p, --parallel   Run tests in parallel
+#   -f, --filter     Filter tests by name pattern
+#   -l, --list       List available tests
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+PYTHON="${PYTHON:-python3}"
+
+cd "$ROOT_DIR"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+run_python() {
+    "$PYTHON" tests/e2e/run_e2e.py "$@"
+}
+
+main() {
+    echo -e "${YELLOW}Sakum E2E Test Suite${NC}"
+    echo "========================================"
+
+    run_python "$@"
+    exit_code=$?
+
+    if [ $exit_code -eq 0 ]; then
+        echo -e "\n${GREEN}All tests passed!${NC}"
+    else
+        echo -e "\n${RED}Some tests failed${NC}"
+    fi
+
+    exit $exit_code
+}
+
+main "$@"

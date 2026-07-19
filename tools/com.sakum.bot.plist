@@ -2,32 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  launchd job: keeps the Sakum self-updater ALWAYS ON.
-  It runs tools/serve.sh, which compiles tools/serve.s (raw x86-64 AT&T
-  assembly) into native code and execs it. The server exposes the webhook +
-  timer-pulse trigger endpoints; every pulse/webhook runs the bot
-  (tools/sakum_bot.sh), which learns, generates real library functions,
-  recompiles the core, and self-heals on failure.
+  launchd job: keeps the Sakum self-healing agent ALWAYS ON.
 
-  NOTE: there is deliberately NO Python host-language interpreter (serve.py is
-  retired). SAKUM_LANG.md §2 requires every artifact to be raw assembly /
-  machine code, not a foreign high-level runtime. tools/ are plain bash +
-  native .s, which are permitted.
+  It runs tools/sakum_bot.sh --once on a fixed interval (StartInterval=600s).
+  Each pulse: fetches trusted PL release signals (read-only), generates a real
+  sakum_lib_<topic>.s if missing, recompiles the whole x86-64 core, and on
+  compile failure SELF-HEALS (rolls back bot-generated files, logs a mistake,
+  exits 0 so launchd never crash-loops). On success it bumps the survivability
+  counter in memory.md.
+
+  The native socket server (tools/serve.s) is OPTIONAL and no longer required
+  for the always-on behaviour; this plist drives the loop via the launchd
+  timer directly. The bot is plain bash + native .s (doctrine-compliant).
 
   Install:
     cp tools/com.sakum.bot.plist ~/Library/LaunchAgents/
     launchctl load  ~/Library/LaunchAgents/com.sakum.bot.plist
   Stop:
     launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist
-
-  IMPORTANT (if the engine appears "stuck" / bot.err.log floods with
-  "serve.py: No such file"): a STALE launchd agent from the pre-retirement
-  build is still calling the removed Python server. Remove it FIRST:
-    launchctl unload ~/Library/LaunchAgents/com.sakum.bot.plist 2>/dev/null
-    # delete any OTHER plist that runs python3 .../serve.py, then:
-    launchctl load ~/Library/LaunchAgents/com.sakum.bot.plist
-  This plist runs the NATIVE serve.sh (raw x86-64, no Python) only.
- -->
+  Manual one-shot:
+    bash tools/sakum_bot.sh --once
+  -->
 <plist version="1.0">
   <dict>
     <key>Label</key>
@@ -36,9 +31,8 @@
     <key>ProgramArguments</key>
     <array>
       <string>/bin/bash</string>
-      <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/serve.sh</string>
-      <string>8080</string>
-      <string>600</string>
+      <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/sakum_bot.sh</string>
+      <string>--once</string>
     </array>
 
     <key>WorkingDirectory</key>
@@ -49,9 +43,17 @@
     <key>StandardErrorPath</key>
     <string>/Users/Amit/Downloads/ Vendor Quotations/untitled folder 2/Sakum Lang/tools/bot.err.log</string>
 
-    <!-- keep-alive: relaunch if it ever exits -->
+    <!-- run the self-heal pulse on a fixed interval (the always-on trigger) -->
+    <key>StartInterval</key>
+    <integer>600</integer>
+
+    <!-- do NOT keep-alive: a failing cycle must not crash-loop. Throttle
+         restarts so launchd never spins. -->
     <key>KeepAlive</key>
-    <true/>
+    <false/>
+
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
 
     <!-- start at login -->
     <key>RunAtLoad</key>

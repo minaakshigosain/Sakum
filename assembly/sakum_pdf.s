@@ -19,16 +19,49 @@
 .set MAX_PAGES, 64
 .set MAX_LINELEN, 256
 
-.section __DATA,__bss
-.lcomm g_pages, 16384          # MAX_PAGES * MAX_LINELEN
-.lcomm g_npgs, 8
-.lcomm g_title, 256
-.lcomm g_author, 256
-.lcomm g_buf, 131072
-.lcomm g_tmp, 512
-.lcomm g_offtab, 1040          # (5 + 2*MAX_PAGES) * 8
+.section __DATA,__data
+.align 8
+g_pages:  .zero 16384          # MAX_PAGES * MAX_LINELEN
+g_npgs:   .zero 8
+g_title:  .zero 256
+g_author: .zero 256
+g_buf:    .zero 131072
+g_tmp:    .zero 512
+g_offtab: .zero 1040           # (5 + 2*MAX_PAGES) * 8
 
 .section __TEXT,__text,regular,pure_instructions
+
+# _sys_puts(str) - raw write to stderr (avoids libc PLT SIGBUS on macOS)
+.globl _sys_puts
+_sys_puts:
+    push rbp
+    mov  rbp, rsp
+    push r12
+    mov  r12, rdi           # str
+    xor  rcx, rcx
+.spl:
+    mov  al, byte ptr [r12 + rcx]
+    test al, al
+    jz   .spw
+    inc  rcx
+    jmp  .spl
+.spw:
+    mov  rax, 0x2000004     # SYS_write
+    mov  rdi, 2             # stderr
+    mov  rsi, r12
+    mov  rdx, rcx
+    syscall
+    # write newline
+    mov  byte ptr [rsp-16], 10
+    mov  rax, 0x2000004
+    mov  rdi, 2
+    lea  rsi, [rsp-16]
+    mov  rdx, 1
+    syscall
+    pop  r12
+    leave
+    ret
+
 .globl err_open
 err_open:    .asciz "sakum_pdf: cannot open file\n"
 .globl err_usage
@@ -75,7 +108,7 @@ _main:
     jnz  .do_edit
 .usage:
     lea  rdi, [rip + err_usage]
-    call _puts
+    call _sys_puts
     mov  rax, 1
     leave
     ret
@@ -346,7 +379,7 @@ _pdf_write_file:
     ret
 .pw_err:
     lea  rdi, [rip + err_open]
-    call _puts
+    call _sys_puts
     mov  rax, 1
     leave
     ret
@@ -398,7 +431,7 @@ _pdf_read_file:
     ret
 .pr_err:
     lea  rdi, [rip + err_open]
-    call _puts
+    call _sys_puts
     mov  rax, 0
     leave
     ret
@@ -846,7 +879,7 @@ _pdf_extract:
     imul rcx, r8, 256
     lea  rdi, [rip + g_pages]
     add  rdi, rcx
-    call _puts
+    call _sys_puts
     inc  r8
     jmp  .ex_l
 .ex_done:

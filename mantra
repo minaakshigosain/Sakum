@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+"""Mantra - Sakum Lang Interactive Terminal. Type Sakum/Hinglish code directly."""
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'sakum_core'))
+from mantra.mantra import main
+main()

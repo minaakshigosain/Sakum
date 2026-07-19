@@ -1,0 +1,55 @@
+# pipe.sak — Pipe operator (|>) examples
+# pravah (|>) passes left result as first arg to right function
+# ====================================================================
+
+kriya double(x) {
+    vapsa x * 2;
+}
+
+kriya add(a, b) {
+    vapsa a + b;
+}
+
+kriya triple_add(a, b, c) {
+    vapsa a + b + c;
+}
+
+# ─── Basic pipe: a |> f() → f(a) ──────────────────────────────
+naam result1 = 5 |> double()
+lek(result1);                           # → 10
+
+# ─── Pipe with args: a |> f(b, c) → f(a, b, c) ──────────────
+naam result2 = 10 |> add(5)
+lek(result2);                           # → 15
+
+# ─── Chained pipes: a |> f() |> g() → g(f(a)) ────────────────
+naam result3 = 3 |> double() |> add(1)
+lek(result3);                           # → 7
+
+# ─── Multi-line pipe chain ────────────────────────────────────
+naam result4 = 2
+    |> double()
+    |> triple_add(1, 2)
+lek(result4);                           # → 7
+
+# ─── Pipe in arithmetic expression ────────────────────────────
+# Note: |> has lower precedence than +, -, *, /
+# 5 + 3 |> double() → 5 + double(3) → 5 + 6 → 11
+naam result5 = 5 + 3 |> double()
+lek(result5);                           # → 11
+
+# ─── Nested alternative (without pipe) ────────────────────────
+naam result6 = double(double(5))
+lek(result6);                           # → 20
+
+# ─── Same with pipe ───────────────────────────────────────────
+naam result7 = 5 |> double() |> double()
+lek(result7);                           # → 20
+
+# ─── pariksha (self-test) ─────────────────────────────────────
+pariksha {
+    lek(double(3) == 6);
+    lek(add(1, 2) == 3);
+    lek((3 |> double() |> add(1)) == 7);
+    lek((5 + 3 |> double()) == 11);
+}

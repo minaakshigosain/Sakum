@@ -29213,3 +29213,21 @@ learned 1784362608: signal=survival_suggest topic=next_survival_code depth=10 pl
 learned 1784362716: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
 learned 1784362807: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
 learned 1784364928: signal=survival_suggest topic=next_survival_code depth=10 platforms=5 gate=lex+compile note=proposed bounds-guard at indent 10 for all ISAs; verified safe.
+mistake 1784389949: recompile failed: topic=numeric (rolled back generated lib)
+survive: 49
+learned 1784390002: signal=self.pulse topic=numeric platforms=x86-64 gate=compile note=clean compile+run; survive=49
+mistake 1784391030: recompile failed: topic=overflow (rolled back generated lib)
+survive: 50
+learned 1784391169: signal=self.pulse topic=simd platforms=x86-64 gate=compile note=clean compile+run; survive=50
+survive: 51
+learned 1784395006: signal=self.pulse topic=bounds platforms=x86-64 gate=compile note=clean compile+run; survive=51
+survive: 52
+learned 1784395066: signal=self.pulse topic=numeric platforms=x86-64 gate=compile note=clean compile+run; survive=52
+survive: 53
+learned 1784395120: signal=self.pulse topic=rvv platforms=x86-64 gate=compile note=clean compile+run; survive=53
+survive: 54
+learned 1784395327: signal=self.pulse topic=overflow platforms=x86-64 gate=compile note=clean compile+run; survive=54
+survive: 55
+learned 1784395691: signal=self.pulse topic=rvv platforms=x86-64 gate=compile note=clean compile+run; survive=55
+survive: 56
+learned 1784396308: signal=self.pulse topic=simd platforms=x86-64 gate=compile note=clean compile+run; survive=56

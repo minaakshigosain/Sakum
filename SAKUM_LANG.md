@@ -333,9 +333,43 @@ group · `kosh` map/dict · `shrunkhala` list · `rekha` array · `bindu` point 
 `jod` tuple · `prakar` variant/enum · `lakshan` trait/interface
 
 ### Functions
-`ahvaan` invoke · `pravah` pipeline · `sangrah` collect · `vibhaj` split ·
+`ahvaan` invoke · `pravah` pipeline (`|>`) · `sangrah` collect · `vibhaj` split ·
 `milan` merge · `parivartan` transform · `anukram` sequence · `punaravartan`
 recursion · `pratinidhi` delegate · `vistrit` expand · `sankuchit` reduce
+
+### Pipe operator (`|>`)
+
+The `|>` (pravah/pipe) operator passes the result of the expression on its left
+as the **first argument** to the function call on its right. It enables readable,
+left-to-right data transformation pipelines:
+
+```
+# Without pipe (deeply nested):
+lek(guna(jodo(5, 3), 2))    # → prints 16
+
+# With pipe (flat, left-to-right):
+5 |> jodo 3 |> guna 2 |> lek    # → prints 16
+
+# Multi-line pipe:
+data
+  |> sundar_karo()              # clean data
+  |> badhao()                   # transform
+  |> chhapao()                  # output
+```
+
+**Semantics:**
+- `a |> f()` → `f(a)`
+- `a |> f(b, c)` → `f(a, b, c)`
+- `a |> f() |> g()` → `g(f(a))`
+- `pravah` is the Hinglish keyword; `|>` is the operator token.
+
+**Precedence:** Between comparison and arithmetic (same as Elixir: level 170).
+Left-associative.
+
+**Restrictions:**
+- Right side must be a function call or identifier resolving to a function
+- Pipe chains are desugared at parse time into nested CALL IR nodes
+- PIPE may not appear as the first token of a statement
 
 ### Concurrency
 `sutra` thread · `prakriya` process · `samayojan` sync · `samantar` parallel ·

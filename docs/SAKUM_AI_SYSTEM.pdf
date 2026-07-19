@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
+2 0 obj
+2 0 obj<</Type/Pages/Count 8/Kids[4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R 11 0 R ]>>3 0 obj
+3 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj
+4 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 12 0 R>>12 0 obj
+ 0 obj<</Length 64>>streamBT /F1 12 Tf 72 720 Td(- Agentic AI Architecture at Sakum) Tj ET
+endstream5 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 13 0 R>>13 0 obj
+ 0 obj<</Length 77>>streamBT /F1 12 Tf 72 720 Td(- System Overview: Modular AI with self-healing) Tj ET
+endstream6 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 14 0 R>>14 0 obj
+ 0 obj<</Length 79>>streamBT /F1 12 Tf 72 720 Td(- Inspired by human immune system (danger theory)) Tj ET
+endstream7 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 15 0 R>>15 0 obj
+ 0 obj<</Length 85>>streamBT /F1 12 Tf 72 720 Td(- Self-Heal Cycle: Detect -> Diagnose -> Heal -> Verify) Tj ET
+endstream8 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 16 0 R>>16 0 obj
+ 0 obj<</Length 80>>streamBT /F1 12 Tf 72 720 Td(- Survivability metric: S(t) = integral(health(t))) Tj ET
+endstream9 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 17 0 R>>17 0 obj
+ 0 obj<</Length 80>>streamBT /F1 12 Tf 72 720 Td(- Key files: serve.s, health.s, relay.s, monitor.s) Tj ET
+endstream10 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 18 0 R>>18 0 obj
+ 0 obj<</Length 79>>streamBT /F1 12 Tf 72 720 Td(- Three-layer protection: Hardware -> OS -> Agent) Tj ET
+endstream11 0 obj
+ 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R>>>>/Contents 19 0 R>>19 0 obj
+ 0 obj<</Length 75>>streamBT /F1 12 Tf 72 720 Td(- Safety: agent can't override core decisions) Tj ET
+endstream20 0 obj
+ 0 obj<</Title(Sakum Agentic AI System)/Author(Sakum Lang)>>xref
+0 21
+0000000000 65535 f 
+0000000000 0000 n 
+0000000060 0000 n 
+0000000155 0000 n 
+0000000224 0000 n 
+0000000410 0000 n 
+0000000596 0000 n 
+0000000782 0000 n 
+0000000968 0000 n 
+0000001154 0000 n 
+0000001340 0000 n 
+0000001527 0000 n 
+0000000335 0000 n 
+0000000521 0000 n 
+0000000707 0000 n 
+0000000893 0000 n 
+0000001079 0000 n 
+0000001265 0000 n 
+0000001452 0000 n 
+0000001639 0000 n 
+0000001714 0000 n 
+0000000000 0000 n 
+trailer<</Size 21/Root 1 0 R/Info 20 0 R>>startxref
+1750
+%%EOF

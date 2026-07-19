@@ -1,0 +1,46 @@
+# fib.sak — Sakum Lang example: Fibonacci, written in the full language surface.
+#
+# This shows how you WRITE code in Sakum Lang using the intended keywords
+# (kriya = function, yadi = if, vapsa = return, yavat = while, lek = print,
+# pariksha = self-test). The high-level front end lowers this through the SIR
+# to x86-64 / ARM64 / RISC-V / WASM. See docs/GUIDE_BIBLE.md §6.
+#
+# NOTE: the bootstrap evaluator (examples/eval_demo.s) currently supports only
+# the arithmetic subset (let / + - * / / ( ) / single-letter vars). The example
+# below is the TARGET syntax the language compiles to machine code.
+
+# --- function: recursive Fibonacci ---
+kriya fib(n) {
+    yadi (n <= 1) {
+        vapsa n;
+    }
+    vapsa fib(n - 1) + fib(n - 2);          # punaravartan (recursion)
+}
+
+# --- function: iterative (loop) sum 1..n ---
+kriya sum_to(n) {
+    naam total = 0;
+    naam i = 1;
+    yavat (i <= n) {
+        total = total + i;
+        i = i + 1;
+    }
+    vapsa total;
+}
+
+# --- vectors are first-class (SIMD) ---
+vektor A = vec(1, 2, 3, 4, 0, 0, 0, 0);
+vektor B = vec(5, 6, 7, 8, 0, 0, 0, 0);
+vektor C = A + B;                           # one vpaddd (AVX2/NEON/RVV)
+
+# --- output ---
+lek(fib(10));                              # 55
+lek(sum_to(100));                          # 5050
+lek(lambai(C));                            # 8
+
+# --- self-test block ---
+pariksha {
+    lek(fib(0) == 0);
+    lek(fib(1) == 1);
+    lek(fib(7) == 13);
+}

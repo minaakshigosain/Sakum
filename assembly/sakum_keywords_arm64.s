@@ -54,114 +54,114 @@
 .balign 8
 kw_tab:
 /* ---- TYPES & OBJECTS (CAT_TYPES) ---- */
-    .quad (CAT_TYPES    << 24) | 0  
-    .quad (CAT_TYPES    << 24) | 1  
-    .quad (CAT_TYPES    << 24) | 2  
-    .quad (CAT_TYPES    << 24) | 3  
-    .quad (CAT_TYPES    << 24) | 4  
-    .quad (CAT_TYPES    << 24) | 5  
-    .quad (CAT_TYPES    << 24) | 6  
-    .quad (CAT_TYPES    << 24) | 7  
-    .quad (CAT_TYPES    << 24) | 8  
-    .quad (CAT_TYPES    << 24) | 9  
-    .quad (CAT_TYPES    << 24) | 10 
-    .quad (CAT_TYPES    << 24) | 11 
+    .quad (CAT_TYPES    << 24) | 0
+    .quad (CAT_TYPES    << 24) | 1
+    .quad (CAT_TYPES    << 24) | 2
+    .quad (CAT_TYPES    << 24) | 3
+    .quad (CAT_TYPES    << 24) | 4
+    .quad (CAT_TYPES    << 24) | 5
+    .quad (CAT_TYPES    << 24) | 6
+    .quad (CAT_TYPES    << 24) | 7
+    .quad (CAT_TYPES    << 24) | 8
+    .quad (CAT_TYPES    << 24) | 9
+    .quad (CAT_TYPES    << 24) | 10
+    .quad (CAT_TYPES    << 24) | 11
 /* ---- FUNCTIONS (CAT_FUNC) ---- */
-    .quad (CAT_FUNC     << 24) | 12 
-    .quad (CAT_FUNC     << 24) | 13 
-    .quad (CAT_FUNC     << 24) | 14 
-    .quad (CAT_FUNC     << 24) | 15 
-    .quad (CAT_FUNC     << 24) | 16 
-    .quad (CAT_FUNC     << 24) | 17 
-    .quad (CAT_FUNC     << 24) | 18 
-    .quad (CAT_FUNC     << 24) | 19 
-    .quad (CAT_FUNC     << 24) | 20 
-    .quad (CAT_FUNC     << 24) | 21 
-    .quad (CAT_FUNC     << 24) | 22 
+    .quad (CAT_FUNC     << 24) | 12
+    .quad (CAT_FUNC     << 24) | 13
+    .quad (CAT_FUNC     << 24) | 14
+    .quad (CAT_FUNC     << 24) | 15
+    .quad (CAT_FUNC     << 24) | 16
+    .quad (CAT_FUNC     << 24) | 17
+    .quad (CAT_FUNC     << 24) | 18
+    .quad (CAT_FUNC     << 24) | 19
+    .quad (CAT_FUNC     << 24) | 20
+    .quad (CAT_FUNC     << 24) | 21
+    .quad (CAT_FUNC     << 24) | 22
 /* ---- CONCURRENCY (CAT_CONC) ---- */
-    .quad (CAT_CONC     << 24) | 23 
-    .quad (CAT_CONC     << 24) | 24 
-    .quad (CAT_CONC     << 24) | 25 
-    .quad (CAT_CONC     << 24) | 26 
-    .quad (CAT_CONC     << 24) | 27 
-    .quad (CAT_CONC     << 24) | 28 
-    .quad (CAT_CONC     << 24) | 29 
-    .quad (CAT_CONC     << 24) | 30 
-    .quad (CAT_CONC     << 24) | 31 
-    .quad (CAT_CONC     << 24) | 32 
-    .quad (CAT_CONC     << 24) | 33 
-    .quad (CAT_CONC     << 24) | 34 
+    .quad (CAT_CONC     << 24) | 23
+    .quad (CAT_CONC     << 24) | 24
+    .quad (CAT_CONC     << 24) | 25
+    .quad (CAT_CONC     << 24) | 26
+    .quad (CAT_CONC     << 24) | 27
+    .quad (CAT_CONC     << 24) | 28
+    .quad (CAT_CONC     << 24) | 29
+    .quad (CAT_CONC     << 24) | 30
+    .quad (CAT_CONC     << 24) | 31
+    .quad (CAT_CONC     << 24) | 32
+    .quad (CAT_CONC     << 24) | 33
+    .quad (CAT_CONC     << 24) | 34
 /* ---- MEMORY (CAT_MEM) ---- */
-    .quad (CAT_MEM      << 24) | 35 
-    .quad (CAT_MEM      << 24) | 36 
-    .quad (CAT_MEM      << 24) | 37 
-    .quad (CAT_MEM      << 24) | 38 
-    .quad (CAT_MEM      << 24) | 39 
-    .quad (CAT_MEM      << 24) | 40 
-    .quad (CAT_MEM      << 24) | 41 
-    .quad (CAT_MEM      << 24) | 42 
-    .quad (CAT_MEM      << 24) | 43 
-    .quad (CAT_MEM      << 24) | 44 
+    .quad (CAT_MEM      << 24) | 35
+    .quad (CAT_MEM      << 24) | 36
+    .quad (CAT_MEM      << 24) | 37
+    .quad (CAT_MEM      << 24) | 38
+    .quad (CAT_MEM      << 24) | 39
+    .quad (CAT_MEM      << 24) | 40
+    .quad (CAT_MEM      << 24) | 41
+    .quad (CAT_MEM      << 24) | 42
+    .quad (CAT_MEM      << 24) | 43
+    .quad (CAT_MEM      << 24) | 44
 /* ---- FILESYSTEM (CAT_FS) ---- */
-    .quad (CAT_FS       << 24) | 45 
-    .quad (CAT_FS       << 24) | 46 
-    .quad (CAT_FS       << 24) | 47 
-    .quad (CAT_FS       << 24) | 48 
-    .quad (CAT_FS       << 24) | 49 
-    .quad (CAT_FS       << 24) | 50 
-    .quad (CAT_FS       << 24) | 51 
-    .quad (CAT_FS       << 24) | 52 
-    .quad (CAT_FS       << 24) | 53 
-    .quad (CAT_FS       << 24) | 54 
+    .quad (CAT_FS       << 24) | 45
+    .quad (CAT_FS       << 24) | 46
+    .quad (CAT_FS       << 24) | 47
+    .quad (CAT_FS       << 24) | 48
+    .quad (CAT_FS       << 24) | 49
+    .quad (CAT_FS       << 24) | 50
+    .quad (CAT_FS       << 24) | 51
+    .quad (CAT_FS       << 24) | 52
+    .quad (CAT_FS       << 24) | 53
+    .quad (CAT_FS       << 24) | 54
 /* ---- NETWORKING (CAT_NET) ---- */
-    .quad (CAT_NET      << 24) | 55 
-    .quad (CAT_NET      << 24) | 56 
-    .quad (CAT_NET      << 24) | 57 
-    .quad (CAT_NET      << 24) | 58 
-    .quad (CAT_NET      << 24) | 59 
-    .quad (CAT_NET      << 24) | 60 
-    .quad (CAT_NET      << 24) | 61 
-    .quad (CAT_NET      << 24) | 62 
-    .quad (CAT_NET      << 24) | 63 
-    .quad (CAT_NET      << 24) | 64 
-    .quad (CAT_NET      << 24) | 65 
-    .quad (CAT_NET      << 24) | 66 
+    .quad (CAT_NET      << 24) | 55
+    .quad (CAT_NET      << 24) | 56
+    .quad (CAT_NET      << 24) | 57
+    .quad (CAT_NET      << 24) | 58
+    .quad (CAT_NET      << 24) | 59
+    .quad (CAT_NET      << 24) | 60
+    .quad (CAT_NET      << 24) | 61
+    .quad (CAT_NET      << 24) | 62
+    .quad (CAT_NET      << 24) | 63
+    .quad (CAT_NET      << 24) | 64
+    .quad (CAT_NET      << 24) | 65
+    .quad (CAT_NET      << 24) | 66
 /* ---- AI (CAT_AI) ---- */
-    .quad (CAT_AI       << 24) | 67 
-    .quad (CAT_AI       << 24) | 68 
-    .quad (CAT_AI       << 24) | 69 
-    .quad (CAT_AI       << 24) | 70 
-    .quad (CAT_AI       << 24) | 71 
-    .quad (CAT_AI       << 24) | 72 
-    .quad (CAT_AI       << 24) | 73 
-    .quad (CAT_AI       << 24) | 74 
-    .quad (CAT_AI       << 24) | 75 
-    .quad (CAT_AI       << 24) | 76 
-    .quad (CAT_AI       << 24) | 77 
-    .quad (CAT_AI       << 24) | 78 
-    .quad (CAT_AI       << 24) | 79 
-    .quad (CAT_AI       << 24) | 80 
-    .quad (CAT_AI       << 24) | 81 
+    .quad (CAT_AI       << 24) | 67
+    .quad (CAT_AI       << 24) | 68
+    .quad (CAT_AI       << 24) | 69
+    .quad (CAT_AI       << 24) | 70
+    .quad (CAT_AI       << 24) | 71
+    .quad (CAT_AI       << 24) | 72
+    .quad (CAT_AI       << 24) | 73
+    .quad (CAT_AI       << 24) | 74
+    .quad (CAT_AI       << 24) | 75
+    .quad (CAT_AI       << 24) | 76
+    .quad (CAT_AI       << 24) | 77
+    .quad (CAT_AI       << 24) | 78
+    .quad (CAT_AI       << 24) | 79
+    .quad (CAT_AI       << 24) | 80
+    .quad (CAT_AI       << 24) | 81
 /* ---- ROBOTICS (CAT_ROBOT) ---- */
-    .quad (CAT_ROBOT    << 24) | 82 
-    .quad (CAT_ROBOT    << 24) | 83 
-    .quad (CAT_ROBOT    << 24) | 84 
-    .quad (CAT_ROBOT    << 24) | 85 
-    .quad (CAT_ROBOT    << 24) | 86 
-    .quad (CAT_ROBOT    << 24) | 87 
-    .quad (CAT_ROBOT    << 24) | 88 
-    .quad (CAT_ROBOT    << 24) | 89 
-    .quad (CAT_ROBOT    << 24) | 90 
-    .quad (CAT_ROBOT    << 24) | 91 
+    .quad (CAT_ROBOT    << 24) | 82
+    .quad (CAT_ROBOT    << 24) | 83
+    .quad (CAT_ROBOT    << 24) | 84
+    .quad (CAT_ROBOT    << 24) | 85
+    .quad (CAT_ROBOT    << 24) | 86
+    .quad (CAT_ROBOT    << 24) | 87
+    .quad (CAT_ROBOT    << 24) | 88
+    .quad (CAT_ROBOT    << 24) | 89
+    .quad (CAT_ROBOT    << 24) | 90
+    .quad (CAT_ROBOT    << 24) | 91
 /* ---- QUANTUM (CAT_QUANT) ---- */
-    .quad (CAT_QUANT    << 24) | 92 
-    .quad (CAT_QUANT    << 24) | 93 
-    .quad (CAT_QUANT    << 24) | 94 
-    .quad (CAT_QUANT    << 24) | 95 
-    .quad (CAT_QUANT    << 24) | 96 
-    .quad (CAT_QUANT    << 24) | 97 
-    .quad (CAT_QUANT    << 24) | 98 
-    .quad (CAT_QUANT    << 24) | 99 
+    .quad (CAT_QUANT    << 24) | 92
+    .quad (CAT_QUANT    << 24) | 93
+    .quad (CAT_QUANT    << 24) | 94
+    .quad (CAT_QUANT    << 24) | 95
+    .quad (CAT_QUANT    << 24) | 96
+    .quad (CAT_QUANT    << 24) | 97
+    .quad (CAT_QUANT    << 24) | 98
+    .quad (CAT_QUANT    << 24) | 99
     .quad (CAT_QUANT    << 24) | 100
     .quad (CAT_QUANT    << 24) | 101
 /* ---- COMPILER (CAT_COMPILER) ---- */
@@ -529,7 +529,7 @@ kw_mean_ptr:
 # ---------------------------------------------------------------------------
 # actual name + meaning strings (collected here, referenced by the arrays above)
 # ---------------------------------------------------------------------------
-.section .rodata
+.section __TEXT,__const
 kw_n_vastu:      .asciz "vastu"
 kw_n_rupa:       .asciz "rupa"
 kw_n_akruti:     .asciz "akruti"
@@ -830,25 +830,25 @@ kw_m_root:         .asciz "Root runtime identity"
 # ---- AArch64 helpers ----
 # sakum_kw_count() -> x0
 sakum_kw_count:
-    mov w0, #148
+    mov w0,#148
     ret
 
 # sakum_kw_lookup(x0=name) -> x0 idx or -1
 sakum_kw_lookup:
-    stp x19, x20, [sp, #-16]!
-    stp x21, x22, [sp, #-16]!
-    mov x19, x0            // query name
-    mov x20, #0            // idx
-    adrp x21, kw_tab
-    add  x21, x21, :lo12:kw_tab
+    stp x19, x20, [sp,#-16]!
+    stp x21, x22, [sp,#-16]!
+    mov x19, x0// query name
+    mov x20,#0            // idx
+    adrp x21, kw_tab@PAGE
+    add  x21, x21, kw_tab@PAGEOFF
 .kl_loop:
-    cmp w20, #148
+    cmp w20,#148
     b.ge .kl_notfound
-    ldr x22, [x21, x20, lsl #3]
-    and w22, w22, #0xff    // slot
-    adrp x1, kw_name_ptr
-    add  x1, x1, :lo12:kw_name_ptr
-    ldr x1, [x1, x22, lsl #3]   // candidate
+    ldr x22, [x21, x20, lsl#3]
+    and w22, w22,#0xff    // slot
+    adrp x1, kw_name_ptr@PAGE
+    add  x1, x1, kw_name_ptr@PAGEOFF
+    ldr x1, [x1, x22, lsl#3]   // candidate
     mov x2, x19
 .kl_cmp:
     ldrb w3, [x2]
@@ -856,92 +856,92 @@ sakum_kw_lookup:
     cmp w3, w4
     b.ne .kl_next
     cbz w3, .kl_found
-    add x2, x2, #1
-    add x1, x1, #1
+    add x2, x2,#1
+    add x1, x1,#1
     b .kl_cmp
 .kl_found:
     mov w0, w20
     b .kl_ret
 .kl_next:
-    add w20, w20, #1
+    add w20, w20,#1
     b .kl_loop
 .kl_notfound:
-    mov w0, #-1
+    mov w0,#-1
 .kl_ret:
-    ldp x21, x22, [sp], #16
-    ldp x19, x20, [sp], #16
+    ldp x21, x22, [sp],#16
+    ldp x19, x20, [sp],#16
     ret
 
 # sakum_kw_category(x0) -> x0
 sakum_kw_category:
-    cmp w0, #148
+    cmp w0,#148
     b.ge .kc_bad
-    adrp x1, kw_tab
-    add  x1, x1, :lo12:kw_tab
-    ldr  x0, [x1, x0, lsl #3]
-    ubfx w0, w0, #24, #8
+    adrp x1, kw_tab@PAGE
+    add  x1, x1, kw_tab@PAGEOFF
+    ldr  x0, [x1, x0, lsl#3]
+    ubfx w0, w0,#24, #8
     ret
 .kc_bad:
-    mov w0, #-1
+    mov w0,#-1
     ret
 
 # sakum_kw_name(x0) -> x0
 sakum_kw_name:
-    cmp w0, #148
+    cmp w0,#148
     b.ge .kn_bad
-    adrp x1, kw_tab
-    add  x1, x1, :lo12:kw_tab
-    ldr  x2, [x1, x0, lsl #3]
-    and  w2, w2, #0xff
-    adrp x1, kw_name_ptr
-    add  x1, x1, :lo12:kw_name_ptr
-    ldr  x0, [x1, x2, lsl #3]
+    adrp x1, kw_tab@PAGE
+    add  x1, x1, kw_tab@PAGEOFF
+    ldr  x2, [x1, x0, lsl#3]
+    and  w2, w2,#0xff
+    adrp x1, kw_name_ptr@PAGE
+    add  x1, x1, kw_name_ptr@PAGEOFF
+    ldr  x0, [x1, x2, lsl#3]
     ret
 .kn_bad:
-    mov x0, #0
+    mov x0,#0
     ret
 
 # sakum_kw_mean(x0) -> x0
 sakum_kw_mean:
-    cmp w0, #148
+    cmp w0,#148
     b.ge .km_bad
-    adrp x1, kw_tab
-    add  x1, x1, :lo12:kw_tab
-    ldr  x2, [x1, x0, lsl #3]
-    and  w2, w2, #0xff
-    adrp x1, kw_mean_ptr
-    add  x1, x1, :lo12:kw_mean_ptr
-    ldr  x0, [x1, x2, lsl #3]
+    adrp x1, kw_tab@PAGE
+    add  x1, x1, kw_tab@PAGEOFF
+    ldr  x2, [x1, x0, lsl#3]
+    and  w2, w2,#0xff
+    adrp x1, kw_mean_ptr@PAGE
+    add  x1, x1, kw_mean_ptr@PAGEOFF
+    ldr  x0, [x1, x2, lsl#3]
     ret
 .km_bad:
-    mov x0, #0
+    mov x0,#0
     ret
 
 # self-test main: print every keyword then total
 main:
-    stp x29, x30, [sp, #-16]!
+    stp x29, x30, [sp,#-16]!
     mov x29, sp
-    mov x19, #0
+    mov x19,#0
 .pt_loop:
-    cmp w19, #148
+    cmp w19,#148
     b.ge .pt_done
     mov w0, w19
     bl sakum_kw_print
-    add w19, w19, #1
+    add w19, w19,#1
     b .pt_loop
 .pt_done:
-    adrp x0, kw_count_fmt
-    add  x0, x0, :lo12:kw_count_fmt
-    mov x1, #148
+    adrp x0, kw_count_fmt@PAGE
+    add  x0, x0, kw_count_fmt@PAGEOFF
+    mov x1,#148
     bl printf
-    mov w0, #0
-    ldp x29, x30, [sp], #16
+    mov w0,#0
+    ldp x29, x30, [sp],#16
     ret
 
 # sakum_kw_print(idx): prints "cat=%s name=%s = %s\n"
 sakum_kw_print:
-    stp x29, x30, [sp, #-32]!
-    stp x19, x20, [sp, #16]
+    stp x29, x30, [sp,#-32]!
+    stp x19, x20, [sp,#16]
     mov x29, sp
     bl sakum_kw_category
     mov w19, w0
@@ -949,18 +949,18 @@ sakum_kw_print:
     mov x20, x0
     bl sakum_kw_mean
     mov x21, x0
-    adrp x1, kw_cat_name
-    add  x1, x1, :lo12:kw_cat_name
-    ldr  x1, [x1, x19, lsl #3]
+    adrp x1, kw_cat_name@PAGE
+    add  x1, x1, kw_cat_name@PAGEOFF
+    ldr  x1, [x1, x19, lsl#3]
     mov x2, x20
     mov x3, x21
-    adrp x0, kw_fmt
-    add  x0, x0, :lo12:kw_fmt
+    adrp x0, kw_fmt@PAGE
+    add  x0, x0, kw_fmt@PAGEOFF
     bl printf
-    ldp x19, x20, [sp, #16]
-    ldp x29, x30, [sp], #32
+    ldp x19, x20, [sp,#16]
+    ldp x29, x30, [sp],#32
     ret
 
-    .section .rodata
+.section __TEXT,__const
 kw_count_fmt: .asciz "TOTAL KEYWORDS: %lld\n"
 kw_fmt: .asciz "cat=%s name=%s = %s\n"
