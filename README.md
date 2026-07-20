@@ -350,8 +350,6 @@ SOURCE CODE (.s)
 
 ## create its own encription key name APRA ()
 
-## use https://tour.gleam.run/basics/hello-world/ language like learning tour 
-
 ## create complete website copy of gleam and rust language web pages style look & feel
 
 
